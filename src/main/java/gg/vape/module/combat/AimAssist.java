@@ -1,6 +1,6 @@
 package gg.vape.module.combat;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.config.ClientSettings;
 import gg.vape.mapping.MappedClasses;
 import gg.vape.module.Category;
@@ -139,7 +139,7 @@ extends Mod {
         if (RotationUtil.a(Minecraft.thePlayer(), target) > ((Double)this.maxAngle.getValue()).intValue() / 2) {
             return false;
         }
-        if (Vape.INSTANCE.getFriendManager().isFriend(target)) {
+        if (Vapor.isFriend(target)) {
             return false;
         }
         if (target.equals(Minecraft.thePlayer().S$src$Lgg_vape_wrapper_impl_Entity_$dgzs12())) {

@@ -1,10 +1,6 @@
 package gg.vape.ui.click.frame.impl.hud;
 
-import gg.vape.Vape;
-import gg.vape.friend.ui.OnlineActivitySettingsFrame;
-import gg.vape.friend.ui.OnlineCombatStatsSettingsFrame;
-import gg.vape.friend.ui.OnlinePlayerPreviewSettingsFrame;
-import gg.vape.friend.ui.OnlineRadarSettingsFrame;
+import gg.vape.Vapor;
 import gg.vape.manager.ModManager;
 import gg.vape.module.Mod;
 import gg.vape.module.none.ClientSettings;
@@ -59,9 +55,7 @@ extends Frame {
             ((Mod)obj).toggle();
             Object t = ClientSettings.getFrame(clazz);
             if (t != null) {
-                boolean enabled = ((Mod)obj).isEnabled();
-                ((Frame)t).setVisible(enabled);
-                ((Frame)t).c(enabled);
+                ((Frame)t).setVisible(((Mod)obj).isEnabled());
             }
         }
     }
@@ -121,7 +115,7 @@ extends Frame {
     private static List<HudOverlayEntrySpec> getHudModuleEntries() {
         ArrayList<HudOverlayEntrySpec> arrayList = new ArrayList<HudOverlayEntrySpec>();
         try {
-            ModManager modManager = Vape.INSTANCE.getModManager();
+            ModManager modManager = Vapor.INSTANCE.getModManager();
             for (Mod mod : new ArrayList<Mod>(modManager.getActiveModuleList())) {
                 Class clazz;
                 HudModule hudModule;
@@ -198,12 +192,7 @@ extends Frame {
         ArrayList<HudOverlayEntrySpec> arrayList = new ArrayList<HudOverlayEntrySpec>();
         arrayList.addAll(Arrays.asList(
                 HudOverlayEntrySpec.forFrame("Text GUI", "newtextgui", TextGuiSettingsFrame.class),
-                HudOverlayEntrySpec.forFrame("Rearview", "newrearview", OnlinePlayerPreviewSettingsFrame.class),
-                HudOverlayEntrySpec.forFrame("Duel Info", "newduelinfo", OnlineCombatStatsSettingsFrame.class),
-                HudOverlayEntrySpec.forFrame("Target Info", "newtargetinfo", TargetInfoSettingsFrame.class),
-                HudOverlayEntrySpec.forFrame("Radar", "newradar", OnlineRadarSettingsFrame.class),
-                HudOverlayEntrySpec.forFrame("Inventory", "inventory", InventoryOverlaySettingsFrame.class),
-                HudOverlayEntrySpec.forFrame("Party Overlay", "party hover@2x", OnlineActivitySettingsFrame.class)));
+                HudOverlayEntrySpec.forFrame("Target Info", "newtargetinfo", TargetInfoSettingsFrame.class)));
         arrayList.addAll(HudOverlaySelectorFrame.getHudModuleEntries());
         return arrayList;
     }

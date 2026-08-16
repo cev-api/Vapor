@@ -1,6 +1,6 @@
 package gg.vape.utils.render;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.utils.render.CachedTextTexture;
 import gg.vape.utils.render.CachedTextTextureKey;
 import gg.vape.wrapper.impl.Minecraft;
@@ -34,7 +34,7 @@ public class CachedTextTextureRegistry {
             cache.get(cacheKey).render(x, y, textWidth, textHeight);
         }
         catch (Exception exception) {
-            Vape.logThrowable(exception);
+            Vapor.logThrowable(exception);
         }
     }
 

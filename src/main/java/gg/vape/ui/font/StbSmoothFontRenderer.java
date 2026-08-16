@@ -1,6 +1,6 @@
 package gg.vape.ui.font;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.ui.font.SmoothFontGlyph;
 import gg.vape.ui.font.SmoothFontRenderer;
 import gg.vape.ui.font.stb.StbGlyphCache;
@@ -144,7 +144,7 @@ extends SmoothFontRenderer {
             return;
         }
         this.R = true;
-        Vape.debugLog(c);
+        Vapor.debugLog(c);
     }
 
     public void c(String string, double d, double d2, int n, boolean bl, boolean bl2) {
@@ -163,7 +163,7 @@ extends SmoothFontRenderer {
             return 0.0;
         }
         if (this.j) {
-            string = Vape.INSTANCE.getFontSelector().W().s(string);
+            string = Vapor.INSTANCE.getFontSelector().W().s(string);
         }
         if (this.u()) {
             this.A();
@@ -210,7 +210,7 @@ extends SmoothFontRenderer {
         }
         String string2 = string;
         if (this.j) {
-            string2 = Vape.INSTANCE.getFontSelector().W().s(string);
+            string2 = Vapor.INSTANCE.getFontSelector().W().s(string);
         }
         if (this.u()) {
             this.A();
@@ -236,7 +236,7 @@ extends SmoothFontRenderer {
 
     private float y() {
         float f = (float)this.D / 16.0f;
-        float f2 = (float)Vape.INSTANCE.getClientSettings().getGuiScaleFactor();
+        float f2 = (float)Vapor.INSTANCE.getClientSettings().getGuiScaleFactor();
         if (f2 != 1.0f) {
             f *= 1.0f / f2;
         }
@@ -296,7 +296,7 @@ extends SmoothFontRenderer {
             return;
         }
         if (this.j) {
-            string = Vape.INSTANCE.getFontSelector().W().s(string);
+            string = Vapor.INSTANCE.getFontSelector().W().s(string);
         }
         if (this.u()) {
             this.A();

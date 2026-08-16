@@ -1,6 +1,6 @@
 package gg.vape.mapping.runtime;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.mapping.MappedClasses;
 
 public class MemberNameRemapTableV35V36
@@ -34,7 +34,7 @@ extends MemberNameRemapTable {
     }
 
     protected void Qf() {
-        if (Vape.INSTANCE.isVanillaMinecraftPresent()) {
+        if (Vapor.INSTANCE.isVanillaMinecraftPresent()) {
             this.t(MappedClasses.m, "func_238470_a_", "blit");
         }
     }
@@ -64,7 +64,7 @@ extends MemberNameRemapTable {
     }
 
     protected void QK() {
-        if (Vape.INSTANCE.isVanillaMinecraftPresent()) {
+        if (Vapor.INSTANCE.isVanillaMinecraftPresent()) {
             this.t(MappedClasses.Vv, "func_196954_c", "getShape");
         }
     }
@@ -78,7 +78,7 @@ extends MemberNameRemapTable {
     }
 
     protected void uV() {
-        if (Vape.INSTANCE.isVanillaMinecraftPresent()) {
+        if (Vapor.INSTANCE.isVanillaMinecraftPresent()) {
             this.t(MappedClasses.u6, "func_237500_a_", "formatNameForTeam");
         }
     }
@@ -102,7 +102,7 @@ extends MemberNameRemapTable {
         this.B(MappedClasses.zm, "activePotionsMap", "activeEffects");
         this.B(MappedClasses.zm, "potionsNeedUpdate", "effectsDirty");
         this.B(MappedClasses.zm, "itemInUseCount", "field_184628_bn");
-        if (Vape.INSTANCE.isVanillaMinecraftPresent()) {
+        if (Vapor.INSTANCE.isVanillaMinecraftPresent()) {
             this.B(MappedClasses.zm, "field_191988_bg", "zza");
         }
         this.t(MappedClasses.zm, "getHeldItemMainhand", "getMainHandItem");
@@ -143,7 +143,7 @@ extends MemberNameRemapTable {
     }
 
     protected void us() {
-        if (Vape.INSTANCE.isVanillaMinecraftPresent()) {
+        if (Vapor.INSTANCE.isVanillaMinecraftPresent()) {
             this.t(MappedClasses.F6, "getSortedScores", "getPlayerScores");
         } else {
             this.t(MappedClasses.F6, "getSortedScores", "func_96534_i");
@@ -187,7 +187,7 @@ extends MemberNameRemapTable {
 
     protected void QV() {
         this.t(MappedClasses.uk, "calcSideHit", "getDirection");
-        if (Vape.INSTANCE.isVanillaMinecraftPresent()) {
+        if (Vapor.INSTANCE.isVanillaMinecraftPresent()) {
             this.t(MappedClasses.uk, "func_72317_d", "move");
             this.t(MappedClasses.uk, "func_216365_b", "clip");
             this.t(MappedClasses.uk, "func_72314_b", "inflate");
@@ -223,7 +223,7 @@ extends MemberNameRemapTable {
 
     protected void I() {
         this.B(MappedClasses.lM, "caughtEntity", "hookedIn");
-        if (Vape.INSTANCE.isVanillaMinecraftPresent()) {
+        if (Vapor.INSTANCE.isVanillaMinecraftPresent()) {
             this.B(MappedClasses.lM, "field_234597_c_", "biting");
         }
     }
@@ -233,7 +233,7 @@ extends MemberNameRemapTable {
     }
 
     protected void M() {
-        if (Vape.INSTANCE.isVanillaMinecraftPresent()) {
+        if (Vapor.INSTANCE.isVanillaMinecraftPresent()) {
             this.t(MappedClasses.FV, "func_219895_b", "popPush");
         }
     }
@@ -270,7 +270,7 @@ extends MemberNameRemapTable {
         this.t(MappedClasses.FO, "getNetHandler", "getPacketListener");
         this.t(MappedClasses.FO, "flushOutboundQueue", "flushQueue");
         this.t(MappedClasses.FO, "dispatchPacket", "sendPacket");
-        if (Vape.INSTANCE.isVanillaMinecraftPresent()) {
+        if (Vapor.INSTANCE.isVanillaMinecraftPresent()) {
             this.t(MappedClasses.FO, "sendPacket", "send");
         }
     }
@@ -283,7 +283,7 @@ extends MemberNameRemapTable {
         this.t(MappedClasses.VK, "setDamage", "setDamageValue");
         this.t(MappedClasses.VK, "addEnchantment", "enchant");
         this.t(MappedClasses.VK, "isItemEqual", "sameItem");
-        if (Vape.INSTANCE.isVanillaMinecraftPresent()) {
+        if (Vapor.INSTANCE.isVanillaMinecraftPresent()) {
             this.t(MappedClasses.VK, "func_82840_a", "getTooltipLines");
         }
     }
@@ -294,7 +294,7 @@ extends MemberNameRemapTable {
     }
 
     protected void Qe() {
-        if (Vape.INSTANCE.isVanillaMinecraftPresent()) {
+        if (Vapor.INSTANCE.isVanillaMinecraftPresent()) {
             this.B(MappedClasses.lF, "field_175252_a", "PLAYER_ORDERING");
         }
     }
@@ -323,7 +323,7 @@ extends MemberNameRemapTable {
         this.B(MappedClasses.z5, "positionUpdateTicks", "positionReminder");
         this.B(MappedClasses.z5, "timeInPortal", "portalTime");
         this.B(MappedClasses.z5, "prevTimeInPortal", "oPortalTime");
-        if (Vape.INSTANCE.isVanillaMinecraftPresent()) {
+        if (Vapor.INSTANCE.isVanillaMinecraftPresent()) {
             this.B(MappedClasses.z5, "field_191988_bg", "zza");
         }
         this.t(MappedClasses.z5, "sendChatMessage", "chat");
@@ -352,7 +352,7 @@ extends MemberNameRemapTable {
     }
 
     protected void uF() {
-        if (Vape.INSTANCE.isVanillaMinecraftPresent()) {
+        if (Vapor.INSTANCE.isVanillaMinecraftPresent()) {
             this.B(MappedClasses.e, "field_149615_a", "slot");
         }
     }
@@ -410,7 +410,7 @@ extends MemberNameRemapTable {
     }
 
     protected void u4() {
-        if (Vape.INSTANCE.isVanillaMinecraftPresent()) {
+        if (Vapor.INSTANCE.isVanillaMinecraftPresent()) {
             this.t(MappedClasses.qF, "func_216352_a", "miss");
         }
     }
@@ -488,7 +488,7 @@ extends MemberNameRemapTable {
         this.t(MappedClasses.ld, "syncCurrentPlayItem", "ensureHasSentCarriedItem");
         this.t(MappedClasses.ld, "onStoppedUsingItem", "releaseUsingItem");
         this.t(MappedClasses.ld, "windowClick", "handleInventoryMouseClick");
-        if (Vape.INSTANCE.isVanillaMinecraftPresent()) {
+        if (Vapor.INSTANCE.isVanillaMinecraftPresent()) {
             this.t(MappedClasses.ld, "func_217292_a", "useItemOn");
         }
     }
@@ -567,7 +567,7 @@ extends MemberNameRemapTable {
         this.B(MappedClasses.qz, "posX", "xa");
         this.B(MappedClasses.qz, "posY", "ya");
         this.B(MappedClasses.qz, "posZ", "za");
-        if (Vape.INSTANCE.isVanillaMinecraftPresent()) {
+        if (Vapor.INSTANCE.isVanillaMinecraftPresent()) {
             this.t(MappedClasses.qz, "func_149066_f", "getyRot");
             this.t(MappedClasses.qz, "func_149063_g", "getxRot");
             this.t(MappedClasses.qz, "func_149060_h", "hasRotation");
@@ -596,7 +596,7 @@ extends MemberNameRemapTable {
         this.t(MappedClasses.q0, "getDirectionVec", "getNormal");
         this.t(MappedClasses.q0, "getName2", "getName");
         this.t(MappedClasses.q0, "getHorizontalIndex", "get2DDataValue");
-        if (Vape.INSTANCE.isVanillaMinecraftPresent()) {
+        if (Vapor.INSTANCE.isVanillaMinecraftPresent()) {
             this.t(MappedClasses.q0, "func_210769_a", "getNearest");
         }
     }
@@ -615,7 +615,7 @@ extends MemberNameRemapTable {
     }
 
     protected void d() {
-        if (Vape.INSTANCE.isVanillaMinecraftPresent()) {
+        if (Vapor.INSTANCE.isVanillaMinecraftPresent()) {
             this.B(MappedClasses.Vi, "field_239496_d_", "defaultRightToLeft");
         }
     }
@@ -638,7 +638,7 @@ extends MemberNameRemapTable {
         this.B(MappedClasses.qO, "backKeyDown", "down");
         this.B(MappedClasses.qO, "leftKeyDown", "left");
         this.B(MappedClasses.qO, "rightKeyDown", "right");
-        if (Vape.INSTANCE.isVanillaMinecraftPresent()) {
+        if (Vapor.INSTANCE.isVanillaMinecraftPresent()) {
             this.B(MappedClasses.qO, "field_192832_b", "forwardImpulse");
         }
     }
@@ -674,13 +674,13 @@ extends MemberNameRemapTable {
         this.t(MappedClasses.DR, "unpressKey", "release");
         this.t(MappedClasses.DR, "setKeyBindState", "set");
         this.t(MappedClasses.DR, "onTick", "click");
-        if (Vape.INSTANCE.isVanillaMinecraftPresent()) {
+        if (Vapor.INSTANCE.isVanillaMinecraftPresent()) {
             this.t(MappedClasses.DR, "func_151470_d", "isDown");
         }
     }
 
     protected void e() {
-        this.t(MappedClasses.VJ, "getEntitiesWithinAABBForEntity", Vape.INSTANCE.isVanillaMinecraftPresent() ? "getEntities" : "func_177414_a");
+        this.t(MappedClasses.VJ, "getEntitiesWithinAABBForEntity", Vapor.INSTANCE.isVanillaMinecraftPresent() ? "getEntities" : "func_177414_a");
     }
 
     protected void QQ() {
@@ -693,9 +693,9 @@ extends MemberNameRemapTable {
 
     protected void Qr() {
         this.t(MappedClasses.Z, "addEntityImpl", "addEntity");
-        this.t(MappedClasses.Z, "removeEntity", Vape.INSTANCE.isVanillaMinecraftPresent() ? "onEntityRemovedVanilla" : "onEntityRemoved");
+        this.t(MappedClasses.Z, "removeEntity", Vapor.INSTANCE.isVanillaMinecraftPresent() ? "onEntityRemovedVanilla" : "onEntityRemoved");
         this.t(MappedClasses.Z, "getAllEntities", "entitiesForRendering");
-        if (Vape.INSTANCE.isVanillaMinecraftPresent()) {
+        if (Vapor.INSTANCE.isVanillaMinecraftPresent()) {
             this.t(MappedClasses.Z, "func_239134_a_", "setGameTime");
         }
         this.t(MappedClasses.Z, "playSound", "playLocalSound");
@@ -742,12 +742,12 @@ extends MemberNameRemapTable {
         this.t(MappedClasses.zc, "isBurning", "isOnFire");
         this.t(MappedClasses.zc, "isSneaking", "isCrouching");
         this.t(MappedClasses.zc, "getCollisionBorderSize", "getPickRadius");
-        this.t(MappedClasses.zc, "isOffsetPositionInLiquid", Vape.INSTANCE.isVanillaMinecraftPresent() ? "isFree" : "func_70038_c");
+        this.t(MappedClasses.zc, "isOffsetPositionInLiquid", Vapor.INSTANCE.isVanillaMinecraftPresent() ? "isFree" : "func_70038_c");
         this.t(MappedClasses.zc, "setVelocity", "lerpMotion");
         this.t(MappedClasses.zc, "isWet", "isInWaterOrRain");
         this.t(MappedClasses.zc, "setFire", "setSecondsOnFire");
         this.t(MappedClasses.zc, "setFlag", "setSharedFlag");
-        this.t(MappedClasses.zc, "setPositionAndRotation", Vape.INSTANCE.isVanillaMinecraftPresent() ? "absMoveTo" : "func_70080_a");
+        this.t(MappedClasses.zc, "setPositionAndRotation", Vapor.INSTANCE.isVanillaMinecraftPresent() ? "absMoveTo" : "func_70080_a");
         this.t(MappedClasses.zc, "setPosition", "setPos");
         this.t(MappedClasses.zc, "setSneaking", "setShiftKeyDown");
         this.t(MappedClasses.zc, "getLook", "getViewVector");
@@ -755,7 +755,7 @@ extends MemberNameRemapTable {
         this.t(MappedClasses.zc, "getLowestRidingEntity", "getRootVehicle");
         this.t(MappedClasses.zc, "canTriggerWalking", "isMovementNoisy");
         this.B(MappedClasses.zc, "preventEntitySpawning", "blocksBuilding");
-        if (Vape.INSTANCE.isVanillaMinecraftPresent()) {
+        if (Vapor.INSTANCE.isVanillaMinecraftPresent()) {
             this.t(MappedClasses.zc, "func_184231_a", "checkFallDamage");
         }
         this.t(MappedClasses.zc, "hasNoGravity", "isNoGravity");
@@ -855,7 +855,7 @@ extends MemberNameRemapTable {
     }
 
     protected void u2() {
-        if (Vape.INSTANCE.isVanillaMinecraftPresent()) {
+        if (Vapor.INSTANCE.isVanillaMinecraftPresent()) {
             this.t(MappedClasses.qP, "func_72441_c", "add");
             this.t(MappedClasses.qP, "func_72436_e", "distanceToSqr");
         }
@@ -867,7 +867,7 @@ extends MemberNameRemapTable {
     }
 
     protected void QN() {
-        if (Vape.INSTANCE.isVanillaMinecraftPresent()) {
+        if (Vapor.INSTANCE.isVanillaMinecraftPresent()) {
             this.t(MappedClasses.qr, "func_226595_a_", "multiply");
         }
         this.t(MappedClasses.qr, "write", "store");
@@ -878,7 +878,7 @@ extends MemberNameRemapTable {
     }
 
     protected void U() {
-        if (Vape.INSTANCE.isVanillaMinecraftPresent()) {
+        if (Vapor.INSTANCE.isVanillaMinecraftPresent()) {
             this.B(MappedClasses.Vm, "field_239501_a_", "language");
         }
         this.t(MappedClasses.Vm, "format", "get");
@@ -892,7 +892,7 @@ extends MemberNameRemapTable {
     protected void Qs() {
         this.B(MappedClasses.zw, "yaw", "yRot");
         this.B(MappedClasses.zw, "pitch", "xRot");
-        if (Vape.INSTANCE.isVanillaMinecraftPresent()) {
+        if (Vapor.INSTANCE.isVanillaMinecraftPresent()) {
             this.t(MappedClasses.zw, "func_179834_f", "getRelativeArguments");
         }
     }
@@ -908,7 +908,7 @@ extends MemberNameRemapTable {
     protected void un() {
         this.B(MappedClasses.Zj, "displayedTitle", "title");
         this.t(MappedClasses.Zj, "renderIngameGui", "render");
-        if (Vape.INSTANCE.isVanillaMinecraftPresent()) {
+        if (Vapor.INSTANCE.isVanillaMinecraftPresent()) {
             this.t(MappedClasses.Zj, "func_238447_a_", "displayScoreboardSidebar");
         }
     }
@@ -918,7 +918,7 @@ extends MemberNameRemapTable {
     }
 
     protected void uI() {
-        if (Vape.INSTANCE.isVanillaMinecraftPresent()) {
+        if (Vapor.INSTANCE.isVanillaMinecraftPresent()) {
             this.t(MappedClasses.zJ, "func_217299_a", "clip");
         }
     }
@@ -926,7 +926,7 @@ extends MemberNameRemapTable {
     protected void ue() {
         this.t(MappedClasses.lf, "down", "below");
         this.t(MappedClasses.lf, "up", "above");
-        if (Vape.INSTANCE.isVanillaMinecraftPresent() || !Vape.INSTANCE.isForgeAbsent()) {
+        if (Vapor.INSTANCE.isVanillaMinecraftPresent() || !Vapor.INSTANCE.isForgeAbsent()) {
             this.t(MappedClasses.lf, "offset", "relative");
         } else {
             this.t(MappedClasses.lf, "offset", "a");
@@ -934,7 +934,7 @@ extends MemberNameRemapTable {
     }
 
     protected void QM() {
-        if (Vape.INSTANCE.isVanillaMinecraftPresent()) {
+        if (Vapor.INSTANCE.isVanillaMinecraftPresent()) {
             this.B(MappedClasses.qe, "field_149152_f", "knockbackX");
             this.B(MappedClasses.qe, "field_149153_g", "knockbackY");
             this.B(MappedClasses.qe, "field_149159_h", "knockbackZ");
@@ -954,7 +954,7 @@ extends MemberNameRemapTable {
         this.B(MappedClasses.Ft, "guiTop", "topPos");
         this.B(MappedClasses.Ft, "xSize", "imageWidth");
         this.B(MappedClasses.Ft, "ySize", "imageHeight");
-        if (Vape.INSTANCE.isVanillaMinecraftPresent()) {
+        if (Vapor.INSTANCE.isVanillaMinecraftPresent()) {
             this.B(MappedClasses.Ft, "field_147002_h", "menu");
         }
         this.B(MappedClasses.Ft, "container", "menu");
@@ -963,7 +963,7 @@ extends MemberNameRemapTable {
     }
 
     protected void QS() {
-        this.b(MappedClasses.u4, "getSprite", "func_215288_a", Vape.INSTANCE.isForgeAbsent());
+        this.b(MappedClasses.u4, "getSprite", "func_215288_a", Vapor.INSTANCE.isForgeAbsent());
     }
 
     protected void s() {
@@ -1037,7 +1037,7 @@ extends MemberNameRemapTable {
     }
 
     protected void Qp() {
-        if (Vape.INSTANCE.isVanillaMinecraftPresent()) {
+        if (Vapor.INSTANCE.isVanillaMinecraftPresent()) {
             this.B(MappedClasses.YN, "field_194148_c", "tickDelta");
         }
         this.B(MappedClasses.YN, "renderPartialTicks", "partialTick");
@@ -1048,7 +1048,7 @@ extends MemberNameRemapTable {
     }
 
     protected void i() {
-        if (Vape.INSTANCE.isVanillaMinecraftPresent()) {
+        if (Vapor.INSTANCE.isVanillaMinecraftPresent()) {
             this.t(MappedClasses.uQ, "func_243246_a", "drawShadow");
             this.t(MappedClasses.uQ, "func_243248_b", "draw");
             this.t(MappedClasses.uQ, "func_238405_a_", "drawShadow");

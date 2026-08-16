@@ -1,6 +1,6 @@
 package gg.vape.mapping;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.mapping.InsertedCallbackLockMarker;
 import gg.vape.mapping.JavassistMappingTask;
 import gg.vape.mapping.MappedClasses;
@@ -12,14 +12,14 @@ public class GlStateManagerBlendFuncMappingTask
 extends JavassistMappingTask {
     @Override
     public void transform() {
-        MappingMethod mappingMethod = Vape.INSTANCE.getMappings().Dt.O;
+        MappingMethod mappingMethod = Vapor.INSTANCE.getMappings().Dt.O;
         CtBehavior ctBehavior = this.F(mappingMethod);
         try {
             String string = "{if(" + InsertedCallbackLockMarker.class.getName() + "#check($1, $2)) {   return;}}";
             ctBehavior.insertBefore(string);
         }
         catch (CannotCompileException cannotCompileException) {
-            Vape.logThrowable(cannotCompileException);
+            Vapor.logThrowable(cannotCompileException);
         }
     }
 

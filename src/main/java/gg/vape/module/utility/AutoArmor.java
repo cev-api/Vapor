@@ -1,6 +1,6 @@
 package gg.vape.module.utility;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.config.ClientSettings;
 import gg.vape.event.EventHandler;
 import gg.vape.event.impl.EventPrePlayerTick;
@@ -53,7 +53,7 @@ implements InventoryActionModule {
 
     @EventHandler
     public void onTick(EventPrePlayerTick event) {
-        if (Vape.INSTANCE.getModManager().isOtherInventoryActionActive(AutoArmor.class) || Vape.INSTANCE.getClientSettings().isLobbyCheckActive()) {
+        if (Vapor.INSTANCE.getModManager().isOtherInventoryActionActive(AutoArmor.class) || Vapor.INSTANCE.getClientSettings().isLobbyCheckActive()) {
             this.clickQueue.clear();
             return;
         }
@@ -193,7 +193,7 @@ implements InventoryActionModule {
     }
 
     private int armorSlotFor(ItemStack itemStack) {
-        ItemMappingEntry itemMappingEntry = Vape.INSTANCE.getItemStackResolver().resolve(itemStack);
+        ItemMappingEntry itemMappingEntry = Vapor.INSTANCE.getItemStackResolver().resolve(itemStack);
         if (itemMappingEntry == null || itemMappingEntry.getResourceKey() == null) {
             return -1;
         }

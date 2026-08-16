@@ -1,6 +1,6 @@
 package gg.vape.mapping;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.mapping.EventPreRenderEntityForgeCallback;
 import gg.vape.mapping.JavassistMappingTask;
 import gg.vape.mapping.MappedClasses;
@@ -15,6 +15,6 @@ extends JavassistMappingTask {
 
     @Override
     public void transform() {
-        this.k(Vape.INSTANCE.getMappings().legacyEntityRenderPreHook.constructorMethod, EventPreRenderEntityForgeCallback.class, c);
+        this.k(Vapor.INSTANCE.getMappings().legacyEntityRenderPreHook.constructorMethod, EventPreRenderEntityForgeCallback.class, c);
     }
 }

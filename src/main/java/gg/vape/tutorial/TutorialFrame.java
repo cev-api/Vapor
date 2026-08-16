@@ -1,6 +1,6 @@
 package gg.vape.tutorial;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.module.none.ClientSettings;
 import gg.vape.ui.click.component.GuiComponent;
 import gg.vape.ui.click.frame.Frame;
@@ -17,7 +17,7 @@ extends Frame {
     @Override
     public void Y() {
         this.l$src$V$1mibm4x();
-        Vape.INSTANCE.getTutorialManager().refreshCurrentAction();
+        Vapor.INSTANCE.getTutorialManager().refreshCurrentAction();
         ClientSettings.queueFrameOpen(this);
     }
 

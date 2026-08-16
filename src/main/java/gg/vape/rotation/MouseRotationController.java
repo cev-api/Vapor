@@ -1,6 +1,6 @@
 package gg.vape.rotation;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.event.impl.EventPostRenderTick;
 import gg.vape.event.impl.EventPreEntityRendererMouseUpdate;
 import gg.vape.event.impl.EventPreRenderTick;
@@ -201,7 +201,7 @@ public abstract class MouseRotationController {
         float pitchDelta = (float)pitchSteps * mouseScale;
         int pitchDirection = -1;
         if (freecam == null) {
-            freecam = Vape.INSTANCE.getModManager().getMod(Freecam.class);
+            freecam = Vapor.INSTANCE.getModManager().getMod(Freecam.class);
         }
         if ((freecam == null || !freecam.isEnabled()) && screen.isNull()) {
             this.applyMouseDelta(yawDelta, pitchDelta * (float)pitchDirection);

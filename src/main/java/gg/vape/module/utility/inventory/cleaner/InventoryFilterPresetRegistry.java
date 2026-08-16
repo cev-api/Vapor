@@ -3,7 +3,7 @@ package gg.vape.module.utility.inventory.cleaner;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.config.ConfigJsonUtils;
 import gg.vape.module.utility.InventoryManager;
 
@@ -53,7 +53,7 @@ public class InventoryFilterPresetRegistry {
     }
 
     public void clearReferencesTo(SharedInventoryFilterPreset sharedInventoryFilterPreset) {
-        InventoryManager inventoryManager = Vape.INSTANCE.getModManager().getMod(InventoryManager.class);
+        InventoryManager inventoryManager = Vapor.INSTANCE.getModManager().getMod(InventoryManager.class);
         for (InventoryCleanerProfile inventoryCleanerProfile : inventoryManager.getProfileValue().getProfiles()) {
             for (ItemInventoryFilterRule itemInventoryFilterRule : inventoryCleanerProfile.getItemRules()) {
                 if (!sharedInventoryFilterPreset.equals(itemInventoryFilterRule.resolvePreset())) continue;

@@ -1,6 +1,6 @@
 package gg.vape.utils.render;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.utils.render.BufferedGuiRenderPrimitives;
 import gg.vape.utils.render.FloatBufferObject;
 import gg.vape.utils.render.GlImageTexture;
@@ -68,7 +68,7 @@ public class RenderBatchBuffer {
             OpenGlBackendHolder.backend.enableCapability(2848);
         }
         if (this.topology == null) {
-            Vape.debugLog("Drawmode null: something fucked up");
+            Vapor.debugLog("Drawmode null: something fucked up");
             return;
         }
         int previousTextureId = GL11.glGetInteger((int)32873);

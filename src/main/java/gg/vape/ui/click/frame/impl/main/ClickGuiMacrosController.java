@@ -1,6 +1,6 @@
 package gg.vape.ui.click.frame.impl.main;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.module.Macro;
 import gg.vape.ui.click.animation.ColorAnimation;
 import gg.vape.ui.click.component.GlyphIconComponent;
@@ -35,16 +35,6 @@ public class ClickGuiMacrosController {
         this.rebuildMacroCards();
     }
 
-    //safe exec
-    private static void openMacroDocumentation() {
-        try {
-            Runtime.getRuntime().exec(new String[]{"cmd", "/c", "start", "https://docs.vape.gg/features/misc/Macros"});
-        }
-        catch (Exception exception) {
-            Vape.logThrowable(exception);
-        }
-    }
-
     public static String setSearchQuery(ClickGuiMacrosController controller, String query) {
         controller.searchQuery = query;
         return controller.searchQuery;
@@ -65,7 +55,7 @@ public class ClickGuiMacrosController {
     }
 
     private void deleteMacro(Macro macro) {
-        Vape.INSTANCE.getMacrosManager().removeMacro(macro);
+        Vapor.INSTANCE.getMacrosManager().removeMacro(macro);
         this.modulesPage.mainFrame.closeActiveOverlay();
         this.rebuildMacroCards();
     }
@@ -180,7 +170,7 @@ public class ClickGuiMacrosController {
         String normalizedQuery = searchText == null ? "" : searchText.trim().toLowerCase();
         boolean hasSearchQuery = !normalizedQuery.isEmpty();
         if (hasSearchQuery) {
-            for (Macro macro : Vape.INSTANCE.getMacrosManager().getMacros()) {
+            for (Macro macro : Vapor.INSTANCE.getMacrosManager().getMacros()) {
                 if (!macro.getName().toLowerCase().contains(normalizedQuery)) continue;
                 MacroCardComponent macroCardComponent = new MacroCardComponent(macro);
                 macroCardComponent.o(this.macroContent.A());
@@ -194,7 +184,7 @@ public class ClickGuiMacrosController {
             this.macroContent.H(true);
             return;
         }
-        for (Macro macro : Vape.INSTANCE.getMacrosManager().getMacros()) {
+        for (Macro macro : Vapor.INSTANCE.getMacrosManager().getMacros()) {
             MacroCardComponent macroCardComponent = new MacroCardComponent(macro);
             macroCardComponent.o(this.macroContent.A());
             macroCardComponent.setSettingsAction(() -> this.handleMacroCard(macroCardComponent));
@@ -202,9 +192,9 @@ public class ClickGuiMacrosController {
             this.macroContent.h(new PaddedComponent(0.0, 3.0, 0.0, 0.0, macroCardComponent), new Object[0]);
         }
         if (this.macroContent.f().isEmpty()) {
-            MultilineTextBlockComponent multilineTextBlockComponent = new MultilineTextBlockComponent("INFO", "Click NEW MACRO to add a macro.\n\nFor more info on macros, read the docs");
+            MultilineTextBlockComponent multilineTextBlockComponent = new MultilineTextBlockComponent("INFO", "Click NEW MACRO to add a macro.");
             multilineTextBlockComponent.setWidth(this.macroContent.A());
-            multilineTextBlockComponent.setLink("read the docs", ClickGuiMacrosController::openMacroDocumentation);
+
             this.macroContent.h(new PaddedComponent(3.0, 3.0, 0.0, 0.0, multilineTextBlockComponent), new Object[0]);
         }
         this.macroContent.H(true);

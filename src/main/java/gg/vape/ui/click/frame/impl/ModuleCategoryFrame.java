@@ -1,7 +1,7 @@
 package gg.vape.ui.click.frame.impl;
 
 import com.google.gson.JsonObject;
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.module.Category;
 import gg.vape.module.Mod;
 import gg.vape.module.ModuleDisplayScope;
@@ -37,7 +37,7 @@ implements CollapsibleFrame {
     public void s$src$V$1a2f6mi() {
         this.HF = new ModuleCategoryFrameHeader(this, this.Hp.getIconKey(), this.HK);
         this.Y(this.HF);
-        ArrayList<Mod> arrayList = new ArrayList<Mod>(Vape.INSTANCE.getModManager().collectMods());
+        ArrayList<Mod> arrayList = new ArrayList<Mod>(Vapor.INSTANCE.getModManager().collectMods());
         Collections.sort(arrayList, new NameComparator());
         for (Mod mod : arrayList) {
             if (!mod.getCategory().equals(this.Hp) || mod.getModuleDisplayScope() == ModuleDisplayScope.STANDALONE_ONLY) continue;

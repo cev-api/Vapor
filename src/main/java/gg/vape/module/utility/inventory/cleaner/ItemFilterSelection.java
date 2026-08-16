@@ -4,7 +4,7 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonPrimitive;
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.mapping.ItemMappingEntry;
 import gg.vape.module.utility.inventory.cleaner.InventoryItemMatcher;
 import gg.vape.module.utility.inventory.cleaner.InventoryItemMatcherRegistry;
@@ -35,7 +35,7 @@ implements Cloneable {
         if (itemStack.isNull()) {
             return false;
         }
-        ItemMappingEntry mappingEntry = Vape.INSTANCE.getItemStackResolver().resolve(itemStack);
+        ItemMappingEntry mappingEntry = Vapor.INSTANCE.getItemStackResolver().resolve(itemStack);
         return mappingEntry != null && name.equals(mappingEntry.getResourceKey());
     }
 
@@ -57,7 +57,7 @@ implements Cloneable {
             this.resolvedStack = null;
             return;
         }
-        ItemMappingEntry mappingEntry = Vape.INSTANCE.getItemStackResolver().findByName(normalized);
+        ItemMappingEntry mappingEntry = Vapor.INSTANCE.getItemStackResolver().findByName(normalized);
         if (mappingEntry != null) {
             this.resolvedStack = mappingEntry.resolveItemStack();
             if (this.resolvedStack == null || this.resolvedStack.isNull()) {

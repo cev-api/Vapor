@@ -1,6 +1,6 @@
 package gg.vape.ui.theme;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.module.none.ClientSettings;
 import gg.vape.unmap.ColorUtil;
 import java.awt.Color;
@@ -108,7 +108,7 @@ public class ThemeColors {
     }
 
     public Color B() {
-        if (Vape.INSTANCE.getClientSettings().guiColor.isRainbowEnabled()) {
+        if (Vapor.INSTANCE.getClientSettings().guiColor.isRainbowEnabled()) {
             return new Color(45, 45, 45);
         }
         if (this.z().equals(this.x)) {

@@ -1,6 +1,6 @@
 package gg.vape.module.blatant.blockin;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.inventory.InventoryClick;
 import gg.vape.mapping.ItemMappingEntry;
 import gg.vape.combat.AttackPacketTimingTracker;
@@ -40,7 +40,7 @@ public class BlockInHotbarSlotHelper {
         }
         ItemStack heldItem = player.B$src$Lgg_vape_wrapper_impl_ItemStack_$impdvt();
         ItemMappingEntry mlgItem = BlockPlacementUtility.getEmptyBucketItem();
-        boolean alreadyHoldingItem = mlgItem.equals(Vape.INSTANCE.getItemStackResolver().resolve(heldItem));
+        boolean alreadyHoldingItem = mlgItem.equals(Vapor.INSTANCE.getItemStackResolver().resolve(heldItem));
         Slot slot = BlockPlacementUtility.findHotbarSlot(mlgItem);
         if (!alreadyHoldingItem) {
             Slot candidateSlot = slot == null || slot.isNull() ? this.findEmptyBucketSlot(mlgItem) : slot;

@@ -3,7 +3,7 @@ package gg.vape.module;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.config.ConfigJsonUtils;
 import gg.vape.event.EventBus;
 import gg.vape.event.EventListener;
@@ -170,7 +170,7 @@ EventListener {
         this.toggleNotification.setDefaultDuration(1500L);
         this.toggleNotification.withTitle("§f" + this.getName())
                 .withMessage(this.isEnabled() ? "§2Enabled" : "§cDisabled").reset();
-        Vape.INSTANCE.getNotificationManager().show(this.toggleNotification);
+        Vapor.INSTANCE.getNotificationManager().show(this.toggleNotification);
     }
 
     @Nullable
@@ -266,13 +266,13 @@ EventListener {
     public void setEnabled(boolean enabled, boolean bypassVisibilityCheck) {
         boolean stateChanged = this.enabled != enabled;
         if (!bypassVisibilityCheck && !this.isVisible() && this.category != Category.NONE && enabled) {
-            if (Vape.INSTANCE.getNotificationManager() != null) {
-                Vape.INSTANCE.getNotificationManager().show("Hidden Module", "Attempted to toggle " + this.getName() + "!", NotificationType.WARNING, 2500L);
+            if (Vapor.INSTANCE.getNotificationManager() != null) {
+                Vapor.INSTANCE.getNotificationManager().show("Hidden Module", "Attempted to toggle " + this.getName() + "!", NotificationType.WARNING, 2500L);
             }
             return;
         }
         if (enabled && this.isBlatantMod()) {
-            Vape.INSTANCE.getPrimaryMappingTaskSet().f();
+            Vapor.INSTANCE.getPrimaryMappingTaskSet().f();
         }
         if (!enabled) {
             this.onBeforeDisable();
@@ -291,7 +291,7 @@ EventListener {
         }
         this.syncSubModuleStates(enabled, bypassVisibilityCheck);
         if (stateChanged && (this.category != Category.NONE || this instanceof HudModule)) {
-            Vape.INSTANCE.saveAndStop();
+            Vapor.INSTANCE.saveAndStop();
         }
     }
 
@@ -329,9 +329,9 @@ EventListener {
 
     public void K(boolean bl) {
         if (bl) {
-            Vape.INSTANCE.getModuleProfileMetadataCodec().addModule(this);
+            Vapor.INSTANCE.getModuleProfileMetadataCodec().addModule(this);
         } else {
-            Vape.INSTANCE.getModuleProfileMetadataCodec().removeModule(this);
+            Vapor.INSTANCE.getModuleProfileMetadataCodec().removeModule(this);
         }
     }
 
@@ -463,7 +463,7 @@ EventListener {
     public void j() {
         if (!this.developmentWarningShown && this.Q()) {
             this.developmentWarningShown = true;
-            Vape.INSTANCE.getNotificationManager().show("Module in development", this.getName() + " is in development\n\nUse with caution and report issues to support", NotificationType.WARNING, 10000L);
+            Vapor.INSTANCE.getNotificationManager().show("Module in development", this.getName() + " is in development\n\nUse with caution and report issues to support", NotificationType.WARNING, 10000L);
         }
     }
 

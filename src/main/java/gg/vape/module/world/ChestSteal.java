@@ -1,6 +1,6 @@
 package gg.vape.module.world;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.event.EventHandler;
 import gg.vape.event.impl.EventPrePlayerTick;
 import gg.vape.event.impl.EventWindowClick;
@@ -201,7 +201,7 @@ implements InventoryActionModule {
 
     @EventHandler
     public void onTick(EventPrePlayerTick eventPrePlayerTick) {
-        if (Vape.INSTANCE.getModManager().isOtherInventoryActionActive(ChestSteal.class) || Vape.INSTANCE.getClientSettings().isLobbyCheckActive()) {
+        if (Vapor.INSTANCE.getModManager().isOtherInventoryActionActive(ChestSteal.class) || Vapor.INSTANCE.getClientSettings().isLobbyCheckActive()) {
             this.stealing = false;
             return;
         }

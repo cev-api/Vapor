@@ -1,6 +1,6 @@
 package gg.vape.mapping.mappings;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.asm.helper.DescUtils;
 import gg.vape.mapping.MappedClasses;
 import gg.vape.mapping.Mapping;
@@ -165,7 +165,7 @@ extends Mapping {
             String string17 = "applyEnchantmentModifierArray";
             MEnchantmentHelper mEnchantmentHelper8 = this;
             this.c = this.registerStaticMethod(string17, bl8, clazz8, classArray8);
-            if (Vape.INSTANCE.isVanillaMinecraftPresent() && ForgeVersion.MC_1_7_10.Y()) {
+            if (Vapor.INSTANCE.isVanillaMinecraftPresent() && ForgeVersion.MC_1_7_10.Y()) {
                 Class[] classArray9 = new Class[]{MappedClasses.VK, MappedClasses.O};
                 Class<Float> clazz9 = Float.TYPE;
                 boolean bl9 = true;

@@ -1,6 +1,6 @@
 package gg.vape.utils.render;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -26,7 +26,7 @@ public class RemoteImageHttpDownloader {
             return imageData;
         }
         catch (IOException exception) {
-            Vape.logThrowable(exception);
+            Vapor.logThrowable(exception);
             imageCache.put(imageName, null);
             return null;
         }

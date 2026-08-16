@@ -1,7 +1,7 @@
 package gg.vape.tutorial;
 
 import func.skidline.RectData;
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.tutorial.HighlightTutorialAction;
 import gg.vape.tutorial.SingleComponentHighlightAdvanceClickListener;
 import gg.vape.tutorial.TutorialActionComponent;
@@ -30,7 +30,7 @@ extends HighlightTutorialAction {
 
     @Override
     public void start() {
-        Vape.debugLog(g + this);
+        Vapor.debugLog(g + this);
         if (this.includesHiddenComponents()) {
             SingleComponentHighlightAdvanceClickListener singleComponentHighlightAdvanceClickListener = new SingleComponentHighlightAdvanceClickListener(this);
             this.registerMouseListener(this.getHighlightedComponent(), singleComponentHighlightAdvanceClickListener);

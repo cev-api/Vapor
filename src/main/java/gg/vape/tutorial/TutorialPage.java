@@ -1,6 +1,6 @@
 package gg.vape.tutorial;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.tutorial.TutorialAction;
 import gg.vape.tutorial.TutorialActionFinishClickHandler;
 import gg.vape.tutorial.TutorialActionNextClickHandler;
@@ -69,14 +69,14 @@ public class TutorialPage {
     }
 
     public void advanceToNextAction() {
-        Vape.debugLog("1");
+        Vapor.debugLog("1");
         if (this.currentAction != null) {
             if (!this.currentAction.canAdvance()) {
                 return;
             }
             boolean bl = false;
             boolean bl2 = false;
-            Vape.debugLog("2");
+            Vapor.debugLog("2");
             for (TutorialAction tutorialAction : this.actions) {
                 if (bl) {
                     this.activateAction(tutorialAction);
@@ -86,9 +86,9 @@ public class TutorialPage {
                 if (!tutorialAction.equals(this.currentAction)) continue;
                 bl = true;
             }
-            Vape.debugLog(debugPrefix + bl + " " + bl2);
+            Vapor.debugLog(debugPrefix + bl + " " + bl2);
             if (!bl2) {
-                Vape.INSTANCE.getTutorialManager().completeCurrentPage();
+                Vapor.INSTANCE.getTutorialManager().completeCurrentPage();
             }
         } else {
             this.activateAction(this.actions.get(0));

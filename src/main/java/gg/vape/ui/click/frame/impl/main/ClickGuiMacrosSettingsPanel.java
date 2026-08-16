@@ -1,7 +1,7 @@
 package gg.vape.ui.click.frame.impl.main;
 
 import com.google.gson.JsonObject;
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.input.BindCaptureTask;
 import gg.vape.module.Macro;
 import gg.vape.ui.click.component.PanelComponent;
@@ -184,11 +184,11 @@ extends PanelComponent {
         jsonObject.remove("name");
         if (this.creatingNew) {
             Macro macro = Macro.create(string).loadJson(jsonObject);
-            Vape.INSTANCE.getMacrosManager().addMacro(macro);
+            Vapor.INSTANCE.getMacrosManager().addMacro(macro);
         } else {
             Macro macro = Macro.create(string).loadJson(jsonObject);
-            Vape.INSTANCE.getMacrosManager().removeMacro(this.macro);
-            Vape.INSTANCE.getMacrosManager().addMacro(macro);
+            Vapor.INSTANCE.getMacrosManager().removeMacro(this.macro);
+            Vapor.INSTANCE.getMacrosManager().addMacro(macro);
         }
         if (this.saveAction != null) {
             this.saveAction.run();

@@ -1,6 +1,6 @@
 package gg.vape.mapping;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.mapping.EventInjectionSpec;
 import gg.vape.mapping.ItemStackTooltipCallback;
 import gg.vape.mapping.JavassistMappingTask;
@@ -17,7 +17,7 @@ extends JavassistMappingTask {
 
     @Override
     public void transform() {
-        MappingMethod mappingMethod = Vape.INSTANCE.getMappings().q8.J;
+        MappingMethod mappingMethod = Vapor.INSTANCE.getMappings().q8.J;
         EventInjectionSpec eventInjectionSpec = new EventInjectionSpec(mappingMethod, ItemStackTooltipCallback.class);
         eventInjectionSpec.setConstructorArguments("$0, $1, $2");
         eventInjectionSpec.setReturnExpression("($r) $event.getTooltip()");

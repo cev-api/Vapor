@@ -1,6 +1,6 @@
 package gg.vape.module.utility;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.config.ClientSettings;
 import gg.vape.event.EventHandler;
 import gg.vape.event.impl.EventPrePlayerTick;
@@ -143,7 +143,7 @@ implements InventoryActionModule {
     }
 
     private boolean shouldSkipProcessing() {
-        if (Vape.INSTANCE.getModManager().isOtherInventoryActionActive(InventoryManager.class) || Vape.INSTANCE.getClientSettings().isLobbyCheckActive()) {
+        if (Vapor.INSTANCE.getModManager().isOtherInventoryActionActive(InventoryManager.class) || Vapor.INSTANCE.getClientSettings().isLobbyCheckActive()) {
             this.clickQueue.clear();
             this.clickTimer.reset();
             this.touchedSlots.clear();
@@ -432,7 +432,7 @@ implements InventoryActionModule {
             }
             if (this.activationMode.getValue() != this.toggleMode && this.clickQueue.isEmpty()) {
                 this.beginClose();
-                Vape.INSTANCE.getNotificationManager().showInfo("Inventory Manager", "No work available", 4000L);
+                Vapor.INSTANCE.getNotificationManager().showInfo("Inventory Manager", "No work available", 4000L);
                 return;
             }
         }
@@ -525,7 +525,7 @@ implements InventoryActionModule {
     }
 
     private int getArmorSlotForItem(ItemStack itemStack) {
-        ItemMappingEntry itemMappingEntry = Vape.INSTANCE.getItemStackResolver().resolve(itemStack);
+        ItemMappingEntry itemMappingEntry = Vapor.INSTANCE.getItemStackResolver().resolve(itemStack);
         for (String string : this.bootsKeywords) {
             if (!itemMappingEntry.getResourceKey().toLowerCase().contains(string)) continue;
             return 8;

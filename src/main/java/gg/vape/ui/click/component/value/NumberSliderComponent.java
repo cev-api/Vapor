@@ -1,7 +1,7 @@
 package gg.vape.ui.click.component.value;
 
 import func.skidline.RectData;
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.input.MouseInput;
 import gg.vape.ui.click.GuiMouseEvent;
 import gg.vape.ui.click.MouseButton;
@@ -196,7 +196,7 @@ extends SliderComponentBase {
         if (remainingTrackWidth - 8.5 >= 2.0) {
             GuiRenderPrimitives.j(this.handleBounds.o() + 8.5, trackY, remainingTrackWidth - 8.5, 2.0, NumberSliderComponent.J.l);
         }
-        GuiRenderPrimitives.Y((float)(handleCenterX - handleSize / 2.0), (float)(trackCenterY + 0.5 - handleSize / 2.0), (float)handleSize, (float)(0.8 / Vape.INSTANCE.getClientSettings().getGuiScaleFactor()), J.z(), 0.0, this.getDisabledOverlayColor());
+        GuiRenderPrimitives.Y((float)(handleCenterX - handleSize / 2.0), (float)(trackCenterY + 0.5 - handleSize / 2.0), (float)handleSize, (float)(0.8 / Vapor.INSTANCE.getClientSettings().getGuiScaleFactor()), J.z(), 0.0, this.getDisabledOverlayColor());
     }
 
     public NumberSliderComponent(NumberValue numberValue) {

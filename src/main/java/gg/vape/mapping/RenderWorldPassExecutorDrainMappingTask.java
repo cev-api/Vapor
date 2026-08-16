@@ -1,6 +1,6 @@
 package gg.vape.mapping;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.event.impl.EventRenderWorldPassExecutorDrain;
 import gg.vape.mapping.JavassistMappingTask;
 import gg.vape.mapping.MappedClasses;
@@ -10,7 +10,7 @@ extends JavassistMappingTask {
     private static final String c;
 
     void V() {
-        this.c(Vape.INSTANCE.getMappings().RY.J, EventRenderWorldPassExecutorDrain.class, c);
+        this.c(Vapor.INSTANCE.getMappings().RY.J, EventRenderWorldPassExecutorDrain.class, c);
     }
 
     public RenderWorldPassExecutorDrainMappingTask() {

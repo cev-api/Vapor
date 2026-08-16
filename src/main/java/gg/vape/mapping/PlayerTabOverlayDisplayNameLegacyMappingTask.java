@@ -1,6 +1,6 @@
 package gg.vape.mapping;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.event.impl.EventPlayerTabOverlayDisplayNameLegacy;
 import gg.vape.mapping.EventInjectionSpec;
 import gg.vape.mapping.JavassistMappingTask;
@@ -14,7 +14,7 @@ extends JavassistMappingTask {
 
     @Override
     public void transform() {
-        EventInjectionSpec eventInjectionSpec = new EventInjectionSpec(Vape.INSTANCE.getMappings().hP.O, EventPlayerTabOverlayDisplayNameLegacy.class);
+        EventInjectionSpec eventInjectionSpec = new EventInjectionSpec(Vapor.INSTANCE.getMappings().hP.O, EventPlayerTabOverlayDisplayNameLegacy.class);
         eventInjectionSpec.setConstructorArguments("$0, $1");
         eventInjectionSpec.setReturnExpression("$event.getDisplayName()");
         this.registerEventInjection(eventInjectionSpec);

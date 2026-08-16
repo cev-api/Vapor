@@ -1,6 +1,6 @@
 package gg.vape.module.utility.inventory.cleaner.ui;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.module.none.ClientSettings;
 import gg.vape.module.utility.inventory.cleaner.InventoryCleanerProfile;
 import gg.vape.module.utility.inventory.cleaner.InventoryCleanerProfileValue;
@@ -124,7 +124,7 @@ extends GuiComponent {
 
     private void addProfile(Runnable refresh) {
         if (this.profileValue.getProfiles().size() >= 10) {
-            Vape.INSTANCE.getNotificationManager().show("Inventory Manager", "You've reached the limit of 10 inventories.", NotificationType.WARNING, 5000L, true);
+            Vapor.INSTANCE.getNotificationManager().show("Inventory Manager", "You've reached the limit of 10 inventories.", NotificationType.WARNING, 5000L, true);
             return;
         }
         InventoryCleanerProfile inventoryCleanerProfile = new InventoryCleanerProfile();

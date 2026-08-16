@@ -20,7 +20,6 @@ public class PublicProfileSettings {
     public BooleanValue profileSwitchNotifications;
     private Profile selectedProfile;
     public ModeValue language;
-    public BooleanValue friendNotifications;
     public BindValue guiBind;
     public BooleanValue muted;
     public BooleanValue autoSave;
@@ -70,7 +69,6 @@ public class PublicProfileSettings {
         this.notifications = BooleanValue.create(this, "Notifications", true, "Shows notifications");
         this.toggleAlerts = BooleanValue.create(this, "Toggle alert", false, "Notifies you if a module is enabled/disabled.");
         this.profileSwitchNotifications = BooleanValue.create(this, "Profile switch", false, "Notifies you when you switch profiles");
-        this.friendNotifications = BooleanValue.create(this, "Friend notifications", true, "Shows notifications related to friends");
     }
 
     public Profile getSelectedProfile() {
@@ -91,4 +89,3 @@ public class PublicProfileSettings {
     }
 
 }
-

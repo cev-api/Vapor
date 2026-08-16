@@ -1,6 +1,6 @@
 package gg.vape.utils.render;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.utils.render.GlImageTexture;
 import gg.vape.utils.render.GuiRenderPrimitives;
 import gg.vape.utils.render.OpenGlBackendHolder;
@@ -31,7 +31,7 @@ public class BlurRegionRenderer {
     }
 
     public void setDimensions(int width, int height) {
-        double uiScale = Vape.INSTANCE.getClientSettings().getGuiScaleFactor();
+        double uiScale = Vapor.INSTANCE.getClientSettings().getGuiScaleFactor();
         width = (int)((double)width * uiScale);
         height = (int)((double)height * uiScale);
         if (this.regionWidth == width && this.regionHeight == height) {
@@ -58,7 +58,7 @@ public class BlurRegionRenderer {
             return;
         }
         float captureScale = 2.0f;
-        double uiScale = Vape.INSTANCE.getClientSettings().getGuiScaleFactor();
+        double uiScale = Vapor.INSTANCE.getClientSettings().getGuiScaleFactor();
         x = (int)((double)x * uiScale);
         y = (int)((double)y * uiScale);
         int framebufferHeight = Minecraft.h();

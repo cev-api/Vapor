@@ -1,6 +1,6 @@
 package gg.vape.mapping;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.mapping.EventRender2DStaticCallback;
 import gg.vape.mapping.JavassistMappingTask;
 import gg.vape.mapping.MappedClasses;
@@ -23,7 +23,7 @@ extends JavassistMappingTask {
             return;
         }
         Render2DStaticCallbackMappingTask.p(EventRender2DStaticCallback.class);
-        MappingMethod mappingMethod = Vape.INSTANCE.getMappings().titledScreen.renderHudMethod;
+        MappingMethod mappingMethod = Vapor.INSTANCE.getMappings().titledScreen.renderHudMethod;
         if (mappingMethod == null) {
             return;
         }
@@ -32,7 +32,7 @@ extends JavassistMappingTask {
             ctBehavior.insertAfter("{" + EventRender2DStaticCallback.class.getName() + c);
         }
         catch (CannotCompileException cannotCompileException) {
-            Vape.logThrowable(cannotCompileException);
+            Vapor.logThrowable(cannotCompileException);
         }
     }
 

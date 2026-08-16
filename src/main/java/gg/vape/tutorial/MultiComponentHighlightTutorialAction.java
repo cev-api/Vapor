@@ -1,7 +1,7 @@
 package gg.vape.tutorial;
 
 import func.skidline.RectData;
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.tutorial.ClassTutorialTargetSelector;
 import gg.vape.tutorial.HighlightTutorialAction;
 import gg.vape.tutorial.MultiComponentHighlightAdvanceClickListener;
@@ -45,7 +45,7 @@ extends HighlightTutorialAction {
 
     @Override
     public void start() {
-        Vape.debugLog(g + this);
+        Vapor.debugLog(g + this);
         for (GuiComponent object : this.searchRoot.f()) {
             ArrayList<GuiComponent> arrayList = this.targetSelector.findTargets(object);
             if (arrayList == null) continue;

@@ -1,6 +1,6 @@
 package gg.vape.ui.click.component.gui;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.ui.click.GuiMouseEvent;
 import gg.vape.ui.click.MouseButton;
 import gg.vape.ui.click.component.ClickCooldownState;
@@ -89,7 +89,7 @@ extends GuiComponent {
     private static void handleFutureCompletion(AtomicBoolean ready, Object result, Throwable throwable) {
         ready.set(true);
         if (throwable != null) {
-            Vape.logThrowable(throwable);
+            Vapor.logThrowable(throwable);
         }
     }
 

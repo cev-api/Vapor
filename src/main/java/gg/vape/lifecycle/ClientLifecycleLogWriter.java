@@ -1,6 +1,6 @@
 package gg.vape.lifecycle;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -31,14 +31,14 @@ implements ClientLifecycleCallback {
             }
             String logFilePath = clientDirectoryPath + File.separator + "log-"
                     + this.timestampFormat.format(new Date()).replace(":", "-") + ".txt";
-            Vape.debugLog("Creating log file at: " + logFilePath);
+            Vapor.debugLog("Creating log file at: " + logFilePath);
             this.logFile = new File(logFilePath);
             FileWriter fileWriter = new FileWriter(this.logFile, false);
             this.logWriter = new PrintWriter(fileWriter);
             Runtime.getRuntime().addShutdownHook(new Thread(this::closeFromShutdownHook));
         }
         catch (IOException iOException) {
-            Vape.logThrowable(iOException);
+            Vapor.logThrowable(iOException);
         }
     }
 
@@ -54,7 +54,7 @@ implements ClientLifecycleCallback {
             this.logWriter.flush();
         }
         catch (Exception exception) {
-            Vape.logThrowable(exception);
+            Vapor.logThrowable(exception);
         }
     }
 
@@ -66,7 +66,7 @@ implements ClientLifecycleCallback {
             }
         }
         catch (Exception exception) {
-            Vape.logThrowable(exception);
+            Vapor.logThrowable(exception);
         }
     }
 }

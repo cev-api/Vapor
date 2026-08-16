@@ -1,6 +1,6 @@
 package gg.vape.module.blatant;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.module.Category;
 import gg.vape.module.Mod;
 import gg.vape.value.NumberValue;
@@ -15,7 +15,7 @@ extends Mod {
 
     @Override
     public void onEnable() {
-        Vape.debugLog("Trying to knockback " + Minecraft.thePlayer().z() + " " + Minecraft.thePlayer().N() + " " + Minecraft.thePlayer().h());
+        Vapor.debugLog("Trying to knockback " + Minecraft.thePlayer().z() + " " + Minecraft.thePlayer().N() + " " + Minecraft.thePlayer().h());
         Minecraft.thePlayer().E((Double)this.xValue.getValue(), (Double)this.yValue.getValue(), (Double)this.zValue.getValue());
         this.setEnabled(false);
     }

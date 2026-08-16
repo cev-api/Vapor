@@ -1,6 +1,6 @@
 package gg.vape.module.render.esp;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.event.EventHandler;
 import gg.vape.event.impl.EventRender3D;
 import gg.vape.module.Mod;
@@ -39,12 +39,12 @@ extends SubModule<ESP> {
         double cameraY = RenderManager.getInterpolatedRenderPosY();
         double cameraZ = RenderManager.getInterpolatedRenderPosZ();
         if (this.hitBoxes == null) {
-            this.hitBoxes = Vape.INSTANCE.getModManager().getMod(HitBoxes.class);
+            this.hitBoxes = Vapor.INSTANCE.getModManager().getMod(HitBoxes.class);
         }
         for (Object entityHandle : event.getWorld().z()) {
             Entity entity = new Entity(entityHandle);
             MutableColor color = this.parentEsp.resolveEntityColor(event.getThePlayer(), entityHandle);
-            if (Vape.INSTANCE.getClientSettings().isBot(entity) && this.parentEsp.hideBots.getEffectiveValue().booleanValue() || color == null) {
+            if (Vapor.INSTANCE.getClientSettings().isBot(entity) && this.parentEsp.hideBots.getEffectiveValue().booleanValue() || color == null) {
                 continue;
             }
             double previousX = entity.M();

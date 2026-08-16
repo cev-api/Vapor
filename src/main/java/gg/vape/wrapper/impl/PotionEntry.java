@@ -1,6 +1,6 @@
 package gg.vape.wrapper.impl;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.mapping.MappedClasses;
 import gg.vape.utils.StringUtils;
 import gg.vape.wrapper.Wrapper;
@@ -123,7 +123,7 @@ public class PotionEntry {
             map.remove(this.statusEffect.getObject());
             entityLiving.C(true);
         }
-        Vape.INSTANCE.getMappings().qU.b(this.getResolvedObject(), entityLivingBase.getObject(), object, n);
+        Vapor.INSTANCE.getMappings().qU.b(this.getResolvedObject(), entityLivingBase.getObject(), object, n);
     }
 
     @Nullable

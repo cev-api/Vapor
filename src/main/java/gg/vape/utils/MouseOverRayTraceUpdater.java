@@ -1,6 +1,6 @@
 package gg.vape.utils;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.mapping.MappedClasses;
 import gg.vape.module.blatant.HitBoxes;
 import gg.vape.module.combat.Reach;
@@ -213,8 +213,8 @@ public class MouseOverRayTraceUpdater {
 
     public static void b(boolean bl) {
         if (t == null) {
-            t = Vape.INSTANCE.getModManager().getMod(Reach.class);
-            s = Vape.INSTANCE.getModManager().getMod(HitBoxes.class);
+            t = Vapor.INSTANCE.getModManager().getMod(Reach.class);
+            s = Vapor.INSTANCE.getModManager().getMod(HitBoxes.class);
         }
         if (Minecraft.thePlayer().isNull()) {
             return;

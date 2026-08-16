@@ -1,6 +1,6 @@
 package gg.vape.utils;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import java.util.Queue;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
@@ -29,8 +29,8 @@ public class RenderThreadTaskQueue {
                     task.run();
                 }
                 catch (Exception error) {
-                    Vape.debugLog(EXECUTION_ERROR_MESSAGE);
-                    Vape.logThrowable(error);
+                    Vapor.debugLog(EXECUTION_ERROR_MESSAGE);
+                    Vapor.logThrowable(error);
                 }
             }
             if (System.nanoTime() - startTimeNanos <= MAX_EXECUTION_NANOS) continue;

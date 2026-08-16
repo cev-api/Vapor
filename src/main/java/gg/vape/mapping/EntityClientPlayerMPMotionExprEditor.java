@@ -1,6 +1,6 @@
 package gg.vape.mapping;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.mapping.EntityClientPlayerMPMotionMappingTask;
 import gg.vape.wrapper.impl.ForgeVersion;
 import javassist.CannotCompileException;
@@ -37,7 +37,7 @@ extends ExprEditor {
             }
         }
         catch (Exception exception) {
-            Vape.logThrowable(exception);
+            Vapor.logThrowable(exception);
         }
     }
 

@@ -1,6 +1,6 @@
 package gg.vape.module.blatant;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.config.ClientSettings;
 import gg.vape.event.EventHandler;
 import gg.vape.event.EventPriority;
@@ -301,7 +301,7 @@ extends Mod {
         if (RotationUtil.a(player, target) > ((Double)this.maxAngle.getValue()).intValue() / 2) {
             return false;
         }
-        if (Vape.INSTANCE.getFriendManager().isFriend(target)) {
+        if (Vapor.isFriend(target)) {
             return false;
         }
         return !target.equals(player.S$src$Lgg_vape_wrapper_impl_Entity_$dgzs12());

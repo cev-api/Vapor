@@ -1,6 +1,6 @@
 package gg.vape.mapping;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.event.impl.EventEntityJoinWorld;
 import gg.vape.mapping.JavassistMappingTask;
 import gg.vape.mapping.MappedClasses;
@@ -11,7 +11,7 @@ public class WorldEntityJoinEventMappingTask
 extends JavassistMappingTask {
     @Override
     public void transform() {
-        MappingMethod mappingMethod = Vape.INSTANCE.getMappings().Cy.q;
+        MappingMethod mappingMethod = Vapor.INSTANCE.getMappings().Cy.q;
         String string = ForgeVersion.MC_1_20_6.d() ? "$1" : "$2";
         this.c(mappingMethod, EventEntityJoinWorld.class, string);
     }

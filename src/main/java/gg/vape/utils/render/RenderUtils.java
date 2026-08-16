@@ -1,6 +1,6 @@
 package gg.vape.utils.render;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.input.MouseInput;
 import gg.vape.runtime.NativeBridge;
 import gg.vape.ui.click.MousePosition;
@@ -47,7 +47,7 @@ public final class RenderUtils {
     }
 
     public static void C(int mouseX, int mouseY) {
-        double d = 2.0 * Vape.INSTANCE.getClientSettings().getGuiScaleFactor();
+        double d = 2.0 * Vapor.INSTANCE.getClientSettings().getGuiScaleFactor();
         w = new MousePosition((int)((double)mouseX / d), (int)((double)mouseY / d));
     }
 
@@ -118,7 +118,7 @@ public final class RenderUtils {
         gg.vape.wrapper.impl.GL11.X(2978, intBuffer);
         k.push(new GlScissorRect(intBuffer.get(0), intBuffer.get(1), intBuffer.get(2), intBuffer.get(3)));
         int n = Minecraft.h();
-        double d5 = 2.0 * Vape.INSTANCE.getClientSettings().getGuiScaleFactor();
+        double d5 = 2.0 * Vapor.INSTANCE.getClientSettings().getGuiScaleFactor();
         int n2 = (int)(d3 * d5);
         int n3 = (int)(d4 * d5);
         double d6 = d * d5;
@@ -312,7 +312,7 @@ public final class RenderUtils {
         }
         int n5 = Minecraft.h();
         int n6 = Minecraft.J();
-        double d5 = 2.0 * Vape.INSTANCE.getClientSettings().getGuiScaleFactor();
+        double d5 = 2.0 * Vapor.INSTANCE.getClientSettings().getGuiScaleFactor();
         int n7 = (int)(d3 * d5);
         int n8 = (int)(d4 * d5);
         double d6 = d * d5;

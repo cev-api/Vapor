@@ -1,6 +1,6 @@
 package gg.vape.module.utility;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.config.ClientSettings;
 import gg.vape.event.EventHandler;
 import gg.vape.event.impl.EventPrePlayerTick;
@@ -29,7 +29,7 @@ extends Mod {
 
     @EventHandler
     public void onTick(EventPrePlayerTick event) {
-        if (Vape.INSTANCE.getModManager().getState(Freecam.class)) {
+        if (Vapor.INSTANCE.getModManager().getState(Freecam.class)) {
             return;
         }
         KeyBinding keyBinding = Minecraft.gameSettings().O();

@@ -1,7 +1,7 @@
 package gg.vape.ui.click.component;
 
 import func.skidline.RectData;
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.input.MouseInput;
 import gg.vape.module.none.ClientSettings;
 import gg.vape.ui.click.GuiMouseEvent;
@@ -146,7 +146,7 @@ implements GuiComponentContract {
     }
 
     public SmoothFontRenderer getAlternateFontRenderer(double scale) {
-        return this.fontOption != null ? this.fontOption.k((float)scale, true) : Vape.INSTANCE.getFontManager().W(scale, false);
+        return this.fontOption != null ? this.fontOption.k((float)scale, true) : Vapor.INSTANCE.getFontManager().W(scale, false);
     }
 
     public String getText() {
@@ -275,7 +275,7 @@ implements GuiComponentContract {
     }
 
     public SmoothFontRenderer getDefaultFontRenderer() {
-        return this.fontOption != null ? this.fontOption.k(1.0f, false) : Vape.INSTANCE.getFontManager().Y();
+        return this.fontOption != null ? this.fontOption.k(1.0f, false) : Vapor.INSTANCE.getFontManager().Y();
     }
 
     public void setAcceptsMouseInput(boolean acceptsMouseInput) {
@@ -382,7 +382,7 @@ implements GuiComponentContract {
     }
 
     public SmoothFontRenderer getFontRenderer(double scale) {
-        return this.fontOption != null ? this.fontOption.k((float)scale, false) : Vape.INSTANCE.getFontManager().Y(scale);
+        return this.fontOption != null ? this.fontOption.k((float)scale, false) : Vapor.INSTANCE.getFontManager().Y(scale);
     }
 
     public void setUseExplicitHeight(boolean useExplicitHeight) {
@@ -615,7 +615,7 @@ implements GuiComponentContract {
                 guiComponent.c();
             }
             catch (Exception exception) {
-                Vape.logThrowable(exception);
+                Vapor.logThrowable(exception);
             }
         }
     }

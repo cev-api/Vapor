@@ -1,6 +1,6 @@
 package gg.vape.wrapper.impl;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.mapping.mappings.MBlock;
 import gg.vape.wrapper.Wrapper;
 
@@ -32,7 +32,7 @@ extends Wrapper {
 
     public int d(int n, int n2, int n3) {
         if (ForgeVersion.MC_1_16_5.d()) {
-            Vape.notifyNativeStackTrace();
+            Vapor.notifyNativeStackTrace();
             return 0;
         }
         if (ForgeVersion.MC_1_7_10.L()) {
@@ -73,7 +73,7 @@ extends Wrapper {
 
     public AxisAlignedBB Q(World world, int n, int n2, int n3) {
         if (ForgeVersion.MC_1_16_5.d()) {
-            Vape.notifyNativeStackTrace();
+            Vapor.notifyNativeStackTrace();
             return null;
         }
         return new AxisAlignedBB(MBlock.J(Block.vapeInstance.getMappings().qg, this.I, world.getObject(), n, n2, n3));

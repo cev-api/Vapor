@@ -1,6 +1,6 @@
 package gg.vape.mapping;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.mapping.EventPreRenderEntityCallback;
 import gg.vape.mapping.EventRenderPlayerPostCallback;
 import gg.vape.mapping.EventRenderPlayerPreCallback;
@@ -23,8 +23,8 @@ extends JavassistMappingTask {
             this.L();
             return;
         }
-        MappingMethod mappingMethod = ForgeVersion.MC_1_21_6.d() ? Vape.INSTANCE.getMappings().CA.r : Vape.INSTANCE.getMappings().qe.p;
-        MappingMethod mappingMethod2 = Vape.INSTANCE.getMappings().CA.x;
+        MappingMethod mappingMethod = ForgeVersion.MC_1_21_6.d() ? Vapor.INSTANCE.getMappings().CA.r : Vapor.INSTANCE.getMappings().qe.p;
+        MappingMethod mappingMethod2 = Vapor.INSTANCE.getMappings().CA.x;
         InjectionParameterSpec[] injectionParameterSpecArray = new InjectionParameterSpec[]{new InjectionParameterSpec(1, Object.class), new InjectionParameterSpec(6, Object.class), new InjectionParameterSpec(9, Object.class)};
         if (ForgeVersion.MC_1_21_0.H().y()) {
             injectionParameterSpecArray = new InjectionParameterSpec[]{new InjectionParameterSpec(1, Object.class), new InjectionParameterSpec(7, Object.class), new InjectionParameterSpec(0, Object.class)};
@@ -45,13 +45,13 @@ extends JavassistMappingTask {
     }
 
     private void L() {
-        MappingMethod mappingMethod = Vape.INSTANCE.getMappings().CA.j;
+        MappingMethod mappingMethod = Vapor.INSTANCE.getMappings().CA.j;
         CtBehavior ctBehavior = this.F(mappingMethod);
         try {
             ctBehavior.insertBefore("{" + EventPreRenderEntityCallback.class.getName() + "#call($1);}");
         }
         catch (Exception exception) {
-            Vape.logThrowable(exception);
+            Vapor.logThrowable(exception);
         }
     }
 

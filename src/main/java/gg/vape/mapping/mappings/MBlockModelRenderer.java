@@ -1,6 +1,6 @@
 package gg.vape.mapping.mappings;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.mapping.MappedClasses;
 import gg.vape.mapping.Mapping;
 import gg.vape.mapping.MappingMethod;
@@ -35,12 +35,12 @@ extends Mapping {
                 this.renderModelAmbientOcclusionMethod = this.Y("func_187498_b", Wrapper.isNativeAvailable, Boolean.TYPE, new Class[]{MappedClasses.zR, MappedClasses.lc, MappedClasses.Vv, MappedClasses.lf, MappedClasses.lX, Boolean.TYPE, Long.TYPE});
             }
         } else {
-            if (Vape.INSTANCE.isVanillaMinecraftPresent()) {
+            if (Vapor.INSTANCE.isVanillaMinecraftPresent()) {
                 this.renderModelMethod = this.Y("renderModel", true, Boolean.TYPE, new Class[]{MappedClasses.zR, MappedClasses.lc, MappedClasses.Vv, MappedClasses.lf, MappedClasses.lX, Boolean.TYPE});
             } else {
                 this.renderModelMethod = this.Y("func_178267_a", Wrapper.isNativeAvailable, Boolean.TYPE, new Class[]{MappedClasses.zR, MappedClasses.lc, MappedClasses.Vv, MappedClasses.lf, MappedClasses.lX, Boolean.TYPE});
             }
-            if (Wrapper.isNativeAvailable && !Vape.INSTANCE.isVanillaMinecraftPresent()) {
+            if (Wrapper.isNativeAvailable && !Vapor.INSTANCE.isVanillaMinecraftPresent()) {
                 this.renderModelAmbientOcclusionMethod = this.Y("a", false, Boolean.TYPE, new Class[]{MappedClasses.zR, MappedClasses.lc, MappedClasses.Zk, MappedClasses.lf, MappedClasses.lX, Boolean.TYPE});
             } else {
                 this.renderModelAmbientOcclusionMethod = this.Y("renderModelAmbientOcclusion", true, Boolean.TYPE, new Class[]{MappedClasses.zR, MappedClasses.lc, MappedClasses.Zk, MappedClasses.lf, MappedClasses.lX, Boolean.TYPE});

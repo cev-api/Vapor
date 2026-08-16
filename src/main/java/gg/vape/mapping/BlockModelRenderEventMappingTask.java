@@ -1,6 +1,6 @@
 package gg.vape.mapping;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.event.impl.EventBlockModelRender;
 import gg.vape.mapping.EventInjectionSpec;
 import gg.vape.mapping.JavassistMappingTask;
@@ -15,7 +15,7 @@ extends JavassistMappingTask {
 
     @Override
     public void transform() {
-        MappingMethod renderModelMethod = Vape.INSTANCE.getMappings().hE.renderModelMethod;
+        MappingMethod renderModelMethod = Vapor.INSTANCE.getMappings().hE.renderModelMethod;
         EventInjectionSpec eventInjectionSpec = new EventInjectionSpec(renderModelMethod, EventBlockModelRender.class);
         eventInjectionSpec.setConstructorArguments("$0, $1, $2, $3, $4, $5, $6");
         eventInjectionSpec.setReturnExpression("$event.getResult()");

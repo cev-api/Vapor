@@ -1,6 +1,6 @@
 package gg.vape.module.render;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.event.EventHandler;
 import gg.vape.event.impl.EventRenderTracers3D;
 import gg.vape.mapping.MappedClasses;
@@ -82,16 +82,12 @@ extends Mod {
             if (!entity.isInstance(MappedClasses.zm) || entity.equals(player)) continue;
             EntityLivingBase livingEntity = new EntityLivingBase(entity);
             RenderEntityContext context = RenderEntityContextCache.getOrCreate(livingEntity, player);
-            if (context.isSyntheticEntity() || !this.showInvisibles.getEffectiveValue().booleanValue() && context.isInvisibleWithoutEquipment() || context.isBot() || this.enemyOnly.getEffectiveValue().booleanValue() && (this.enemyListOnly.getEffectiveValue() != false ? !context.isEnemy() : !Vape.INSTANCE.getClientSettings().isValidTarget(entity, false))) continue;
+            if (context.isSyntheticEntity() || !this.showInvisibles.getEffectiveValue().booleanValue() && context.isInvisibleWithoutEquipment() || context.isBot() || this.enemyOnly.getEffectiveValue().booleanValue() && (this.enemyListOnly.getEffectiveValue() != false ? !context.isEnemy() : !Vapor.INSTANCE.getClientSettings().isValidTarget(entity, false))) continue;
             float distance = (float)context.getDistance();
             if (entity.isInstance(MappedClasses.lG)) {
                 if (!this.renderPlayers.getEffectiveValue().booleanValue() || this.playerDistanceCheck.getEffectiveValue().booleanValue() && ((double)distance < this.playerDistance.getMinimumValue() || (double)distance > this.playerDistance.getMaximumValue())) continue;
-                if (context.isFriend() && Vape.INSTANCE.getFriendManager().recolorVisuals.getEffectiveValue().booleanValue()) {
-                    this.entries.put(livingEntity, new RenderEntityContextEntry(context, Vape.INSTANCE.getFriendManager().friendColor.getMutableColor()));
-                    continue;
-                }
-                if (context.isEnemy() && Vape.INSTANCE.getEnemyManager().useColor.getEffectiveValue().booleanValue()) {
-                    this.entries.put(livingEntity, new RenderEntityContextEntry(context, Vape.INSTANCE.getEnemyManager().enemyColor.getMutableColor()));
+                if (context.isEnemy() && false) {
+                    this.entries.put(livingEntity, new RenderEntityContextEntry(context, java.awt.Color.WHITE));
                     continue;
                 }
                 this.entries.put(livingEntity, new RenderEntityContextEntry(context, this.playerColor.getMutableColor()));

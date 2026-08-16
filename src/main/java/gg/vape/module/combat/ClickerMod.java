@@ -26,6 +26,7 @@ extends Mod {
     private long activationStartTime;
     private boolean activationWasHeld;
     private static final long MODULE_ID = 7524649824893733649L;
+    protected boolean suppressNextRelease;
     private ClickEngine clickEngine;
     private final ClickerWorker clickerWorker = new ClickerWorker(this);
 
@@ -73,10 +74,6 @@ extends Mod {
     }
 
     public boolean isClickCycleBlocked() {
-        return false;
-    }
-
-    protected boolean shouldSuppressClickRelease() {
         return false;
     }
 
@@ -178,6 +175,9 @@ extends Mod {
             }
             TimerUtil phaseTimer = new TimerUtil();
             holdDurationMillis = Math.max(0L, holdDurationMillis - phaseTimer.getLastMS());
+            if (this.suppressNextRelease) {
+                this.suppressNextRelease = false;
+            }
             this.clickEngine.pressClickButton();
             boolean simulateBlockHit = this.shouldSimulateBlockHit(this.clickEngine, player);
             if (simulateBlockHit) {
@@ -188,8 +188,10 @@ extends Mod {
             if (simulateBlockHit) {
                 this.clickEngine.releaseUseItem();
             }
-            if (!this.shouldSuppressClickRelease()) {
+            if (!this.suppressNextRelease) {
                 this.clickEngine.releaseClickButton();
+            } else {
+                this.suppressNextRelease = false;
             }
             releaseDurationMillis = Math.max(0L, releaseDurationMillis - phaseTimer.getLastMS());
             SleepUtil.sleep(releaseDurationMillis);
@@ -219,6 +221,9 @@ extends Mod {
             return;
         }
         TimerUtil phaseTimer = new TimerUtil();
+        if (this.suppressNextRelease) {
+            this.suppressNextRelease = false;
+        }
         this.clickEngine.pressClickButton();
         boolean simulateBlockHit = this.shouldSimulateBlockHit(this.clickEngine, player);
         if (simulateBlockHit) {
@@ -229,8 +234,10 @@ extends Mod {
         if (simulateBlockHit) {
             this.clickEngine.releaseUseItem();
         }
-        if (!this.shouldSuppressClickRelease()) {
+        if (!this.suppressNextRelease) {
             this.clickEngine.releaseClickButton();
+        } else {
+            this.suppressNextRelease = false;
         }
         SleepUtil.sleep(releaseDurationMillis);
         if (GuiComponent.getLegacyComponentState() == null) {

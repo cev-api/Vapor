@@ -1,6 +1,6 @@
 package gg.vape.ui.click.frame.impl;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.module.Macro;
 import gg.vape.module.none.ClientSettings;
 import gg.vape.ui.click.component.GuiClickListener;
@@ -20,7 +20,7 @@ implements GuiClickListener {
             this.P.submit();
             if (FrameMacrosAddMacroInputComponent.j(this.P) != null) {
                 Macro macro = Macro.create(FrameMacrosAddMacroInputComponent.j(this.P));
-                if (Vape.INSTANCE.getMacrosManager().getMacro(FrameMacrosAddMacroInputComponent.j(this.P)) != null) {
+                if (Vapor.INSTANCE.getMacrosManager().getMacro(FrameMacrosAddMacroInputComponent.j(this.P)) != null) {
                     this.P.setText("");
                     ClientSettings.activeComponent = null;
                     return;

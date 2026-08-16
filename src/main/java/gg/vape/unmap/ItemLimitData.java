@@ -1,7 +1,7 @@
 package gg.vape.unmap;
 
 import com.google.gson.JsonObject;
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.utils.Base64Util;
 import gg.vape.value.ToggleableListEntry;
 import gg.vape.wrapper.impl.Item;
@@ -120,7 +120,7 @@ implements ToggleableListEntry {
     }
 
     private boolean matchesRegisteredItem(ItemStack itemStack) {
-        return Vape.INSTANCE.getItemHelper().matchesItem(this.getName().toLowerCase(), itemStack);
+        return Vapor.INSTANCE.getItemHelper().matchesItem(this.getName().toLowerCase(), itemStack);
     }
 
     public String getName() {

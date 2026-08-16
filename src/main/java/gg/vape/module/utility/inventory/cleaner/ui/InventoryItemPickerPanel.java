@@ -1,7 +1,7 @@
 package gg.vape.module.utility.inventory.cleaner.ui;
 
-import gg.vape.Vape;
-import gg.vape.friend.ui.OnlineRadarPreviewState;
+import gg.vape.Vapor;
+import gg.vape.utils.render.RenderState;
 import gg.vape.mapping.ItemMappingEntry;
 import gg.vape.module.none.ClientSettings;
 import gg.vape.module.utility.inventory.HotbarSlotRuleItemListFrame;
@@ -84,25 +84,25 @@ extends PanelComponent {
         }
     }
 
-    private List<OnlineRadarPreviewState<ItemStack, ItemMappingEntry>> getSearchResults() {
+    private List<RenderState<ItemStack, ItemMappingEntry>> getSearchResults() {
         ItemStack resolvedStack;
         LinkedHashMap<ItemMappingEntry, ItemStack> matchingItems = new LinkedHashMap<ItemMappingEntry, ItemStack>();
         String query = this.searchInput.getText().toLowerCase();
         if (query.trim().isEmpty()) {
             for (ItemStack commonStack : HotbarSlotRuleItemListFrame.DEFAULT_ITEMS) {
-                ItemMappingEntry mappingEntry = Vape.INSTANCE.getItemStackResolver().resolve(commonStack);
+                ItemMappingEntry mappingEntry = Vapor.INSTANCE.getItemStackResolver().resolve(commonStack);
                 if (mappingEntry == null || this.selectedItemIds.contains(mappingEntry.getResourceKey()) || (resolvedStack = mappingEntry.resolveItemStack()) == null || resolvedStack.isNull()) continue;
                 matchingItems.put(mappingEntry, resolvedStack);
             }
         }
         for (ItemStack candidateStack : ItemStackScoreUtil.S()) {
             ItemMappingEntry mappingEntry;
-            if (this.filterMatcher != null && !this.filterMatcher.matches(candidateStack) || (mappingEntry = Vape.INSTANCE.getItemStackResolver().resolve(candidateStack)) == null || (resolvedStack = mappingEntry.resolveItemStack()) == null || resolvedStack.isNull() || !mappingEntry.getModernId().contains(query) && !mappingEntry.getModernId().replace("_", " ").contains(query) && !resolvedStack.x().toLowerCase().contains(query) || this.selectedItemIds.contains(mappingEntry.getResourceKey())) continue;
+            if (this.filterMatcher != null && !this.filterMatcher.matches(candidateStack) || (mappingEntry = Vapor.INSTANCE.getItemStackResolver().resolve(candidateStack)) == null || (resolvedStack = mappingEntry.resolveItemStack()) == null || resolvedStack.isNull() || !mappingEntry.getModernId().contains(query) && !mappingEntry.getModernId().replace("_", " ").contains(query) && !resolvedStack.x().toLowerCase().contains(query) || this.selectedItemIds.contains(mappingEntry.getResourceKey())) continue;
             matchingItems.put(mappingEntry, resolvedStack);
         }
-        ArrayList<OnlineRadarPreviewState<ItemStack, ItemMappingEntry>> results = new ArrayList<>();
+        ArrayList<RenderState<ItemStack, ItemMappingEntry>> results = new ArrayList<>();
         for (Map.Entry<ItemMappingEntry, ItemStack> entry : matchingItems.entrySet()) {
-            results.add(OnlineRadarPreviewState.create(entry.getValue(), entry.getKey()));
+            results.add(RenderState.create(entry.getValue(), entry.getKey()));
         }
         results.sort((first, second) -> InventoryItemPickerPanel.compareSearchResults(query, first, second));
         return results;
@@ -144,7 +144,7 @@ extends PanelComponent {
         BiFunction<ItemStack, ItemMappingEntry, GuiComponent> previewFactory = this::createSelectedItemPreview;
         for (String selectedId : selectedIds) {
             ItemStack selectedStack;
-            ItemMappingEntry selectedEntry = Vape.INSTANCE.getItemStackResolver().findByName(selectedId);
+            ItemMappingEntry selectedEntry = Vapor.INSTANCE.getItemStackResolver().findByName(selectedId);
             if (selectedEntry == null || (selectedStack = selectedEntry.resolveItemStack()) == null) continue;
             selectedItemsPanel.h(previewFactory.apply(selectedStack, selectedEntry), selectedItemsPanel.f().size() % 6 == 5 ? "wrap" : "widthwrap");
         }
@@ -161,7 +161,7 @@ extends PanelComponent {
         this.searchPanel.h(searchResultsPanel, new Object[0]);
         int resultCount = 0;
         int maxResults = 300;
-        for (OnlineRadarPreviewState<ItemStack, ItemMappingEntry> result : this.getSearchResults()) {
+        for (RenderState<ItemStack, ItemMappingEntry> result : this.getSearchResults()) {
             ItemStack resultStack = result.getKey();
             ItemMappingEntry resultEntry = result.getValue();
             InventoryItemStackSelectionRowComponent resultRow = new InventoryItemStackSelectionRowComponent(resultStack);
@@ -198,7 +198,7 @@ extends PanelComponent {
         ClientSettings.UI_EXECUTOR.execute(() -> this.selectMappingEntry(mappingEntry));
     }
 
-    private static int compareSearchResults(String query, OnlineRadarPreviewState first, OnlineRadarPreviewState second) {
+    private static int compareSearchResults(String query, RenderState first, RenderState second) {
         String firstName = ((ItemStack)first.getKey()).x().toLowerCase();
         String secondName = ((ItemStack)second.getKey()).x().toLowerCase();
         if (firstName.equals(query) && !secondName.equals(query)) {
@@ -265,7 +265,7 @@ extends PanelComponent {
         this.allItemsPanel.h(paddedCommonItems, new Object[0]);
         int commonItemCount = 0;
         for (String commonItemId : COMMON_ITEM_IDS) {
-            ItemMappingEntry itemEntry = Vape.INSTANCE.getItemStackResolver().findByName(commonItemId);
+            ItemMappingEntry itemEntry = Vapor.INSTANCE.getItemStackResolver().findByName(commonItemId);
             ItemStack itemStack;
             if (itemEntry == null || (itemStack = itemEntry.resolveItemStack()) == null || itemStack.isNull()) continue;
             InventoryItemPreviewComponent itemPreview = new InventoryItemPreviewComponent(itemStack, false);

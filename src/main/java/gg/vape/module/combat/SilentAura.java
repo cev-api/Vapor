@@ -1,6 +1,6 @@
 package gg.vape.module.combat;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.config.ClientSettings;
 import gg.vape.event.EventHandler;
 import gg.vape.event.EventPriority;
@@ -50,7 +50,6 @@ import gg.vape.value.RandomValue;
 import gg.vape.value.Value;
 import gg.vape.wrapper.impl.Entity;
 import gg.vape.wrapper.impl.EntityLivingBase;
-import gg.vape.wrapper.impl.EntityOtherPlayerMP;
 import gg.vape.wrapper.impl.EntityPlayerSP;
 import gg.vape.wrapper.impl.ForgeVersion;
 import gg.vape.wrapper.impl.GuiScreen;
@@ -96,7 +95,6 @@ extends Mod {
     private float yawIntegral = 0.0f;
     private float pitchIntegral = 0.0f;
     private final BooleanValue perfectSwing;
-    private final BooleanValue shieldCheck;
     public final ModeOption centerMode;
     private float pitchProportionalScale = 1.0f;
     private final ColorValue attackColor;
@@ -204,31 +202,11 @@ extends Mod {
         if (RotationUtil.a(Minecraft.thePlayer(), candidate) > ((Double)this.maxAngle.getValue()).intValue() / 2) {
             return false;
         }
-        if (Vape.INSTANCE.getFriendManager().isFriend(candidate)) {
+        if (Vapor.isFriend(candidate)) {
             return false;
         }
         if (candidate.equals(Minecraft.thePlayer().S$src$Lgg_vape_wrapper_impl_Entity_$dgzs12())) {
             return false;
-        }
-        if (this.shieldCheck.getEffectiveValue().booleanValue()
-                && candidate.isInstance(MappedClasses.lG)
-                && RotationUtil.n(new EntityOtherPlayerMP(candidate.getObject()))) {
-            boolean enforceShieldCheck = true;
-            ShieldBreaker shieldBreaker = Vape.INSTANCE.getModManager().getMod(ShieldBreaker.class);
-            if (shieldBreaker != null && shieldBreaker.isEnabled() && shieldBreaker.hasAxeInHotbar()) {
-                enforceShieldCheck = false;
-            }
-            HitSwap hitSwap = Vape.INSTANCE.getModManager().getMod(HitSwap.class);
-            if (hitSwap != null && hitSwap.isEnabled() && hitSwap.hasAlternateAxe()) {
-                enforceShieldCheck = false;
-            }
-            AutoMace autoMace = Vape.INSTANCE.getModManager().getMod(AutoMace.class);
-            if (autoMace != null && autoMace.isEnabled() && autoMace.canHandleMaceAttack()) {
-                enforceShieldCheck = false;
-            }
-            if (enforceShieldCheck) {
-                return false;
-            }
         }
         return this.passesItemFilter(candidate);
     }
@@ -248,17 +226,6 @@ extends Mod {
 
     public boolean isAttackCooldownReady() {
         if (ForgeVersion.MC_1_12_2.d() && this.perfectSwing.getEffectiveValue().booleanValue()) {
-            if (RotationUtil.u(Minecraft.thePlayer())) {
-                AutoMace autoMace = Vape.INSTANCE.getModManager().getMod(AutoMace.class);
-                if (autoMace != null && autoMace.isEnabled() && autoMace.hasReadyMace()) {
-                    return true;
-                }
-                ItemStack heldItem = Minecraft.thePlayer().getHeldItemHand();
-                if (heldItem.isNotNull() && heldItem.getItem().isNotNull()
-                        && heldItem.getItem().isInstance(MappedClasses.zx)) {
-                    return true;
-                }
-            }
             float attackStrength = Minecraft.thePlayer().getCooledAttackStrength(0.0f);
             return attackStrength == 1.0f;
         }
@@ -318,8 +285,6 @@ extends Mod {
         this.boxMode = new ModeOption("Box");
         this.renderType = ModeValue.create((Object)this, "Render type", this.ringMode, this.ringMode, this.boxMode);
         this.perfectSwing = BooleanValue.create(this, "Perfect swing", false, "Only attacks when there is no attack cooldown\nAdditionally, only swings when hovering(trigger)");
-        this.shieldCheck = BooleanValue.create(this, "Shield check", false,
-                "Won't attack players blocking with shield\nUsing ShieldBreaker, HitSwap, or AutoMace will override this behavior");
         this.breakBlocksTimer = new TimerUtil();
         this.rotationClaim = SharedModuleControlClaims.rotation;
         this.random = new Random();
@@ -327,7 +292,7 @@ extends Mod {
         this.xJitter = new SilentAuraAimJitter(-0.15, 0.15);
         this.zJitter = new SilentAuraAimJitter(-0.15, 0.15);
         this.perfectSwing.whenEqualTo(false).applyTo(this.attackRate);
-        this.addValue(this.targetFilter, this.aimSpeed, this.attackRate, this.extraSwingDistance, this.maxAngle, this.targetMode, this.targetArea, this.shieldCheck);
+        this.addValue(this.targetFilter, this.aimSpeed, this.attackRate, this.extraSwingDistance, this.maxAngle, this.targetMode, this.targetArea);
         this.showTarget.addDependentValues(this.targetColor, this.attackColor, this.renderType);
         this.breakBlocks.addDependentValues(this.breakBlocksDelay, this.breakBlocksWhitelist);
         this.breakBlocksWhitelist.addDependentValues(this.blockBreakItems);
@@ -396,7 +361,7 @@ extends Mod {
             return;
         }
         if (clicker == null) {
-            clicker = Vape.INSTANCE.getModManager().getMod(SilentAuraClicker.class);
+            clicker = Vapor.INSTANCE.getModManager().getMod(SilentAuraClicker.class);
         }
         if (!clicker.isEnabled()) {
             clicker.setEnabled(true);
@@ -672,7 +637,7 @@ extends Mod {
 
     private boolean shouldSkip() {
         if (freecam == null) {
-            freecam = Vape.INSTANCE.getModManager().getMod(Freecam.class);
+            freecam = Vapor.INSTANCE.getModManager().getMod(Freecam.class);
         }
         return this.toggledOff || freecam != null && freecam.isEnabled() || this.breakingBlocks || this.rotationClaim.isBlockedFor(this) && !this.rotationClaim.acquire(this, true);
     }

@@ -1,6 +1,6 @@
 package gg.vape.sync;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.module.none.ClientSettings;
 import gg.vape.utils.SleepUtil;
 
@@ -11,7 +11,7 @@ implements Runnable {
 
     @Override
     public void run() {
-        while (!Vape.INSTANCE.isEnabled()) {
+        while (!Vapor.INSTANCE.isEnabled()) {
             this.processPendingSave();
         }
     }
@@ -23,22 +23,22 @@ implements Runnable {
     private void processPendingSave() {
         try {
             SleepUtil.sleep(1000L);
-            if (!Vape.INSTANCE.getPublicProfileSettings().autoSave.getEffectiveValue()) {
+            if (!Vapor.INSTANCE.getPublicProfileSettings().autoSave.getEffectiveValue()) {
                 return;
             }
             if (!ClientSettings.INSTANCE.isMainGuiStack() && !ClientSettings.INSTANCE.inputEnabled) {
                 return;
             }
             long observedChangeTime = this.lastChangeTime;
-            if (Vape.INSTANCE.getSyncThread().hasPendingSave()) {
+            if (Vapor.INSTANCE.getSyncThread().hasPendingSave()) {
                 SleepUtil.sleep(DEBOUNCE_MILLIS);
                 if (this.lastChangeTime == observedChangeTime) {
-                    Vape.INSTANCE.getSyncThread().requestSave();
+                    Vapor.INSTANCE.getSyncThread().requestSave();
                 }
             }
         }
         catch (Exception exception) {
-            Vape.logThrowable(exception);
+            Vapor.logThrowable(exception);
         }
     }
 }

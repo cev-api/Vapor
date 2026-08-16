@@ -1,6 +1,6 @@
 package gg.vape.mapping.runtime;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.mapping.MappedClasses;
 import gg.vape.mapping.runtime.MemberNameRemapTable;
 import java.util.List;
@@ -717,8 +717,8 @@ extends MemberNameRemapTable {
     protected void G() {
         this.t(MappedClasses.uQ, "func_238421_b_", "m_92883_");
         this.t(MappedClasses.uQ, "func_243247_a", "m_92841_");
-        this.t(MappedClasses.uQ, "func_243246_a", Vape.INSTANCE.isVanillaMinecraftPresent() ? "drawShadow" : "m_92763_");
-        this.t(MappedClasses.uQ, "func_243248_b", Vape.INSTANCE.isVanillaMinecraftPresent() ? "draw" : "m_92889_");
+        this.t(MappedClasses.uQ, "func_243246_a", Vapor.INSTANCE.isVanillaMinecraftPresent() ? "drawShadow" : "m_92763_");
+        this.t(MappedClasses.uQ, "func_243248_b", Vapor.INSTANCE.isVanillaMinecraftPresent() ? "draw" : "m_92889_");
     }
 
     protected void Ae() {

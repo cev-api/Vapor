@@ -1,6 +1,6 @@
 package gg.vape.module.blatant;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.event.EventHandler;
 import gg.vape.event.EventPriority;
 import gg.vape.event.impl.EventClickMouse;
@@ -210,12 +210,18 @@ public class AutoLadder extends Mod {
         this.warmupPending = true;
         this.warmupStage = 0;
         this.warmupLanding = null;
-        ClientSettings.getFrame(ActiveModuleStackFrame.class).addModule(this);
+        ActiveModuleStackFrame activeModuleFrame = ClientSettings.getFrame(ActiveModuleStackFrame.class);
+        if (activeModuleFrame != null) {
+            activeModuleFrame.addModule(this);
+        }
     }
 
     @Override
     public void onDisable() {
-        ClientSettings.getFrame(ActiveModuleStackFrame.class).removeModule(this);
+        ActiveModuleStackFrame activeModuleFrame = ClientSettings.getFrame(ActiveModuleStackFrame.class);
+        if (activeModuleFrame != null) {
+            activeModuleFrame.removeModule(this);
+        }
         this.resetImmediately();
     }
 

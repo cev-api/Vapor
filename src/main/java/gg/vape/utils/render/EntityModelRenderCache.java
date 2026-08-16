@@ -1,6 +1,6 @@
 package gg.vape.utils.render;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.utils.render.EntityModelFramebufferRenderer;
 import gg.vape.utils.render.EntityModelRenderBackend;
 import gg.vape.utils.render.EntityModelRenderCacheKey;
@@ -27,7 +27,7 @@ public class EntityModelRenderCache {
             renderers.get(cacheKey).render(x, y, width, height, color, cornerRadius);
         }
         catch (Exception exception) {
-            Vape.logThrowable(exception);
+            Vapor.logThrowable(exception);
         }
     }
 
@@ -90,7 +90,7 @@ public class EntityModelRenderCache {
             renderers.get(cacheKey).render(x, y, width, height, color, cornerRadius);
         }
         catch (Exception exception) {
-            Vape.logThrowable(exception);
+            Vapor.logThrowable(exception);
         }
     }
 

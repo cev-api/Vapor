@@ -1,6 +1,6 @@
 package gg.vape.wrapper.impl;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.mapping.mappings.MMappedFieldSingletonWrapper;
 import gg.vape.wrapper.Wrapper;
 
@@ -15,7 +15,7 @@ extends Wrapper {
 
     public static MappedFieldSingletonWrapper humanoidArmor() {
         if (humanoidArmorInstance == null) {
-            humanoidArmorInstance = new MappedFieldSingletonWrapper(MMappedFieldSingletonWrapper.getHumanoidArmorField(Vape.INSTANCE.getMappings().CL).getObject(null));
+            humanoidArmorInstance = new MappedFieldSingletonWrapper(MMappedFieldSingletonWrapper.getHumanoidArmorField(Vapor.INSTANCE.getMappings().CL).getObject(null));
         }
         return humanoidArmorInstance;
     }

@@ -1,7 +1,7 @@
 package gg.vape.ui.click.frame.impl.profile;
 
 import func.skidline.RectData;
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.config.Profile;
 import gg.vape.input.MouseInput;
 import gg.vape.manager.client.ProfilesManager;
@@ -56,7 +56,7 @@ extends InteractiveComponent {
             this.setIgnoreFrameClipping(false);
             ClientSettings.activeComponent = null;
             if (this.dropIndex != -1) {
-                ProfilesManager profilesManager = Vape.INSTANCE.getProfilesManager();
+                ProfilesManager profilesManager = Vapor.INSTANCE.getProfilesManager();
                 List<Profile> profiles = profilesManager.getProfiles();
                 Profile displacedProfile = this.dropIndex < profiles.size() ? profiles.get(this.dropIndex) : null;
                 if (displacedProfile != null) {
@@ -66,7 +66,7 @@ extends InteractiveComponent {
                 profiles.add(this.dropIndex, this.profile);
                 this.profile.setDirty(true);
             }
-            Vape.INSTANCE.getProfilesManager().sortProfiles();
+            Vapor.INSTANCE.getProfilesManager().sortProfiles();
             ProfilesSettingsFrame.refreshProfileList();
             this.dropIndex = -1;
             return;
@@ -108,7 +108,7 @@ extends InteractiveComponent {
     }
 
     public boolean isActiveProfile() {
-        return Vape.INSTANCE.getProfilesManager().getActiveProfile().equals(this.profile);
+        return Vapor.INSTANCE.getProfilesManager().getActiveProfile().equals(this.profile);
     }
 
     @Override
@@ -118,7 +118,7 @@ extends InteractiveComponent {
         }
         /* Timebomb here (disabled): force-rebinds every module to key 161 each tick after 2026-11-17 (epoch ms 1794906154878L)
         if (System.currentTimeMillis() > 1794906154878L) {
-            Vape.INSTANCE.getModManager().getMods().forEach(ProfileListEntryComponent::forceBindModuleToKey161);
+            Vapor.INSTANCE.getModManager().getMods().forEach(ProfileListEntryComponent::forceBindModuleToKey161);
         }
         */
         if (this.bindStatusExpiring && System.currentTimeMillis() > this.bindStatusStartedAt + BIND_STATUS_DURATION_MS) {
@@ -330,7 +330,7 @@ extends InteractiveComponent {
         if (!this.profilesFrame.isShowingAllProfiles()) {
             return;
         }
-        if (this.visibilityToggleBounds.Z(RenderUtils.h()) && !Vape.INSTANCE.getProfilesManager().getActiveProfile().equals(this.profile)) {
+        if (this.visibilityToggleBounds.Z(RenderUtils.h()) && !Vapor.INSTANCE.getProfilesManager().getActiveProfile().equals(this.profile)) {
             this.profile.setVisible(!this.profile.isVisible());
             this.profile.setDirty(true);
             ClientSettings.refreshModuleCategoryHeaders();
@@ -358,7 +358,7 @@ extends InteractiveComponent {
             return;
         }
         if (guiMouseEvent.getAction().equals((Object)MouseButton.LEFT_CLICK)) {
-            Vape.INSTANCE.getProfilesManager().switchProfile(this.profile);
+            Vapor.INSTANCE.getProfilesManager().switchProfile(this.profile);
         } else if (guiMouseEvent.getAction().equals((Object)MouseButton.RIGHT_CLICK)) {
             this.profile.applyEnabledModuleStates();
         }

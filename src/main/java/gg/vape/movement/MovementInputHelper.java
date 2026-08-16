@@ -1,6 +1,6 @@
 package gg.vape.movement;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.config.ClientSettings;
 import gg.vape.utils.MathUtil;
 import gg.vape.utils.RotationUtil;
@@ -63,7 +63,7 @@ public class MovementInputHelper {
         };
         double strafeDistance = distanceToTargetAfterMove(player, projectedPosition,
                 strafeDelta, targetOffsetX, targetOffsetZ);
-        Vape.debugLog("Vector " + strafeDelta[0] + " " + strafeDelta[1]
+        Vapor.debugLog("Vector " + strafeDelta[0] + " " + strafeDelta[1]
                 + " | Potential Dist: " + strafeDistance + " | Final Dist: " + currentDistance
                 + " | " + relativeYaw + " " + targetYaw + " " + EnumFacing.p(targetYaw)
                 + " " + forwardFactor + " " + strafeFactor);

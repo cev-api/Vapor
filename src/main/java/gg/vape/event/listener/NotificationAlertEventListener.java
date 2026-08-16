@@ -1,6 +1,6 @@
 package gg.vape.event.listener;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.event.EventHandler;
 import gg.vape.event.EventListener;
 import gg.vape.event.EventPriority;
@@ -35,7 +35,7 @@ implements EventListener {
     public void onPostRenderTick(EventPostRenderTick eventPostRenderTick) {
         int errorCode;
         if (!this.errorReported && (errorCode = GL11.glGetError()) != 0) {
-            Vape.INSTANCE.getNotificationManager().show("GL Error " + errorCode, "Please contact support and report this error code", NotificationType.ALERT, 10000L);
+            Vapor.INSTANCE.getNotificationManager().show("GL Error " + errorCode, "Please contact support and report this error code", NotificationType.ALERT, 10000L);
             this.errorReported = true;
         }
     }

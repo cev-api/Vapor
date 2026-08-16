@@ -1,6 +1,6 @@
 package gg.vape.ui.click.frame.impl.hud;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.module.none.ClientSettings;
 import gg.vape.module.render.hud.PotionEffectsHudModule;
 import gg.vape.ui.click.frame.impl.hud.HudModuleConfigFrameBase;
@@ -90,9 +90,9 @@ extends HudModuleConfigFrameBase {
         double effectY = this.n();
         double rowHeight = 30.0;
         this.maximumTextWidth = 0;
-        SmoothFontRenderer smoothFontRenderer = Vape.INSTANCE.getFontManager().K(0.85, true);
+        SmoothFontRenderer smoothFontRenderer = Vapor.INSTANCE.getFontManager().K(0.85, true);
         if (I18n.getLanguage().isUnicode()) {
-            smoothFontRenderer = Vape.INSTANCE.getFontManager().b(FontFamily.NOTO, 0.85f, false);
+            smoothFontRenderer = Vapor.INSTANCE.getFontManager().b(FontFamily.NOTO, 0.85f, false);
         }
         for (PotionEffect effect : effects) {
             boolean hidden = false;

@@ -1,6 +1,6 @@
 package gg.vape.value;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.module.Category;
 import gg.vape.module.Mod;
 import gg.vape.ui.click.component.GuiComponent;
@@ -35,7 +35,7 @@ extends AbstractListValueSuggestionProvider {
     public @UnmodifiableView List<String> getValues() {
         if (this.cachedModuleNames == null) {
             this.cachedModuleNames = new ArrayList<String>();
-            for (Mod module : Vape.INSTANCE.getModManager().collectMods()) {
+            for (Mod module : Vapor.INSTANCE.getModManager().collectMods()) {
                 if (module.getCategory() == Category.NONE || this.excludeOtherCategory && module.getCategory() == Category.OTHER) continue;
                 this.cachedModuleNames.add(module.getName());
             }

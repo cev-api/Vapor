@@ -1,6 +1,6 @@
 package gg.vape.module.render;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.event.EventHandler;
 import gg.vape.event.impl.EventPreTick;
 import gg.vape.event.impl.EventRender3D;
@@ -163,7 +163,7 @@ extends Mod {
             }
         }
         catch (Exception exception) {
-            Vape.logThrowable(exception);
+            Vapor.logThrowable(exception);
         }
     }
 
@@ -294,7 +294,7 @@ extends Mod {
             if (visibleInLayer == 0) break;
         }
         String distanceText = (int)distance + "m";
-        SmoothFontRenderer fontRenderer = Vape.INSTANCE.getFontManager().W(1.2, false);
+        SmoothFontRenderer fontRenderer = Vapor.INSTANCE.getFontManager().W(1.2, false);
         int displayedItemCount = Math.max(visibleBlockStates.size(), 1);
         float panelHeight = 22.0f;
         float panelWidth = displayedItemCount * 18 + 6;
@@ -399,7 +399,7 @@ extends Mod {
                             int itemId;
                             if (ForgeVersion.MC_1_16_5.d()) {
                                 BlockPos blockPos = BlockPos.create(blockX, blockY, blockZ);
-                                BlockState blockState = new BlockState(Vape.INSTANCE.getMappings().Cy.u(world.getObject(), blockPos.getObject()));
+                                BlockState blockState = new BlockState(Vapor.INSTANCE.getMappings().Cy.u(world.getObject(), blockPos.getObject()));
                                 itemId = surroundingBlock.Z(world, blockPos, blockState).getItem().P();
                             } else {
                                 itemId = Block.R(surroundingBlock);

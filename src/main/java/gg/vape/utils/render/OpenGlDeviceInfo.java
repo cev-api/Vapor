@@ -1,8 +1,9 @@
 package gg.vape.utils.render;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.utils.render.GpuVendor;
 import org.lwjgl.opengl.GL11;
+import org.lwjgl.opengl.GL;
 
 public class OpenGlDeviceInfo {
     public static String vendorName;
@@ -22,6 +23,13 @@ public class OpenGlDeviceInfo {
 
     public static void collectDeviceInfo() {
         try {
+            if (GL.getCapabilities() == null) {
+                vendorName = "Unknown Vendor";
+                rendererName = "Unknown GPU";
+                versionName = "Unknown Version";
+                gpuVendor = GpuVendor.UNKNOWN;
+                return;
+            }
             String renderer = GL11.glGetString((int)7937);
             String vendor = GL11.glGetString((int)7936);
             String version = GL11.glGetString((int)7938);
@@ -31,7 +39,7 @@ public class OpenGlDeviceInfo {
             gpuVendor = OpenGlDeviceInfo.detectGpuVendor(vendor);
         }
         catch (Exception exception) {
-            Vape.debugLog("Error getting OpenGL: " + exception.getMessage());
+            Vapor.debugLog("Error getting OpenGL: " + exception.getMessage());
         }
     }
 
@@ -80,26 +88,26 @@ public class OpenGlDeviceInfo {
 
     private static void logCapabilities() {
         try {
-            Vape.debugLog("MAX_TEXTURE_SIZE - " + GL11.glGetInteger((int)3379));
-            Vape.debugLog("MAX_TEXTURE_UNITS - " + GL11.glGetInteger((int)34930));
-            Vape.debugLog("MAX_VERTEX_ATTRIBS - " + GL11.glGetInteger((int)34921));
-            Vape.debugLog("MAX_COLOR_ATTACHMENTS - " + GL11.glGetInteger((int)36063));
-            Vape.debugLog("MAX_VIEWPORT_WIDTH - " + GL11.glGetInteger((int)3386));
-            Vape.debugLog("MAX_VERTEX_UNIFORM_COMPONENTS - " + GL11.glGetInteger((int)35658));
-            Vape.debugLog("MAX_FRAGMENT_UNIFORM_COMPONENTS - " + GL11.glGetInteger((int)35657));
+            Vapor.debugLog("MAX_TEXTURE_SIZE - " + GL11.glGetInteger((int)3379));
+            Vapor.debugLog("MAX_TEXTURE_UNITS - " + GL11.glGetInteger((int)34930));
+            Vapor.debugLog("MAX_VERTEX_ATTRIBS - " + GL11.glGetInteger((int)34921));
+            Vapor.debugLog("MAX_COLOR_ATTACHMENTS - " + GL11.glGetInteger((int)36063));
+            Vapor.debugLog("MAX_VIEWPORT_WIDTH - " + GL11.glGetInteger((int)3386));
+            Vapor.debugLog("MAX_VERTEX_UNIFORM_COMPONENTS - " + GL11.glGetInteger((int)35658));
+            Vapor.debugLog("MAX_FRAGMENT_UNIFORM_COMPONENTS - " + GL11.glGetInteger((int)35657));
         }
         catch (Exception exception) {
-            Vape.debugLog("Failed to collect GPU capabilities: " + exception.getMessage());
+            Vapor.debugLog("Failed to collect GPU capabilities: " + exception.getMessage());
         }
     }
 
     public static void logDeviceInfo() {
-        Vape.debugLog("===== Graphics Information =====");
-        Vape.debugLog("Vendor: " + gpuVendor.name() + " (" + vendorName + ")");
-        Vape.debugLog("Device Name: " + rendererName);
-        Vape.debugLog("Driver Version: " + versionName);
-        Vape.debugLog("---GPU Capabilities---");
+        Vapor.debugLog("===== Graphics Information =====");
+        Vapor.debugLog("Vendor: " + gpuVendor.name() + " (" + vendorName + ")");
+        Vapor.debugLog("Device Name: " + rendererName);
+        Vapor.debugLog("Driver Version: " + versionName);
+        Vapor.debugLog("---GPU Capabilities---");
         OpenGlDeviceInfo.logCapabilities();
-        Vape.debugLog("================================");
+        Vapor.debugLog("================================");
     }
 }

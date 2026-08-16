@@ -1,10 +1,9 @@
 package gg.vape.module.render.esp;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.event.EventHandler;
 import gg.vape.event.impl.EventPreRenderLiving;
 import gg.vape.event.impl.EventRender2D;
-import gg.vape.friend.FriendEntry;
 import gg.vape.mapping.MappedClasses;
 import gg.vape.module.Mod;
 import gg.vape.module.SubModule;
@@ -12,7 +11,6 @@ import gg.vape.module.render.ESP;
 import gg.vape.module.render.entity.ProjectedEntityBounds;
 import gg.vape.module.render.entity.RenderEntityContext;
 import gg.vape.module.render.entity.RenderEntityContextCache;
-import gg.vape.render.OffscreenRenderContext;
 import gg.vape.ui.font.SmoothFontRenderer;
 import gg.vape.utils.MutableColor;
 import gg.vape.utils.render.BufferedGuiRenderPrimitives;
@@ -38,10 +36,7 @@ extends SubModule<ESP> {
 
     @EventHandler
     public void onRender2D(EventRender2D event) {
-        if (OffscreenRenderContext.isRenderingOffscreen()) {
-            return;
-        }
-        SmoothFontRenderer fontRenderer = Vape.INSTANCE.getFontManager().W(0.9, true);
+        SmoothFontRenderer fontRenderer = Vapor.INSTANCE.getFontManager().W(0.9, true);
         OpenGlBackendHolder.backend.pushMatrix();
         float renderScale = 1.0f;
         float coordinateScale = 2.0f;
@@ -166,13 +161,9 @@ extends SubModule<ESP> {
                     }
                 }
                 if (this.parentEsp.showName.getEffectiveValue().booleanValue()) {
-                    FriendEntry friendEntry;
                     String displayName = this.parentEsp.useDisplayName.getEffectiveValue() == false || priorityTarget ? projectedEntityBounds.context.getName() : projectedEntityBounds.context.getTypeName();
                     if (this.parentEsp.useDisplayName.getEffectiveValue().booleanValue()) {
                         displayName = displayName.replaceAll(NON_ASCII_PATTERN, "");
-                    }
-                    if (friend && (friendEntry = Vape.INSTANCE.getFriendManager().findTargetedFriend(projectedEntityBounds.context.getName())) != null) {
-                        displayName = friendEntry.getDisplayName();
                     }
                     textWidth = fontRenderer.N(displayName);
                     if (this.parentEsp.showNameBackground.getEffectiveValue().booleanValue()) {

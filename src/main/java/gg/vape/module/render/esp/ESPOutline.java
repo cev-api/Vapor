@@ -1,7 +1,7 @@
 package gg.vape.module.render.esp;
 
 import com.google.common.collect.Lists;
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.event.EventHandler;
 import gg.vape.event.impl.EventPrePlayerTick;
 import gg.vape.event.impl.EventPreRenderEntity;
@@ -13,7 +13,6 @@ import gg.vape.mapping.MappedClasses;
 import gg.vape.module.Mod;
 import gg.vape.module.SubModule;
 import gg.vape.module.render.ESP;
-import gg.vape.render.OffscreenRenderContext;
 import gg.vape.utils.MutableColor;
 import gg.vape.utils.render.OpenGlBackendHolder;
 import gg.vape.utils.render.RenderUtils;
@@ -39,13 +38,10 @@ extends SubModule<ESP> {
 
     @EventHandler
     public void onPreRenderLiving(EventPreRenderLiving event) {
-        if (OffscreenRenderContext.isRenderingOffscreen()) {
+        if (Vapor.INSTANCE.getClientSettings().isBot(event.getEntity()) && this.parentEsp.hideBots.getEffectiveValue().booleanValue()) {
             return;
         }
-        if (Vape.INSTANCE.getClientSettings().isBot(event.getEntity()) && this.parentEsp.hideBots.getEffectiveValue().booleanValue()) {
-            return;
-        }
-        if (this.parentEsp.enemyOnly.getEffectiveValue().booleanValue() && (this.parentEsp.enemyListOnly.getEffectiveValue() != false ? !Vape.INSTANCE.getEnemyManager().isEnemy(event.getEntity().getName()) : !Vape.INSTANCE.getClientSettings().isValidTarget(event.getEntity(), false))) {
+        if (false) {
             return;
         }
         if (event.getWorld().isNull()) {
@@ -65,7 +61,7 @@ extends SubModule<ESP> {
     public void onTick(EventPrePlayerTick eventPrePlayerTick) {
         if (Minecraft.gameSettings().M()) {
             this.parentEsp.mode.setValue(this.parentEsp.threeDimensionalMode);
-            Vape.INSTANCE.getNotificationManager().showInfo("ESP reverted to 3D mode", "Disable fast render to use outline", 5000L);
+            Vapor.INSTANCE.getNotificationManager().showInfo("ESP reverted to 3D mode", "Disable fast render to use outline", 5000L);
         }
     }
 
@@ -76,13 +72,10 @@ extends SubModule<ESP> {
 
     @EventHandler
     public void onSetArmorModel(EventSetArmorModel event) {
-        if (OffscreenRenderContext.isRenderingOffscreen()) {
+        if (Vapor.INSTANCE.getClientSettings().isBot(event.getEntity()) && this.parentEsp.hideBots.getEffectiveValue().booleanValue()) {
             return;
         }
-        if (Vape.INSTANCE.getClientSettings().isBot(event.getEntity()) && this.parentEsp.hideBots.getEffectiveValue().booleanValue()) {
-            return;
-        }
-        if (this.parentEsp.enemyOnly.getEffectiveValue().booleanValue() && (this.parentEsp.enemyListOnly.getEffectiveValue() != false ? !Vape.INSTANCE.getEnemyManager().isEnemy(event.getEntity().getName()) : !Vape.INSTANCE.getClientSettings().isValidTarget(event.getEntity(), false))) {
+        if (false) {
             return;
         }
         if (event.getWorld().isNull()) {
@@ -100,9 +93,6 @@ extends SubModule<ESP> {
 
     @EventHandler
     public void onPreRenderEntity(EventPreRenderEntity event) {
-        if (OffscreenRenderContext.isRenderingOffscreen()) {
-            return;
-        }
         if (this.parentEsp.resolveEntityColor(event.getThePlayer(), event.getEntity()) == null) {
             return;
         }
@@ -120,13 +110,10 @@ extends SubModule<ESP> {
 
     @EventHandler
     public void onPreRenderPlayerSpec(EventPreRenderPlayerSpec event) {
-        if (OffscreenRenderContext.isRenderingOffscreen()) {
+        if (Vapor.INSTANCE.getClientSettings().isBot(event.getClientPlayer()) && this.parentEsp.hideBots.getEffectiveValue().booleanValue()) {
             return;
         }
-        if (Vape.INSTANCE.getClientSettings().isBot(event.getClientPlayer()) && this.parentEsp.hideBots.getEffectiveValue().booleanValue()) {
-            return;
-        }
-        if (this.parentEsp.enemyOnly.getEffectiveValue().booleanValue() && (this.parentEsp.enemyListOnly.getEffectiveValue() != false ? !Vape.INSTANCE.getEnemyManager().isEnemy(event.getClientPlayer().getName()) : !Vape.INSTANCE.getClientSettings().isValidTarget(event.getClientPlayer(), false))) {
+        if (false) {
             return;
         }
         if (event.getWorld().isNull()) {
@@ -139,9 +126,6 @@ extends SubModule<ESP> {
 
     @EventHandler
     public void onRender3D(EventRender3D event) {
-        if (OffscreenRenderContext.isRenderingOffscreen()) {
-            return;
-        }
         if (ForgeVersion.MC_1_7_10.B() && (!this.legacyRendererObserved || this.legacyRendererObservationCount < 10)) {
             return;
         }
@@ -164,7 +148,7 @@ extends SubModule<ESP> {
         for (Object entityHandle : world.z()) {
             Entity entity = new Entity(entityHandle);
             MutableColor color = this.parentEsp.resolveEntityColor(event.getThePlayer(), entity);
-            if (color == null || this.parentEsp.enemyOnly.getEffectiveValue().booleanValue() && (this.parentEsp.enemyListOnly.getEffectiveValue() == false ? !Vape.INSTANCE.getClientSettings().isValidTarget(entity, false) : !Vape.INSTANCE.getEnemyManager().isEnemy(entity.getName()))) continue;
+            if (color == null) continue;
             if (entity.equals(viewer) || !entity.isInstance(MappedClasses.Yl)) continue;
             double previousX = entity.M();
             double previousY = entity.W();

@@ -1,6 +1,6 @@
 package gg.vape.config;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.config.Profile;
 import gg.vape.config.PublicProfileSettings;
 import gg.vape.utils.StringUtils;
@@ -15,10 +15,10 @@ extends StringValue {
 
     @Override
     public String getValue() {
-        Profile activeProfile = Vape.INSTANCE.getProfilesManager().getActiveProfile();
+        Profile activeProfile = Vapor.INSTANCE.getProfilesManager().getActiveProfile();
         UUID onlineId = activeProfile.getOnlineId();
         if (onlineId == null) {
-            Vape.debugLog(activeProfile.getName() + MISSING_ONLINE_UUID_SUFFIX);
+            Vapor.debugLog(activeProfile.getName() + MISSING_ONLINE_UUID_SUFFIX);
             return "";
         }
         return onlineId.toString();
@@ -34,12 +34,12 @@ extends StringValue {
         super.setValue(profileIdentifier);
         boolean isUuid = StringUtils.n(profileIdentifier);
         if (isUuid) {
-            Profile profile = Vape.INSTANCE.getProfilesManager().getProfileByOnlineId(UUID.fromString(profileIdentifier));
+            Profile profile = Vapor.INSTANCE.getProfilesManager().getProfileByLocalId(UUID.fromString(profileIdentifier));
             if (profile != null) {
                 PublicProfileSettings.setSelectedProfile(this.settings, profile);
             }
         } else {
-            Profile profile = Vape.INSTANCE.getProfilesManager().getProfileByName(profileIdentifier);
+            Profile profile = Vapor.INSTANCE.getProfilesManager().getProfileByName(profileIdentifier);
             if (profile != null) {
                 PublicProfileSettings.setSelectedProfile(this.settings, profile);
             }

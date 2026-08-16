@@ -1,6 +1,6 @@
 package gg.vape.ui.click.frame.impl.hud;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.module.Mod;
 import gg.vape.module.none.ClientSettings;
 import gg.vape.module.render.hud.HudModule;
@@ -26,7 +26,7 @@ extends InsetFrameBase {
     public void refreshModules() {
         this.removeMarkedChildren();
         int moduleIndex = 0;
-        ArrayList<Mod> mods = Vape.INSTANCE.getModManager().getActiveModuleList();
+        ArrayList<Mod> mods = Vapor.INSTANCE.getModManager().getActiveModuleList();
         this.setVisible(true);
         for (Mod mod : mods) {
             if (!(mod instanceof HudModule)) continue;
@@ -106,7 +106,7 @@ extends InsetFrameBase {
     }
 
     private boolean hasFavoriteModule() {
-        for (Mod mod : Vape.INSTANCE.getModManager().collectMods()) {
+        for (Mod mod : Vapor.INSTANCE.getModManager().collectMods()) {
             HudModule hudModule;
             if (!(mod instanceof HudModule) || !(hudModule = (HudModule)mod).isFavorite()) continue;
             return true;

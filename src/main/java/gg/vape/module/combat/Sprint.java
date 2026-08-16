@@ -1,6 +1,6 @@
 package gg.vape.module.combat;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.event.EventHandler;
 import gg.vape.event.impl.EventPreEntityUpdate;
 import gg.vape.module.Category;
@@ -27,7 +27,7 @@ extends Mod {
     @EventHandler
     public void onPreEntityUpdate(EventPreEntityUpdate event) {
         if (this.scaffold == null) {
-            this.scaffold = Vape.INSTANCE.getModManager().getMod(Scaffold.class);
+            this.scaffold = Vapor.INSTANCE.getModManager().getMod(Scaffold.class);
         }
         if (!Minecraft.currentScreen().isNull()) {
             return;

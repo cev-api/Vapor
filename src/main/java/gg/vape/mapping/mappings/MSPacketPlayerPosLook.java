@@ -1,6 +1,6 @@
 package gg.vape.mapping.mappings;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.mapping.MappedClasses;
 import gg.vape.mapping.Mapping;
 import gg.vape.mapping.MappingField;
@@ -59,7 +59,7 @@ extends Mapping {
             if (ForgeVersion.MC_1_8_9.Y()) {
                 this.teleportIdField = this.J("teleportId", true, Integer.TYPE);
             }
-            if (Vape.INSTANCE.isVanillaMinecraftPresent() && ForgeVersion.MC_1_7_10.Y()) {
+            if (Vapor.INSTANCE.isVanillaMinecraftPresent() && ForgeVersion.MC_1_7_10.Y()) {
                 this.yawField = this.J("yaw", true, Float.TYPE);
                 this.pitchField = this.J("pitch", true, Float.TYPE);
             } else {

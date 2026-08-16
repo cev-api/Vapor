@@ -1,7 +1,7 @@
 package gg.vape.value;
 
 import com.google.gson.JsonObject;
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.config.ConfigJsonUtils;
 import gg.vape.utils.MathUtil;
 import gg.vape.utils.StringUtils;
@@ -72,7 +72,7 @@ extends Value<double[], RandomValue> {
             decimalFormat = new DecimalFormat(this.formatPattern);
         }
         catch (Exception exception) {
-            Vape.logThrowable(exception);
+            Vapor.logThrowable(exception);
             decimalFormat = new DecimalFormat("#.##");
         }
         decimalFormat.setMinimumIntegerDigits(1);

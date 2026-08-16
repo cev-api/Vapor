@@ -1,6 +1,6 @@
 package gg.vape.module.utility;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.event.EventHandler;
 import gg.vape.event.impl.EventPrePlayerTick;
 import gg.vape.input.KeyBindingHelper;
@@ -127,7 +127,7 @@ extends UtilityMod {
             ArmorItemMappingEntry armorMapping;
             Item item;
             Slot slot = inventorySlots.get(slotIndex);
-            if (!slot.hasStack() || !ItemStackScoreUtil.R(item = slot.getStack().getItem()) || !(armorMapping = (ArmorItemMappingEntry)Vape.INSTANCE.getItemStackResolver().resolve(slot.getStack())).getArmorMaterial().equals((Object)armorMaterialType)) continue;
+            if (!slot.hasStack() || !ItemStackScoreUtil.R(item = slot.getStack().getItem()) || !(armorMapping = (ArmorItemMappingEntry)Vapor.INSTANCE.getItemStackResolver().resolve(slot.getStack())).getArmorMaterial().equals((Object)armorMaterialType)) continue;
             int armorType = ItemStackScoreUtil.H(item);
             switch (armorType) {
                 case 0: {
@@ -203,7 +203,7 @@ extends UtilityMod {
         for (int armorSlot = 5; armorSlot < 9; ++armorSlot) {
             Slot slot = inventorySlots.get(armorSlot);
             if (!slot.hasStack() || !ItemStackScoreUtil.R(slot.getStack().getItem())) continue;
-            ArmorItemMappingEntry armorMapping = (ArmorItemMappingEntry)Vape.INSTANCE.getItemStackResolver().resolve(slot.getStack());
+            ArmorItemMappingEntry armorMapping = (ArmorItemMappingEntry)Vapor.INSTANCE.getItemStackResolver().resolve(slot.getStack());
             this.currentMaterial = armorMapping.getArmorMaterial();
             return true;
         }

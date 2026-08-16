@@ -1,6 +1,6 @@
 package gg.vape.event.impl;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.config.ClientSettings;
 import gg.vape.event.Event;
 import gg.vape.event.EventListeners;
@@ -44,20 +44,20 @@ extends Event {
     @Override
     public boolean fire() {
         try {
-            if (Vape.INSTANCE.isTickActionPending()) {
+            if (Vapor.INSTANCE.isTickActionPending()) {
                 gg.vape.module.none.ClientSettings.INSTANCE.openGui();
-                Vape.INSTANCE.setPendingTickAction(false);
+                Vapor.INSTANCE.setPendingTickAction(false);
             }
             if (Minecraft.theWorld().isNotNull()) {
                 ClientSettings.pendingSanityReset = true;
             }
             if ((KeyboardInput.isKeyDown(163) || KeyboardInput.isKeyDown(162) || KeyboardInput.isKeyDown(161)) && KeyboardInput.isKeyDown(36) && this instanceof EventPostTick && Minecraft.currentScreen().isNull()) {
-                Vape.INSTANCE.getModManager().getMod(gg.vape.module.none.ClientSettings.class).toggle();
+                Vapor.INSTANCE.getModManager().getMod(gg.vape.module.none.ClientSettings.class).toggle();
             }
             ShaderProgram.setCurrentProgramId(-1);
         }
         catch (Exception exception) {
-            Vape.logThrowable(exception);
+            Vapor.logThrowable(exception);
         }
         return super.fire();
     }

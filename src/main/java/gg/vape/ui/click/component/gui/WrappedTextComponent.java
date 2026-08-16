@@ -1,6 +1,6 @@
 package gg.vape.ui.click.component.gui;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.ui.click.component.SimpleTextLabelComponent;
 import gg.vape.ui.font.SmoothFontRenderer;
 import java.awt.Color;
@@ -29,7 +29,7 @@ extends SimpleTextLabelComponent {
     }
 
     private void renderWrappedLines() {
-        SmoothFontRenderer fontRenderer = this.bold ? Vape.INSTANCE.getFontManager().W(this.fontScale, false) : Vape.INSTANCE.getFontManager().E(this.fontScale, false);
+        SmoothFontRenderer fontRenderer = this.bold ? Vapor.INSTANCE.getFontManager().W(this.fontScale, false) : Vapor.INSTANCE.getFontManager().E(this.fontScale, false);
         double currentY = this.n();
         for (String line : this.getWrappedLines()) {
             if (this.centered) {
@@ -47,7 +47,7 @@ extends SimpleTextLabelComponent {
 
     public List<String> getWrappedLines() {
         if (this.wrappedLines == null) {
-            SmoothFontRenderer fontRenderer = this.bold ? Vape.INSTANCE.getFontManager().W(this.fontScale, false) : Vape.INSTANCE.getFontManager().E(this.fontScale, false);
+            SmoothFontRenderer fontRenderer = this.bold ? Vapor.INSTANCE.getFontManager().W(this.fontScale, false) : Vapor.INSTANCE.getFontManager().E(this.fontScale, false);
             this.wrappedLines = this.wrapLines(Arrays.asList(this.text.split("\n")), fontRenderer);
         }
         return this.wrappedLines;

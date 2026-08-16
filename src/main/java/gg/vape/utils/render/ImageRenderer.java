@@ -1,6 +1,6 @@
 package gg.vape.utils.render;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.module.utility.inventory.cleaner.InventoryItemMatcher;
 import gg.vape.module.utility.inventory.cleaner.InventoryItemMatcherGroup;
 import gg.vape.module.utility.inventory.cleaner.InventoryItemMatcherRegistry;
@@ -88,7 +88,7 @@ public class ImageRenderer {
         }
         try {
             String resourcePath = "textures/" + resourceName + ".png";
-            byte[] resourceData = Vape.readResource(resourcePath);
+            byte[] resourceData = Vapor.readResource(resourcePath);
             if (resourceData == null || resourceData.length == 0) {
                 if ("world".equals(resourceName)) {
                     return null;
@@ -108,7 +108,7 @@ public class ImageRenderer {
             return texture;
         }
         catch (IOException exception) {
-            Vape.logThrowable(exception);
+            Vapor.logThrowable(exception);
             return null;
         }
     }
@@ -154,7 +154,7 @@ public class ImageRenderer {
     }
 
     public static void preloadResources() {
-        ImageRenderer.loadResource("vapelogo", true, false);
+        ImageRenderer.loadResource("vaporlogo", true, false);
         ImageRenderer.loadResource("v4", true, false);
         ImageRenderer.loadResource("lmb", true, false);
         ImageRenderer.loadResource("rmb", true, false);

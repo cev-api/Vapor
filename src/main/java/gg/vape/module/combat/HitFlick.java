@@ -1,6 +1,6 @@
 package gg.vape.module.combat;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.config.ClientSettings;
 import gg.vape.event.EventHandler;
 import gg.vape.event.EventPriority;
@@ -361,7 +361,7 @@ extends Mod {
 
     private EntityLivingBase getSilentAuraTargetUnderCrosshair() {
         if (this.silentAura == null) {
-            this.silentAura = Vape.INSTANCE.getModManager().getMod(SilentAura.class);
+            this.silentAura = Vapor.INSTANCE.getModManager().getMod(SilentAura.class);
         }
         if (this.silentAura == null || !this.silentAura.isEnabled() || !this.silentAura.canClickAttack()) {
             return new EntityLivingBase(null);

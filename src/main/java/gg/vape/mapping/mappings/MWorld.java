@@ -1,6 +1,6 @@
 package gg.vape.mapping.mappings;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.mapping.MappedClasses;
 import gg.vape.mapping.Mapping;
 import gg.vape.mapping.MappingField;
@@ -279,7 +279,7 @@ extends Mapping {
                 String string29 = "isValid";
                 MWorld mWorld29 = this;
                 this.D = this.Y(string29, bl27, clazz33, classArray23);
-                if (ForgeVersion.MC_1_8_9.L() && Vape.INSTANCE.isVanillaMinecraftPresent()) {
+                if (ForgeVersion.MC_1_8_9.L() && Vapor.INSTANCE.isVanillaMinecraftPresent()) {
                     Class[] classArray24 = new Class[]{MappedClasses.lf, MappedClasses.lf};
                     Class<Boolean> clazz34 = Boolean.TYPE;
                     boolean bl28 = true;

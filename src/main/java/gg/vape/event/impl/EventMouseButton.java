@@ -1,10 +1,9 @@
 package gg.vape.event.impl;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.config.ClientSettings;
 import gg.vape.config.Profile;
 import gg.vape.event.EventListeners;
-import gg.vape.manager.client.OnlineConnectionManager;
 import gg.vape.module.Mod;
 import gg.vape.wrapper.impl.ForgeVersion;
 import gg.vape.wrapper.impl.KeyBinding;
@@ -47,18 +46,21 @@ extends EventKeyInputBase {
 
     @Override
     public boolean fire() {
+        Vapor vape = Vapor.INSTANCE;
+        if (vape == null || vape.getProfilesManager() == null || vape.getModManager() == null) {
+            return super.fire();
+        }
         int inputCode = -100 + this.getButton();
         if (this.getButtonState()) {
-            for (Profile profile : Vape.INSTANCE.getProfilesManager().getProfiles()) {
+            for (Profile profile : vape.getProfilesManager().getProfiles()) {
                 if (!profile.activateIfMatched(inputCode)) continue;
                 return this.isCanceled();
             }
         }
-        for (Mod mod : Vape.INSTANCE.getModManager().collectMods()) {
+        for (Mod mod : vape.getModManager().collectMods()) {
             if (mod.getBind().getBoundInputs().isEmpty()) continue;
             mod.getBind().handleInput(inputCode, this.getButtonState());
         }
-        OnlineConnectionManager.INSTANCE.getSettings().handleMouseButton(this);
         return super.fire();
     }
 
@@ -66,4 +68,3 @@ extends EventKeyInputBase {
         return super.isDown();
     }
 }
-

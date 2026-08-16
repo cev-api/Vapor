@@ -1,6 +1,6 @@
 package gg.vape.value;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.utils.MathUtil;
 import gg.vape.value.ColorValue;
 import gg.vape.value.Value;
@@ -146,7 +146,7 @@ extends Value<Double, NumberValue> {
             decimalFormat = new DecimalFormat(this.formatPattern);
         }
         catch (Exception exception) {
-            Vape.logThrowable(exception);
+            Vapor.logThrowable(exception);
             decimalFormat = new DecimalFormat(DEFAULT_FORMAT_PATTERN);
         }
         decimalFormat.setMinimumIntegerDigits(1);

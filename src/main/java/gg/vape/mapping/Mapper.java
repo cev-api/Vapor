@@ -1,6 +1,6 @@
 package gg.vape.mapping;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.mapping.mappings.MAbstractBlockProperties;
 import gg.vape.mapping.mappings.MAbstractBlockState;
 import gg.vape.mapping.mappings.MAbstractClientPlayer;
@@ -749,7 +749,7 @@ public class Mapper {
 
     public void loadMappings() {
         GuiComponent[] guiComponentArray = ForgeVersion.o();
-        if (!Vape.INSTANCE.isForgeAbsent()) {
+        if (!Vapor.INSTANCE.isForgeAbsent()) {
             this.C4 = new MLaunchClassLoader();
             if (ForgeVersion.MC_1_7_10.L()) {
                 this.forgeEvent = new MEvent();
@@ -926,7 +926,7 @@ public class Mapper {
         }
         if (MappedClasses.lO != null) {
             this.shadersConfig = new MRenderWorldLastEvent();
-            Vape.renderReady = true;
+            Vapor.renderReady = true;
         }
         if (MappedClasses.Ym != null) {
             this.gameSettingsGuiScaleValue = new MGameSettingsGuiScaleValue();

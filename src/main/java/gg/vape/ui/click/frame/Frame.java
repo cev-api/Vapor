@@ -1,7 +1,7 @@
 package gg.vape.ui.click.frame;
 
 import com.google.gson.JsonObject;
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.config.ConfigJsonUtils;
 import gg.vape.input.MouseInput;
 import gg.vape.module.none.ClientSettings;
@@ -58,8 +58,8 @@ implements FrameStateSerializable {
     }
 
     public void j(boolean bl) {
-        int n = (int)((double)Minecraft.J() / 4.0 / Vape.INSTANCE.getClientSettings().getGuiScaleFactor() - this.A() / 2.0);
-        int n2 = (int)((double)Minecraft.h() / 4.0 / Vape.INSTANCE.getClientSettings().getGuiScaleFactor() - this.L() / 2.0);
+        int n = (int)((double)Minecraft.J() / 4.0 / Vapor.INSTANCE.getClientSettings().getGuiScaleFactor() - this.A() / 2.0);
+        int n2 = (int)((double)Minecraft.h() / 4.0 / Vapor.INSTANCE.getClientSettings().getGuiScaleFactor() - this.L() / 2.0);
         if (bl || this.G$src$D$1b2f02a() != (double)n || this.n() != (double)n2) {
             this.M(n, n2);
             this.H(true);
@@ -230,7 +230,7 @@ implements FrameStateSerializable {
 
     public void t(boolean bl, boolean bl2) {
         if (this.V$src$Z$1xhop3l() != bl && bl2) {
-            Vape.INSTANCE.saveAndStop();
+            Vapor.INSTANCE.saveAndStop();
         }
         if (bl && bl2) {
             ClientSettings.positionFrameIfNeeded(this);
@@ -251,7 +251,7 @@ implements FrameStateSerializable {
     }
 
     public double g$src$D$1f6bh6i() {
-        double d = (double)Minecraft.h() / Vape.INSTANCE.getClientSettings().getGuiScaleFactor();
+        double d = (double)Minecraft.h() / Vapor.INSTANCE.getClientSettings().getGuiScaleFactor();
         return d / 2.0 - this.j$src$Lgg_vape_ui_click_frame_FrameHeaderComponent_$175vsfc().L() * 0.5;
     }
 
@@ -277,7 +277,7 @@ implements FrameStateSerializable {
     }
 
     public double T$src$D$1evvdwn() {
-        double d = (double)Minecraft.J() / Vape.INSTANCE.getClientSettings().getGuiScaleFactor();
+        double d = (double)Minecraft.J() / Vapor.INSTANCE.getClientSettings().getGuiScaleFactor();
         return d / 2.0 - this.A() * 0.25;
     }
 
@@ -323,7 +323,7 @@ implements FrameStateSerializable {
 
     public void c(boolean bl) {
         if (this.IC != bl) {
-            Vape.INSTANCE.saveAndStop();
+            Vapor.INSTANCE.saveAndStop();
         }
         this.IC = bl;
     }
@@ -376,7 +376,7 @@ implements FrameStateSerializable {
             this.IU = false;
             this.N(true);
             this.l$src$V$1mibm4x();
-            Vape.INSTANCE.saveAndStop();
+            Vapor.INSTANCE.saveAndStop();
             return;
         }
         MousePosition mousePosition = RenderUtils.h();

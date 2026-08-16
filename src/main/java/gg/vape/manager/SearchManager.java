@@ -2,7 +2,7 @@ package gg.vape.manager;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.module.render.Search;
 import gg.vape.ui.unmap.SearchBlock;
 import java.util.HashSet;
@@ -21,7 +21,7 @@ public class SearchManager {
 
     public void removeSearchBlock(SearchBlock searchBlock) {
         if (searchBlock != null) {
-            Search search = Vape.INSTANCE.getModManager().getMod(Search.class);
+            Search search = Vapor.INSTANCE.getModManager().getMod(Search.class);
             this.searchBlocks.remove(searchBlock);
             search.removeSearchBlock(searchBlock);
         }
@@ -40,7 +40,7 @@ public class SearchManager {
 
     public void addSearchBlock(SearchBlock searchBlock) {
         this.searchBlocks.add(searchBlock);
-        Search search = Vape.INSTANCE.getModManager().getMod(Search.class);
+        Search search = Vapor.INSTANCE.getModManager().getMod(Search.class);
         search.addSearchBlock(searchBlock);
     }
 

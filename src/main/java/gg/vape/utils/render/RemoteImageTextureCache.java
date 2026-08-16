@@ -1,6 +1,6 @@
 package gg.vape.utils.render;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.unmap.ImageParser$Format;
 import gg.vape.utils.render.GlImageTexture;
 import gg.vape.utils.render.ImageRenderer;
@@ -53,7 +53,7 @@ class RemoteImageTextureCache {
             texture = new GlImageTexture(new ByteArrayInputStream(imageData), 9729, ImageParser$Format.RGBA);
         }
         catch (Exception exception) {
-            Vape.logThrowable(exception);
+            Vapor.logThrowable(exception);
             texture = ImageRenderer.loadResource("default_user", false, false);
         }
         this.textures.put(username, texture);

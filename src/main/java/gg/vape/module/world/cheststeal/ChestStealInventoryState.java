@@ -1,6 +1,6 @@
 package gg.vape.module.world.cheststeal;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.mapping.mappings.MTextComponentTranslation;
 import gg.vape.unmap.TextComponentBase;
 import gg.vape.wrapper.impl.ForgeVersion;
@@ -18,21 +18,21 @@ extends TextComponentBase {
 
     public String getTranslationKey() {
         if (ForgeVersion.MC_1_16_5.v()) {
-            Vape.notifyNativeStackTrace();
+            Vapor.notifyNativeStackTrace();
         }
         return MTextComponentTranslation.C(ChestStealInventoryState.vapeInstance.getMappings().D_, this.getObject());
     }
 
     public String getFallback() {
         if (ForgeVersion.MC_1_20_6.v()) {
-            Vape.notifyNativeStackTrace();
+            Vapor.notifyNativeStackTrace();
         }
         return MTextComponentTranslation.a(ChestStealInventoryState.vapeInstance.getMappings().D_, this.getObject());
     }
 
     public static ChestStealInventoryState createTranslationWithFallback(String translationKey, @Nullable String fallback, Object[] formatArguments) {
         if (ForgeVersion.MC_1_20_6.v()) {
-            Vape.notifyNativeStackTrace();
+            Vapor.notifyNativeStackTrace();
             throw new UnsupportedOperationException(UNSUPPORTED_MESSAGE);
         }
         return new ChestStealInventoryState(MTextComponentTranslation.k(ChestStealInventoryState.vapeInstance.getMappings().D_, translationKey, fallback, formatArguments));
@@ -49,7 +49,7 @@ extends TextComponentBase {
 
     public Object[] getFormatArguments() {
         if (ForgeVersion.MC_1_16_5.v()) {
-            Vape.notifyNativeStackTrace();
+            Vapor.notifyNativeStackTrace();
         }
         return MTextComponentTranslation.x(ChestStealInventoryState.vapeInstance.getMappings().D_, this.getObject());
     }

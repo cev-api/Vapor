@@ -1,6 +1,6 @@
 package gg.vape.mapping.expr;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.event.impl.EventRender2D;
 import gg.vape.mapping.EntityRendererEventMappingTask;
 import gg.vape.wrapper.impl.ForgeVersion;
@@ -33,10 +33,10 @@ extends ExprEditor {
         if (ForgeVersion.MC_1_7_10.L() && !methodCall.getMethodName().equals("glAlphaFunc")) {
             return;
         }
-        if (ForgeVersion.MC_1_7_10.Y() && ForgeVersion.MC_1_16_5.v() && !methodCall.getMethodName().equals(Vape.INSTANCE.getMappings().Dt.q.getResolvedName())) {
+        if (ForgeVersion.MC_1_7_10.Y() && ForgeVersion.MC_1_16_5.v() && !methodCall.getMethodName().equals(Vapor.INSTANCE.getMappings().Dt.q.getResolvedName())) {
             return;
         }
-        if (ForgeVersion.MC_1_16_5.d() && ForgeVersion.MC_1_17.v() && !methodCall.getMethodName().equals(Vape.INSTANCE.getMappings().f.v.getResolvedName())) {
+        if (ForgeVersion.MC_1_16_5.d() && ForgeVersion.MC_1_17.v() && !methodCall.getMethodName().equals(Vapor.INSTANCE.getMappings().f.v.getResolvedName())) {
             return;
         }
         methodCall.replace("{ $_ = $proceed($$); " + EventRender2D.class.getName() + "#create(); }");

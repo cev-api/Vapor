@@ -1,6 +1,6 @@
 package gg.vape.mapping.mappings;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.asm.helper.DescUtils;
 import gg.vape.mapping.MappedClasses;
 import gg.vape.mapping.Mapping;
@@ -147,7 +147,7 @@ extends Mapping {
             Class<Enum> clazz8 = Enum.class;
             MEnumFacing mEnumFacing = this;
             this.F = mEnumFacing.registerInstanceFieldForOwner(clazz8, string, bl, clazz);
-            if (Vape.INSTANCE.isVanillaMinecraftPresent()) {
+            if (Vapor.INSTANCE.isVanillaMinecraftPresent()) {
                 Class clazz9 = MappedClasses.q0;
                 String string8 = "faceList";
                 MEnumFacing mEnumFacing8 = this;

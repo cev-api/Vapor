@@ -1,6 +1,6 @@
 package gg.vape.mapping;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.event.impl.EventRenderItemInFirstPerson;
 import gg.vape.mapping.JavassistMappingTask;
 import gg.vape.mapping.MappedClasses;
@@ -11,7 +11,7 @@ extends JavassistMappingTask {
 
     @Override
     public void transform() {
-        this.c(Vape.INSTANCE.getMappings().qE.S, EventRenderItemInFirstPerson.class, c);
+        this.c(Vapor.INSTANCE.getMappings().qE.S, EventRenderItemInFirstPerson.class, c);
     }
 
     public ItemRendererFirstPersonEventMappingTask() {

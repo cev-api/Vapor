@@ -1,6 +1,6 @@
 package gg.vape.ui.click.frame.impl.hud;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.module.Mod;
 import gg.vape.module.none.ClientSettings;
 import gg.vape.module.render.hud.HudModule;
@@ -23,7 +23,7 @@ extends Frame {
     public void refreshFavorites() {
         this.removeMarkedChildren();
         int moduleIndex = 0;
-        ArrayList<Mod> mods = new ArrayList<Mod>(Vape.INSTANCE.getModManager().collectMods());
+        ArrayList<Mod> mods = new ArrayList<Mod>(Vapor.INSTANCE.getModManager().collectMods());
         mods.sort(new NameComparator());
         for (Mod mod : mods) {
             HudModule hudModule;
@@ -63,7 +63,7 @@ extends Frame {
 
 
     private boolean hasFavoriteModule() {
-        for (Mod mod : Vape.INSTANCE.getModManager().collectMods()) {
+        for (Mod mod : Vapor.INSTANCE.getModManager().collectMods()) {
             HudModule hudModule;
             if (!(mod instanceof HudModule) || !(hudModule = (HudModule)mod).isFavorite()) continue;
             return true;

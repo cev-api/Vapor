@@ -1,6 +1,6 @@
 package gg.vape.ui.click.frame.impl;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.module.none.ClientSettings;
 import gg.vape.ui.click.GuiMouseEvent;
 import gg.vape.ui.click.component.GuiComponent;
@@ -98,11 +98,11 @@ extends FrameHeaderComponent {
             this.o.setVisible(false);
             this.o.o(0.0);
             float f = 6.5f;
-            float f2 = (float)ImageRenderer.getImageWidth("vapelogo") / f;
-            float f3 = (float)ImageRenderer.getImageHeight("vapelogo") / f;
+            float f2 = (float)ImageRenderer.getImageWidth("vaporlogo") / f;
+            float f3 = (float)ImageRenderer.getImageHeight("vaporlogo") / f;
             float f4 = (float)ImageRenderer.getImageWidth("v4") / f;
             float f5 = (float)ImageRenderer.getImageHeight("v4") / f;
-            ImageRenderer.drawImage(Color.WHITE, (float)this.G$src$D$1b2f02a() + 6.0f, (float)this.n() + 5.0f, "vapelogo", f2, f3, false);
+            ImageRenderer.drawImage(Color.WHITE, (float)this.G$src$D$1b2f02a() + 6.0f, (float)this.n() + 5.0f, "vaporlogo", f2, f3, false);
             ImageRenderer.drawImage(J.z(), (float)this.G$src$D$1b2f02a() + 6.0f + 27.0f, (float)this.n() + 5.0f, "v4", f4, f5, false);
             /* Timebomb here (disabled): injects Thread.sleep(150) into the render loop after 2026-09-13 (epoch ms 1789290154878L)
             if (System.currentTimeMillis() > 1789290154878L) {
@@ -114,7 +114,7 @@ extends FrameHeaderComponent {
                 }
             }
             */
-            if (!Vape.INSTANCE.getPublicProfileSettings().autoSave.getEffectiveValue().booleanValue() && Vape.INSTANCE.getSyncThread().hasPendingSave() && System.currentTimeMillis() > Vape.INSTANCE.getSyncThread().getLastSaveTime() + 60000L) {
+            if (!Vapor.INSTANCE.getPublicProfileSettings().autoSave.getEffectiveValue().booleanValue() && Vapor.INSTANCE.getSyncThread().hasPendingSave() && System.currentTimeMillis() > Vapor.INSTANCE.getSyncThread().getLastSaveTime() + 60000L) {
                 this.G.setVisible(true);
                 this.G.K(d);
                 this.G.S(this.n());

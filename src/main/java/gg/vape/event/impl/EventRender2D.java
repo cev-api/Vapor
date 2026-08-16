@@ -1,6 +1,6 @@
 package gg.vape.event.impl;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.event.Event;
 import gg.vape.event.EventListeners;
 import gg.vape.module.none.ClientSettings;
@@ -30,7 +30,7 @@ extends Event {
         displayHeight = Minecraft.h();
         GlStateManager.tryBlendFuncSeparate(770, 771, 1, 0);
         GuiRenderPrimitives.o(displayWidth, displayHeight);
-        ClientSettings clientSettings = Vape.INSTANCE.getModManager()
+        ClientSettings clientSettings = Vapor.INSTANCE.getModManager()
                 .getMod(ClientSettings.class);
         clientSettings.renderHudOverlay();
         EventRender2D eventRender2D = new EventRender2D();

@@ -1,6 +1,6 @@
 package gg.vape.utils.render;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.utils.render.TextureAtlas;
 import java.util.HashMap;
 import java.util.Map;
@@ -47,7 +47,7 @@ public class TextureAtlasRegistry {
 
     public TextureAtlas get(String atlasId) {
         if (!this.atlases.containsKey(atlasId)) {
-            Vape.debugLog(MISSING_ATLAS_MESSAGE + atlasId);
+            Vapor.debugLog(MISSING_ATLAS_MESSAGE + atlasId);
             return null;
         }
         return this.atlases.get(atlasId);

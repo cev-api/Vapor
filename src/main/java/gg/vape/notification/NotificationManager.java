@@ -1,10 +1,8 @@
 package gg.vape.notification;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.event.EventHandler;
 import gg.vape.event.EventListener;
-import gg.vape.manager.client.OnlineConnectionManager;
-import gg.vape.notification.FriendNotificationSettings;
 import gg.vape.notification.INotification;
 import gg.vape.notification.Notification;
 import gg.vape.notification.NotificationGroup;
@@ -35,23 +33,7 @@ implements EventListener {
 
 
     private boolean isAllowedByFriendSettings(INotification notification) {
-        FriendNotificationSettings friendNotificationSettings = OnlineConnectionManager.INSTANCE.getSettings().getFriendNotificationSettings();
-        if (notification.getType() == NotificationType.FRIENDS_GENERAL && !friendNotificationSettings.general.getEffectiveValue().booleanValue()) {
-            return false;
-        }
-        if (notification.getType() == NotificationType.FRIENDS_NEW_REQUEST && !friendNotificationSettings.friendRequests.getEffectiveValue().booleanValue()) {
-            return false;
-        }
-        if (notification.getType() == NotificationType.FRIENDS_NEW_CHAT && !friendNotificationSettings.chats.getEffectiveValue().booleanValue()) {
-            return false;
-        }
-        if (notification.getType() == NotificationType.FRIENDS_ONLINE && !friendNotificationSettings.friendOnline.getEffectiveValue().booleanValue()) {
-            return false;
-        }
-        if (notification.getType() == NotificationType.FRIENDS_PARTY_GENERAL && !friendNotificationSettings.partyInviteAccepted.getEffectiveValue().booleanValue()) {
-            return false;
-        }
-        return notification.getType() != NotificationType.FRIENDS_PARTY_INVITE || friendNotificationSettings.partyInvites.getEffectiveValue();
+        return true;
     }
 
     public void show(String title, String message, NotificationType type, long durationMillis, boolean force) {
@@ -168,14 +150,14 @@ implements EventListener {
         if (!this.isAllowedByFriendSettings(notification)) {
             return;
         }
-        if (!Vape.INSTANCE.getPublicProfileSettings().notifications.getEffectiveValue().booleanValue() && !force) {
+        if (!Vapor.INSTANCE.getPublicProfileSettings().notifications.getEffectiveValue().booleanValue() && !force) {
             return;
         }
         if (!this.isGroupEnabled(notification.getType().getGroup())) {
             return;
         }
         if (this.notificationSounds.containsKey(notification.getType())) {
-            Vape.INSTANCE.getNotificationSoundPlayer().queue(this.notificationSounds.get(notification.getType()));
+            Vapor.INSTANCE.getNotificationSoundPlayer().queue(this.notificationSounds.get(notification.getType()));
         }
         double initialY = notification.getHeight() + 16.0;
         for (INotification queuedNotification : this.notifications) {
@@ -194,9 +176,6 @@ implements EventListener {
 
     public NotificationManager() {
         this.groupSettings = new HashMap<NotificationGroup, BooleanValue>();
-        this.notificationSounds.put(NotificationType.FRIENDS_NEW_CHAT, NotificationSounds.MESSAGE_RECEIVED);
-        this.notificationSounds.put(NotificationType.FRIENDS_PARTY_INVITE, NotificationSounds.PARTY_INVITE);
-        this.groupSettings.put(NotificationGroup.FRIENDS, Vape.INSTANCE.getPublicProfileSettings().friendNotifications);
     }
 }
 

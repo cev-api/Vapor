@@ -3,7 +3,7 @@ package gg.vape.module.combat;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.config.ConfigJsonUtils;
 import gg.vape.event.EventHandler;
 import gg.vape.event.impl.EventPacketReceive;
@@ -92,7 +92,7 @@ extends Mod {
 
     private SPacketEntityVelocity buildVelocityPacket(SPacketEntityVelocity originalPacket,
                                                        double motionX, double motionY, double motionZ) {
-        Object packetHandle = Vape.INSTANCE.getMappings().s.createPacket(
+        Object packetHandle = Vapor.INSTANCE.getMappings().s.createPacket(
                 originalPacket.getEntityId(), motionX, motionY, motionZ);
         return new SPacketEntityVelocity(packetHandle);
     }
@@ -234,7 +234,7 @@ extends Mod {
 
     @Override
     public void loadJson(JsonObject moduleJson) {
-        JsonObject profileJson = Vape.INSTANCE.getProfilesManager().getActiveProfile().getEnabledModuleStates();
+        JsonObject profileJson = Vapor.INSTANCE.getProfilesManager().getActiveProfile().getEnabledModuleStates();
         JsonArray values = moduleJson.getAsJsonArray("values");
         if (profileJson != null && profileJson.has("Velocity") && values != null) {
             for (JsonElement valueElement : values) {
@@ -249,7 +249,7 @@ extends Mod {
                     if (this.isEnabled()) {
                         this.setEnabled(false);
                     }
-                    Vape.INSTANCE.getNotificationManager().show("Velocity disabled", "Velocity turned off since JumpReset mode is now a standalone module.", NotificationType.WARNING, 10000L);
+                    Vapor.INSTANCE.getNotificationManager().show("Velocity disabled", "Velocity turned off since JumpReset mode is now a standalone module.", NotificationType.WARNING, 10000L);
                 }
                 if (modeName == null || !modeName.contains("Lag")) {
                     continue;
@@ -258,11 +258,11 @@ extends Mod {
                 if (this.isEnabled()) {
                     this.setEnabled(false);
                 }
-                KnockbackDelay knockbackDelay = Vape.INSTANCE.getModManager().getMod(KnockbackDelay.class);
+                KnockbackDelay knockbackDelay = Vapor.INSTANCE.getModManager().getMod(KnockbackDelay.class);
                 if (knockbackDelay != null) {
                     knockbackDelay.setEnabled(true);
                 }
-                Vape.INSTANCE.getNotificationManager().show("Velocity disabled", "Velocity Lag mode is now KnockbackDelay under Network.\nKnockbackDelay has been enabled.", NotificationType.WARNING, 10000L);
+                Vapor.INSTANCE.getNotificationManager().show("Velocity disabled", "Velocity Lag mode is now KnockbackDelay under Network.\nKnockbackDelay has been enabled.", NotificationType.WARNING, 10000L);
             }
         }
         super.loadJson(moduleJson);
@@ -281,7 +281,7 @@ extends Mod {
             Packet.n(packet, resolvedPacket -> this.handlePacket(event, resolvedPacket));
         }
         catch (Exception exception) {
-            Vape.logThrowable(exception);
+            Vapor.logThrowable(exception);
         }
     }
 

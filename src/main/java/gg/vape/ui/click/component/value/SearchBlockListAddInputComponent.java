@@ -1,6 +1,6 @@
 package gg.vape.ui.click.component.value;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.ui.click.component.TextInputComponentBase;
 import gg.vape.ui.click.component.value.SearchBlockListDropdownLayer;
 import gg.vape.ui.unmap.SearchBlock;
@@ -57,7 +57,7 @@ extends TextInputComponentBase {
             return;
         }
         SearchBlock searchBlock = new SearchBlock(this.getText(), ColorUtil.createRandomReadableColor().getRGB());
-        Vape.INSTANCE.getSearch().addSearchBlock(searchBlock);
+        Vapor.INSTANCE.getSearch().addSearchBlock(searchBlock);
         if (this.afterAdd != null) {
             this.afterAdd.run();
         } else {

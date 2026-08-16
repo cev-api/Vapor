@@ -1,6 +1,6 @@
 package gg.vape.ui.click.frame;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.module.none.ClientSettings;
 import gg.vape.ui.click.component.ColorDividerComponent;
 import gg.vape.ui.click.component.GuiComponent;
@@ -218,7 +218,7 @@ implements CollapsibleFrame {
                 }
             }
             catch (Exception exception) {
-                Vape.logThrowable(exception);
+                Vapor.logThrowable(exception);
             }
         } else {
             this.fP.restoreDefaultNavigation();

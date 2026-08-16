@@ -22,7 +22,10 @@ extends Mod {
     @Override
     public void onEnable() {
         super.onEnable();
-        ClientSettings.getFrame(ActiveModuleStackFrame.class).addModule(this);
+        ActiveModuleStackFrame activeModuleFrame = ClientSettings.getFrame(ActiveModuleStackFrame.class);
+        if (activeModuleFrame != null) {
+            activeModuleFrame.addModule(this);
+        }
     }
 
     @Override
@@ -54,7 +57,10 @@ extends Mod {
     @Override
     public void onDisable() {
         super.onDisable();
-        ClientSettings.getFrame(ActiveModuleStackFrame.class).removeModule(this);
+        ActiveModuleStackFrame activeModuleFrame = ClientSettings.getFrame(ActiveModuleStackFrame.class);
+        if (activeModuleFrame != null) {
+            activeModuleFrame.removeModule(this);
+        }
     }
 }
 

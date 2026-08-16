@@ -1,6 +1,6 @@
 package gg.vape.module.world;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.event.EventHandler;
 import gg.vape.event.impl.EventBlockFluidRender;
 import gg.vape.event.impl.EventBlockLayerOverride;
@@ -102,8 +102,8 @@ extends Mod {
         if (Minecraft.thePlayer().isNull()) {
             return;
         }
-        if (!Vape.INSTANCE.getPrimaryMappingTaskSet().Q()) {
-            Vape.INSTANCE.getPrimaryMappingTaskSet().Y();
+        if (!Vapor.INSTANCE.getPrimaryMappingTaskSet().Q()) {
+            Vapor.INSTANCE.getPrimaryMappingTaskSet().Y();
         }
         this.needsReload = true;
         this.savedGamma = Minecraft.gameSettings().b();

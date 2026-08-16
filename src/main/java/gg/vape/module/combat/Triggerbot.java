@@ -1,6 +1,6 @@
 package gg.vape.module.combat;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.config.ClientSettings;
 import gg.vape.event.Event;
 import gg.vape.event.EventHandler;
@@ -123,16 +123,8 @@ extends Mod {
     private boolean isValidTarget(Entity entity) {
         if (this.shieldCheck.getEffectiveValue()) {
             boolean enforceShieldCheck = true;
-            ShieldBreaker shieldBreaker = Vape.INSTANCE.getModManager().getMod(ShieldBreaker.class);
-            if (shieldBreaker != null && shieldBreaker.isEnabled() && shieldBreaker.hasAxeInHotbar()) {
-                enforceShieldCheck = false;
-            }
-            HitSwap hitSwap = Vape.INSTANCE.getModManager().getMod(HitSwap.class);
+            HitSwap hitSwap = Vapor.INSTANCE.getModManager().getMod(HitSwap.class);
             if (hitSwap != null && hitSwap.isEnabled() && hitSwap.hasAlternateAxe()) {
-                enforceShieldCheck = false;
-            }
-            AutoMace autoMace = Vape.INSTANCE.getModManager().getMod(AutoMace.class);
-            if (autoMace != null && autoMace.isEnabled() && autoMace.canHandleMaceAttack()) {
                 enforceShieldCheck = false;
             }
             if (enforceShieldCheck && entity.isInstance(MappedClasses.lG)
@@ -176,11 +168,7 @@ extends Mod {
         if (!RotationUtil.u(Minecraft.thePlayer())) {
             return false;
         }
-        AutoMace autoMace = Vape.INSTANCE.getModManager().getMod(AutoMace.class);
-        if (autoMace != null && autoMace.isEnabled() && autoMace.hasReadyMace()) {
-            return true;
-        }
-        HitSwap hitSwap = Vape.INSTANCE.getModManager().getMod(HitSwap.class);
+        HitSwap hitSwap = Vapor.INSTANCE.getModManager().getMod(HitSwap.class);
         if (!hitSwap.isEnabled()) {
             ItemStack mainHandItem = Minecraft.thePlayer().i(EnumHand.mainHand());
             return mainHandItem.isNotNull() && mainHandItem.getItem().isInstance(MappedClasses.zx)

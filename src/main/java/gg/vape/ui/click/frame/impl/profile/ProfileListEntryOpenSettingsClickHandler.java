@@ -1,6 +1,6 @@
 package gg.vape.ui.click.frame.impl.profile;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.config.Profile;
 import gg.vape.ui.click.component.GuiClickListener;
 import gg.vape.ui.click.frame.impl.profile.ProfileListEntryComponent;
@@ -17,7 +17,7 @@ implements GuiClickListener {
 
     @Override
     public void onPrimaryClick() {
-        if (Vape.INSTANCE.getProfilesManager().getActiveProfile().equals(this.profile)) {
+        if (Vapor.INSTANCE.getProfilesManager().getActiveProfile().equals(this.profile)) {
             this.profile.captureCurrentState();
         }
         this.entry.openSettings();

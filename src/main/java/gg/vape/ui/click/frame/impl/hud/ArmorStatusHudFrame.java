@@ -58,7 +58,7 @@ extends HudModuleConfigFrameBase {
             ArmorStatusItemComponent armorStatusItemComponent;
             if (!(guiComponent instanceof ArmorStatusItemComponent)
                     || !(armorStatusItemComponent = (ArmorStatusItemComponent)guiComponent)
-                            .getEquippedItem().isNotNull()) continue;
+                            .getSlot().getStack().isNotNull()) continue;
             armorStatusItemComponent.setVisible(true);
         }
         double itemY = this.n() + 2.0;
@@ -171,3 +171,4 @@ extends HudModuleConfigFrameBase {
         return totalHeight;
     }
 }
+

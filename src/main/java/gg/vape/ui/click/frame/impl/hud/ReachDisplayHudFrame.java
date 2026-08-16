@@ -1,6 +1,6 @@
 package gg.vape.ui.click.frame.impl.hud;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.module.render.hud.ReachDisplayHudModule;
 import gg.vape.ui.click.frame.impl.hud.HudModuleConfigFrameBase;
 import gg.vape.ui.font.SmoothFontRenderer;
@@ -18,7 +18,7 @@ extends HudModuleConfigFrameBase {
 
     @Override
     public void renderHudContent() {
-        SmoothFontRenderer smoothFontRenderer = Vape.INSTANCE.getFontManager().K(1.0, true);
+        SmoothFontRenderer smoothFontRenderer = Vapor.INSTANCE.getFontManager().K(1.0, true);
         String distanceText = this.distanceFormat.format(this.reachDisplay.getLastReach());
         if (this.reachDisplay.getLastReach() == 0.0f) {
             distanceText = "0.00";

@@ -1,6 +1,6 @@
 package gg.vape.asm.transform.impl;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.asm.helper.IndexedLocal;
 import gg.vape.asm.transform.ClassTransformer;
 import gg.vape.event.impl.EventPostAttack;
@@ -37,7 +37,7 @@ extends ClassTransformer {
         if (!PlayerControllerMPEventMappingTask.U) {
             return;
         }
-        MappingMethod mappingMethod = Vape.INSTANCE.getMappings().hj.i;
+        MappingMethod mappingMethod = Vapor.INSTANCE.getMappings().hj.i;
         this.injectEventAtEntry(mappingMethod, EventPreAttack.class, new IndexedLocal(2).setDescriptorClass(Object.class));
         this.injectEventAtExit(mappingMethod, EventPostAttack.class, new IndexedLocal(2).setDescriptorClass(Object.class));
     }

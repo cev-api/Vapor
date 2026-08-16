@@ -1,6 +1,6 @@
 package gg.vape.mapping;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.asm.transform.ClassTransformer;
 import gg.vape.event.EventBus;
 import gg.vape.event.IEvent;
@@ -52,7 +52,7 @@ implements MappingTask {
             }
         }
         catch (Exception exception) {
-            Vape.logThrowable(exception);
+            Vapor.logThrowable(exception);
         }
     }
 
@@ -135,13 +135,13 @@ implements MappingTask {
             fileOutputStream.close();
         }
         catch (Exception exception) {
-            Vape.logThrowable(exception);
+            Vapor.logThrowable(exception);
         }
     }
 
     private void dumpFailedCommit(int errorCode) {
         try {
-            File directory = new File(System.getProperty("java.io.tmpdir"), "Vape421Recovery");
+            File directory = new File(System.getProperty("java.io.tmpdir"), "Vapor421Recovery");
             if (!directory.exists()) {
                 directory.mkdirs();
             }
@@ -154,10 +154,10 @@ implements MappingTask {
             FileOutputStream transformedOutput = new FileOutputStream(transformedFile);
             transformedOutput.write(this.B);
             transformedOutput.close();
-            Vape.debugLog("Failed mapping commit bytecode dumped to " + directory.getAbsolutePath());
+            Vapor.debugLog("Failed mapping commit bytecode dumped to " + directory.getAbsolutePath());
         }
         catch (Exception exception) {
-            Vape.logThrowable(exception);
+            Vapor.logThrowable(exception);
         }
     }
 
@@ -183,14 +183,14 @@ implements MappingTask {
             return this.Y.getMethod(mappingMethod.getResolvedName(), mappingMethod.getDescriptor());
         }
         catch (NotFoundException notFoundException) {
-            Vape.logThrowable(notFoundException);
+            Vapor.logThrowable(notFoundException);
             return null;
         }
     }
 
     public static void p(Class clazz) {
         V.O(clazz);
-        if (!Vape.INSTANCE.isForgeAbsent()) {
+        if (!Vapor.INSTANCE.isForgeAbsent()) {
             ClassBytecodeCache.getClassBytecode(clazz, true);
             String string = clazz.getName();
             LaunchClassLoader launchClassLoader = LaunchClassLoader.getLaunchClassLoader();
@@ -224,7 +224,7 @@ implements MappingTask {
             return this.Y;
         }
         catch (IOException iOException) {
-            Vape.logThrowable(iOException);
+            Vapor.logThrowable(iOException);
             return null;
         }
     }
@@ -255,7 +255,7 @@ implements MappingTask {
             this.F(mappingMethod).addCatch("{ return; }", ctClass);
         }
         catch (Exception exception) {
-            Vape.logThrowable(exception);
+            Vapor.logThrowable(exception);
         }
     }
 
@@ -267,7 +267,7 @@ implements MappingTask {
             ctBehavior.insertAt(atomicInteger.get() + n, string);
         }
         catch (Exception exception) {
-            Vape.logThrowable(exception);
+            Vapor.logThrowable(exception);
         }
     }
 
@@ -318,7 +318,7 @@ implements MappingTask {
             throw new IllegalStateException("Could not capture bytecode for " + this.E.getName());
         }
         V.O(this.E.getClassLoader());
-        if (!Vape.INSTANCE.isForgeAbsent()) {
+        if (!Vapor.INSTANCE.isForgeAbsent()) {
             LaunchClassLoader launchClassLoader = LaunchClassLoader.getLaunchClassLoader();
             if (launchClassLoader.supportsLegacyClassCache()) {
                 launchClassLoader.cachedClasses().put(this.E.getName(), this.E);
@@ -358,7 +358,7 @@ implements MappingTask {
             ctBehavior.instrument(new MethodCallInjectionExprEditor(this, mappingMethod2, string2));
         }
         catch (Exception exception) {
-            Vape.logThrowable(exception);
+            Vapor.logThrowable(exception);
         }
     }
 
@@ -416,7 +416,7 @@ implements MappingTask {
             this.B = this.Y.toBytecode();
         }
         catch (Exception exception) {
-            Vape.logThrowable(exception);
+            Vapor.logThrowable(exception);
         }
     }
 
@@ -461,7 +461,7 @@ implements MappingTask {
             ctBehavior.instrument(new MethodCallReplacementExprEditor(this, mappingMethod2, string4));
         }
         catch (Exception exception) {
-            Vape.logThrowable(exception);
+            Vapor.logThrowable(exception);
         }
     }
 
@@ -475,7 +475,7 @@ implements MappingTask {
             ctBehavior.insertBefore("System.out.println(\"test\");");
         }
         catch (CannotCompileException cannotCompileException) {
-            Vape.logThrowable(cannotCompileException);
+            Vapor.logThrowable(cannotCompileException);
         }
     }
 

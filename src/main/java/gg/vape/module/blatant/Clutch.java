@@ -1,6 +1,6 @@
 package gg.vape.module.blatant;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.event.EventHandler;
 import gg.vape.event.EventPriority;
 import gg.vape.event.impl.EventClickMouse;
@@ -483,7 +483,10 @@ extends Mod {
 
     @Override
     public void onDisable() {
-        ClientSettings.getFrame(ActiveModuleStackFrame.class).removeModule(this);
+        ActiveModuleStackFrame activeModuleFrame = ClientSettings.getFrame(ActiveModuleStackFrame.class);
+        if (activeModuleFrame != null) {
+            activeModuleFrame.removeModule(this);
+        }
     }
 
     public int scorePlacementPath(ArrayList<Vec3d> candidatePositions, World world, Vector<PlacementTarget> path) {
@@ -925,7 +928,7 @@ extends Mod {
                 break;
             }
         } catch (Exception exception) {
-            Vape.logThrowable(exception);
+            Vapor.logThrowable(exception);
         }
         for (Map.Entry<BlockData, BlockState> entry : replacedStates.entrySet()) {
             BlockUtil.z(world, BlockPos.d(entry.getKey()), entry.getValue());
@@ -1350,7 +1353,10 @@ extends Mod {
 
     @Override
     public void onEnable() {
-        ClientSettings.getFrame(ActiveModuleStackFrame.class).addModule(this);
+        ActiveModuleStackFrame activeModuleFrame = ClientSettings.getFrame(ActiveModuleStackFrame.class);
+        if (activeModuleFrame != null) {
+            activeModuleFrame.addModule(this);
+        }
     }
 
     private void resetClutch(EntityPlayerSP localPlayer) {

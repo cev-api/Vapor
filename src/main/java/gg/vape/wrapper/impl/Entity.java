@@ -1,6 +1,6 @@
 package gg.vape.wrapper.impl;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.mapping.MappedClasses;
 import gg.vape.mapping.mappings.MEntity;
 import gg.vape.utils.MathUtil;
@@ -115,6 +115,17 @@ extends Wrapper {
         return MEntity.U(Entity.vapeInstance.getMappings().Rr, this.I);
     }
 
+    public float getFallDistance() {
+        if (ForgeVersion.MC_1_21_6.d()) {
+            return (float) Entity.vapeInstance.getMappings().Rr.b.getDouble(this.I);
+        }
+        return Entity.vapeInstance.getMappings().Rr.b.getFloat(this.I);
+    }
+
+    public int getHurtResistantTime() {
+        return Entity.vapeInstance.getMappings().Rr.ji.getInt(this.I);
+    }
+
     public void L(double d, boolean bl, Block block, BlockPos blockPos) {
         if (ForgeVersion.MC_1_12_2.d()) {
             WorldClient worldClient = Minecraft.theWorld();
@@ -189,7 +200,7 @@ extends Wrapper {
 
     public void K(float f) {
         if (ForgeVersion.MC_1_20_6.d()) {
-            Vape.notifyNativeStackTrace();
+            Vapor.notifyNativeStackTrace();
         }
         MEntity.r(Entity.vapeInstance.getMappings().Rr, this.I, f);
     }
@@ -204,10 +215,6 @@ extends Wrapper {
 
     public int V$src$I$fk0dv5() {
         return MEntity.X(Entity.vapeInstance.getMappings().Rr, this.I);
-    }
-
-    public int getHurtResistantTime() {
-        return this.V$src$I$fk0dv5();
     }
 
     public float V() {
@@ -449,7 +456,7 @@ extends Wrapper {
     }
 
     public boolean C$src$Z$f9kazx() {
-        if (Vape.INSTANCE.isForgeAbsent()) {
+        if (Vapor.INSTANCE.isForgeAbsent()) {
             return false;
         }
         return MEntity.m$src$Z$v9pdac(Entity.vapeInstance.getMappings().Rr, this.I);
@@ -514,10 +521,6 @@ extends Wrapper {
 
     public float M$src$F$ff28gb() {
         return MEntity.m(Entity.vapeInstance.getMappings().Rr, this.I);
-    }
-
-    public float getFallDistance() {
-        return this.M$src$F$ff28gb();
     }
 
     public void B(double d, double d2, double d3) {

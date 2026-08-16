@@ -1,6 +1,6 @@
 package gg.vape.utils.render;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.mapping.MappedClasses;
 import gg.vape.module.render.hud.FreeLookHudModule;
 import gg.vape.runtime.NativeBridge;
@@ -43,7 +43,7 @@ public class RenderUtil {
     }
 
     static {
-        globalOutlineBuffer = Vape.INSTANCE.getGlUtils();
+        globalOutlineBuffer = Vapor.INSTANCE.getGlUtils();
         boxFillBuffer = new GLUtils();
         boxFillBuffer.initializeVertexBuffer(48, 7);
         boxOutlineBuffer = new GLUtils();

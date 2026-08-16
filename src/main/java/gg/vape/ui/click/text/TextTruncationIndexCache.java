@@ -1,6 +1,6 @@
 package gg.vape.ui.click.text;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.ui.click.text.TextTruncationIndexLruCache;
 import gg.vape.ui.click.text.TruncatedTextSpec;
 import gg.vape.ui.font.SmoothFontRenderer;
@@ -27,7 +27,7 @@ public class TextTruncationIndexCache {
         if (cachedIndex != null) {
             return cachedIndex;
         }
-        SmoothFontRenderer fontRenderer = textSpec.isBold() ? Vape.INSTANCE.getFontManager().W(textSpec.getFontScale(), false) : Vape.INSTANCE.getFontManager().Y(textSpec.getFontScale());
+        SmoothFontRenderer fontRenderer = textSpec.isBold() ? Vapor.INSTANCE.getFontManager().W(textSpec.getFontScale(), false) : Vapor.INSTANCE.getFontManager().Y(textSpec.getFontScale());
         int truncationIndex = -2;
         if (fontRenderer.N(textSpec.getText()) <= textSpec.getMaxWidth()) {
             truncationIndex = textSpec.getText().length() - 1;

@@ -1,6 +1,6 @@
 package gg.vape.click;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.config.ClientSettings;
 import gg.vape.event.impl.EventPreRenderTick;
 import gg.vape.event.impl.EventPreTick;
@@ -80,7 +80,7 @@ public class ClickEngine {
             this.mouseUpMessage = 517;
             this.mouseButtonCode = 2;
         }
-        this.timingState = new AutoClickerTimingState(Vape.INSTANCE.getAccountTier());
+        this.timingState = new AutoClickerTimingState(Vapor.INSTANCE.getAccountTier());
     }
 
     public ClickEngine(ClickButton button, RandomValue cpsRange, BooleanValue itemLimitEnabled,

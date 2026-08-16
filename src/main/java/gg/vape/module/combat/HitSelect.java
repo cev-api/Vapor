@@ -11,9 +11,9 @@ import gg.vape.value.SubModuleValue;
 
 public class HitSelect
 extends Mod {
-    private final SubModuleValue<WTapRightClickUseCancelMode> rightClickUseCancel = new WTapRightClickUseCancelMode(this, "Pause").getSelectionValue();
+    private final SubModuleValue<WTapRightClickUseCancelMode> rightClickUseCancel = new WTapRightClickUseCancelMode(this, "Right-click use cancel").getSelectionValue();
     private final NumberValue chance;
-    private final SubModuleValue<WTapSprintResetMode> sprintReset = new WTapSprintResetMode(this, "Active").getSelectionValue();
+    private final SubModuleValue<WTapSprintResetMode> sprintReset = new WTapSprintResetMode(this, "Normal").getSelectionValue();
     private final ModeValue mode = ModeValue.create((Object)this, "Mode", this.rightClickUseCancel, this.rightClickUseCancel, this.sprintReset);
 
     @Override

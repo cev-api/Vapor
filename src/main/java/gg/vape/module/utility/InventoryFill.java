@@ -1,6 +1,6 @@
 package gg.vape.module.utility;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.click.AutoClickerTimingState;
 import gg.vape.event.EventHandler;
 import gg.vape.event.impl.EventPreRenderTick;
@@ -54,7 +54,7 @@ extends Mod {
 
     public InventoryFill() {
         super("InventoryFill", -12288, Category.INVENTORY, "Clicks items in inventory while holding shift");
-        this.timingState = new AutoClickerTimingState(Vape.INSTANCE.getAccountTier());
+        this.timingState = new AutoClickerTimingState(Vapor.INSTANCE.getAccountTier());
         this.addValue(this.cpsValue);
     }
 

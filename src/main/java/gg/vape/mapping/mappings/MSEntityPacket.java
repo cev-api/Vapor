@@ -1,6 +1,6 @@
 package gg.vape.mapping.mappings;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.mapping.MappedClasses;
 import gg.vape.mapping.Mapping;
 import gg.vape.mapping.MappingField;
@@ -24,7 +24,7 @@ extends Mapping {
 
     private MSEntityPacket(int[] controlFlowState) {
         super(MappedClasses.qz);
-        if (Vape.INSTANCE.isVanillaMinecraftPresent() && ForgeVersion.MC_1_7_10.Y()) {
+        if (Vapor.INSTANCE.isVanillaMinecraftPresent() && ForgeVersion.MC_1_7_10.Y()) {
             this.getEntityMethod = this.Y("getEntity", true, MappedClasses.zc, new Class[]{MappedClasses.YU});
         } else {
             this.getEntityMethod = this.Y("func_149065_a", Wrapper.isNativeAvailable, MappedClasses.zc, new Class[]{MappedClasses.YU});

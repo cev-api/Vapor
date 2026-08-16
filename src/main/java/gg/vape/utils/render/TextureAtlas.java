@@ -1,6 +1,6 @@
 package gg.vape.utils.render;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.unmap.ImageParser;
 import gg.vape.unmap.ImageParser$Format;
 import gg.vape.utils.render.GlImageTexture;
@@ -152,7 +152,7 @@ public class TextureAtlas {
             ImageIO.write((RenderedImage)this.image, "PNG", file);
         }
         catch (Exception exception) {
-            Vape.logThrowable(exception);
+            Vapor.logThrowable(exception);
         }
     }
 
@@ -188,7 +188,7 @@ public class TextureAtlas {
             this.uploadTexture();
         }
         catch (Exception exception) {
-            Vape.logThrowable(exception);
+            Vapor.logThrowable(exception);
         }
     }
 

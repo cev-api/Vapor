@@ -1,6 +1,6 @@
 package gg.vape.mapping;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.asm.transform.impl.GuiScreenOpenTransformer;
 import gg.vape.asm.transform.impl.MinecraftMouseActionTransformer;
 import gg.vape.asm.transform.impl.PlayerControllerMPTransformer;
@@ -22,6 +22,9 @@ extends MappingTaskSet {
     }
 
     public PrimaryMappingTaskSet() {
+        if (NativeBridge.isFabricLoaderPresent()) {
+            return;
+        }
         JavassistMappingTask.p(EventPreTickCallback.class);
         JavassistMappingTask.p(EventPostTickCallback.class);
         JavassistMappingTask.p(EventRenderPlayerPreCallback.class);
@@ -68,7 +71,7 @@ extends MappingTaskSet {
         if (ForgeVersion.MC_1_21_4.v()) {
             this.D.add(new RenderManagerEntityMappingTask());
         }
-        if (ForgeVersion.MC_1_7_10.L() && !Vape.INSTANCE.isForgeAbsent()) {
+        if (ForgeVersion.MC_1_7_10.L() && !Vapor.INSTANCE.isForgeAbsent()) {
             this.D.add(new LegacyEntityRenderPreEventMappingTask());
         }
         if (ForgeVersion.MC_1_12_2.B()) {

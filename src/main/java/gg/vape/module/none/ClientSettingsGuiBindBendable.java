@@ -1,7 +1,7 @@
 package gg.vape.module.none;
 
 import com.google.common.collect.ImmutableList;
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.input.BindSet;
 import gg.vape.module.Mod;
 import gg.vape.unmap.ModBendable;
@@ -27,12 +27,12 @@ extends ModBendable {
 
     @Override
     public List<Integer> getBoundInputs() {
-        return ImmutableList.copyOf(((BindSet)Vape.INSTANCE.getPublicProfileSettings().guiBind.getValue()).getBoundInputs());
+        return ImmutableList.copyOf(((BindSet)Vapor.INSTANCE.getPublicProfileSettings().guiBind.getValue()).getBoundInputs());
     }
 
     @Override
     public void setBoundInputs(List<Integer> inputCodes) {
-        ((BindSet)Vape.INSTANCE.getPublicProfileSettings().guiBind.getValue()).setBoundInputs(inputCodes);
+        ((BindSet)Vapor.INSTANCE.getPublicProfileSettings().guiBind.getValue()).setBoundInputs(inputCodes);
         if (!this.hasValidBinding()) {
             this.setBoundInputs(Collections.singletonList(161));
         }

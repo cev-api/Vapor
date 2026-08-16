@@ -1,6 +1,6 @@
 package gg.vape.ui.click.frame.impl.main;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.input.BindCaptureTask;
 import gg.vape.ui.click.frame.impl.main.ClickGuiMacrosSettingsPanel;
 import gg.vape.unmap.Bendable;
@@ -22,7 +22,7 @@ extends BindCaptureTask {
         } else {
             this.settingsPanel.updateViewVisibility();
         }
-        Vape.INSTANCE.saveAndStop();
+        Vapor.INSTANCE.saveAndStop();
     }
 
     @Override

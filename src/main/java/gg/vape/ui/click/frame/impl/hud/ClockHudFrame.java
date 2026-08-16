@@ -1,6 +1,6 @@
 package gg.vape.ui.click.frame.impl.hud;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.module.render.hud.ClockHudModule;
 import gg.vape.ui.click.frame.impl.hud.HudModuleConfigFrameBase;
 import gg.vape.ui.font.SmoothFontRenderer;
@@ -21,8 +21,8 @@ extends HudModuleConfigFrameBase {
     private void renderAnalogClock() {
         float right = (float)(this.G$src$D$1b2f02a() + this.A());
         float bottom = (float)(this.n() + this.L());
-        SmoothFontRenderer timeFont = Vape.INSTANCE.getFontManager().K(2.8, true);
-        SmoothFontRenderer detailFont = Vape.INSTANCE.getFontManager().K(0.85, true);
+        SmoothFontRenderer timeFont = Vapor.INSTANCE.getFontManager().K(2.8, true);
+        SmoothFontRenderer detailFont = Vapor.INSTANCE.getFontManager().K(0.85, true);
         this.drawClockTicks();
         float centerX = (float)(this.G$src$D$1b2f02a() + this.A() / 2.0);
         float centerY = (float)(this.n() + this.L() / 2.0);
@@ -137,8 +137,8 @@ extends HudModuleConfigFrameBase {
     }
 
     private void renderDigitalClock() {
-        SmoothFontRenderer timeFont = Vape.INSTANCE.getFontManager().K(3.0, true);
-        SmoothFontRenderer detailFont = Vape.INSTANCE.getFontManager().K(1.0, true);
+        SmoothFontRenderer timeFont = Vapor.INSTANCE.getFontManager().K(3.0, true);
+        SmoothFontRenderer detailFont = Vapor.INSTANCE.getFontManager().K(1.0, true);
         String hourText = this.getHourText();
         String minuteText = this.getMinuteText();
         timeFont.d(hourText, this.G$src$D$1b2f02a() - timeFont.N(hourText) + 30.0,

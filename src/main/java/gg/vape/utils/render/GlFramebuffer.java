@@ -1,6 +1,6 @@
 package gg.vape.utils.render;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.wrapper.impl.GlStateManager;
 import java.nio.ByteBuffer;
 import java.nio.FloatBuffer;
@@ -98,7 +98,7 @@ public class GlFramebuffer {
     public void checkStatus() {
         int status = GL30.glCheckFramebufferStatus((int)36160);
         if (status != 36053) {
-            Vape.debugLog(FRAMEBUFFER_ERROR_PREFIX + status);
+            Vapor.debugLog(FRAMEBUFFER_ERROR_PREFIX + status);
         }
     }
 

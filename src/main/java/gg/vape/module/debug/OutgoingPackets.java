@@ -1,6 +1,6 @@
 package gg.vape.module.debug;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.event.EventHandler;
 import gg.vape.event.impl.EventPacketSend;
 import gg.vape.event.impl.EventPostTick;
@@ -144,7 +144,7 @@ extends Mod {
             maxDelta = Math.max(maxDelta, (float)Math.floor(Math.abs(delta)));
             previousAngle = angleProvider.applyAsDouble(sample);
         }
-        Vape.INSTANCE.getFontManager().H(true).v(title + " (+/- " + (int)maxDelta + ")", x + 10.0, y, Color.WHITE);
+        Vapor.INSTANCE.getFontManager().H(true).v(title + " (+/- " + (int)maxDelta + ")", x + 10.0, y, Color.WHITE);
         double xStep = width / 100.0;
         double currentX = x;
         float minDelta = -maxDelta;
@@ -222,7 +222,7 @@ extends Mod {
                 if (vec3 != null && vec3.isNotNull()) {
                     debugEntry.setHitVector(new Vec3d(vec3.getX(), vec3.getY(), vec3.getZ()));
                 }
-                Vape.debugLog(debugEntry.toString());
+                Vapor.debugLog(debugEntry.toString());
             }
         }
         if (this.logPlacements.getEffectiveValue().booleanValue() && packet.isInstance(MappedClasses.YB)) {
@@ -238,7 +238,7 @@ extends Mod {
                     rotationDebugState.setSequence(placementPacket.getSequence());
                 }
             }
-            Vape.debugLog(rotationDebugState.toString());
+            Vapor.debugLog(rotationDebugState.toString());
         }
     }
 
@@ -263,7 +263,7 @@ extends Mod {
             this.pendingFileSamples.clear();
         }
         catch (Exception exception) {
-            Vape.logThrowable(exception);
+            Vapor.logThrowable(exception);
         }
     }
 
@@ -320,7 +320,7 @@ extends Mod {
         Color lineColor = new Color(0, 255, 0, 255);
         GuiRenderPrimitives.q(x - padding, y - padding, width + padding * 2.0, height + padding * 2.0, 1.0, border, background);
         GuiRenderPrimitives.u(x, y + height / 2.0, x + width, y + height / 2.0, 0.25f, Color.RED);
-        Vape.INSTANCE.getFontManager().H(true).v(title + " " + this.samples.size(), x + 10.0, y, Color.WHITE);
+        Vapor.INSTANCE.getFontManager().H(true).v(title + " " + this.samples.size(), x + 10.0, y, Color.WHITE);
         if (this.samples.size() < 2) {
             return;
         }

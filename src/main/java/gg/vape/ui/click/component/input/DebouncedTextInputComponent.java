@@ -1,6 +1,6 @@
 package gg.vape.ui.click.component.input;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.ui.click.component.ClickCooldownState;
 import gg.vape.ui.click.component.TextInputComponentBase;
 
@@ -37,7 +37,7 @@ extends TextInputComponentBase {
     }
 
     public void handleSubmitCooldown() {
-        Vape.debugLog(UNHANDLED_COOLDOWN_MESSAGE + this);
+        Vapor.debugLog(UNHANDLED_COOLDOWN_MESSAGE + this);
     }
 
     @Override

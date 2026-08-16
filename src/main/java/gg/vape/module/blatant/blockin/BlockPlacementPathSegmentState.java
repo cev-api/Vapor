@@ -1,6 +1,6 @@
 package gg.vape.module.blatant.blockin;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.module.utility.clutch.PlacementTarget;
 import gg.vape.utils.datas.BlockData;
 import gg.vape.wrapper.impl.BlockPos;
@@ -50,7 +50,7 @@ public class BlockPlacementPathSegmentState {
     }
 
     public boolean isComplete() {
-        Vape.debugLog(DEBUG_PREFIX + this.pendingTargets.size() + " " + this.expectedCount);
+        Vapor.debugLog(DEBUG_PREFIX + this.pendingTargets.size() + " " + this.expectedCount);
         return this.pendingTargets.size() == this.expectedCount;
     }
 

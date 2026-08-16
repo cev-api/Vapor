@@ -3689,7 +3689,7 @@ func_179543_a,getSubCompound,2,Get an NBTTagCompound from this stack's NBT data.
 func_179544_c,canDestroy,2,
 func_179545_c,areItemsEqual,2,Compares Item and damage value of the two stacks
 func_179546_a,onItemUse,2,"Called when the player uses this ItemStack on a Block (right-click). Places blocks, etc. (Legacy name: tryPlaceItemIntoWorld)"
-func_179547_d,canPlaceOn,2,"Returns whether this stack is explicitly allowed to be used on the given block via the {@code ""CanPlaceOn""} NBT tag.\n\n@return whether the {@code ""CanPlaceOn""} tag contains the given block.\n \n@param clutch the block the NBT is being tested for"
+func_179547_d,canPlaceOn,2,"Returns whether this stack is explicitly allowed to be used on the given block via the {@code ""CanPlaceOn""} NBT tag.\n\n@return whether the {@code ""CanPlaceOn""} tag contains the given block.\n \n@param blockIn the block the NBT is being tested for"
 func_179548_a,onBlockDestroyed,2,Called when a Block is destroyed using this ItemStack
 func_179554_a,getRegisteredItem,2,
 func_179628_a,getResult,2,
@@ -5966,7 +5966,7 @@ func_189542_i,getDepth,2,
 func_189543_a,getFlow,2,
 func_189544_a,getSlopeAngle,0,
 func_189545_x,getRenderedDepth,2,
-func_189546_a,neighborChanged,2,"Called when a neighboring block was changed and marks that this state should perform any checks during a neighbor change. Cases may include when redstone power is updated, cactus blocks popping off due to a neighboring solid block, etc.\n \n@param clutch The neighboring block causing this block update\n@param fromPos The neighboring position causing this block update"
+func_189546_a,neighborChanged,2,"Called when a neighboring block was changed and marks that this state should perform any checks during a neighbor change. Cases may include when redstone power is updated, cactus blocks popping off due to a neighboring solid block, etc.\n \n@param blockIn The neighboring block causing this block update\n@param fromPos The neighboring position causing this block update"
 func_189547_a,onBlockEventReceived,2,"Called on both Client and Server when World#addBlockEvent is called. On the Server, this may perform additional changes to the world, like pistons replacing the block with an extended base. On the client, the update may involve replacing tile entities, playing sounds, or performing other visual actions to reflect the server side changes."
 func_189548_a,getLoadedChunks,2,
 func_189549_a,queueUnload,2,"Marks the chunk for unload if the {@link WorldProvider} allows it.\n \nQueueing a chunk for unload does <b>not</b> guarantee that it will be unloaded, as any request for the chunk will unqueue the chunk."

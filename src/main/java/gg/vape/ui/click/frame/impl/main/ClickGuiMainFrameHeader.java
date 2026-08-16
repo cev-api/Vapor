@@ -1,6 +1,6 @@
 package gg.vape.ui.click.frame.impl.main;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.module.none.ClientSettings;
 import gg.vape.ui.click.component.GlyphIconComponent;
 import gg.vape.ui.click.component.GuiComponent;
@@ -28,7 +28,6 @@ extends FrameHeaderComponent {
     private static final double HEADER_HEIGHT = 40.0;
     private static final double EDGE_PADDING = 6.0;
     private static final double ACTION_ICON_SPACING = 15.0;
-    private final GlyphIconComponent syncIcon;
     private final ClickGuiMainFrameHeaderActionComponent refreshAction = new ClickGuiMainFrameHeaderActionComponent();
     private final GlyphIconComponent settingsIcon;
     private final List<ClickGuiSectionTabComponent> sectionTabs;
@@ -48,16 +47,11 @@ extends FrameHeaderComponent {
         }
     }
 
-    private void lambda$new$1() {
-        Vape.INSTANCE.getSyncThread().requestSave();
-        this.syncIcon.setVisible(false);
-    }
-
     private static void lambda$new$0() {
         ClientSettings.INSTANCE.switchFrameStack(ClientSettings.mainStack);
-        Vape.INSTANCE.getPublicProfileSettings().guiStyle.setValue(Vape.INSTANCE.getPublicProfileSettings().framesGuiStyle);
-        Vape.INSTANCE.getPublicProfileSettings().guiStyle.setValue(Vape.INSTANCE.getPublicProfileSettings().centralGuiStyle);
-        Vape.INSTANCE.getNotificationManager().showInfo("Refreshed", "StandaloneGUI refreshed", 1000L);
+        Vapor.INSTANCE.getPublicProfileSettings().guiStyle.setValue(Vapor.INSTANCE.getPublicProfileSettings().framesGuiStyle);
+        Vapor.INSTANCE.getPublicProfileSettings().guiStyle.setValue(Vapor.INSTANCE.getPublicProfileSettings().centralGuiStyle);
+        Vapor.INSTANCE.getNotificationManager().showInfo("Refreshed", "StandaloneGUI refreshed", 1000L);
     }
 
     public void addSectionTab(ClickGuiSectionTabComponent clickGuiSectionTabComponent) {
@@ -66,7 +60,7 @@ extends FrameHeaderComponent {
     }
 
     private static void lambda$null$6(ThemeComponentGroupKey themeComponentGroupKey, ClickGuiMainFrame clickGuiMainFrame, String string, String string2) {
-        Map<ThemeComponentGroupKey, GuiComponent[]> map = ClientSettingsComponentFactory.d(J, Vape.INSTANCE.getClientSettings(), ClientSettings.INSTANCE, true);
+        Map<ThemeComponentGroupKey, GuiComponent[]> map = ClientSettingsComponentFactory.d(J, Vapor.INSTANCE.getClientSettings(), ClientSettings.INSTANCE, true);
         GuiComponent[] guiComponentArray = map.get(themeComponentGroupKey);
         clickGuiMainFrame.showOverlay(ClickGuiOverlaySpec.builder().title(string).initializeSidecar(arg_0 -> ClickGuiMainFrameHeader.lambda$null$4(string2, arg_0)).initializeContent(arg_0 -> ClickGuiMainFrameHeader.lambda$null$5(guiComponentArray, arg_0)).transitionMode(ClickGuiOverlayTransitionMode.PUSH).build());
     }
@@ -78,11 +72,6 @@ extends FrameHeaderComponent {
     @Override
     public void H() {
         double d;
-        if (!Vape.INSTANCE.getPublicProfileSettings().autoSave.getEffectiveValue().booleanValue() && Vape.INSTANCE.getSyncThread().hasPendingSave() && System.currentTimeMillis() > Vape.INSTANCE.getSyncThread().getLastSaveTime() + 60000L) {
-            this.syncIcon.setVisible(true);
-        } else {
-            this.syncIcon.setVisible(false);
-        }
         double d2 = this.w$src$Lgg_vape_ui_click_frame_Frame_$y4htd0() != null ? this.w$src$Lgg_vape_ui_click_frame_Frame_$y4htd0().G$src$D$1b2f02a() : this.G$src$D$1b2f02a();
         double d3 = this.w$src$Lgg_vape_ui_click_frame_Frame_$y4htd0() != null ? this.w$src$Lgg_vape_ui_click_frame_Frame_$y4htd0().n() : this.n();
         double d4 = this.w$src$Lgg_vape_ui_click_frame_Frame_$y4htd0() != null ? this.w$src$Lgg_vape_ui_click_frame_Frame_$y4htd0().A() : this.A();
@@ -130,7 +119,7 @@ extends FrameHeaderComponent {
 
     private static void lambda$null$7(ClickGuiMainFrame clickGuiMainFrame, PanelComponent panelComponent) {
         Object object;
-        Map<ThemeComponentGroupKey, GuiComponent[]> map = ClientSettingsComponentFactory.d(J, Vape.INSTANCE.getClientSettings(), ClientSettings.INSTANCE, true);
+        Map<ThemeComponentGroupKey, GuiComponent[]> map = ClientSettingsComponentFactory.d(J, Vapor.INSTANCE.getClientSettings(), ClientSettings.INSTANCE, true);
         for (Map.Entry<ThemeComponentGroupKey, GuiComponent[]> object22 : map.entrySet()) {
             object = object22.getKey();
             ThemeComponentGroupKey groupKey = (ThemeComponentGroupKey)object;
@@ -145,7 +134,7 @@ extends FrameHeaderComponent {
             clientSettingsFrameSectionLabelComponent.addClickListener(() -> ClickGuiMainFrameHeader.lambda$null$6(groupKey, clickGuiMainFrame, string, string2));
             panelComponent.h(clientSettingsFrameSectionLabelComponent, new Object[0]);
         }
-        List<GuiComponent> list = ClientSettingsComponentFactory.M(J, Vape.INSTANCE.getClientSettings(), ClientSettings.INSTANCE, true);
+        List<GuiComponent> list = ClientSettingsComponentFactory.M(J, Vapor.INSTANCE.getClientSettings(), ClientSettings.INSTANCE, true);
         Iterator iterator = list.iterator();
         while (iterator.hasNext()) {
             object = (GuiComponent)iterator.next();
@@ -158,7 +147,6 @@ extends FrameHeaderComponent {
     public ClickGuiMainFrameHeader(ClickGuiMainFrame clickGuiMainFrame) {
         super(clickGuiMainFrame);
         this.refreshIcon = new GlyphIconComponent("weapons", 6.0, 6.0, 10.0, 10.0, ClickGuiMainFrameHeader.J.V, ClickGuiMainFrameHeader.J.f, null);
-        this.syncIcon = new GlyphIconComponent("newsync", 6.0, 6.0, 10.0, 10.0, ClickGuiMainFrameHeader.J.V, ClickGuiMainFrameHeader.J.f, null);
         this.overlaysIcon = new GlyphIconComponent("newoverlays_2x", 6.0, 6.0, 10.0, 10.0, ClickGuiMainFrameHeader.J.V, ClickGuiMainFrameHeader.J.f, null);
         this.settingsIcon = new GlyphIconComponent("newsettings", 6.0, 6.0, 10.0, 10.0, ClickGuiMainFrameHeader.J.V, ClickGuiMainFrameHeader.J.f, null);
         this.sectionTabs = new ArrayList<ClickGuiSectionTabComponent>();
@@ -168,10 +156,6 @@ extends FrameHeaderComponent {
         this.refreshIcon.setCenterHorizontally(true);
         this.refreshIcon.setCenterVertically(true);
         this.refreshIcon.setClickListener(ClickGuiMainFrameHeader::lambda$new$0);
-        this.syncIcon.setCenterHorizontally(true);
-        this.syncIcon.setCenterVertically(true);
-        this.syncIcon.w("Save your profiles to the cloud");
-        this.syncIcon.setClickListener(this::lambda$new$1);
         this.overlaysIcon.setCenterHorizontally(true);
         this.overlaysIcon.setCenterVertically(true);
         this.overlaysIcon.setBackgroundAnimationColors(ClickGuiMainFrameHeader.J.t, ClickGuiMainFrameHeader.J.M);
@@ -182,8 +166,8 @@ extends FrameHeaderComponent {
         this.settingsIcon.setBackgroundAnimationColors(ClickGuiMainFrameHeader.J.t, ClickGuiMainFrameHeader.J.M);
         this.settingsIcon.setCornerRadius(5.0f);
         this.settingsIcon.setClickListener(() -> ClickGuiMainFrameHeader.lambda$new$8(clickGuiMainFrame));
-        this.actionIcons.addAll(Arrays.asList(this.syncIcon, this.overlaysIcon, this.settingsIcon));
-        this.addChildren(this.refreshAction, this.syncIcon, this.overlaysIcon, this.settingsIcon);
+        this.actionIcons.addAll(Arrays.asList(this.overlaysIcon, this.settingsIcon));
+        this.addChildren(this.refreshAction, this.overlaysIcon, this.settingsIcon);
     }
 
     private static void lambda$new$2() {

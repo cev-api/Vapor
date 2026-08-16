@@ -1,6 +1,6 @@
 package gg.vape.ui.click.frame.impl;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.module.Category;
 import gg.vape.module.Mod;
 import gg.vape.module.none.ClientSettings;
@@ -21,7 +21,7 @@ extends ModuleCategoryFrame {
         if (string == null || string.length() < 1) {
             return;
         }
-        for (Mod mod : Vape.INSTANCE.getModManager().collectMods()) {
+        for (Mod mod : Vapor.INSTANCE.getModManager().collectMods()) {
             if (mod.getCategory().equals(Category.NONE)) continue;
             String string2 = StringUtils.y(mod.getName());
             String string3 = StringUtils.y(string);
@@ -61,7 +61,7 @@ extends ModuleCategoryFrame {
     }
 
     public void p() {
-        this.M((double)Minecraft.J() / (4.0 * Vape.INSTANCE.getClientSettings().getGuiScaleFactor()) - this.A() / 2.0, 7.0);
+        this.M((double)Minecraft.J() / (4.0 * Vapor.INSTANCE.getClientSettings().getGuiScaleFactor()) - this.A() / 2.0, 7.0);
     }
 
 

@@ -1,6 +1,6 @@
 package gg.vape.ui.click.component.input;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.ui.click.component.GuiClickListener;
 import gg.vape.ui.click.component.input.BindableInputComponent;
 
@@ -21,7 +21,7 @@ implements GuiClickListener {
         }
         if (this.owner.supportsActivationModeConfiguration() && this.owner.isShiftPressed()) {
             this.owner.getBendable().toggleActivationMode();
-            Vape.INSTANCE.saveAndStop();
+            Vapor.INSTANCE.saveAndStop();
             return;
         }
         this.owner.getCaptureTask().run();

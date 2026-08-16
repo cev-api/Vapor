@@ -1,7 +1,7 @@
 package gg.vape.mapping.mappings;
 
 import com.google.common.util.concurrent.ListenableFuture;
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.asm.matcher.MethodNodeMatcher;
 import gg.vape.mapping.MappedClasses;
 import gg.vape.mapping.Mapping;
@@ -485,7 +485,7 @@ extends Mapping {
             String string = "thePlayer";
             MMinecraft mMinecraft = this;
             this.I = mMinecraft.J(string, bl, clazz);
-            if (Vape.INSTANCE.isVanillaMinecraftPresent()) {
+            if (Vapor.INSTANCE.isVanillaMinecraftPresent()) {
                 Class clazz2 = MappedClasses.uQ;
                 boolean bl2 = true;
                 String string2 = "fontRendererObj";

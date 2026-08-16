@@ -1,6 +1,6 @@
 package gg.vape.utils.render;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.utils.render.GlImageTexture;
 import gg.vape.utils.render.ImageRenderer;
 import java.awt.Color;
@@ -34,12 +34,12 @@ public class LocalImageDebugRenderer {
         try {
             GlImageTexture texture = LocalImageDebugRenderer.loadDebugTexture();
             if (texture != null) {
-                Vape.debugLog("drawing");
+                Vapor.debugLog("drawing");
                 ImageRenderer.drawTexture(Color.BLACK, 10.0f, 10.0f, texture, 20.0f, 20.0f, true);
             }
         }
         catch (Exception exception) {
-            Vape.logThrowable(exception);
+            Vapor.logThrowable(exception);
         }
     }
 

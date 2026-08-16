@@ -1,6 +1,6 @@
 package gg.vape.utils.render;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.utils.render.BufferedGuiRenderPrimitives;
 import gg.vape.wrapper.impl.ForgeVersion;
 import gg.vape.wrapper.impl.ItemStack;
@@ -13,7 +13,7 @@ public class ItemStackRenderUtils {
     private static String legacyStatus;
 
     public static void renderItemOverlay(RenderItemTextBridge renderItemTextBridge, ItemStack itemStack, int x, int y) {
-        Vape.INSTANCE.getMappingsMapperCompat().DI.M(renderItemTextBridge.getObject(), itemStack.getObject(), x, y);
+        Vapor.INSTANCE.getMappingsMapperCompat().DI.M(renderItemTextBridge.getObject(), itemStack.getObject(), x, y);
     }
 
     public static void renderItemOverlay(ItemStack itemStack, int x, int y) {

@@ -1,7 +1,7 @@
 package gg.vape.ui.click.frame;
 
 import func.skidline.RectData;
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.input.MouseInput;
 import gg.vape.mapping.MappedClasses;
 import gg.vape.module.none.ClientSettings;
@@ -605,7 +605,7 @@ extends GuiComponent {
                     guiComponent.c();
                 }
                 catch (Exception exception) {
-                    Vape.logThrowable(exception);
+                    Vapor.logThrowable(exception);
                 }
             }
             if (this.J$src$D$hx1pag() != 0.0 && this.NS && this.N5 != null) {
@@ -639,7 +639,7 @@ extends GuiComponent {
             }
         }
         catch (Exception exception) {
-            Vape.logThrowable(exception);
+            Vapor.logThrowable(exception);
         }
         if (bl) {
             RenderUtils.T();

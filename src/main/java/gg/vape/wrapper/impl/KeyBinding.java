@@ -1,6 +1,6 @@
 package gg.vape.wrapper.impl;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.config.ClientSettings;
 import gg.vape.wrapper.Wrapper;
 
@@ -16,7 +16,11 @@ extends Wrapper {
     }
 
     public static void H() {
-        Vape.INSTANCE.getMappings().hJ.R();
+        Vapor.INSTANCE.getMappings().hJ.R();
+    }
+
+    public static void onLegacyTick(int keyCode) {
+        KeyBinding.vapeInstance.getMappings().hJ.s(keyCode);
     }
 
     public void Z() {
@@ -86,10 +90,6 @@ extends Wrapper {
             return;
         }
         KeyBinding.vapeInstance.getMappings().hJ.s(keyBinding.getKeyCode());
-    }
-
-    public static void onLegacyTick(int keyCode) {
-        KeyBinding.vapeInstance.getMappings().hJ.s(keyCode);
     }
 
     public void setCancelled(boolean bl) {

@@ -1,6 +1,6 @@
 package gg.vape.mapping;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.event.impl.EventFogDensity;
 import gg.vape.mapping.JavassistMappingTask;
 import gg.vape.mapping.MappedClasses;
@@ -12,7 +12,7 @@ extends JavassistMappingTask {
 
     @Override
     public void transform() {
-        CtBehavior ctBehavior = this.F(Vape.INSTANCE.getMappings().fogRenderer.setupFogMethod);
+        CtBehavior ctBehavior = this.F(Vapor.INSTANCE.getMappings().fogRenderer.setupFogMethod);
         this.H(ctBehavior, EventFogDensity.class, c, "", "");
     }
 

@@ -1,6 +1,6 @@
 package gg.vape.ui.click.frame.impl;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.ui.click.component.GuiClickListener;
 import gg.vape.ui.click.frame.impl.ClientSettingsSearchFrameHeader;
 
@@ -10,7 +10,7 @@ implements GuiClickListener {
 
     @Override
     public void onPrimaryClick() {
-        Vape.INSTANCE.getSyncThread().requestSave();
+        Vapor.INSTANCE.getSyncThread().requestSave();
         ClientSettingsSearchFrameHeader.F(this.z).setVisible(false);
     }
 

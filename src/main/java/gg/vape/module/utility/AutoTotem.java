@@ -1,6 +1,6 @@
 package gg.vape.module.utility;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.event.EventHandler;
 import gg.vape.event.EventPriority;
 import gg.vape.event.impl.EventClickMouse;
@@ -95,7 +95,7 @@ implements InventoryActionModule {
         for (int slot = 9; slot <= 45; ++slot) {
             ItemMappingEntry itemMappingEntry;
             ItemStack itemStack = localPlayer.F$src$Lgg_vape_wrapper_impl_Container_$152y6lm().getSlot(slot).getStack();
-            if (itemStack.isNull() || (itemMappingEntry = Vape.INSTANCE.getItemStackResolver().resolve(itemStack)) == null || !itemMappingEntry.getResourceKey().toLowerCase().contains("totem_of_undying")) continue;
+            if (itemStack.isNull() || (itemMappingEntry = Vapor.INSTANCE.getItemStackResolver().resolve(itemStack)) == null || !itemMappingEntry.getResourceKey().toLowerCase().contains("totem_of_undying")) continue;
             count += itemStack.t();
         }
         return count;
@@ -219,7 +219,10 @@ implements InventoryActionModule {
 
     @Override
     public void onDisable() {
-        ClientSettings.getFrame(ActiveModuleStackFrame.class).removeModule(this);
+        ActiveModuleStackFrame activeModuleFrame = ClientSettings.getFrame(ActiveModuleStackFrame.class);
+        if (activeModuleFrame != null) {
+            activeModuleFrame.removeModule(this);
+        }
         if (this.inventoryOpen && this.silentActive) {
             this.closeInventory();
         }
@@ -252,7 +255,7 @@ implements InventoryActionModule {
                 this.blockMovementKeys(eventPrePlayerTick.getGameSettings());
             }
         }
-        if (Vape.INSTANCE.getModManager().isOtherInventoryActionActive(AutoTotem.class) || Vape.INSTANCE.getClientSettings().isLobbyCheckActive()) {
+        if (Vapor.INSTANCE.getModManager().isOtherInventoryActionActive(AutoTotem.class) || Vapor.INSTANCE.getClientSettings().isLobbyCheckActive()) {
             this.clickQueue.clear();
             return;
         }
@@ -302,7 +305,7 @@ implements InventoryActionModule {
             return;
         }
         ItemStack itemStack = localPlayer.F$src$Lgg_vape_wrapper_impl_Container_$152y6lm().getSlot(45).getStack();
-        ItemMappingEntry itemMappingEntry = Vape.INSTANCE.getItemStackResolver().resolve(itemStack);
+        ItemMappingEntry itemMappingEntry = Vapor.INSTANCE.getItemStackResolver().resolve(itemStack);
         if (itemMappingEntry != null && itemMappingEntry.getResourceKey().toLowerCase().contains("totem_of_undying")) {
             if (this.inventoryOpen && this.clickQueue.isEmpty()) {
                 this.closePending = true;
@@ -372,7 +375,7 @@ implements InventoryActionModule {
         for (int slot = 9; slot < 45; ++slot) {
             ItemMappingEntry itemMappingEntry;
             ItemStack itemStack = localPlayer.F$src$Lgg_vape_wrapper_impl_Container_$152y6lm().getSlot(slot).getStack();
-            if (itemStack.isNull() || (itemMappingEntry = Vape.INSTANCE.getItemStackResolver().resolve(itemStack)) == null || !itemMappingEntry.getResourceKey().toLowerCase().contains("totem_of_undying")) continue;
+            if (itemStack.isNull() || (itemMappingEntry = Vapor.INSTANCE.getItemStackResolver().resolve(itemStack)) == null || !itemMappingEntry.getResourceKey().toLowerCase().contains("totem_of_undying")) continue;
             if (!this.randomSlot.getEffectiveValue().booleanValue()) {
                 return slot;
             }
@@ -415,7 +418,7 @@ implements InventoryActionModule {
 
     private boolean isSilentOpenBlocked() {
         if (freecam == null) {
-            freecam = Vape.INSTANCE.getModManager().getMod(Freecam.class);
+            freecam = Vapor.INSTANCE.getModManager().getMod(Freecam.class);
         }
         return freecam != null && freecam.isEnabled() || this.rotationClaim.isBlockedFor(this) && !this.rotationClaim.acquire(this, true);
     }
@@ -429,7 +432,10 @@ implements InventoryActionModule {
 
     @Override
     public void onEnable() {
-        ClientSettings.getFrame(ActiveModuleStackFrame.class).addModule(this);
+        ActiveModuleStackFrame activeModuleFrame = ClientSettings.getFrame(ActiveModuleStackFrame.class);
+        if (activeModuleFrame != null) {
+            activeModuleFrame.addModule(this);
+        }
         this.resetDelayTimer();
         this.resetClickTimer();
     }

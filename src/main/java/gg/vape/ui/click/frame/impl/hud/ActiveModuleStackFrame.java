@@ -1,6 +1,6 @@
 package gg.vape.ui.click.frame.impl.hud;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.module.Mod;
 import gg.vape.module.ModuleDisplayInfo;
 import gg.vape.module.none.ClientSettings;
@@ -91,15 +91,15 @@ extends Frame {
         SmoothFontRenderer smoothFontRenderer = null;
         FontRenderer fontRenderer = null;
         if (ForgeVersion.MC_26_1.d()) {
-            smoothFontRenderer = Vape.INSTANCE.getFontManager().p(1.0);
+            smoothFontRenderer = Vapor.INSTANCE.getFontManager().p(1.0);
         } else {
             fontRenderer = Minecraft.getFontRenderer();
         }
         if (ForgeVersion.MC_26_1.d() || ForgeVersion.MC_1_21_4.v()) {
             centerX = (float)Minecraft.J() / 4.0f;
             centerY = Minecraft.h() / 4;
-            centerX /= Vape.INSTANCE.getClientSettings().getGuiScaleFactor();
-            centerY /= Vape.INSTANCE.getClientSettings().getGuiScaleFactor();
+            centerX /= Vapor.INSTANCE.getClientSettings().getGuiScaleFactor();
+            centerY /= Vapor.INSTANCE.getClientSettings().getGuiScaleFactor();
             centerY += 10.0;
         } else {
             centerX = (float)scaledResolution.getScaledWidth() / 2.0f;

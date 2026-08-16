@@ -1,6 +1,6 @@
 package gg.vape.wrapper.impl;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.mapping.mappings.MITextComponent;
 import gg.vape.ui.click.component.GuiComponent;
 import gg.vape.unmap.TextComponentBase;
@@ -48,7 +48,7 @@ extends Wrapper {
 
     public String a() {
         if (ForgeVersion.MC_1_20_6.d()) {
-            Vape.notifyNativeStackTrace();
+            Vapor.notifyNativeStackTrace();
         }
         return MITextComponent.A(ITextComponent.vapeInstance.getMappings().RL, this.I);
     }
@@ -63,21 +63,21 @@ extends Wrapper {
 
     public StringTextComponentBase F() {
         if (ForgeVersion.MC_1_20_6.v()) {
-            Vape.notifyNativeStackTrace();
+            Vapor.notifyNativeStackTrace();
         }
         return new StringTextComponentBase(MITextComponent.r(ITextComponent.vapeInstance.getMappings().RL, this.getObject()));
     }
 
     public static TextComponentBaseBridge a(String string) {
         if (ForgeVersion.MC_1_20_6.v()) {
-            Vape.notifyNativeStackTrace();
+            Vapor.notifyNativeStackTrace();
         }
         return new TextComponentBaseBridge(MITextComponent.f(ITextComponent.vapeInstance.getMappings().RL, string));
     }
 
     public TextComponentBase J() {
         if (ForgeVersion.MC_1_20_6.v()) {
-            Vape.notifyNativeStackTrace();
+            Vapor.notifyNativeStackTrace();
         }
         return new TextComponentBase(MITextComponent.e(ITextComponent.vapeInstance.getMappings().RL, this.getObject()));
     }

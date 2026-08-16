@@ -1,6 +1,6 @@
 package gg.vape.module.none;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.module.MinecraftVersionConstraint;
 import gg.vape.module.Mod;
 import gg.vape.module.none.textgui.TextGuiModuleWidthComparator;
@@ -52,7 +52,7 @@ extends ConfigSettingsModule {
     }
 
     public String getEnabledModuleNames() {
-        CopyOnWriteArrayList<Mod> copyOnWriteArrayList = new CopyOnWriteArrayList<Mod>(Vape.INSTANCE.getModManager().collectMods());
+        CopyOnWriteArrayList<Mod> copyOnWriteArrayList = new CopyOnWriteArrayList<Mod>(Vapor.INSTANCE.getModManager().collectMods());
         if (this.sortMode.getValue() == this.alphabeticalSort) {
             copyOnWriteArrayList.sort(new NameComparator());
         } else if (this.sortMode.getValue() == this.sortByLength) {
@@ -81,7 +81,7 @@ extends ConfigSettingsModule {
         this.clickDisable = BooleanValue.create(this, "Click disable", false, "Click modules in text gui to toggle them");
         this.shadow = BooleanValue.create(this, "Shadow", true, "Renders shadowed text");
         this.animations = BooleanValue.create(this, "Animations", true, "Use animations on text gui");
-        this.watermark = BooleanValue.create(this, "Watermark", false, "Renders a vape watermark");
+        this.watermark = BooleanValue.create(this, "Watermark", false, "Renders a Vapor watermark");
         this.renderBackground = BooleanValue.create(this, "Render background", true);
         this.hideModules = BooleanValue.create(this, "Hide modules", false, "Allows you to blacklist certain modules from being shown");
         this.hiddenModules = (OptionalLimitValue)OptionalLimitValue.createWithDescription(this, "module-show-blacklist", "Hidden Modules", "Name of module to hide", OptionalLimitValue.BLOCK_LIST_COLOR, Arrays.asList("ESP", "NameTags", "StorageESP")).setSuggestionProvider(new ModuleNameSuggestionProvider());

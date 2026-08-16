@@ -1,6 +1,6 @@
 package gg.vape.asm.helper;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.asm.ITramsformNode;
 import gg.vape.event.EventBus;
 import gg.vape.wrapper.impl.LaunchClassLoader;
@@ -189,7 +189,7 @@ public class EventBuilder {
     public EventBuilder(int injectionPoint, Class eventClass, ClassNode classNode, MethodInfo methodInfo,
                         boolean staticMethod, ITramsformNode ... transformNodes) {
         this.eventStartLabel = new LabelNode(new Label());
-        if (!Vape.INSTANCE.isForgeAbsent()) {
+        if (!Vapor.INSTANCE.isForgeAbsent()) {
             LaunchClassLoader launchClassLoader = LaunchClassLoader.getLaunchClassLoader();
             if (launchClassLoader.supportsLegacyClassCache()) {
                 launchClassLoader.cachedClasses().put(eventClass.getName(), eventClass);
@@ -200,7 +200,7 @@ public class EventBuilder {
             this.targetMethod = candidate;
         }
         if (this.targetMethod == null) {
-            Vape.debugLog("Couldnt find method node");
+            Vapor.debugLog("Couldnt find method node");
         }
         this.injectionPoint = injectionPoint;
         this.eventClass = eventClass;

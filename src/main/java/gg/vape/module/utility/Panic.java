@@ -1,6 +1,6 @@
 package gg.vape.module.utility;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.module.Mod;
 import gg.vape.module.UtilityMod;
 import gg.vape.value.BooleanValue;
@@ -43,7 +43,7 @@ extends UtilityMod {
         } else {
             this.reEnableActive = false;
         }
-        for (Mod mod : Vape.INSTANCE.getModManager().collectMods()) {
+        for (Mod mod : Vapor.INSTANCE.getModManager().collectMods()) {
             if (!mod.isEnabled() || mod == this) continue;
             mod.setEnabled(false);
             if (!this.reEnable.getEffectiveValue().booleanValue()) continue;

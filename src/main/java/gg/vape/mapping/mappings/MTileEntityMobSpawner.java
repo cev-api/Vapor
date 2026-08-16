@@ -1,6 +1,6 @@
 package gg.vape.mapping.mappings;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.mapping.MappedClasses;
 import gg.vape.mapping.Mapping;
 import gg.vape.mapping.MappingMethod;
@@ -36,7 +36,7 @@ extends Mapping {
     private MTileEntityMobSpawner(int[] controlFlowState) {
         super(MappedClasses.MOB_SPAWNER_TILE_ENTITY);
         if (controlFlowState != null) {
-            if (Vape.INSTANCE.isVanillaMinecraftPresent()) {
+            if (Vapor.INSTANCE.isVanillaMinecraftPresent()) {
                 Class[] parameterTypes = new Class[]{};
                 Class returnType = MappedClasses.MOB_SPAWNER_LOGIC;
                 boolean remap = true;
@@ -50,7 +50,7 @@ extends Mapping {
             this.getSpawnerBaseLogicMethod = this.Y(methodName, remap, returnType, parameterTypes);
             return;
         }
-        if (Vape.INSTANCE.isVanillaMinecraftPresent() && ForgeVersion.MC_1_7_10.Y()) {
+        if (Vapor.INSTANCE.isVanillaMinecraftPresent() && ForgeVersion.MC_1_7_10.Y()) {
             Class[] parameterTypes = new Class[]{};
             Class returnType = MappedClasses.MOB_SPAWNER_LOGIC;
             boolean remap = true;

@@ -1,6 +1,6 @@
 package gg.vape.event.impl;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.event.Event;
 import gg.vape.event.EventListeners;
 import gg.vape.module.world.XRay;
@@ -34,13 +34,13 @@ extends Event {
 
     @Override
     public boolean fire() {
-        XRay xRay = Vape.INSTANCE.getModManager().getXRayModule();
+        XRay xRay = Vapor.INSTANCE.getModManager().getXRayModule();
         if (xRay == null || !xRay.boolean_r()) {
             return false;
         }
         xRay.onBlockFluidRender(this);
         if (this.isCanceled()) {
-            this.result = Vape.INSTANCE.getMappingsMapperCompat().renderBlocks
+            this.result = Vapor.INSTANCE.getMappingsMapperCompat().renderBlocks
                     .renderStandardBlockWithColorMultiplierMethod.invokeBoolean(
                             this.renderBlocksHandle, this.blockHandle, this.x, this.y, this.z,
                             Float.valueOf(1.0f), Float.valueOf(1.0f), Float.valueOf(1.0f));

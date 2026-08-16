@@ -1,6 +1,6 @@
 package gg.vape.ui.click.frame.impl.profile;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.config.Profile;
 import gg.vape.ui.click.frame.FrameNavigationButtonComponent;
 import gg.vape.ui.click.frame.impl.profile.ProfilesSettingsFrame;
@@ -20,7 +20,7 @@ extends FrameNavigationButtonComponent {
     public void H() {
         double d;
         super.H();
-        Profile profile = Vape.INSTANCE.getProfilesManager().getActiveProfile();
+        Profile profile = Vapor.INSTANCE.getProfilesManager().getActiveProfile();
         String string = profile.getName();
         boolean bl = profile.isPublicProfileFlag();
         if (bl) {

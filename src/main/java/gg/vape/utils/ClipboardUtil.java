@@ -1,6 +1,6 @@
 package gg.vape.utils;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.wrapper.impl.Minecraft;
 import java.awt.GraphicsEnvironment;
 import java.awt.Toolkit;
@@ -29,7 +29,7 @@ public class ClipboardUtil {
             }
         }
         catch (Exception exception) {
-            Vape.logThrowable(exception);
+            Vapor.logThrowable(exception);
         }
     }
 
@@ -52,7 +52,7 @@ public class ClipboardUtil {
             return "";
         }
         catch (Exception exception) {
-            Vape.logThrowable(exception);
+            Vapor.logThrowable(exception);
             return "";
         }
     }

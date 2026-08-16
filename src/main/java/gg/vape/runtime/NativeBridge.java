@@ -1,6 +1,6 @@
 package gg.vape.runtime;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.reflect.Badlion189Mappings;
 import gg.vape.reflect.Fabric12111Mappings;
 import gg.vape.reflect.Fabric262Mappings;
@@ -13,8 +13,12 @@ import gg.vape.reflect.Vanilla189Mappings;
 import gg.vape.reflect.Vanilla262Mappings;
 import gg.vape.ui.click.GuiScreenNativeCallbackBridge;
 import gg.vape.utils.Base64Util;
+import gg.vape.wrapper.impl.ForgeVersion;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
+import java.io.ByteArrayOutputStream;
+import java.io.InputStream;
+import java.io.IOException;
 import java.nio.FloatBuffer;
 import java.nio.IntBuffer;
 import org.lwjgl.BufferUtils;
@@ -232,7 +236,9 @@ public class NativeBridge {
     }
 
     //GetKeyName
-    public static native String gkn(long keyCode);
+    public static String gkn(long keyCode) {
+        return keyCode == 0L ? "NONE" : "KEY_" + keyCode;
+    }
 
     //MessageBox
     public static void mb(int messageCode) {
@@ -240,7 +246,9 @@ public class NativeBridge {
     }
 
     //GetKeyState
-    public static native short gks(int keyCode);
+    public static short gks(int keyCode) {
+        return 0;
+    }
 
     //RenderState
     public static void rs(int phase, double width, double height) {
@@ -274,7 +282,9 @@ public class NativeBridge {
     }
 
     //GetAccessToken
-    public static native String gat();
+    public static String gat() {
+        return "";
+    }
 
     //GetClassObjects
     //Java Layer Unused
@@ -284,9 +294,30 @@ public class NativeBridge {
     }
 
     //GetClassBytes
-    public static native byte[] gcb(Class<?> targetClass);
+    public static byte[] gcb(Class<?> targetClass) {
+        if (targetClass == null) {
+            return null;
+        }
+        String resourceName = "/" + targetClass.getName().replace('.', '/') + ".class";
+        try (InputStream input = targetClass.getResourceAsStream(resourceName)) {
+            if (input == null) {
+                return null;
+            }
+            ByteArrayOutputStream output = new ByteArrayOutputStream();
+            byte[] buffer = new byte[8192];
+            int count;
+            while ((count = input.read(buffer)) >= 0) {
+                output.write(buffer, 0, count);
+            }
+            return output.toByteArray();
+        }
+        catch (IOException ignored) {
+            return null;
+        }
+    }
 
-    public static native void trs(int state);
+    public static void trs(int state) {
+    }
 
     //CopyString
     //Java Layer Unused
@@ -294,7 +325,27 @@ public class NativeBridge {
         return "";
     }
 
-    public static native byte[] gfb(String name);
+    public static byte[] gfb(String name) {
+        if (name == null) {
+            return null;
+        }
+        try (InputStream input = NativeBridge.class.getClassLoader()
+                .getResourceAsStream(name)) {
+            if (input == null) {
+                return null;
+            }
+            ByteArrayOutputStream output = new ByteArrayOutputStream();
+            byte[] buffer = new byte[8192];
+            int count;
+            while ((count = input.read(buffer)) >= 0) {
+                output.write(buffer, 0, count);
+            }
+            return output.toByteArray();
+        }
+        catch (IOException ignored) {
+            return null;
+        }
+    }
 
     public static void scm(String sourceName, String mappedName) {
     }
@@ -337,7 +388,9 @@ public class NativeBridge {
     }
 
     //MapVirtualKey
-    public static native int mvk(int virtualKey, int scanCode);
+    public static int mvk(int virtualKey, int scanCode) {
+        return virtualKey;
+    }
 
     //GetStringHeight
     //Java Layer Unused
@@ -345,42 +398,6 @@ public class NativeBridge {
         return 0.0;
     }
 
-    public static void start() throws Throwable {
-        forgeAbsent = !isClassPresent("net.minecraftforge.common.ForgeVersion")
-                && !isClassPresent("net.minecraftforge.fml.loading.FMLLoader");
-        Vape vape = new Vape();
-        NativeBridge.invokeVoidInit(vape, "loadMappings");
-        if (badlion189Runtime) {
-            NativeBridge.sce("Runtime profile: Badlion Client 1.8.9 (vanilla SRG namespace)");
-        }
-        NativeBridge.sce("LOAD initAccountInfo");
-        if (!vape.initAccountInfo()) {
-            NativeBridge.sce("WARN initAccountInfo; continuing without account information");
-        } else {
-            NativeBridge.sce("OK initAccountInfo");
-        }
-        NativeBridge.invokeVoidInit(vape, "initializeManagers");
-    }
-
-    private static void invokeVoidInit(Vape vape, String name) {
-        for (Method method : Vape.class.getDeclaredMethods()) {
-            if (!method.getName().equals(name) || !method.getReturnType().equals(Void.TYPE)) continue;
-            NativeBridge.sce("LOAD " + name);
-            method.setAccessible(true);
-            try {
-                method.invoke(vape, new Object[0]);
-                NativeBridge.sce("OK " + name);
-            }
-            catch (java.lang.reflect.InvocationTargetException wrapper) {
-                NativeBridge.logThrowable(name, wrapper.getCause() != null ? wrapper.getCause() : wrapper);
-            }
-            catch (Throwable other) {
-                NativeBridge.logThrowable(name, other);
-            }
-            return;
-        }
-        NativeBridge.sce("MISSING void " + name + "()");
-    }
 
     private static void logThrowable(String context, Throwable error) {
         int depth = 0;
@@ -417,7 +434,8 @@ public class NativeBridge {
     }
 
     //ClipboardCopy
-    public static native void cpy(String text);
+    public static void cpy(String text) {
+    }
 
     public static long smpm(boolean pressed, long windowHandle, int button,
                             long cursorPosition, long extraInfo) {
@@ -450,7 +468,8 @@ public class NativeBridge {
     }
 
     //SendMouseDown
-    public static native void smd(int mode, int value);
+    public static void smd(int mode, int value) {
+    }
 
     public static void rsc() {
     }
@@ -464,11 +483,18 @@ public class NativeBridge {
 
     //DrawStringV2
     //Java Layer Unused
-    public static native int dsv2(int fontId, String text, double x, double y,
-                                  int color, float scale);
+    public static int dsv2(int fontId, String text, double x, double y,
+                           int color, float scale) {
+        return 0;
+    }
 
     //GetMinorVersion
     public static int gmv() {
+        if (isClassPresent("net.fabricmc.loader.api.FabricLoader")) {
+            vanillaMappingVersion = ForgeVersion.MC_26_2.i();
+            fabric262Runtime = true;
+            return vanillaMappingVersion;
+        }
         Throwable lastFailure = null;
 
         try {
@@ -650,7 +676,9 @@ public class NativeBridge {
         }
     }
 
-    public static native int ss_2(String value);
+    public static int ss_2(String value) {
+        return 0;
+    }
 
     public static String sp(String key, String value) {
         return null;
@@ -664,15 +692,22 @@ public class NativeBridge {
     }
 
     //SetClassBytes
-    public static native int scb(Class<?> targetClass, byte[] bytecode);
+    public static int scb(Class<?> targetClass, byte[] bytecode) {
+        // Fabric classes are transformed before definition. Runtime
+        // redefineClass was only available through the old native injector.
+        return -1;
+    }
 
     //MakeFontV2
     //Java Layer Unused
-    public static native int mfv2(int fontId, int style, String text);
+    public static int mfv2(int fontId, int style, String text) {
+        return 0;
+    }
 
     //SaveSettings
     @Deprecated
-    public static native void ss(String value);
+    public static void ss(String value) {
+    }
 
     public static boolean[] gls() {
         return new boolean[0];
@@ -723,10 +758,27 @@ public class NativeBridge {
         return badlion189Runtime;
     }
 
-    //SendClientError
-    public static native void sce(String message);
+    public static boolean isFabricLoaderPresent() {
+        return isClassPresent("net.fabricmc.loader.api.FabricLoader");
+    }
 
-    public static native Object inv(Method method, Object target, Object ... arguments);
+    //SendClientError
+    public static void sce(String message) {
+        System.err.println("[Vapor421] " + (message == null ? "<null>" : message));
+    }
+
+    public static Object inv(Method method, Object target, Object ... arguments) {
+        if (method == null) {
+            return null;
+        }
+        try {
+            method.setAccessible(true);
+            return method.invoke(target, arguments);
+        }
+        catch (ReflectiveOperationException exception) {
+            throw new IllegalStateException("Unable to invoke mapped member", exception);
+        }
+    }
 
     public static boolean om(int eventId, long firstArgument, long secondArgument) {
         return GuiScreenNativeCallbackBridge.onNotification(eventId, firstArgument, secondArgument);

@@ -1,6 +1,6 @@
 package gg.vape.mapping;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.mapping.JavassistMappingTask;
 import gg.vape.mapping.LegacyRenderStringEventRender3DCallback;
 import gg.vape.mapping.MappedClasses;
@@ -19,13 +19,13 @@ extends JavassistMappingTask {
     @Override
     public void transform() {
         LegacyRenderStringHookMappingTask.p(LegacyRenderStringEventRender3DCallback.class);
-        MappingMethod mappingMethod = Vape.INSTANCE.getMappings().C5.A;
+        MappingMethod mappingMethod = Vapor.INSTANCE.getMappings().C5.A;
         CtBehavior ctBehavior = this.F(mappingMethod);
         try {
             ctBehavior.insertBefore("{" + LegacyRenderStringEventRender3DCallback.class.getName() + c);
         }
         catch (CannotCompileException cannotCompileException) {
-            Vape.logThrowable(cannotCompileException);
+            Vapor.logThrowable(cannotCompileException);
         }
     }
 }

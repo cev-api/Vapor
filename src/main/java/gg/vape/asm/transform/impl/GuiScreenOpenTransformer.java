@@ -1,6 +1,6 @@
 package gg.vape.asm.transform.impl;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.asm.helper.DescUtils;
 import gg.vape.asm.helper.TypedIndexedLocal;
 import gg.vape.asm.transform.ClassTransformer;
@@ -16,7 +16,7 @@ extends ClassTransformer {
 
     @Override
     public void transform() {
-        MappingMethod setScreenMethod = Vape.INSTANCE.getMappings().U.getGuiSetScreenMethod();
+        MappingMethod setScreenMethod = Vapor.INSTANCE.getMappings().U.getGuiSetScreenMethod();
         if (setScreenMethod == null || setScreenMethod.getOwnerClass() != MappedClasses.uH) {
             throw new IllegalStateException("Gui.setScreen mapping is unavailable for the 26.2 GUI hook");
         }

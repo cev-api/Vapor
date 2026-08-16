@@ -1,6 +1,6 @@
 package gg.vape.module.blatant;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.event.EventHandler;
 import gg.vape.event.impl.EventMotion;
 import gg.vape.event.impl.EventPostMotion;
@@ -26,7 +26,7 @@ extends Mod {
     @EventHandler
     public void onMotionUpdate(EventPostMotion eventPostMotion) {
         EntityPlayerSP localPlayer = Minecraft.thePlayer();
-        if (localPlayer.isNull() || localPlayer.getWorld().isNull() || localPlayer.M$src$Z$ff28xj() || localPlayer.C$src$Lgg_vape_wrapper_impl_ModelPlayer_$19uhx86().isCreativeMode() || localPlayer.C$src$Lgg_vape_wrapper_impl_ModelPlayer_$19uhx86().isFlying() || Vape.INSTANCE.getModManager().getState(Fly.class)) {
+        if (localPlayer.isNull() || localPlayer.getWorld().isNull() || localPlayer.M$src$Z$ff28xj() || localPlayer.C$src$Lgg_vape_wrapper_impl_ModelPlayer_$19uhx86().isCreativeMode() || localPlayer.C$src$Lgg_vape_wrapper_impl_ModelPlayer_$19uhx86().isFlying() || Vapor.INSTANCE.getModManager().getState(Fly.class)) {
             return;
         }
         if (this.mode.getValue() == this.normalMode) {
@@ -58,7 +58,7 @@ extends Mod {
     @EventHandler
     public void onMotionUpdate(EventPreMotion eventPreMotion) {
         EntityPlayerSP localPlayer = Minecraft.thePlayer();
-        if (localPlayer.isNull() || localPlayer.getWorld().isNull() || localPlayer.M$src$Z$ff28xj() || localPlayer.C$src$Lgg_vape_wrapper_impl_ModelPlayer_$19uhx86().isCreativeMode() || localPlayer.C$src$Lgg_vape_wrapper_impl_ModelPlayer_$19uhx86().isFlying() || Vape.INSTANCE.getModManager().getState(Fly.class)) {
+        if (localPlayer.isNull() || localPlayer.getWorld().isNull() || localPlayer.M$src$Z$ff28xj() || localPlayer.C$src$Lgg_vape_wrapper_impl_ModelPlayer_$19uhx86().isCreativeMode() || localPlayer.C$src$Lgg_vape_wrapper_impl_ModelPlayer_$19uhx86().isFlying() || Vapor.INSTANCE.getModManager().getState(Fly.class)) {
             return;
         }
         if (this.mode.getValue() == this.normalMode) {

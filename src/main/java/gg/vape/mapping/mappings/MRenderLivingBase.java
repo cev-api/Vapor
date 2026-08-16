@@ -1,6 +1,6 @@
 package gg.vape.mapping.mappings;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.mapping.MappedClasses;
 import gg.vape.mapping.Mapping;
 import gg.vape.mapping.MappingField;
@@ -97,7 +97,7 @@ extends Mapping {
             MRenderLivingBase mRenderLivingBase3 = this;
             this.r = this.Y(string3, bl3, clazz4, classArray);
         } else {
-            if (Vape.INSTANCE.isVanillaMinecraftPresent()) {
+            if (Vapor.INSTANCE.isVanillaMinecraftPresent()) {
                 Class<List> clazz = List.class;
                 boolean bl = true;
                 String string = "layerRenderers";

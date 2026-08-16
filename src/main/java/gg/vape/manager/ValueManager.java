@@ -3,7 +3,7 @@ package gg.vape.manager;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.module.Macro;
 import gg.vape.module.Mod;
 import gg.vape.module.UtilityMod;
@@ -35,7 +35,7 @@ public class ValueManager {
 
 
     private void loadConfigSettings(JsonObject serializedValue) {
-        for (Mod mod : Vape.INSTANCE.getModManager().getAllModules()) {
+        for (Mod mod : Vapor.INSTANCE.getModManager().getAllModules()) {
             if (!(mod instanceof ConfigSettingsModule)) continue;
             ((ConfigSettingsModule)mod).loadMatchingValues(serializedValue);
         }

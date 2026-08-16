@@ -1,6 +1,6 @@
 package gg.vape.mapping;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.event.impl.EventPostRenderWorldPass;
 import gg.vape.event.impl.EventPreRenderWorldPass;
 import gg.vape.mapping.JavassistMappingTask;
@@ -20,15 +20,15 @@ extends JavassistMappingTask {
             try {
                 MappingMethod mappingMethod = null;
                 if (ForgeVersion.MC_1_21_10.d()) {
-                    mappingMethod = Vape.INSTANCE.getMappings().renderGlobal.extractVisibleEntitiesMethod;
+                    mappingMethod = Vapor.INSTANCE.getMappings().renderGlobal.extractVisibleEntitiesMethod;
                 } else if (ForgeVersion.MC_1_21_4.d()) {
-                    mappingMethod = Vape.INSTANCE.getMappings().renderGlobal.renderEntitiesMethod;
+                    mappingMethod = Vapor.INSTANCE.getMappings().renderGlobal.renderEntitiesMethod;
                 }
                 this.c(mappingMethod, EventPreRenderWorldPass.class, "");
                 this.k(mappingMethod, EventPostRenderWorldPass.class, "");
             }
             catch (Exception exception) {
-                Vape.logThrowable(exception);
+                Vapor.logThrowable(exception);
             }
         }
     }

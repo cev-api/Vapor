@@ -1,6 +1,6 @@
 package gg.vape.ui.click.frame.impl.profile;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.config.Profile;
 import gg.vape.ui.click.component.IconButtonComponent;
 import gg.vape.ui.click.component.gui.TextLabel;
@@ -70,7 +70,7 @@ extends ToggleableFrameHeaderComponent {
             this.editHiddenProfilesButton.K(this.G$src$D$1b2f02a() + this.A() - 44.0);
             this.editHiddenProfilesButton.S(this.n());
             this.editHiddenProfilesButton.Y(this.L());
-            int hiddenProfileCount = (int)Vape.INSTANCE.getProfilesManager().getProfiles().stream().filter(ProfilesSettingsHeaderComponent::isHiddenProfile).count();
+            int hiddenProfileCount = (int)Vapor.INSTANCE.getProfilesManager().getProfiles().stream().filter(ProfilesSettingsHeaderComponent::isHiddenProfile).count();
             if (hiddenProfileCount != 0) {
                 String countText = Integer.toString(hiddenProfileCount);
                 font.d(countText, this.G$src$D$1b2f02a() + this.A() - 45.25 - font.N(countText) / 2.0, this.n() + this.L() / 2.0 - font.d(countText) / 2.0, ProfilesSettingsHeaderComponent.J.W);

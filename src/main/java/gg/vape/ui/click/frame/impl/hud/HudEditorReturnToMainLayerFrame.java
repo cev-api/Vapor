@@ -1,6 +1,6 @@
 package gg.vape.ui.click.frame.impl.hud;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.module.none.ClientSettings;
 import gg.vape.ui.click.frame.Frame;
 import gg.vape.ui.click.frame.impl.hud.HudEditorReturnToMainLayerHeaderComponent;
@@ -29,7 +29,7 @@ extends Frame {
     }
 
     public void centerAtTop() {
-        this.M((double)Minecraft.J() / 4.0 / Vape.INSTANCE.getClientSettings().getGuiScaleFactor() - this.A() / 2.0, 7.0);
+        this.M((double)Minecraft.J() / 4.0 / Vapor.INSTANCE.getClientSettings().getGuiScaleFactor() - this.A() / 2.0, 7.0);
     }
 
     @Override

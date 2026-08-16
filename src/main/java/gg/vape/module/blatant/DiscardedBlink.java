@@ -1,6 +1,6 @@
 package gg.vape.module.blatant;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.config.ClientSettings;
 import gg.vape.event.EventHandler;
 import gg.vape.event.EventPriority;
@@ -110,8 +110,8 @@ extends Mod {
             this.flushQueuedPackets();
         }
         catch (Exception exception) {
-            Vape.debugLog("ex1");
-            Vape.logThrowable(exception);
+            Vapor.debugLog("ex1");
+            Vapor.logThrowable(exception);
         }
     }
 
@@ -192,8 +192,8 @@ extends Mod {
             event.setCancelled(true);
         }
         catch (Exception exception) {
-            Vape.debugLog("ex2");
-            Vape.logThrowable(exception);
+            Vapor.debugLog("ex2");
+            Vapor.logThrowable(exception);
         }
     }
 

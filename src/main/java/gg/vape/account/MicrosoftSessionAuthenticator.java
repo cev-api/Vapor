@@ -4,7 +4,7 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonPrimitive;
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.account.MinecraftSessionWrapper;
 import gg.vape.account.MutableAccountCredentials;
 import gg.vape.account.PermissiveX509TrustManager;
@@ -140,7 +140,7 @@ public class MicrosoftSessionAuthenticator {
             HttpsURLConnection.setDefaultSSLSocketFactory(sslContext.getSocketFactory());
         }
         catch (Exception error) {
-            Vape.logThrowable(error);
+            Vapor.logThrowable(error);
         }
     }
 
@@ -181,7 +181,7 @@ public class MicrosoftSessionAuthenticator {
             throw new IllegalStateException("2-Factor Enabled unable to log in");
         }
         String redirectUrl = connection.getURL().toString();
-        Vape.debugLog("redirected URl: " + redirectUrl);
+        Vapor.debugLog("redirected URl: " + redirectUrl);
         String fragment = redirectUrl.split("#")[1];
         String[] parameters = fragment.split("&");
         String accessToken = null;

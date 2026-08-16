@@ -1,6 +1,6 @@
 package gg.vape.mapping;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.event.impl.EventEntityRendererMouseUpdate;
 import gg.vape.event.impl.EventMouseOverUpdate;
 import gg.vape.event.impl.EventPostEntityRendererMouseUpdate;
@@ -29,7 +29,7 @@ extends JavassistMappingTask {
     @Override
     public void transform() {
         if (ForgeVersion.MC_1_21_4.b().y()) {
-            EventInjectionSpec eventInjectionSpec = new EventInjectionSpec(Vape.INSTANCE.getMappings().RY.J, EventPreRenderTick.class);
+            EventInjectionSpec eventInjectionSpec = new EventInjectionSpec(Vapor.INSTANCE.getMappings().RY.J, EventPreRenderTick.class);
             eventInjectionSpec.setConstructorArguments("$1");
             eventInjectionSpec.setCancelableReturnGuard(false);
             eventInjectionSpec.setInsertBefore(true);
@@ -37,19 +37,19 @@ extends JavassistMappingTask {
             this.i();
         }
         if (ForgeVersion.MC_1_16_5.v()) {
-            this.c(Vape.INSTANCE.getMappings().RY.B, EventPreRenderHand.class, "");
-            this.k(Vape.INSTANCE.getMappings().RY.B, EventPostRenderHand.class, "");
+            this.c(Vapor.INSTANCE.getMappings().RY.B, EventPreRenderHand.class, "");
+            this.k(Vapor.INSTANCE.getMappings().RY.B, EventPostRenderHand.class, "");
         }
         if (ForgeVersion.MC_1_21_11.d()) {
-            this.c(Vape.INSTANCE.getMappings().RY.C, EventPreEntityRendererMouseUpdate.class, "");
-            this.k(Vape.INSTANCE.getMappings().RY.C, EventEntityRendererMouseUpdate.class, "$1");
-            this.k(Vape.INSTANCE.getMappings().RY.a, EventPostEntityRendererMouseUpdate.class, "");
+            this.c(Vapor.INSTANCE.getMappings().RY.C, EventPreEntityRendererMouseUpdate.class, "");
+            this.k(Vapor.INSTANCE.getMappings().RY.C, EventEntityRendererMouseUpdate.class, "$1");
+            this.k(Vapor.INSTANCE.getMappings().RY.a, EventPostEntityRendererMouseUpdate.class, "");
         } else {
-            this.c(Vape.INSTANCE.getMappings().RY.a, EventPreEntityRendererMouseUpdate.class, "");
-            this.k(Vape.INSTANCE.getMappings().RY.a, EventPostEntityRendererMouseUpdate.class, "");
+            this.c(Vapor.INSTANCE.getMappings().RY.a, EventPreEntityRendererMouseUpdate.class, "");
+            this.k(Vapor.INSTANCE.getMappings().RY.a, EventPostEntityRendererMouseUpdate.class, "");
         }
-        if (ForgeVersion.MC_26_1.v() && Vape.INSTANCE.getMappings().RY.k != null && !Vape.INSTANCE.getMappings().RY.k.hasResolutionFailed()) {
-            this.k(Vape.INSTANCE.getMappings().RY.k, EventMouseOverUpdate.class, "$1");
+        if (ForgeVersion.MC_26_1.v() && Vapor.INSTANCE.getMappings().RY.k != null && !Vapor.INSTANCE.getMappings().RY.k.hasResolutionFailed()) {
+            this.k(Vapor.INSTANCE.getMappings().RY.k, EventMouseOverUpdate.class, "$1");
         }
         this.J(this::lambda$create$0);
         if (ForgeVersion.MC_26_1.d()) {
@@ -65,7 +65,7 @@ extends JavassistMappingTask {
         }
         String string = ForgeVersion.MC_1_17.d() ? "(IIF)V" : (ForgeVersion.MC_1_16_5.d() ? "()V" : "(IF)V");
         AtomicBoolean atomicBoolean = new AtomicBoolean(false);
-        CtBehavior ctBehavior = this.F(Vape.INSTANCE.getMappings().RY.J);
+        CtBehavior ctBehavior = this.F(Vapor.INSTANCE.getMappings().RY.J);
         ctBehavior.instrument(new EventRender2DInjectionExprEditor(this, string, atomicBoolean));
     }
 
@@ -81,8 +81,8 @@ extends JavassistMappingTask {
 
     private void r() throws CannotCompileException {
         if (ForgeVersion.MC_1_16_5.v()) {
-            CtBehavior ctBehavior = this.F(Vape.INSTANCE.getMappings().RY.L);
-            MappingMethod mappingMethod = Vape.INSTANCE.getMappings().hi.A;
+            CtBehavior ctBehavior = this.F(Vapor.INSTANCE.getMappings().RY.L);
+            MappingMethod mappingMethod = Vapor.INSTANCE.getMappings().hi.A;
             AtomicBoolean atomicBoolean = new AtomicBoolean(false);
             ctBehavior.instrument(new EventFogDensityInjectionExprEditor(this, mappingMethod, atomicBoolean));
         }
@@ -93,7 +93,7 @@ extends JavassistMappingTask {
     }
 
     private void i() {
-        MappingMethod mappingMethod = Vape.INSTANCE.getMappings().RY.J;
+        MappingMethod mappingMethod = Vapor.INSTANCE.getMappings().RY.J;
         EventInjectionSpec eventInjectionSpec = new EventInjectionSpec(mappingMethod, EventPostRenderTick.class);
         eventInjectionSpec.setConstructorArguments("$1");
         eventInjectionSpec.setCancelableReturnGuard(false);
@@ -103,8 +103,8 @@ extends JavassistMappingTask {
 
     private void B$src$V$f0x8xm() throws CannotCompileException {
         EntityRendererEventMappingTask.p(EventRender2DStaticCallback.class);
-        MappingMethod mappingMethod = Vape.INSTANCE.getMappings().Ca.z;
-        MappingMethod mappingMethod2 = Vape.INSTANCE.getMappings().RY.J;
+        MappingMethod mappingMethod = Vapor.INSTANCE.getMappings().Ca.z;
+        MappingMethod mappingMethod2 = Vapor.INSTANCE.getMappings().RY.J;
         AtomicBoolean atomicBoolean = new AtomicBoolean(false);
         CtBehavior ctBehavior = this.F(mappingMethod2);
         ctBehavior.instrument(new EventRender2DStaticCallbackExprEditor(this, atomicBoolean, mappingMethod));

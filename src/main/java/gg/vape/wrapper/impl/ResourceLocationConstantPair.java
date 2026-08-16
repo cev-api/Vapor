@@ -1,6 +1,6 @@
 package gg.vape.wrapper.impl;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.ui.click.component.GuiComponent;
 import gg.vape.wrapper.impl.ResourceLocation;
 
@@ -12,7 +12,7 @@ public class ResourceLocationConstantPair {
     }
 
     public static ResourceLocation getItems() {
-        return new ResourceLocation(Vape.INSTANCE.getMappingsMapperCompat().resourceLocationConstants.getItems());
+        return new ResourceLocation(Vapor.INSTANCE.getMappingsMapperCompat().resourceLocationConstants.getItems());
     }
 
     public static GuiComponent[] getControlFlowState() {
@@ -20,7 +20,7 @@ public class ResourceLocationConstantPair {
     }
 
     public static ResourceLocation getGui() {
-        return new ResourceLocation(Vape.INSTANCE.getMappingsMapperCompat().resourceLocationConstants.getGui());
+        return new ResourceLocation(Vapor.INSTANCE.getMappingsMapperCompat().resourceLocationConstants.getGui());
     }
 
     static {

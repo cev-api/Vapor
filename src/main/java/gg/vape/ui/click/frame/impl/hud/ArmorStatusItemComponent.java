@@ -1,6 +1,6 @@
 package gg.vape.ui.click.frame.impl.hud;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.ui.click.component.GuiComponent;
 import gg.vape.ui.click.frame.impl.hud.ArmorStatusHudFrame;
 import gg.vape.ui.font.SmoothFontRenderer;
@@ -10,8 +10,6 @@ import gg.vape.utils.render.GuiRenderPrimitives;
 import gg.vape.utils.render.ImageRenderer;
 import gg.vape.utils.render.ItemIconRenderer;
 import gg.vape.utils.render.RenderUtils;
-import gg.vape.wrapper.impl.Container;
-import gg.vape.wrapper.impl.EntityPlayerSP;
 import gg.vape.wrapper.impl.ForgeVersion;
 import gg.vape.wrapper.impl.Item;
 import gg.vape.wrapper.impl.ItemStack;
@@ -36,16 +34,8 @@ extends GuiComponent {
     }
 
     public Slot getSlot() {
-        EntityPlayerSP player = Minecraft.thePlayer();
-        if (player.isNull()) {
-            return new Slot(null);
-        }
-        Container inventoryContainer =
-                player.F$src$Lgg_vape_wrapper_impl_Container_$152y6lm();
-        if (inventoryContainer.isNull()) {
-            return new Slot(null);
-        }
-        return inventoryContainer.getSlot(this.slotIndex);
+        return Minecraft.thePlayer().F$src$Lgg_vape_wrapper_impl_Container_$152y6lm()
+                .getSlot(this.slotIndex);
     }
 
     public void setLastVisibleEntry(boolean lastVisibleEntry) {
@@ -132,11 +122,7 @@ extends GuiComponent {
     }
 
     public ItemStack getEquippedItem() {
-        Slot slot = this.getSlot();
-        if (slot.isNull()) {
-            return new ItemStack(null);
-        }
-        return slot.getStack();
+        return this.getSlot().getStack();
     }
 
     @Override
@@ -145,7 +131,7 @@ extends GuiComponent {
     }
 
     private void renderDetailed(ItemStack itemStack) {
-        SmoothFontRenderer smoothFontRenderer = Vape.INSTANCE.getFontManager().W(0.85, true);
+        SmoothFontRenderer smoothFontRenderer = Vapor.INSTANCE.getFontManager().W(0.85, true);
         if (this.broken) {
             GuiRenderPrimitives.C((float)this.G$src$D$1b2f02a() - 2.0f, (float)this.n(), this.frame.A(), this.L(), this.frame.applyDefaultEditorAlpha(new Color(250, 50, 57, 120)));
             ImageRenderer.drawRes(this.frame.applyDefaultEditorAlpha(ArmorStatusItemComponent.J.d), (float)this.G$src$D$1b2f02a() + 2.0f, (float)this.n() + 3.0f, "armor", 0.45f);
@@ -217,7 +203,7 @@ extends GuiComponent {
                 this.renderDetailed(itemStack);
             }
             catch (Exception exception) {
-                Vape.logThrowable(exception);
+                Vapor.logThrowable(exception);
             }
         }
     }

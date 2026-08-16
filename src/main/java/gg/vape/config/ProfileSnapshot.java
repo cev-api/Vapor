@@ -3,13 +3,12 @@ package gg.vape.config;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.api.ApiHttpClient;
 import gg.vape.config.ConfigJsonUtils;
 import gg.vape.config.Profile;
 import gg.vape.config.ProfileModuleSnapshot;
 import gg.vape.config.ProfileModuleSnapshotOrderComparator;
-import gg.vape.config.PublicProfile;
 import gg.vape.module.Category;
 import gg.vape.module.Mod;
 import gg.vape.module.SubModule;
@@ -94,48 +93,16 @@ public class ProfileSnapshot {
                 moduleJsonByName.put(moduleName, moduleJson);
             }
         }
-        for (Mod module : Vape.INSTANCE.getModManager().getTopLevelModules()) {
+        for (Mod module : Vapor.INSTANCE.getModManager().getTopLevelModules()) {
             this.moduleSnapshots.add(new ProfileModuleSnapshot(this, module, moduleJsonByName.get(module.getName())));
         }
         this.moduleSnapshots.sort(new NameComparator());
         this.guiBuilder = new ProfileSnapshotGuiBuilder(this);
     }
 
-    public static ProfileSnapshot createEditableCopy(PublicProfile publicProfile, Profile sourceProfile) {
-        Profile editableProfile = new Profile(publicProfile.getName(), sourceProfile.getClientVersion());
-        editableProfile.loadJson(sourceProfile.toJson(true));
-        editableProfile.setPublishedData(sourceProfile.getPublishedData());
-        editableProfile.setName(publicProfile.getName());
-        return new ProfileSnapshot(editableProfile, sourceProfile.getData().getAsJsonArray("modules"));
-    }
-
     public List<ProfileModuleSnapshot> getAllModules() {
         return this.moduleSnapshots;
     }
 
-    public static ProfileSnapshot resolvePublicProfileSnapshot(PublicProfile publicProfile) {
-        Object serializedModules = publicProfile.getData() != null
-            ? publicProfile.getData().getOrDefault("modules", null)
-            : null;
-        assert publicProfile.getShareInfo() != null;
-        Profile localProfile = publicProfile.getShareInfo().getDerivedFrom() != null
-            ? Vape.INSTANCE.getProfilesManager().getProfileByOnlineId(publicProfile.getShareInfo().getDerivedFrom())
-            : null;
-        if (localProfile != null) {
-            if (localProfile.equals(Vape.INSTANCE.getProfilesManager().getActiveProfile())) {
-                localProfile.captureCurrentState();
-            }
-            return localProfile.createSnapshot(true);
-        }
-        Profile detachedProfile = new Profile(publicProfile.getName(), "4.21");
-        JsonArray modulesJson = ApiHttpClient.GSON.fromJson(serializedModules != null ? ApiHttpClient.GSON.toJson(serializedModules) : "[]", JsonArray.class);
-        JsonObject profileData = new JsonObject();
-        JsonObject data = new JsonObject();
-        data.add("modules", modulesJson);
-        profileData.add("data", data);
-        detachedProfile.loadJson(profileData);
-        detachedProfile.setName(publicProfile.getName());
-        return new ProfileSnapshot(detachedProfile, modulesJson);
-    }
 }
 

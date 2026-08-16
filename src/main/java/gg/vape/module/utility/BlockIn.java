@@ -1,6 +1,6 @@
 package gg.vape.module.utility;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.config.ClientSettings;
 import gg.vape.event.EventHandler;
 import gg.vape.event.impl.EventKeyPress;
@@ -228,7 +228,7 @@ extends Mod {
             BlockData enclosureBlock = firstNode.baseBlock;
             if (!ClutchPlacementPathUtils.isPlacementSpaceClear(world, localPlayer, enclosureBlock)) {
                 this.reset();
-                Vape.INSTANCE.getNotificationManager().show("Block-In Disabled", "Entity in the way!", NotificationType.WARNING, 2000L);
+                Vapor.INSTANCE.getNotificationManager().show("Block-In Disabled", "Entity in the way!", NotificationType.WARNING, 2000L);
                 return;
             }
             localPlayer.V$src$Lgg_vape_wrapper_impl_InventoryPlayer_$erqak6().g(this.blockSlot);
@@ -376,15 +376,15 @@ extends Mod {
             } else {
                 this.reset();
                 if (failedPlacements > 0) {
-                    Vape.INSTANCE.getNotificationManager().show("Block-In Disabled", "Failed to place " + failedPlacements + " block(s)!", NotificationType.WARNING, 2000L);
+                    Vapor.INSTANCE.getNotificationManager().show("Block-In Disabled", "Failed to place " + failedPlacements + " block(s)!", NotificationType.WARNING, 2000L);
                 } else if (nodesWithoutPaths > 0) {
-                    Vape.INSTANCE.getNotificationManager().show("Block-In Disabled", "No valid path found!", NotificationType.WARNING, 2000L);
+                    Vapor.INSTANCE.getNotificationManager().show("Block-In Disabled", "No valid path found!", NotificationType.WARNING, 2000L);
                 }
             }
         } else {
             boolean hasPlacementNodes = !this.placementNodes.isEmpty();
             String message = this.blockSlot == -1 ? (hasPlacementNodes ? "Ran out of blocks!" : "No blocks in hotbar!") : "Could not block in!";
-            Vape.INSTANCE.getNotificationManager().show("Block-In Disabled", message, NotificationType.WARNING, 2000L);
+            Vapor.INSTANCE.getNotificationManager().show("Block-In Disabled", message, NotificationType.WARNING, 2000L);
             this.reset();
         }
     }

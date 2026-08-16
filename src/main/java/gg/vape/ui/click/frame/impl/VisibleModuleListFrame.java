@@ -1,6 +1,6 @@
 package gg.vape.ui.click.frame.impl;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.module.Category;
 import gg.vape.module.Mod;
 import gg.vape.ui.click.component.GuiComponent;
@@ -34,9 +34,14 @@ extends ModuleCategoryFrame {
     }
 
     public static void e() {
+        // The Fabric/Vulkan menu does not construct the legacy Favorites frame.
+        // Profile changes must remain usable before that optional UI exists.
+        if (U2 == null) {
+            return;
+        }
         U2.removeMarkedChildren();
         try {
-            CopyOnWriteArrayList<Mod> copyOnWriteArrayList = new CopyOnWriteArrayList<Mod>(Vape.INSTANCE.getModuleProfileMetadataCodec().getSelectedModules());
+            CopyOnWriteArrayList<Mod> copyOnWriteArrayList = new CopyOnWriteArrayList<Mod>(Vapor.INSTANCE.getModuleProfileMetadataCodec().getSelectedModules());
             for (Mod mod : copyOnWriteArrayList) {
                 ModuleComponent moduleComponent = new ModuleComponent(U2, mod);
                 U2.h(moduleComponent, new Object[0]);
@@ -44,7 +49,7 @@ extends ModuleCategoryFrame {
             }
         }
         catch (Exception exception) {
-            Vape.logThrowable(exception);
+            Vapor.logThrowable(exception);
         }
     }
 

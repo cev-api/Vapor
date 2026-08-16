@@ -1,6 +1,6 @@
 package gg.vape.mapping.mappings;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.mapping.MappedClasses;
 import gg.vape.mapping.Mapping;
 import gg.vape.mapping.MappingField;
@@ -463,7 +463,7 @@ extends Mapping {
         String string12 = "keyBindSneak";
         MGameSettings mGameSettings12 = this;
         this.P = this.J(string12, bl14, clazz12);
-        if (ForgeVersion.MC_1_7_10.L() && !Vape.INSTANCE.isVanillaMinecraftPresent()) {
+        if (ForgeVersion.MC_1_7_10.L() && !Vapor.INSTANCE.isVanillaMinecraftPresent()) {
             Class clazz13 = MappedClasses.DR;
             boolean bl15 = Wrapper.isNativeAvailable;
             String string13 = "field_152395_am";

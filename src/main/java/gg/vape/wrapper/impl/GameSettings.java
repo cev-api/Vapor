@@ -1,6 +1,6 @@
 package gg.vape.wrapper.impl;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.mapping.mappings.MGameSettings;
 import gg.vape.wrapper.Wrapper;
 
@@ -81,7 +81,7 @@ extends Wrapper {
     }
 
     public KeyBinding F() {
-        return new KeyBinding(MGameSettings.f(Vape.INSTANCE.getMappings().RM, this.getObject()));
+        return new KeyBinding(MGameSettings.f(Vapor.INSTANCE.getMappings().RM, this.getObject()));
     }
 
     public KeyBinding g$src$Lgg_vape_wrapper_impl_KeyBinding_$qqn5n3() {
@@ -136,7 +136,7 @@ extends Wrapper {
     }
 
     public KeyBinding b$src$Lgg_vape_wrapper_impl_KeyBinding_$1yi3362() {
-        return new KeyBinding(MGameSettings.U(Vape.INSTANCE.getMappings().RM, this.getObject()));
+        return new KeyBinding(MGameSettings.U(Vapor.INSTANCE.getMappings().RM, this.getObject()));
     }
 
     public KeyBinding j() {

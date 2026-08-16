@@ -1,6 +1,6 @@
 package gg.vape.utils.render;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.utils.SleepUtil;
 import gg.vape.utils.render.RemoteImageTextureCache;
 import gg.vape.utils.render.RemoteImageTextureManager;
@@ -11,7 +11,7 @@ extends Thread {
 
     @Override
     public void run() {
-        while (!Vape.INSTANCE.isEnabled()) {
+        while (!Vapor.INSTANCE.isEnabled()) {
             SleepUtil.sleep(50L);
             for (Integer imageSize : RemoteImageTextureManager.getCaches(this.manager).keySet()) {
                 ((RemoteImageTextureCache)RemoteImageTextureManager.getCaches(this.manager).get(imageSize)).processPendingDownloads();

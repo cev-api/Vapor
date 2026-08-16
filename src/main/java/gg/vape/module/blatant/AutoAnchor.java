@@ -1,6 +1,6 @@
 package gg.vape.module.blatant;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.event.EventHandler;
 import gg.vape.event.impl.EventPreTick;
 import gg.vape.event.impl.EventRightClickMouse;
@@ -284,7 +284,7 @@ extends Mod {
     }
 
     private void notifyMissingItem(String itemName) {
-        Vape.INSTANCE.getNotificationManager().show("AutoAnchor", itemName + " not in hotbar", NotificationType.WARNING, 3000L);
+        Vapor.INSTANCE.getNotificationManager().show("AutoAnchor", itemName + " not in hotbar", NotificationType.WARNING, 3000L);
     }
 
     private boolean isAnchorFullyVisible(Vec3 viewOrigin, BlockData obstruction) {

@@ -3,13 +3,12 @@ package gg.vape.manager.client;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.config.BuiltinProfile;
 import gg.vape.config.BuiltinProfileState;
 import gg.vape.config.Minecraft121BuiltinProfile;
 import gg.vape.config.Profile;
 import gg.vape.config.ProfilesSyncPayloadBuilder;
-import gg.vape.config.PublicProfile;
 import gg.vape.event.EventBus;
 import gg.vape.event.impl.ProfileChangeEvent;
 import gg.vape.event.impl.ProfileListMutationAction;
@@ -25,7 +24,6 @@ import gg.vape.ui.click.frame.impl.ClientSettingsFrame;
 import gg.vape.ui.click.frame.impl.profile.ProfilesSettingsFrame;
 import gg.vape.value.Value;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
@@ -40,7 +38,7 @@ public class ProfilesManager {
     private final Set<UUID> deletedRemoteProfileIds = new LinkedHashSet<UUID>();
 
     public void resetAllSettings() {
-        for (Mod object : Vape.INSTANCE.getModManager().getAllModules()) {
+        for (Mod object : Vapor.INSTANCE.getModManager().getAllModules()) {
             if (object.getCategory() == Category.NONE && !(object instanceof Search) || object.isEnabled()) {
                 // empty if block
             }
@@ -56,7 +54,7 @@ public class ProfilesManager {
             }
         }
         ClientSettings.refreshModuleCategoryHeaders();
-        for (Value value : Vape.INSTANCE.getValueManager().getValues()) {
+        for (Value value : Vapor.INSTANCE.getValueManager().getValues()) {
             if (value.getDefaultValue() == null) continue;
             value.reset();
         }
@@ -74,22 +72,14 @@ public class ProfilesManager {
         return this.profiles;
     }
 
-    public Profile getProfileByOnlineId(UUID onlineId) {
-        for (Profile profile : this.profiles) {
-            if (profile.getOnlineId() == null || !profile.getOnlineId().toString().equalsIgnoreCase(onlineId.toString())) continue;
-            return profile;
-        }
-        return null;
-    }
-
     public void removeProfile(Profile profile) {
         this.profiles.remove(profile);
-        ClientSettings.getFrame(ProfilesSettingsFrame.class).removeProfile(profile);
-        Vape.INSTANCE.saveAndStop();
-        new ProfileListMutationEvent(profile, ProfileListMutationAction.REMOVE).fire();
-        if (profile.getOnlineId() != null) {
-            this.deletedRemoteProfileIds.add(profile.getOnlineId());
+        ProfilesSettingsFrame profilesFrame = ClientSettings.getFrame(ProfilesSettingsFrame.class);
+        if (profilesFrame != null) {
+            profilesFrame.removeProfile(profile);
         }
+        Vapor.INSTANCE.saveAndStop();
+        new ProfileListMutationEvent(profile, ProfileListMutationAction.REMOVE).fire();
     }
 
     public void addProfile(Profile profile, boolean prepend) {
@@ -101,9 +91,12 @@ public class ProfilesManager {
         } else {
             this.profiles.add(profile);
         }
-        ClientSettings.getFrame(ProfilesSettingsFrame.class).addProfile(profile);
-        ProfilesSettingsFrame.refreshProfileList();
-        Vape.INSTANCE.saveAndStop();
+        ProfilesSettingsFrame profilesFrame = ClientSettings.getFrame(ProfilesSettingsFrame.class);
+        if (profilesFrame != null) {
+            profilesFrame.addProfile(profile);
+            ProfilesSettingsFrame.refreshProfileList();
+        }
+        Vapor.INSTANCE.saveAndStop();
         new ProfileListMutationEvent(profile, ProfileListMutationAction.ADD).fire();
     }
 
@@ -206,18 +199,6 @@ public class ProfilesManager {
         this.addProfile(profile, false);
     }
 
-    public void updatePublicProfileLinks() {
-        Collection<PublicProfile> collection = Vape.INSTANCE.getPublicProfileManager().getProfilesById().values();
-        for (Profile profile : this.profiles) {
-            profile.setPublicProfile(null);
-            for (PublicProfile publicProfile : collection) {
-                UUID uUID;
-                if (publicProfile.getShareInfo() == null || (uUID = publicProfile.getShareInfo().getDerivedFrom()) == null || profile.getOnlineId() == null || !profile.getOnlineId().toString().equalsIgnoreCase(uUID.toString())) continue;
-                profile.setPublicProfile(publicProfile);
-            }
-        }
-    }
-
     public void setActiveProfile(Profile profile) {
         if (this.activeProfile != null && this.activeProfile.equals(profile)) {
             return;
@@ -226,7 +207,7 @@ public class ProfilesManager {
         this.resetAllSettings();
         this.activeProfile = profile;
         this.activeProfile.apply();
-        Vape.INSTANCE.saveAndStop();
+        Vapor.INSTANCE.saveAndStop();
         EventBus.getInstance().post(new ProfileChangeEvent(previousProfile, profile));
     }
 
@@ -248,15 +229,6 @@ public class ProfilesManager {
         }
     }
 
-    public List<Profile> getRemoteProfiles() {
-        ArrayList<Profile> remoteProfiles = new ArrayList<Profile>();
-        for (Profile profile : this.profiles) {
-            if (profile.getRemoteMetadata() == null) continue;
-            remoteProfiles.add(profile);
-        }
-        return remoteProfiles;
-    }
-
     public Profile getActiveProfile() {
         boolean activeProfileInvalid = this.activeProfile == null || !this.getProfiles().contains(this.activeProfile) && !this.activeProfile.isDraft();
         if (activeProfileInvalid) {
@@ -268,19 +240,6 @@ public class ProfilesManager {
             }
         }
         return this.activeProfile;
-    }
-
-    @Nullable
-    public Profile getProfileByPublicProfileId(long publicProfileId) {
-        for (Profile profile : this.profiles) {
-            if (profile.getRemoteMetadata() == null) continue;
-            if (!assertionsDisabled && profile.getRemoteMetadata() == null) {
-                throw new AssertionError();
-            }
-            if (profile.getRemoteMetadata().getPublicProfileId() != publicProfileId) continue;
-            return profile;
-        }
-        return null;
     }
 
     public void sortProfiles() {

@@ -1,6 +1,6 @@
 package gg.vape.ui.click.component.value;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.ui.click.GuiMouseListener;
 import gg.vape.ui.click.MouseClickButton;
 import gg.vape.ui.click.component.value.SearchBlockEditorComponent;
@@ -21,6 +21,6 @@ implements GuiMouseListener {
     @Override
     public void g(Point point, MouseClickButton mouseClickButton) {
         this.searchBlock.H(SearchBlockEditorComponent.getTracersValueCompat(this.editor).getEffectiveValue());
-        Vape.debugLog(DEBUG_MESSAGE);
+        Vapor.debugLog(DEBUG_MESSAGE);
     }
 }

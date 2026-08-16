@@ -789,7 +789,6 @@ frame.favorites=Favorites
 frame.profiles=Profiles
 frame.macros=Macros
 frame.friends=Friends
-frame.rearview=Rearview
 frame.text_gui=Text GUI
 frame.duel_info=Duel Info
 frame.radar=Radar

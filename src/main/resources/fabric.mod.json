@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "id": "vapor421",
+  "version": "${version}",
+  "name": "Vapor 4.21 by CevAPI",
+  "description": "A Vape style Fabric 26.2 mod without a native DLL, injector executable or Java payload.",
+  "license": "CC0-1.0",
+  "environment": "client",
+  "entrypoints": {
+    "client": [
+      "gg.vape.fabric.VaporFabricClient"
+    ]
+  },
+  "mixins": [
+    "vapor421.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.19.3",
+    "minecraft": "=26.2",
+    "fabric-api": ">=0.156.0+26.2",
+    "java": ">=25"
+  },
+  "icon": "assets/vapor421/icon.png"
+}

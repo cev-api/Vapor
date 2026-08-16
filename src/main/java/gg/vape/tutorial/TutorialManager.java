@@ -1,6 +1,6 @@
 package gg.vape.tutorial;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.module.none.ClientSettings;
 import gg.vape.tutorial.TutorialFinishedPanel;
 import gg.vape.tutorial.TutorialFrame;
@@ -102,7 +102,7 @@ public class TutorialManager {
 
     public void completeCurrentPage() {
         if (this.getNextPage() == null) {
-            Vape.debugLog(allCompleteMessage);
+            Vapor.debugLog(allCompleteMessage);
             this.setState(TutorialState.COMPLETED_ALL);
         } else {
             this.setState(TutorialState.COMPLETED_TUTORIAL);

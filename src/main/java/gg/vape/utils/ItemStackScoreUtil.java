@@ -1,6 +1,6 @@
 package gg.vape.utils;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.mapping.ItemMappingEntry;
 import gg.vape.mapping.MappedClasses;
 import gg.vape.wrapper.Wrapper;
@@ -124,7 +124,7 @@ public class ItemStackScoreUtil {
         StatusEffect statusEffect = PotionRegistry.z.getStatusEffect();
         StatusEffect statusEffect2 = PotionRegistry.i.getStatusEffect();
         if (ForgeVersion.MC_1_20_6.d() && (statusEffect == null || statusEffect2 == null)) {
-            Vape.debugLog("WTF?");
+            Vapor.debugLog("WTF?");
             return false;
         }
         boolean bl2 = ForgeVersion.MC_1_20_6.d() && statusEffect != null && statusEffect2 != null;
@@ -331,8 +331,8 @@ public class ItemStackScoreUtil {
 
     private static int lambda$populateItems$0(ItemStack itemStack, ItemStack itemStack2) {
         int n;
-        ItemMappingEntry itemMappingEntry = Vape.INSTANCE.getItemStackResolver().resolve(itemStack);
-        ItemMappingEntry itemMappingEntry2 = Vape.INSTANCE.getItemStackResolver().resolve(itemStack2);
+        ItemMappingEntry itemMappingEntry = Vapor.INSTANCE.getItemStackResolver().resolve(itemStack);
+        ItemMappingEntry itemMappingEntry2 = Vapor.INSTANCE.getItemStackResolver().resolve(itemStack2);
         int n2 = itemMappingEntry != null && itemMappingEntry.getLegacyId() != null ? itemMappingEntry.getLegacyId().intValue() : itemStack.getItem().P();
         int n3 = n = itemMappingEntry2 != null && itemMappingEntry2.getLegacyId() != null ? itemMappingEntry2.getLegacyId().intValue() : itemStack2.getItem().P();
         if (n2 == n) {

@@ -1,6 +1,6 @@
 package gg.vape.mapping;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.event.impl.EventKeyBindingState;
 import gg.vape.mapping.JavassistMappingTask;
 import gg.vape.mapping.MappedClasses;
@@ -17,7 +17,7 @@ extends JavassistMappingTask {
     @Override
     public void transform() {
         if (ForgeVersion.MC_1_16_5.d()) {
-            this.O(Vape.INSTANCE.getMappings().hJ.s, EventKeyBindingState.class, c, "");
+            this.O(Vapor.INSTANCE.getMappings().hJ.s, EventKeyBindingState.class, c, "");
             return;
         }
     }

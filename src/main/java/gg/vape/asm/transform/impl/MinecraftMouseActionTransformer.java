@@ -1,6 +1,6 @@
 package gg.vape.asm.transform.impl;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.asm.ITramsformNode;
 import gg.vape.asm.helper.DescUtils;
 import gg.vape.asm.helper.TypedIndexedLocal;
@@ -21,17 +21,17 @@ extends ClassTransformer {
     @Override
     public void transform() {
         if (ForgeVersion.MC_1_20_6.v()) {
-            this.injectEventAtEntry(Vape.INSTANCE.getMappings().U.q, EventClickMouse.class, new ITramsformNode[0]);
+            this.injectEventAtEntry(Vapor.INSTANCE.getMappings().U.q, EventClickMouse.class, new ITramsformNode[0]);
         }
         if (ForgeVersion.MC_26_2.v()) {
             this.injectEventAtEntry(
-                    Vape.INSTANCE.getMappings().U.OS,
+                    Vapor.INSTANCE.getMappings().U.OS,
                     EventGuiOpen.class,
                     new TypedIndexedLocal(1, DescUtils.getDescriptor(MappedClasses.VW))
                             .setDescriptorClass(Object.class));
         }
-        this.injectEventAtEntry(Vape.INSTANCE.getMappings().U.g, EventRightClickMouse.class, new ITramsformNode[0]);
-        this.injectEventAtEntry(Vape.INSTANCE.getMappings().U.Of, EventSendClickBlockToController.class, new ITramsformNode[0]);
+        this.injectEventAtEntry(Vapor.INSTANCE.getMappings().U.g, EventRightClickMouse.class, new ITramsformNode[0]);
+        this.injectEventAtEntry(Vapor.INSTANCE.getMappings().U.Of, EventSendClickBlockToController.class, new ITramsformNode[0]);
     }
 
 }

@@ -1,6 +1,6 @@
 package gg.vape.mapping;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.event.impl.EventVisGraphComputeVisibility;
 import gg.vape.event.impl.EventVisGraphSetOpaqueCube;
 import gg.vape.mapping.EventInjectionSpec;
@@ -14,11 +14,11 @@ extends JavassistMappingTask {
 
     @Override
     public void transform() {
-        MappingMethod computeVisibilityMethod = Vape.INSTANCE.getMappings().visGraph.computeVisibilityMethod;
+        MappingMethod computeVisibilityMethod = Vapor.INSTANCE.getMappings().visGraph.computeVisibilityMethod;
         EventInjectionSpec computeVisibilityInjection = new EventInjectionSpec(computeVisibilityMethod, EventVisGraphComputeVisibility.class);
         computeVisibilityInjection.setReturnExpression(VISIBILITY_RETURN_EXPRESSION);
         this.registerEventInjection(computeVisibilityInjection);
-        MappingMethod setOpaqueCubeMethod = Vape.INSTANCE.getMappings().visGraph.setOpaqueCubeMethod;
+        MappingMethod setOpaqueCubeMethod = Vapor.INSTANCE.getMappings().visGraph.setOpaqueCubeMethod;
         EventInjectionSpec setOpaqueCubeInjection = new EventInjectionSpec(setOpaqueCubeMethod, EventVisGraphSetOpaqueCube.class);
         setOpaqueCubeInjection.setInsertBefore(true);
         this.registerEventInjection(setOpaqueCubeInjection);

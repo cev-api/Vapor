@@ -5,7 +5,6 @@ import gg.vape.module.Category;
 import gg.vape.ui.click.component.GuiComponent;
 import gg.vape.ui.click.component.PanelComponent;
 import gg.vape.ui.click.frame.OutlinedFrameBase;
-import gg.vape.ui.click.frame.impl.main.ClickGuiFriendsPage;
 import gg.vape.ui.click.frame.impl.main.ClickGuiMainFrameHeader;
 import gg.vape.ui.click.frame.impl.main.ClickGuiMainFrameTransitionComponent;
 import gg.vape.ui.click.frame.impl.main.ClickGuiModulesPage;
@@ -373,10 +372,6 @@ extends OutlinedFrameBase {
         switch (clickGuiSection) {
             case MODULES: {
                 clickGuiPageBase = new ClickGuiModulesPage(this, this.contentPanel.A(), this.contentPanel.L(), 104.0);
-                break;
-            }
-            case FRIENDS: {
-                clickGuiPageBase = new ClickGuiFriendsPage(this, this.contentPanel.A(), this.contentPanel.L(), 104.0);
                 break;
             }
             case PROFILES: {

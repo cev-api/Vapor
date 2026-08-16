@@ -1,6 +1,6 @@
 package gg.vape.module.utility.inventory.cleaner;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.mapping.ItemMappingEntry;
 import gg.vape.module.utility.inventory.cleaner.AbstractInventoryItemMatcher;
 import gg.vape.module.utility.inventory.cleaner.InventoryItemMatcherBuilderBase;
@@ -19,7 +19,7 @@ extends AbstractInventoryItemMatcher {
         if (this.matchOperators.isEmpty()) {
             return false;
         }
-        ItemMappingEntry mappingEntry = Vape.INSTANCE.getItemStackResolver().resolve(itemStack);
+        ItemMappingEntry mappingEntry = Vapor.INSTANCE.getItemStackResolver().resolve(itemStack);
         if (mappingEntry == null) {
             return false;
         }

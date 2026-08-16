@@ -1,6 +1,6 @@
 package gg.vape.module.blatant.blockin;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.config.ClientSettings;
 import gg.vape.mapping.MappedClasses;
 import gg.vape.module.blatant.blockin.AbstractBlockInMovementController;
@@ -202,7 +202,7 @@ public class BlockPathPlanner {
     }
 
     public void adjustMovementForRotation() {
-        ModeSelection modeSelection = (ModeSelection)Vape.INSTANCE.getClientSettings().movementCorrection.getValue();
+        ModeSelection modeSelection = (ModeSelection)Vapor.INSTANCE.getClientSettings().movementCorrection.getValue();
         if (modeSelection.equals(ClientSettings.NO_MOVEMENT_CORRECTION)) {
             return;
         }

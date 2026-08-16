@@ -1,6 +1,6 @@
 package gg.vape.tutorial;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.tutorial.TutorialNextPromptPanel;
 import gg.vape.ui.click.component.GuiClickListener;
 
@@ -10,7 +10,7 @@ implements GuiClickListener {
 
     @Override
     public void onPrimaryClick() {
-        Vape.INSTANCE.getTutorialManager().startNextPage();
+        Vapor.INSTANCE.getTutorialManager().startNextPage();
     }
 
     public TutorialNextPromptStartNextClickHandler(TutorialNextPromptPanel tutorialNextPromptPanel) {

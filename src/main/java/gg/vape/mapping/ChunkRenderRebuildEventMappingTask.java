@@ -1,6 +1,6 @@
 package gg.vape.mapping;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.event.impl.EventChunkRenderRebuild;
 import gg.vape.mapping.EventInjectionSpec;
 import gg.vape.mapping.JavassistMappingTask;
@@ -13,7 +13,7 @@ extends JavassistMappingTask {
 
     @Override
     public void transform() {
-        MappingMethod mappingMethod = Vape.INSTANCE.getMappings().qg.w;
+        MappingMethod mappingMethod = Vapor.INSTANCE.getMappings().qg.w;
         EventInjectionSpec eventInjectionSpec = new EventInjectionSpec(mappingMethod, EventChunkRenderRebuild.class);
         eventInjectionSpec.setReturnExpression(c);
         this.registerEventInjection(eventInjectionSpec);

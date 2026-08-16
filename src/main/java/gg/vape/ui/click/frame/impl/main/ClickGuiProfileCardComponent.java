@@ -1,7 +1,7 @@
 package gg.vape.ui.click.frame.impl.main;
 
 import func.skidline.RectData;
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.config.Profile;
 import gg.vape.ui.click.GuiMouseEvent;
 import gg.vape.ui.click.MouseButton;
@@ -66,7 +66,7 @@ extends InteractiveComponent {
                 return;
             }
             if (this.profile != null) {
-                Vape.INSTANCE.getProfilesManager().switchProfile(this.profile);
+                Vapor.INSTANCE.getProfilesManager().switchProfile(this.profile);
                 this.getClickCooldown().setActive(true);
             }
         }

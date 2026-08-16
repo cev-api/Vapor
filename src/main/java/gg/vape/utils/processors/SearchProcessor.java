@@ -1,6 +1,6 @@
 package gg.vape.utils.processors;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.ui.unmap.SearchBlock;
 import gg.vape.utils.RotationUtil;
 import gg.vape.utils.datas.SearchResultData;
@@ -141,7 +141,7 @@ implements Runnable {
                 }
             }
             catch (Exception exception) {
-                Vape.logThrowable(exception);
+                Vapor.logThrowable(exception);
             }
         }
     }

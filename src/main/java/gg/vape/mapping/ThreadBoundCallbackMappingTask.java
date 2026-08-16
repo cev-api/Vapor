@@ -1,6 +1,6 @@
 package gg.vape.mapping;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.mapping.JavassistMappingTask;
 import gg.vape.mapping.MappedClasses;
 import gg.vape.mapping.MappingMethod;
@@ -14,13 +14,13 @@ extends JavassistMappingTask {
 
     @Override
     public void transform() {
-        MappingMethod mappingMethod = Vape.INSTANCE.getMappings().glCommandEncoder.drawFromBuffersMethod;
+        MappingMethod mappingMethod = Vapor.INSTANCE.getMappings().glCommandEncoder.drawFromBuffersMethod;
         CtBehavior ctBehavior = this.F(mappingMethod);
         try {
             ctBehavior.insertBefore("{" + RenderBatchFlushCallbackMarker.class.getName() + c);
         }
         catch (CannotCompileException cannotCompileException) {
-            Vape.logThrowable(cannotCompileException);
+            Vapor.logThrowable(cannotCompileException);
         }
     }
 

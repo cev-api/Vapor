@@ -1,6 +1,6 @@
 package gg.vape.mapping;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.event.impl.EventMotion;
 import gg.vape.event.impl.EventPostMotion;
 import gg.vape.event.impl.EventPreMotion;
@@ -49,20 +49,20 @@ extends JavassistMappingTask {
 
     private void s() throws CannotCompileException, NotFoundException {
         String string;
-        this.J = Vape.INSTANCE.getMappings().q_.M;
-        this.q = Vape.INSTANCE.getMappings().RQ.n.getResolvedName();
-        this.M = Vape.INSTANCE.getMappings().RQ.n.getDescriptor();
-        String string2 = ForgeVersion.MC_1_16_5.d() ? Vape.INSTANCE.getMappings().Rr.jz.getResolvedName() : null;
-        this.y = Vape.INSTANCE.getMappings().Rr.jv.getResolvedName();
-        this.u = Vape.INSTANCE.getMappings().Rr.jT.getResolvedName();
-        this.b = Vape.INSTANCE.getMappings().Rr.U.getResolvedName();
+        this.J = Vapor.INSTANCE.getMappings().q_.M;
+        this.q = Vapor.INSTANCE.getMappings().RQ.n.getResolvedName();
+        this.M = Vapor.INSTANCE.getMappings().RQ.n.getDescriptor();
+        String string2 = ForgeVersion.MC_1_16_5.d() ? Vapor.INSTANCE.getMappings().Rr.jz.getResolvedName() : null;
+        this.y = Vapor.INSTANCE.getMappings().Rr.jv.getResolvedName();
+        this.u = Vapor.INSTANCE.getMappings().Rr.jT.getResolvedName();
+        this.b = Vapor.INSTANCE.getMappings().Rr.U.getResolvedName();
         this.p = this.i(MappedClasses.uk);
         String string3 = EventMotion.class.getName();
         CtBehavior ctBehavior = this.F(this.J);
         this.c(this.J, EventPreMotion.class, "$0");
         this.k(this.J, EventPostMotion.class, "$0");
-        boolean bl = Vape.INSTANCE.isForgeAbsent();
-        if (bl && NativeBridge.gc(string = "aaa") == null || ForgeVersion.MC_1_7_10.L() && Vape.INSTANCE.isVanillaMinecraftPresent()) {
+        boolean bl = Vapor.INSTANCE.isForgeAbsent();
+        if (bl && NativeBridge.gc(string = "aaa") == null || ForgeVersion.MC_1_7_10.L() && Vapor.INSTANCE.isVanillaMinecraftPresent()) {
             bl = false;
         }
         boolean bl2 = bl;

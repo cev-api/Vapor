@@ -1,6 +1,6 @@
 package gg.vape.mapping.mappings;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.mapping.MappedClasses;
 import gg.vape.mapping.Mapping;
 import gg.vape.mapping.MappingField;
@@ -25,7 +25,7 @@ extends Mapping {
 
     private MSPacketEntityVelocity(int[] controlFlowState) {
         super(MappedClasses.YX);
-        if (Vape.INSTANCE.isVanillaMinecraftPresent()
+        if (Vapor.INSTANCE.isVanillaMinecraftPresent()
                 && ForgeVersion.MC_1_7_10.Y()
                 && ForgeVersion.MC_1_21_10.v()) {
             this.entityIdField = this.J("entityID", true, Integer.TYPE);

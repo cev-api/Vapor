@@ -1,6 +1,6 @@
 package gg.vape.ui.click.frame.impl.profile;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.config.Profile;
 import gg.vape.config.ProfileModuleSnapshot;
 import gg.vape.config.ProfileSnapshot;
@@ -70,9 +70,9 @@ extends Frame {
 
     private void applyChanges() {
         this.snapshot.applyToProfile();
-        Profile profile = Vape.INSTANCE.getProfilesManager().getActiveProfileOrNull();
+        Profile profile = Vapor.INSTANCE.getProfilesManager().getActiveProfileOrNull();
         if (this.snapshot.getProfile() != null && this.snapshot.getProfile().equals(profile)) {
-            Vape.INSTANCE.getProfilesManager().setActiveProfile(this.snapshot.getProfile());
+            Vapor.INSTANCE.getProfilesManager().setActiveProfile(this.snapshot.getProfile());
         }
     }
 

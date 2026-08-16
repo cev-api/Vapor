@@ -1,6 +1,6 @@
 package gg.vape.module.control;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.module.Mod;
 import gg.vape.module.blatant.AutoLadder;
 import gg.vape.module.blatant.Clutch;
@@ -66,7 +66,7 @@ public class FallRescuePriorityManager {
     }
 
     private boolean isCoveredBy(Class<? extends Mod> moduleClass, EntityPlayerSP player) {
-        Mod module = Vape.INSTANCE.getModManager().getMod(moduleClass);
+        Mod module = Vapor.INSTANCE.getModManager().getMod(moduleClass);
         if (module == null || !module.isEnabled()) {
             return false;
         }

@@ -1,13 +1,12 @@
 package gg.vape.module.render;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.event.EventHandler;
 import gg.vape.event.impl.EventRender2D;
 import gg.vape.event.impl.EventRender3D;
 import gg.vape.mapping.MappedClasses;
 import gg.vape.module.Category;
 import gg.vape.module.Mod;
-import gg.vape.render.OffscreenRenderContext;
 import gg.vape.unmap.ColorUtil;
 import gg.vape.utils.MathUtil;
 import gg.vape.utils.render.BufferedGuiRenderPrimitives;
@@ -145,9 +144,6 @@ extends Mod {
     }
 
     public boolean shouldTrack(Entity entity) {
-        if (OffscreenRenderContext.isRenderingOffscreen()) {
-            return false;
-        }
         if (!entity.isInstance(MappedClasses.Yl)) {
             return false;
         }
@@ -155,13 +151,13 @@ extends Mod {
             return false;
         }
         EntityPlayer player = new EntityPlayer(entity.getObject());
-        if (Vape.INSTANCE.getClientSettings().isBot(player)) {
+        if (Vapor.INSTANCE.getClientSettings().isBot(player)) {
             return false;
         }
-        if (Vape.INSTANCE.getClientSettings().isTeammate(player)) {
+        if (Vapor.INSTANCE.getClientSettings().isTeammate(player)) {
             return false;
         }
-        return !Vape.INSTANCE.getFriendManager().isFriend(player.getName());
+        return !Vapor.isFriend(player.getName());
     }
 
     public Arrows() {

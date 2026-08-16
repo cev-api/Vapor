@@ -1,6 +1,6 @@
 package gg.vape.combat;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.event.EventHandler;
 import gg.vape.event.EventListener;
 import gg.vape.event.impl.EventEntityJoinWorld;
@@ -137,11 +137,11 @@ implements EventListener {
     }
 
     public boolean isHealthPredictionEnabled() {
-        return Vape.INSTANCE.getClientSettings().healthPrediction.getEffectiveValue();
+        return Vapor.INSTANCE.getClientSettings().healthPrediction.getEffectiveValue();
     }
 
     public boolean shouldEstimateFoodHealing() {
-        return Vape.INSTANCE.getClientSettings().estimateFoodHealing.getEffectiveValue();
+        return Vapor.INSTANCE.getClientSettings().estimateFoodHealing.getEffectiveValue();
     }
 
     private static float calculateInstantHealthFromPotion(EntityPlayer player, ItemStack potionStack,
@@ -232,7 +232,7 @@ implements EventListener {
 
 
     public boolean shouldEstimateFallDamage() {
-        return Vape.INSTANCE.getClientSettings().estimateFallDamage.getEffectiveValue();
+        return Vapor.INSTANCE.getClientSettings().estimateFallDamage.getEffectiveValue();
     }
 }
 

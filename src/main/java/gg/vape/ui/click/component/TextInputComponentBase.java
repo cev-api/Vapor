@@ -1,6 +1,6 @@
 package gg.vape.ui.click.component;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.input.KeyboardInput;
 import gg.vape.module.none.ClientSettings;
 import gg.vape.ui.click.GuiMouseEvent;
@@ -190,7 +190,7 @@ implements FocusableComponent {
                 this.setText(updatedText);
             }
             catch (Exception exception) {
-                Vape.logThrowable(exception);
+                Vapor.logThrowable(exception);
             }
         }
     }
@@ -584,7 +584,7 @@ implements FocusableComponent {
     }
 
     private SmoothFontRenderer getTextFontRenderer() {
-        double uiScale = Vape.INSTANCE.getClientSettings().getGuiScaleFactor();
+        double uiScale = Vapor.INSTANCE.getClientSettings().getGuiScaleFactor();
         if (this.cachedFontRenderer == null || this.cachedUiScale != uiScale) {
             this.cachedFontRenderer = this.alternateFontEnabled ? this.getAlternateFontRenderer(this.fontScale) : this.getFontRenderer((double)this.fontScale);
             this.cachedUiScale = uiScale;

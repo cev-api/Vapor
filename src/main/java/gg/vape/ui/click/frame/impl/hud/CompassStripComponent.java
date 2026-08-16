@@ -1,6 +1,6 @@
 package gg.vape.ui.click.frame.impl.hud;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.ui.click.GuiMouseEvent;
 import gg.vape.ui.click.component.GuiComponent;
 import gg.vape.ui.click.frame.impl.hud.CompassHudFrame;
@@ -48,8 +48,8 @@ extends GuiComponent {
         float endHeading = heading + 70.0f;
         ImageRenderer.beginBatch();
         double tickSpacing = (this.frame.A() + 4.0) / 1400.0
-                * Vape.INSTANCE.getClientSettings().getGuiScaleFactor();
-        double tickX = this.frame.G$src$D$1b2f02a() * Vape.INSTANCE.getClientSettings().getGuiScaleFactor();
+                * Vapor.INSTANCE.getClientSettings().getGuiScaleFactor();
+        double tickX = this.frame.G$src$D$1b2f02a() * Vapor.INSTANCE.getClientSettings().getGuiScaleFactor();
         float currentHeading = startHeading;
         while (currentHeading < endHeading) {
             float firstTickHeading = (float)((int)(currentHeading * 10.0f)) / 10.0f;
@@ -63,7 +63,7 @@ extends GuiComponent {
                 this.frame.G$src$D$1b2f02a() - 5.0 + 2.3 + this.frame.A() / 2.0,
                 this.frame.n() - 2.5, this.frame.getEditorForegroundColor(), 0.5);
         String headingText = String.valueOf((int)heading);
-        SmoothFontRenderer smoothFontRenderer = Vape.INSTANCE.getFontManager().W(0.8, false);
+        SmoothFontRenderer smoothFontRenderer = Vapor.INSTANCE.getFontManager().W(0.8, false);
         smoothFontRenderer.T(headingText,
                 this.frame.G$src$D$1b2f02a() + this.frame.A() / 2.0 + 2.3
                         - smoothFontRenderer.N(headingText) / 2.0,
@@ -83,7 +83,7 @@ extends GuiComponent {
 
     @Override
     public void J() {
-        Vape.debugLog("Hovering");
+        Vapor.debugLog("Hovering");
     }
 
     @Override
@@ -92,8 +92,8 @@ extends GuiComponent {
     }
 
     private void drawTick(double x, float heading) {
-        double frameY = this.frame.n() * Vape.INSTANCE.getClientSettings().getGuiScaleFactor();
-        double frameHeight = this.frame.L() * Vape.INSTANCE.getClientSettings().getGuiScaleFactor();
+        double frameY = this.frame.n() * Vapor.INSTANCE.getClientSettings().getGuiScaleFactor();
+        double frameHeight = this.frame.L() * Vapor.INSTANCE.getClientSettings().getGuiScaleFactor();
         if (heading < 0.0f) {
             heading = 360.0f + heading;
         } else if (heading > 359.0f) {
@@ -147,8 +147,8 @@ extends GuiComponent {
             emphasized = true;
         }
         SmoothFontRenderer smoothFontRenderer = emphasized
-                ? Vape.INSTANCE.getFontManager().W(0.7, false)
-                : Vape.INSTANCE.getFontManager().Y(0.7);
+                ? Vapor.INSTANCE.getFontManager().W(0.7, false)
+                : Vapor.INSTANCE.getFontManager().Y(0.7);
         if (this.frame.shouldRenderHudBackground()) {
             smoothFontRenderer.T(text, x, y, this.frame.applyDefaultEditorAlpha(color),
                     this.frame.applyDefaultEditorAlpha(new Color(0, 0, 0, 30)));

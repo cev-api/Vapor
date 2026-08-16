@@ -1,6 +1,6 @@
 package gg.vape.module.utility.inventory;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.mapping.ItemMappingEntry;
 import gg.vape.module.utility.armorswitch.ArmorMaterialType;
 import gg.vape.utils.ItemStackScoreUtil;
@@ -19,7 +19,7 @@ public class ItemStackSemanticResolver {
 
     public void loadMappings() {
         String resourceName = "universal_items.csv";
-        byte[] resourceBytes = Vape.readResource(resourceName);
+        byte[] resourceBytes = Vapor.readResource(resourceName);
         for (String line : new String(resourceBytes).split("\n")) {
             String mappingLine = line.trim();
             ItemMappingEntry itemMappingEntry = ItemMappingEntry.parse(mappingLine);
@@ -58,7 +58,7 @@ public class ItemStackSemanticResolver {
         if (missingItems.isEmpty()) {
             return;
         }
-        Vape.debugLog("Failed to find " + missingItems.size() + " item(s):");
+        Vapor.debugLog("Failed to find " + missingItems.size() + " item(s):");
     }
 
     @Nullable

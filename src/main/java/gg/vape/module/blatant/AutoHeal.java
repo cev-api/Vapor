@@ -1,6 +1,6 @@
 package gg.vape.module.blatant;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.config.ClientSettings;
 import gg.vape.event.EventHandler;
 import gg.vape.event.impl.EventMotion;
@@ -96,7 +96,7 @@ extends Mod {
     @EventHandler
     public void onTick(EventPrePlayerTick event) {
         if (!event.getPlayer().isInstance(MappedClasses.z5)
-                || Vape.INSTANCE.getClientSettings().isLobbyCheckActive()
+                || Vapor.INSTANCE.getClientSettings().isLobbyCheckActive()
                 || Minecraft.currentScreen().isNotNull()) {
             return;
         }
@@ -428,7 +428,7 @@ extends Mod {
     @EventHandler
     public void onPlayerTick(EventPostPlayerTick event) {
         if (!event.getPlayer().isInstance(MappedClasses.z5)
-                || Vape.INSTANCE.getClientSettings().isLobbyCheckActive()) {
+                || Vapor.INSTANCE.getClientSettings().isLobbyCheckActive()) {
             return;
         }
         this.manageInventory(event.getThePlayer());

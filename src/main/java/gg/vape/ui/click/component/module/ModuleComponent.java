@@ -1,7 +1,7 @@
 package gg.vape.ui.click.component.module;
 
 import func.skidline.RectData;
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.input.MouseInput;
 import gg.vape.module.Category;
 import gg.vape.module.Mod;
@@ -317,7 +317,7 @@ extends InteractiveComponent {
         if (showNewBadge && !showingBindStatus) {
             double newBadgeX = contentX + fontRenderer.N(this.module.getName()) + 5.0;
             GuiRenderPrimitives.d(newBadgeX, badgeY, 20.0, 7.0, J.z());
-            SmoothFontRenderer badgeFontRenderer = Vape.INSTANCE.getFontManager().W(0.8, false);
+            SmoothFontRenderer badgeFontRenderer = Vapor.INSTANCE.getFontManager().W(0.8, false);
             badgeFontRenderer.d("New!", newBadgeX + 3.0, badgeY + 1.0, ColorUtil.getContrastingGray(J.z(), 35, 255));
         } else if (showUnsafeBadge && !showingBindStatus && !this.expanded) {
             double unsafeBadgeX = contentX + fontRenderer.N(this.module.getName()) + 3.0;
@@ -386,8 +386,8 @@ extends InteractiveComponent {
             this.dragging = false;
             ClientSettings.activeComponent = null;
             if (this.pendingOrderIndex != -1) {
-                Vape.INSTANCE.getModuleProfileMetadataCodec().getSelectedModules().remove(this.module);
-                Vape.INSTANCE.getModuleProfileMetadataCodec().getSelectedModules().add(this.pendingOrderIndex, this.module);
+                Vapor.INSTANCE.getModuleProfileMetadataCodec().getSelectedModules().remove(this.module);
+                Vapor.INSTANCE.getModuleProfileMetadataCodec().getSelectedModules().add(this.pendingOrderIndex, this.module);
             }
             VisibleModuleListFrame.e();
             this.pendingOrderIndex = -1;

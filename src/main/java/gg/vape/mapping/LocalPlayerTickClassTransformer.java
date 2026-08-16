@@ -1,6 +1,6 @@
 package gg.vape.mapping;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.asm.helper.Local;
 import gg.vape.asm.transform.ClassTransformer;
 import gg.vape.event.impl.EventPostLocalPlayerTick;
@@ -15,7 +15,7 @@ extends ClassTransformer {
         if (ForgeVersion.MC_1_21_10.v()) {
             return;
         }
-        MappingMethod mappingMethod = Vape.INSTANCE.getMappings().CC.z;
+        MappingMethod mappingMethod = Vapor.INSTANCE.getMappings().CC.z;
         this.injectEventAtEntry(mappingMethod, EventPreLocalPlayerTick.class, new Local("this").setDescriptorClass(Object.class));
         this.injectEventAtExit(mappingMethod, EventPostLocalPlayerTick.class, new Local("this").setDescriptorClass(Object.class));
     }

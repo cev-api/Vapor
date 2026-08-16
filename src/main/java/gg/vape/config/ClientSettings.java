@@ -1,6 +1,6 @@
 package gg.vape.config;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.input.BindSet;
 import gg.vape.input.GlfwToVirtualKeyCodeMap;
 import gg.vape.input.KeyBindingInputState;
@@ -48,7 +48,6 @@ public class ClientSettings {
     public final BooleanValue useHitboxes;
     private static final long ENTITY_ID_RANDOM_BOUND;
     public BooleanValue lobbyCheck;
-    public BindValue addFriendBind;
     public final BooleanValue thirdPersonAimView;
     private static Set<Integer> reservedEntityIds;
     @Nullable
@@ -166,11 +165,7 @@ public class ClientSettings {
 
     public MutableColor resolveEntityColor(RenderEntityContext context) {
         String entityName = context.getName();
-        if (Vape.INSTANCE.getFriendManager().isFriend(entityName) && Vape.INSTANCE.getFriendManager().recolorVisuals.getEffectiveValue().booleanValue()) {
-            return Vape.INSTANCE.getFriendManager().friendColor.getMutableColor();
-        }
-        if (Vape.INSTANCE.getEnemyManager().isEnemy(entityName) && Vape.INSTANCE.getEnemyManager().useColor.getEffectiveValue().booleanValue()) {
-            return Vape.INSTANCE.getEnemyManager().enemyColor.getMutableColor();
+        if (false && false) {
         }
         return this.resolveTeamColor(context);
     }
@@ -197,9 +192,6 @@ public class ClientSettings {
             return false;
         }
         if (rejectRotationBlocked && RotationUtil.k(livingEntity)) {
-            return false;
-        }
-        if (Vape.INSTANCE.getFriendManager().isFriend(livingEntity)) {
             return false;
         }
         if (this.isTeammate(player, entity)) {
@@ -315,7 +307,6 @@ public class ClientSettings {
     }
 
     public ClientSettings() {
-        this.addFriendBind = BindValue.createEmpty(this, "Add friend bind");
         this.showNbtTags = BooleanValue.create(this, "Show NBT Tags", false, "Shows NBT tags set by the server.\nUseful for servers with custom items.");
         this.lobbyCheck = BooleanValue.create(this, "Lobby Check", false, "Temporarily disables certain features in server lobbies.");
         this.sanityCheck = BooleanValue.create(this, "Sanity Check", false, "Disables all modules when you connect/disconnect from a server.");
@@ -331,7 +322,6 @@ public class ClientSettings {
         this.guiScale = ModeValue.create((Object)this, "GUI Scale", "Scale of GUI", (ModeSelection)modeOption, modeOption, new ModeOption("Tiny"), new ModeOption("Small"), new ModeOption("Normal"), new ModeOption("Large"), new ModeOption("Huge"));
         this.guiColor.setColorTransformEnabled(true);
         this.healthPrediction.addDependentValues(this.estimateFoodHealing, this.estimateFallDamage);
-        ((BindSet)this.addFriendBind.getValue()).addChangeListener(new ClientSettingsBindChangeListener(this));
     }
 
     public static int reserveEntityId() {

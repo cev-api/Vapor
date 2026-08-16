@@ -1,6 +1,6 @@
 package gg.vape.module.combat.blockhit;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.config.ClientSettings;
 import gg.vape.event.EventHandler;
 import gg.vape.event.impl.EventMouseButton;
@@ -91,11 +91,11 @@ extends BlockHitMode {
     }
 
     private boolean isAutoClickerActive() {
-        LeftClicker leftClicker = Vape.INSTANCE.getModManager().getMod(LeftClicker.class);
+        LeftClicker leftClicker = Vapor.INSTANCE.getModManager().getMod(LeftClicker.class);
         if (leftClicker.isEnabled()) {
             return true;
         }
-        SilentAura silentAura = Vape.INSTANCE.getModManager().getMod(SilentAura.class);
+        SilentAura silentAura = Vapor.INSTANCE.getModManager().getMod(SilentAura.class);
         return silentAura.isEnabled();
     }
 }

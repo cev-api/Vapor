@@ -1,6 +1,6 @@
 package gg.vape.ui.font;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.module.none.ClientSettings;
 import gg.vape.ui.font.FontManager;
 import gg.vape.ui.font.SmoothFontGlyph;
@@ -75,7 +75,7 @@ extends SmoothFontRenderer {
         for (String string2 : FontManager.y) {
             if (!string2.contains(string)) continue;
             try {
-                Vape.debugLog("Found file attempting to read: " + string);
+                Vapor.debugLog("Found file attempting to read: " + string);
                 File file = new File(string2);
                 FileInputStream fileInputStream = new FileInputStream(file);
                 fontData = new byte[(int)file.length()];
@@ -84,7 +84,7 @@ extends SmoothFontRenderer {
                 break;
             }
             catch (Exception exception) {
-                Vape.logThrowable(exception);
+                Vapor.logThrowable(exception);
                 break;
             }
         }
@@ -114,7 +114,7 @@ extends SmoothFontRenderer {
     @Override
     public void O(String string, double d, double d2, int n, boolean bl) {
         if (this.j) {
-            string = Vape.INSTANCE.getFontSelector().W().s(string);
+            string = Vapor.INSTANCE.getFontSelector().W().s(string);
         }
         if (!bl) {
             if (string == null || string.length() == 0) {
@@ -150,7 +150,7 @@ extends SmoothFontRenderer {
                 ++n6;
             }
             string = string2;
-            double d3 = Vape.INSTANCE.getClientSettings().getGuiScaleFactor();
+            double d3 = Vapor.INSTANCE.getClientSettings().getGuiScaleFactor();
             float f = 0.6f;
             if (d3 != 1.0) {
                 f *= (float)(1.0 / d3);
@@ -275,7 +275,7 @@ extends SmoothFontRenderer {
             this.d(string, d, d2, color);
         } else {
             if (this.j) {
-                string = Vape.INSTANCE.getFontSelector().W().s(string);
+                string = Vapor.INSTANCE.getFontSelector().W().s(string);
             }
             float f = (float)this.D / 16.0f;
             float f2 = 1.0f / f;
@@ -308,7 +308,7 @@ extends SmoothFontRenderer {
             hashSet.add(i);
         }
         hashSet.add(0);
-        byte[] byArray2 = Vape.readResource("chinese.properties.txt");
+        byte[] byArray2 = Vapor.readResource("chinese.properties.txt");
         if (byArray2 != null) {
             try {
                 ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(byArray2);
@@ -321,7 +321,7 @@ extends SmoothFontRenderer {
                 }
             }
             catch (Exception exception) {
-                Vape.logThrowable(exception);
+                Vapor.logThrowable(exception);
             }
         }
         int[] nArray = hashSet.stream().mapToInt(Integer::intValue).toArray();
@@ -330,7 +330,7 @@ extends SmoothFontRenderer {
         int n3 = 4096;
         StbTrueTypeFontInfo stbTrueTypeFontInfo = new StbTrueTypeFontInfo();
         if (SmoothFontRasterState.z(stbTrueTypeFontInfo, byArray, 0) == 0) {
-            Vape.debugLog("Failed to init font information");
+            Vapor.debugLog("Failed to init font information");
             return;
         }
         int[] nArray2 = new int[1];
@@ -351,7 +351,7 @@ extends SmoothFontRenderer {
         byte[] byArray3 = new byte[n3 * n3];
         StbTrueTypePackContext stbTrueTypePackContext = new StbTrueTypePackContext();
         if (SmoothFontRasterState.C(stbTrueTypePackContext, byArray3, n3, n3, 0, 1) == 0) {
-            Vape.debugLog("Failed to begin packing");
+            Vapor.debugLog("Failed to begin packing");
             return;
         }
         int n4 = 2;
@@ -383,7 +383,7 @@ extends SmoothFontRenderer {
             }
         }
         catch (Exception exception) {
-            Vape.logThrowable(exception);
+            Vapor.logThrowable(exception);
         }
         // Intel's OpenGL upload path may vector-read past an exact page-aligned buffer.
         ByteBuffer byteBuffer = BufferUtils.createByteBuffer((int)byArray3.length + 128);
@@ -406,8 +406,8 @@ extends SmoothFontRenderer {
     @Override
     public double Y(String string, boolean bl) {
         String string2;
-        string = Vape.INSTANCE.getFontSelector().W().s(string);
-        double d = Vape.INSTANCE.getClientSettings().getGuiScaleFactor();
+        string = Vapor.INSTANCE.getFontSelector().W().s(string);
+        double d = Vapor.INSTANCE.getClientSettings().getGuiScaleFactor();
         String string3 = (String)this.f.get(string);
         if (string3 == null) {
             string2 = "";
@@ -479,7 +479,7 @@ extends SmoothFontRenderer {
     public double R(String string, boolean bl) {
         if (!bl) {
             float f = 0.6f;
-            double d = Vape.INSTANCE.getClientSettings().getGuiScaleFactor();
+            double d = Vapor.INSTANCE.getClientSettings().getGuiScaleFactor();
             if (d != 1.0) {
                 f *= (float)(1.0 / d);
             }

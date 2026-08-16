@@ -1,6 +1,6 @@
 package gg.vape.module.utility;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.notification.Notification;
 import gg.vape.notification.NotificationType;
 import gg.vape.notification.TextNotificationContent;
@@ -44,7 +44,7 @@ public final class RescueModuleUtil {
             existing.setDuration(3500L);
         }
         if (shouldEnqueue) {
-            Vape.INSTANCE.getNotificationManager().enqueue(existing, false);
+            Vapor.INSTANCE.getNotificationManager().enqueue(existing, false);
         }
         return existing;
     }

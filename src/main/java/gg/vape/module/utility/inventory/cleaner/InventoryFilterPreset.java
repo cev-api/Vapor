@@ -3,7 +3,7 @@ package gg.vape.module.utility.inventory.cleaner;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.config.ConfigJsonUtils;
 import gg.vape.module.utility.inventory.cleaner.AbstractInventoryFilterPreset;
 import gg.vape.module.utility.inventory.cleaner.InventoryFilterConditionGroup;
@@ -70,9 +70,9 @@ implements Cloneable {
         boolean slotRule = rule instanceof SlotInventoryFilterRule;
         rule.setPreset(sharedPreset);
         if (slotRule) {
-            Vape.INSTANCE.getInventoryFilterPresetRegistry().getSlotRulePresets().replace(null, sharedPreset);
+            Vapor.INSTANCE.getInventoryFilterPresetRegistry().getSlotRulePresets().replace(null, sharedPreset);
         } else {
-            Vape.INSTANCE.getInventoryFilterPresetRegistry().getItemRulePresets().replace(null, sharedPreset);
+            Vapor.INSTANCE.getInventoryFilterPresetRegistry().getItemRulePresets().replace(null, sharedPreset);
         }
         return sharedPreset;
     }
@@ -97,7 +97,7 @@ implements Cloneable {
     public void assignDefaultName(boolean inventoryRule) {
         String prefix = (inventoryRule ? "Inventory Filter " : "Custom ") + "Rule #";
         int suffix = 1;
-        for (InventoryFilterPreset preset : (!inventoryRule ? Vape.INSTANCE.getInventoryFilterPresetRegistry().getSlotRulePresets() : Vape.INSTANCE.getInventoryFilterPresetRegistry().getItemRulePresets()).getAll()) {
+        for (InventoryFilterPreset preset : (!inventoryRule ? Vapor.INSTANCE.getInventoryFilterPresetRegistry().getSlotRulePresets() : Vapor.INSTANCE.getInventoryFilterPresetRegistry().getItemRulePresets()).getAll()) {
             if (!preset.getName().equalsIgnoreCase(prefix + suffix)) continue;
             ++suffix;
         }

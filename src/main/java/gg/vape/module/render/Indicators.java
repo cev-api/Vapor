@@ -11,7 +11,6 @@ import gg.vape.module.render.proj.EnderPearlProjectileBridge;
 import gg.vape.module.render.proj.IProjectile;
 import gg.vape.module.render.proj.PotionProjectile;
 import gg.vape.module.render.proj.Projectile;
-import gg.vape.render.OffscreenRenderContext;
 import gg.vape.unmap.ColorUtil;
 import gg.vape.unmap.ModeOption;
 import gg.vape.utils.MathUtil;
@@ -101,9 +100,6 @@ extends Mod {
     public boolean shouldTrackEntity(EntityPlayerSP player, WorldClient world, Entity entity) {
         EnderPearlProjectileBridge projectileEntity;
         IProjectile projectile;
-        if (OffscreenRenderContext.isRenderingOffscreen()) {
-            return false;
-        }
         if (entity.isInstance(MappedClasses.qZ) && this.showFireballs.getEffectiveValue().booleanValue()) {
             if (player.getDistanceToEntity(entity) > 1000.0f) {
                 return false;

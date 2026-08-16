@@ -1,6 +1,6 @@
 package gg.vape.tutorial;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.tutorial.TutorialFinishedPanel;
 import gg.vape.tutorial.TutorialState;
 import gg.vape.ui.click.component.GuiClickListener;
@@ -11,7 +11,7 @@ implements GuiClickListener {
 
     @Override
     public void onPrimaryClick() {
-        Vape.INSTANCE.getTutorialManager().setState(TutorialState.FINISHED);
+        Vapor.INSTANCE.getTutorialManager().setState(TutorialState.FINISHED);
     }
 
     public TutorialFinishedAcknowledgeClickHandler(TutorialFinishedPanel tutorialFinishedPanel) {

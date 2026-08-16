@@ -1,8 +1,7 @@
 package gg.vape.click;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.module.combat.ClickerMod;
-import gg.vape.input.BadlionKeyBindingEventQueue;
 import gg.vape.utils.SleepUtil;
 import java.util.concurrent.atomic.AtomicBoolean;
 
@@ -48,21 +47,15 @@ implements Runnable {
             this.clickerModule.runClickCycle();
         }
         catch (Exception exception) {
-            Vape.logThrowable(exception);
+            Vapor.logThrowable(exception);
         }
     }
 
     @Override
     public void run() {
-        BadlionKeyBindingEventQueue.enterClickerWorker();
-        try {
-            while (true) {
-                SleepUtil.sleep(5L);
-                this.awaitActivityAndRunClickCycle();
-            }
-        }
-        finally {
-            BadlionKeyBindingEventQueue.leaveClickerWorker();
+        while (true) {
+            SleepUtil.sleep(5L);
+            this.awaitActivityAndRunClickCycle();
         }
     }
 

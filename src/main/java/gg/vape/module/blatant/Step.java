@@ -1,6 +1,6 @@
 package gg.vape.module.blatant;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.event.EventHandler;
 import gg.vape.event.impl.EventStepHeightOverride;
 import gg.vape.event.impl.EventStepSnapshot;
@@ -21,7 +21,7 @@ extends Mod {
     public void onStepHeightOverride(EventStepHeightOverride eventStepHeightOverride) {
         EntityPlayerSP localPlayer = Minecraft.thePlayer();
         if (eventStepHeightOverride.getRealHeight() > 0.5 && eventStepHeightOverride.getStepHeight() > 0.0 && !localPlayer.movementInput().G() && localPlayer.u$src$Z$g120nz()) {
-            Vape.INSTANCE.getModManager().getMod(Speed.class).setStage(-4);
+            Vapor.INSTANCE.getModManager().getMod(Speed.class).setStage(-4);
             if (eventStepHeightOverride.getRealHeight() >= 0.87) {
                 double stepHeight = eventStepHeightOverride.getRealHeight();
                 double firstOffset = stepHeight * 0.42;

@@ -1,6 +1,6 @@
 package gg.vape.mapping.runtime;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.mapping.MappedClasses;
 import gg.vape.mapping.runtime.MemberNameRemapTable;
 
@@ -39,7 +39,7 @@ extends MemberNameRemapTable {
         this.t(MappedClasses.VK, "getDamage", "getDamageValue");
         this.t(MappedClasses.VK, "setDamage", "setDamageValue");
         this.t(MappedClasses.VK, "addEnchantment", "enchant");
-        this.t(MappedClasses.VK, "func_82840_a", Vape.INSTANCE.isVanillaMinecraftPresent() ? "getTooltipLines" : "m_41651_");
+        this.t(MappedClasses.VK, "func_82840_a", Vapor.INSTANCE.isVanillaMinecraftPresent() ? "getTooltipLines" : "m_41651_");
         this.t(MappedClasses.VK, "canDestroy", "hasAdventureModePlaceTagForBlock");
     }
 
@@ -416,7 +416,7 @@ extends MemberNameRemapTable {
         this.t(MappedClasses.zc, "isWet", "isInWaterOrRain");
         this.t(MappedClasses.zc, "setFire", "setSecondsOnFire");
         this.t(MappedClasses.zc, "setFlag", "setSharedFlag");
-        this.t(MappedClasses.zc, "setPositionAndRotation", Vape.INSTANCE.isVanillaMinecraftPresent() ? "absMoveTo" : "m_19890_");
+        this.t(MappedClasses.zc, "setPositionAndRotation", Vapor.INSTANCE.isVanillaMinecraftPresent() ? "absMoveTo" : "m_19890_");
         this.t(MappedClasses.zc, "setSneaking", "setShiftKeyDown");
         this.t(MappedClasses.zc, "getLook", "getViewVector");
         this.t(MappedClasses.zc, "doBlockCollisions", "checkInsideBlocks");
@@ -482,7 +482,7 @@ extends MemberNameRemapTable {
     }
 
     protected void E() {
-        this.t(MappedClasses.ls, "fogDensity", Vape.INSTANCE.isVanillaMinecraftPresent() ? "setShaderFogStart" : "m_157445_");
+        this.t(MappedClasses.ls, "fogDensity", Vapor.INSTANCE.isVanillaMinecraftPresent() ? "setShaderFogStart" : "m_157445_");
     }
 
     protected void Rn() {
@@ -596,7 +596,7 @@ extends MemberNameRemapTable {
     }
 
     protected void e() {
-        this.t(MappedClasses.Fj, "func_196954_c", Vape.INSTANCE.isVanillaMinecraftPresent() ? "getShape" : "m_60808_");
+        this.t(MappedClasses.Fj, "func_196954_c", Vapor.INSTANCE.isVanillaMinecraftPresent() ? "getShape" : "m_60808_");
     }
 
     protected void RD() {
@@ -627,8 +627,8 @@ extends MemberNameRemapTable {
     protected void RY() {
         this.t(MappedClasses.uQ, "func_238421_b_", "m_92883_");
         this.t(MappedClasses.uQ, "func_243247_a", "m_92841_");
-        this.t(MappedClasses.uQ, "func_243246_a", Vape.INSTANCE.isVanillaMinecraftPresent() ? "drawShadow" : "m_92763_");
-        this.t(MappedClasses.uQ, "func_243248_b", Vape.INSTANCE.isVanillaMinecraftPresent() ? "draw" : "m_92889_");
+        this.t(MappedClasses.uQ, "func_243246_a", Vapor.INSTANCE.isVanillaMinecraftPresent() ? "drawShadow" : "m_92763_");
+        this.t(MappedClasses.uQ, "func_243248_b", Vapor.INSTANCE.isVanillaMinecraftPresent() ? "draw" : "m_92889_");
     }
 
     protected void Z() {

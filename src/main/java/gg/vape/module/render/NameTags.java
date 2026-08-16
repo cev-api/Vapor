@@ -1,14 +1,13 @@
 package gg.vape.module.render;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.config.ClientSettings;
 import gg.vape.event.EventHandler;
 import gg.vape.event.impl.EventEntityRenderState;
 import gg.vape.event.impl.EventPreRenderLiving;
 import gg.vape.event.impl.EventPreTick;
 import gg.vape.event.impl.EventRender3D;
-import gg.vape.friend.FriendEntry;
-import gg.vape.friend.ui.OnlineRadarPreviewState;
+import gg.vape.utils.render.RenderState;
 import gg.vape.mapping.MappedClasses;
 import gg.vape.module.Category;
 import gg.vape.module.Mod;
@@ -212,7 +211,7 @@ extends Mod {
         OpenGlBackendHolder.backend.scale(d3, d3, d3);
     }
 
-    private static int lambda$onRenderWorldLast$0(OnlineRadarPreviewState onlineRadarPreviewState, OnlineRadarPreviewState onlineRadarPreviewState2) {
+    private static int lambda$onRenderWorldLast$0(RenderState onlineRadarPreviewState, RenderState onlineRadarPreviewState2) {
         return Double.compare(((RenderEntityContext)onlineRadarPreviewState2.getValue()).getDistance(), ((RenderEntityContext)onlineRadarPreviewState.getValue()).getDistance());
     }
 
@@ -464,22 +463,6 @@ extends Mod {
             float f4;
             double d5;
             double d6;
-            FriendEntry friendEntry = Vape.INSTANCE.getFriendManager().findTargetedFriend(renderEntityContext.getName());
-            if (friendEntry != null) {
-                string2 = friendEntry.getDisplayName();
-                if (!Vape.INSTANCE.getFriendManager().recolorVisuals.getEffectiveValue().booleanValue() && !Vape.INSTANCE.getFriendManager().recolorVisuals.getEffectiveValue().booleanValue()) {
-                    int n;
-                    char[] cArray = string.toCharArray();
-                    for (int i = n = string.indexOf(string2); i > 0; --i) {
-                        char c = cArray[i];
-                        if (c != '\u00a7') continue;
-                        c = cArray[i + 1];
-                        String string3 = String.valueOf(c);
-                        string2 = '\u00a7' + string3 + string2;
-                        break;
-                    }
-                }
-            }
             if (bl) {
                 string2 = ClientSettings.FORMAT_CODE + "a[" + ClientSettings.FORMAT_CODE + "f" + (int)renderEntityContext.getDistance() + ClientSettings.FORMAT_CODE + "a]" + ClientSettings.FORMAT_CODE + "r " + string2;
             }
@@ -532,20 +515,20 @@ extends Mod {
         double d4 = entityPlayerSP.M() + (entityPlayerSP.z() - entityPlayerSP.M()) * (double)eventRender3D.getTicks() - d;
         double d5 = entityPlayerSP.W() + (entityPlayerSP.N() - entityPlayerSP.W()) * (double)eventRender3D.getTicks() - d2;
         double d6 = entityPlayerSP.m$src$D$fwnne5() + (entityPlayerSP.h() - entityPlayerSP.m$src$D$fwnne5()) * (double)eventRender3D.getTicks() - d3;
-        ArrayList<OnlineRadarPreviewState<Object, RenderEntityContext>> arrayList = new ArrayList<OnlineRadarPreviewState<Object, RenderEntityContext>>();
+        ArrayList<RenderState<Object, RenderEntityContext>> arrayList = new ArrayList<RenderState<Object, RenderEntityContext>>();
         for (Object e : worldClient.z()) {
             Entity entity = new Entity(e);
             if (!this.shouldRender(entity, worldClient, entityPlayerSP)) continue;
             EntityLivingBase entityLivingBase = new EntityLivingBase(entity);
             RenderEntityContext object = RenderEntityContextCache.getOrCreate(entityLivingBase, entityPlayerSP);
-            arrayList.add(OnlineRadarPreviewState.create(entityLivingBase, object));
+            arrayList.add(RenderState.create(entityLivingBase, object));
         }
         arrayList.sort(NameTags::lambda$onRenderWorldLast$0);
         GameSettings gameSettings = Minecraft.gameSettings();
         float f = FreeLookHudModule.isActive() ? FreeLookHudModule.getRenderPitch() : eventRender3D.getRenderManager().getPlayerViewX();
         float f2 = FreeLookHudModule.isActive() ? FreeLookHudModule.getRenderYaw() : eventRender3D.getRenderManager().getPlayerViewY();
         GuiRenderPrimitives.U = true;
-        for (OnlineRadarPreviewState onlineRadarPreviewState : arrayList) {
+        for (RenderState onlineRadarPreviewState : arrayList) {
             EntityLivingBase entityLivingBase = (EntityLivingBase)onlineRadarPreviewState.getKey();
             RenderEntityContext renderEntityContext = (RenderEntityContext)onlineRadarPreviewState.getValue();
             double d7 = entityLivingBase.M();
@@ -578,28 +561,7 @@ extends Mod {
 
     private int computeNameColor(EntityLivingBase entityLivingBase, RenderEntityContext renderEntityContext, MutableColor mutableColor, MutableColor mutableColor2, double d) {
         int n = 0xFFFFFF;
-        if (Vape.INSTANCE.getFriendManager().recolorVisuals.getEffectiveValue().booleanValue()) {
-            boolean bl = renderEntityContext.isFriend();
-            if (renderEntityContext.isAttackable() || bl) {
-                n = -12417292;
-                mutableColor2.setRed(36);
-                mutableColor2.setGreen(255);
-                mutableColor2.setBlue(255);
-                mutableColor2.withAlpha((int)(64.0 * d));
-            }
-            if (renderEntityContext.isEnemy()) {
-                n = -12417292;
-                mutableColor2.setRed(255);
-                mutableColor2.setGreen(29);
-                mutableColor2.setBlue(29);
-                mutableColor2.withAlpha((int)(128.0 * d));
-            }
-            if (bl) {
-                n = Vape.INSTANCE.getFriendManager().friendColor.toRgb();
-                mutableColor2.setColor(Vape.INSTANCE.getFriendManager().friendColor.getMutableColor());
-            }
-        }
-        if (Vape.INSTANCE.getModManager().getMod(MurderFinder.class).isMurderer(entityLivingBase)) {
+        if (Vapor.INSTANCE.getModManager().getMod(MurderFinder.class).isMurderer(entityLivingBase)) {
             n = -59882;
         }
         if (renderEntityContext.isInvisible()) {

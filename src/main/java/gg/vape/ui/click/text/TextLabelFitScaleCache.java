@@ -1,6 +1,6 @@
 package gg.vape.ui.click.text;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.ui.click.text.TextLabelFitSpec;
 import gg.vape.ui.font.SmoothFontRenderer;
 import java.math.BigDecimal;
@@ -17,7 +17,7 @@ public class TextLabelFitScaleCache {
         }
         double fittedScale = fitSpec.getMaxScale();
         while (fittedScale >= fitSpec.getMinScale() && fittedScale <= fitSpec.getMaxScale()) {
-            SmoothFontRenderer fontRenderer = fitSpec.isBold() ? Vape.INSTANCE.getFontManager().W(fittedScale, false) : Vape.INSTANCE.getFontManager().E(fittedScale, false);
+            SmoothFontRenderer fontRenderer = fitSpec.isBold() ? Vapor.INSTANCE.getFontManager().W(fittedScale, false) : Vapor.INSTANCE.getFontManager().E(fittedScale, false);
             if (!(fontRenderer.N(fitSpec.getText()) > fitSpec.getMaxWidth())) break;
             fittedScale = new BigDecimal(fittedScale).subtract(BigDecimal.valueOf(fitSpec.getScaleIncrement())).setScale(1, 4).doubleValue();
         }

@@ -1,6 +1,6 @@
 package gg.vape.mapping.mappings;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.mapping.MappedClasses;
 import gg.vape.mapping.Mapping;
 import gg.vape.mapping.MappingField;
@@ -44,7 +44,7 @@ extends Mapping {
                 String string3 = "field_234597_c_";
                 MEntityPlayerMacroBridge mEntityPlayerMacroBridge2 = this;
                 this.z = this.J(string3, bl2, clazz2);
-            } else if (Vape.INSTANCE.isVanillaMinecraftPresent()) {
+            } else if (Vapor.INSTANCE.isVanillaMinecraftPresent()) {
                 Class clazz = MappedClasses.zc;
                 boolean bl = true;
                 String string4 = "caughtEntity";

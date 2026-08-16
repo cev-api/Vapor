@@ -1,6 +1,6 @@
 package gg.vape.mapping;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.event.impl.EventMotion;
 import gg.vape.event.impl.EventPostLocalPlayerTick;
 import gg.vape.event.impl.EventPostMotion;
@@ -37,7 +37,7 @@ extends JavassistMappingTask {
         if (ForgeVersion.MC_1_21_10.d()) {
             return;
         }
-        MappingMethod mappingMethod = Vape.INSTANCE.getMappings().CC.z;
+        MappingMethod mappingMethod = Vapor.INSTANCE.getMappings().CC.z;
         this.c(mappingMethod, EventPreLocalPlayerTick.class, "$0");
         this.k(mappingMethod, EventPostLocalPlayerTick.class, "$0");
     }
@@ -55,7 +55,7 @@ extends JavassistMappingTask {
     }
 
     private void p() {
-        MappingMethod mappingMethod = Vape.INSTANCE.getMappings().Rr.jW;
+        MappingMethod mappingMethod = Vapor.INSTANCE.getMappings().Rr.jW;
         this.c(mappingMethod, EventSetSprinting.class, "$0, $1");
     }
 
@@ -82,21 +82,21 @@ extends JavassistMappingTask {
 
     private void m() throws CannotCompileException, NotFoundException {
         String string;
-        this.j = Vape.INSTANCE.getMappings().CC.k;
+        this.j = Vapor.INSTANCE.getMappings().CC.k;
         if (ForgeVersion.MC_1_20_6.d()) {
-            this.L = Vape.INSTANCE.getMappings().Rr.Q.getResolvedName();
-            this.Z = Vape.INSTANCE.getMappings().Rr.q.getResolvedName();
-            this.y = Vape.INSTANCE.getMappings().Rr.O.getResolvedName();
+            this.L = Vapor.INSTANCE.getMappings().Rr.Q.getResolvedName();
+            this.Z = Vapor.INSTANCE.getMappings().Rr.q.getResolvedName();
+            this.y = Vapor.INSTANCE.getMappings().Rr.O.getResolvedName();
         } else {
-            this.W = Vape.INSTANCE.getMappings().Rr.jv.getResolvedName();
-            this.f = Vape.INSTANCE.getMappings().Rr.jT.getResolvedName();
-            this.N = Vape.INSTANCE.getMappings().Rr.U.getResolvedName();
+            this.W = Vapor.INSTANCE.getMappings().Rr.jv.getResolvedName();
+            this.f = Vapor.INSTANCE.getMappings().Rr.jT.getResolvedName();
+            this.N = Vapor.INSTANCE.getMappings().Rr.U.getResolvedName();
         }
         String string2 = EventMotion.class.getName();
         CtBehavior ctBehavior = this.F(this.j);
         this.c(this.j, EventPreMotion.class, "$0");
         this.k(this.j, EventPostMotion.class, "$0");
-        boolean bl = Vape.INSTANCE.isForgeAbsent();
+        boolean bl = Vapor.INSTANCE.isForgeAbsent();
         if (bl && NativeBridge.gc(string = "aaa") == null) {
             bl = false;
         }

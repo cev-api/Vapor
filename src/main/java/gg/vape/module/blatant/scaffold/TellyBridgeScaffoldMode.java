@@ -61,6 +61,11 @@ extends SubModule<Scaffold> {
         double blockX = MathUtil.floor(player.z());
         double blockZ = MathUtil.floor(player.h());
         double placementY = this.scaffold.getPlacementY(player);
+        if (!this.ensureBlockSlot(player)) {
+            this.initialPlacement = null;
+            this.manualBlocksPlaced = 0;
+            return true;
+        }
         if (!this.scaffold.isValidBlockStack(player.B$src$Lgg_vape_wrapper_impl_ItemStack_$impdvt())) {
             this.initialPlacement = null;
             this.manualBlocksPlaced = 0;
@@ -479,7 +484,12 @@ extends SubModule<Scaffold> {
         if (blockSlot == -1 || this.scaffold.countBlocks(1) < 5) {
             return false;
         }
-        if (this.activationItemStack != null && !player.B$src$Lgg_vape_wrapper_impl_ItemStack_$impdvt().equals(this.activationItemStack)) {
+        ItemStack currentStack = player.B$src$Lgg_vape_wrapper_impl_ItemStack_$impdvt();
+        if (!this.scaffold.isValidBlockStack(currentStack)) {
+            this.scaffold.selectHotbarSlot(blockSlot);
+            return true;
+        }
+        if (this.activationItemStack != null && !currentStack.equals(this.activationItemStack)) {
             int originalItemSlot = this.scaffold.findMatchingHotbarSlot(player, this.activationItemStack);
             if (originalItemSlot != -1) {
                 this.scaffold.selectHotbarSlot(originalItemSlot);

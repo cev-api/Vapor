@@ -3,7 +3,7 @@ package gg.vape.module.utility;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.config.ClientSettings;
 import gg.vape.event.EventHandler;
 import gg.vape.event.impl.EventPrePlayerTick;
@@ -207,7 +207,7 @@ implements InventoryActionModule {
                 this.queueSlot(slot.getSlotNumber());
             }
             catch (Exception exception) {
-                Vape.logThrowable(exception);
+                Vapor.logThrowable(exception);
             }
         }
         return true;
@@ -272,7 +272,7 @@ implements InventoryActionModule {
 
     @EventHandler
     public void onTick(EventPrePlayerTick event) {
-        if (Vape.INSTANCE.getModManager().isOtherInventoryActionActive(InvCleaner.class) || Vape.INSTANCE.getClientSettings().isLobbyCheckActive()) {
+        if (Vapor.INSTANCE.getModManager().isOtherInventoryActionActive(InvCleaner.class) || Vapor.INSTANCE.getClientSettings().isLobbyCheckActive()) {
             this.active = false;
             return;
         }

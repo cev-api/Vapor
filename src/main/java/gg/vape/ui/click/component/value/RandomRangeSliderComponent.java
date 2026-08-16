@@ -1,7 +1,7 @@
 package gg.vape.ui.click.component.value;
 
 import func.skidline.RectData;
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.input.MouseInput;
 import gg.vape.ui.click.GuiMouseEvent;
 import gg.vape.ui.click.MouseButton;
@@ -194,7 +194,7 @@ extends SliderComponentBase {
 
     private List<String> getWrappedLabelLines() {
         SmoothFontRenderer fontRenderer = this.getFontRenderer(this.fontScale);
-        String sanitizedLabel = Vape.INSTANCE.getFontSelector().W().s(this.getLabel());
+        String sanitizedLabel = Vapor.INSTANCE.getFontSelector().W().s(this.getLabel());
         String[] labelWords = sanitizedLabel.split(" ");
         double availableWidth = this.minimumInputHandle.G$src$D$1b2f02a() - this.G$src$D$1b2f02a();
         ArrayList<String> lines = new ArrayList<String>();

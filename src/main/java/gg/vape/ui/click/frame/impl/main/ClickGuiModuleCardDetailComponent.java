@@ -1,6 +1,6 @@
 package gg.vape.ui.click.frame.impl.main;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.ui.click.GuiMouseEvent;
 import gg.vape.ui.click.component.GuiComponent;
 import gg.vape.ui.click.frame.impl.main.ClickGuiModuleCardRenderState;
@@ -57,7 +57,7 @@ extends GuiComponent {
                     d9 = d7 + 1.5;
                     double d11 = d4 + d5 / 2.0 - 1.25;
                     Color color = this.m(clickGuiModuleCardRenderState.u());
-                    GuiRenderPrimitives.V(d9, d11, 2.5, 1.0 / Vape.INSTANCE.getClientSettings().getGuiScaleFactor(), color);
+                    GuiRenderPrimitives.V(d9, d11, 2.5, 1.0 / Vapor.INSTANCE.getClientSettings().getGuiScaleFactor(), color);
                     d7 += d10;
                     d8 -= d10;
                     continue;

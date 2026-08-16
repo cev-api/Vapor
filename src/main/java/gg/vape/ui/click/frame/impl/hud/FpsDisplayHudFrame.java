@@ -1,6 +1,6 @@
 package gg.vape.ui.click.frame.impl.hud;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.module.render.hud.FpsDisplayHudModule;
 import gg.vape.ui.click.frame.impl.hud.HudModuleConfigFrameBase;
 import gg.vape.ui.font.SmoothFontRenderer;
@@ -19,7 +19,7 @@ extends HudModuleConfigFrameBase {
 
     @Override
     public void renderHudContent() {
-        SmoothFontRenderer smoothFontRenderer = Vape.INSTANCE.getFontManager().W(1.2, false);
+        SmoothFontRenderer smoothFontRenderer = Vapor.INSTANCE.getFontManager().W(1.2, false);
         String fpsText = Minecraft.l() + " FPS";
         float textX = (int)(this.G$src$D$1b2f02a() + this.A() / 2.0
                 - smoothFontRenderer.N(fpsText) / 2.0);

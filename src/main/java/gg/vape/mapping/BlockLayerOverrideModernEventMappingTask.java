@@ -1,6 +1,6 @@
 package gg.vape.mapping;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.event.impl.EventBlockLayerOverrideModern;
 import gg.vape.mapping.EventInjectionSpec;
 import gg.vape.mapping.JavassistMappingTask;
@@ -15,7 +15,7 @@ extends JavassistMappingTask {
 
     @Override
     public void transform() {
-        MappingMethod mappingMethod = Vape.INSTANCE.getMappings().qg.S;
+        MappingMethod mappingMethod = Vapor.INSTANCE.getMappings().qg.S;
         EventInjectionSpec eventInjectionSpec = new EventInjectionSpec(mappingMethod, EventBlockLayerOverrideModern.class);
         eventInjectionSpec.setConstructorArguments("$0");
         eventInjectionSpec.setReturnExpression("($r) $event.getBlockLayer()");

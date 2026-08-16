@@ -1,6 +1,6 @@
 package gg.vape.tutorial;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.tutorial.SingleComponentHighlightTutorialAction;
 import gg.vape.tutorial.TutorialPage;
 import gg.vape.ui.click.GuiMouseListener;
@@ -27,7 +27,7 @@ implements GuiMouseListener {
         }
         TutorialPage tutorialPage = this.H.getPage();
         if (tutorialPage.getCurrentAction() != null && tutorialPage.getCurrentAction().equals(this.H)) {
-            Vape.INSTANCE.getTutorialManager().getCurrentPage().advanceToNextAction();
+            Vapor.INSTANCE.getTutorialManager().getCurrentPage().advanceToNextAction();
         }
     }
 }

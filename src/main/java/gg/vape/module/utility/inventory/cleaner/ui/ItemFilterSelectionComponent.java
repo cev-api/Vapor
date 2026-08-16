@@ -1,6 +1,6 @@
 package gg.vape.module.utility.inventory.cleaner.ui;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.module.utility.inventory.cleaner.AbstractInventoryFilterRule;
 import gg.vape.module.utility.inventory.cleaner.HiddenInventoryItemMatchers;
 import gg.vape.module.utility.inventory.cleaner.InventoryFilterCondition;
@@ -102,7 +102,7 @@ extends GuiComponent {
         if (itemStack != null && !itemStack.isNull()) {
             this.w("");
             float effectiveScale = this.scale;
-            if (effectiveScale >= 1.0f && Vape.INSTANCE.getClientSettings().getGuiScaleFactor() > 1.0) {
+            if (effectiveScale >= 1.0f && Vapor.INSTANCE.getClientSettings().getGuiScaleFactor() > 1.0) {
                 effectiveScale = 0.95f;
             }
             float iconSize = 16.0f * effectiveScale;

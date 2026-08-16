@@ -1,10 +1,6 @@
 package gg.vape.ui.click.frame.impl.quickactions;
 
 import func.skidline.RectData;
-import gg.vape.friend.ui.OnlineActivitySettingsFrame;
-import gg.vape.friend.ui.OnlineCombatStatsSettingsFrame;
-import gg.vape.friend.ui.OnlinePlayerPreviewSettingsFrame;
-import gg.vape.friend.ui.OnlineRadarSettingsFrame;
 import gg.vape.module.none.ClientSettings;
 import gg.vape.module.none.TextGuiSettingsFrame;
 import gg.vape.ui.click.GuiMouseEvent;
@@ -12,7 +8,6 @@ import gg.vape.ui.click.animation.DoubleAnimation;
 import gg.vape.ui.click.component.ColorDividerComponent;
 import gg.vape.ui.click.frame.Frame;
 import gg.vape.ui.click.frame.impl.ClientSettingsSearchFrame;
-import gg.vape.ui.click.frame.impl.hud.InventoryOverlaySettingsFrame;
 import gg.vape.ui.click.frame.impl.profile.PublicProfilesFrameHeaderActionComponent;
 import gg.vape.ui.click.frame.impl.quickactions.QuickActionRowComponent;
 import gg.vape.ui.click.frame.impl.quickactions.QuickActionsHeaderCloseCallback;
@@ -23,15 +18,10 @@ import java.awt.Color;
 public class QuickActionsFrame
 extends Frame {
     private DoubleAnimation m_;
-    private QuickActionRowComponent m0;
     private int mG;
-    private QuickActionRowComponent mP;
     private DoubleAnimation mI = new DoubleAnimation(0.15, 0.0, 100.0);
     private QuickActionRowComponent mF;
-    private QuickActionRowComponent mX;
     private QuickActionRowComponent mO;
-    private QuickActionRowComponent mW;
-    private QuickActionRowComponent inventoryOverlayRow;
 
     public QuickActionRowComponent m$src$Lgg_vape_ui_click_frame_impl_quickactions_QuickA$1kmfigl() {
         return this.mF;
@@ -40,12 +30,7 @@ extends Frame {
     public QuickActionsFrame() {
         this.m_ = new DoubleAnimation(0.15, 0.0, 1.0);
         this.mF = new QuickActionRowComponent("Text GUI", "newtextgui", 0.9, 6);
-        this.mP = new QuickActionRowComponent("Rearview", "newrearview", 0.9, 7);
-        this.mX = new QuickActionRowComponent("Duel Info", "newduelinfo", 0.9, 7);
         this.mO = new QuickActionRowComponent("Target Info", "newtargetinfo", 0.9, 7);
-        this.m0 = new QuickActionRowComponent("Party Overlay", "party@2x", 0.9, 7);
-        this.mW = new QuickActionRowComponent("Radar", "newradar", 0.9, 7);
-        this.inventoryOverlayRow = new QuickActionRowComponent("Inventory", "inventory", 0.9, 7);
         this.I2 = false;
         this.D(false);
         this.setDisabledOverlayColor(QuickActionsFrame.J.i);
@@ -55,16 +40,10 @@ extends Frame {
         publicProfilesFrameHeaderActionComponent.O$src$Lgg_vape_ui_click_component_SquareIconButtonComp$z3cp96().clearClickListeners();
         publicProfilesFrameHeaderActionComponent.O$src$Lgg_vape_ui_click_component_SquareIconButtonComp$z3cp96().addClickListener(new QuickActionsHeaderCloseCallback(this));
         this.mF.setTargetFrameClass(TextGuiSettingsFrame.class);
-        this.mP.setTargetFrameClass(OnlinePlayerPreviewSettingsFrame.class);
-        this.mX.setTargetFrameClass(OnlineCombatStatsSettingsFrame.class);
         this.mO.setTargetFrameClass(TargetInfoSettingsFrame.class);
-        this.m0.setTargetFrameClass(OnlineActivitySettingsFrame.class);
-        this.mW.setTargetFrameClass(OnlineRadarSettingsFrame.class);
-        this.inventoryOverlayRow.setTargetFrameClass(InventoryOverlaySettingsFrame.class);
         this.Y(publicProfilesFrameHeaderActionComponent);
         this.h(new ColorDividerComponent(QuickActionsFrame.J.l), new Object[0]);
-        this.addChildren(this.mF, this.mP, this.mX, this.mO, this.m0, this.mW,
-                this.inventoryOverlayRow);
+        this.addChildren(this.mF, this.mO);
         this.setVisible(false);
         this.L(false, false);
     }
@@ -80,10 +59,6 @@ extends Frame {
     public void M() {
     }
 
-    public QuickActionRowComponent Y$src$Lgg_vape_ui_click_frame_impl_quickactions_QuickA$p4ezt5() {
-        return this.mX;
-    }
-
     @Override
     public void v() {
     }
@@ -96,10 +71,6 @@ extends Frame {
     public static int Y(QuickActionsFrame quickActionsFrame, int n) {
         quickActionsFrame.mG = n;
         return quickActionsFrame.mG;
-    }
-
-    public QuickActionRowComponent N$src$Lgg_vape_ui_click_frame_impl_quickactions_QuickA$1smecqc() {
-        return this.mP;
     }
 
     @Override
@@ -138,13 +109,6 @@ extends Frame {
     }
 
 
-    public QuickActionRowComponent E$src$Lgg_vape_ui_click_frame_impl_quickactions_QuickA$1snij4t() {
-        return this.mW;
-    }
-
-    public QuickActionRowComponent getInventoryOverlayRow() {
-        return this.inventoryOverlayRow;
-    }
 
     public void w(int n) {
         this.mG = n;
@@ -154,3 +118,4 @@ extends Frame {
         return this.mG;
     }
 }
+

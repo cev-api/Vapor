@@ -1,6 +1,6 @@
 package gg.vape.ui.click.frame.impl.profile;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.config.Profile;
 import gg.vape.config.ProfileSnapshot;
 import gg.vape.module.none.ClientSettings;
@@ -73,7 +73,7 @@ extends FlowLayoutComponent {
             if (resetAction) {
                 ConfirmationDialogComponent.showStandard(this.L$src$Lgg_vape_ui_click_frame_Frame_$1djx6sa(), "Are you sure you want to reset all settings?", "Reset", "reset_circle", () -> this.handleResetConfirmed(profileSnapshotFrame));
             } else {
-                Profile profile = Vape.INSTANCE.getProfilesManager().getActiveProfileOrNull();
+                Profile profile = Vapor.INSTANCE.getProfilesManager().getActiveProfileOrNull();
                 Profile snapshotProfile = this.getSnapshot().getProfile();
                 profile.captureCurrentState();
                 if (snapshotProfile != null && snapshotProfile.equals(profile)) {

@@ -789,7 +789,6 @@ frame.favorites=收藏夹
 frame.profiles=参数
 frame.macros=宏
 frame.friends=朋友
-frame.rearview=后视镜
 frame.text_gui=Text GUI
 frame.duel_info=Duel Info
 frame.radar=小地图

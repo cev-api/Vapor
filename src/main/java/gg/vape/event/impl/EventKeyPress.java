@@ -1,13 +1,12 @@
 package gg.vape.event.impl;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.config.ClientSettings;
 import gg.vape.config.Profile;
 import gg.vape.event.EventBus;
 import gg.vape.event.EventListeners;
 import gg.vape.event.impl.EventKeyInputBase;
 import gg.vape.input.KeyboardInput;
-import gg.vape.manager.client.OnlineConnectionManager;
 import gg.vape.module.Mod;
 import gg.vape.wrapper.impl.KeyBinding;
 import gg.vape.wrapper.impl.Minecraft;
@@ -35,14 +34,13 @@ extends EventKeyInputBase {
             return handled;
         }
         if (this.getKey() > 0 && this.isDown() && Minecraft.currentScreen().getObject() == null) {
-            for (Profile profile : Vape.INSTANCE.getProfilesManager().getProfiles()) {
+            for (Profile profile : Vapor.INSTANCE.getProfilesManager().getProfiles()) {
                 if (!profile.activateIfMatched(this.getKey())) continue;
             }
         }
-        for (Mod mod : Vape.INSTANCE.getModManager().collectMods()) {
+        for (Mod mod : Vapor.INSTANCE.getModManager().collectMods()) {
             mod.u(this);
         }
-        OnlineConnectionManager.INSTANCE.getSettings().handleKeyPress(this);
         return super.fire();
     }
 

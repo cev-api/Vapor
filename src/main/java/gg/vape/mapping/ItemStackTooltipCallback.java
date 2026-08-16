@@ -1,6 +1,6 @@
 package gg.vape.mapping;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.mapping.InsertedEventCallback;
 import gg.vape.mapping.MappedClasses;
 import gg.vape.ui.click.component.GuiComponent;
@@ -32,7 +32,7 @@ implements InsertedEventCallback {
         EntityPlayer entityPlayer = new EntityPlayer(this.P);
         T = true;
         this.U = (List)itemStack.A(entityPlayer, this.M);
-        if (Vape.INSTANCE.getClientSettings().showNbtTags.getEffectiveValue().booleanValue()) {
+        if (Vapor.INSTANCE.getClientSettings().showNbtTags.getEffectiveValue().booleanValue()) {
             if (itemStack.isNull() || itemStack.l() == null || this.U == null) {
                 return true;
             }

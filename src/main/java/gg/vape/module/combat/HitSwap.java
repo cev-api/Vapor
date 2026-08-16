@@ -131,9 +131,7 @@ extends Mod {
 
     @EventHandler(priority=EventPriority.HIGH)
     public void onSyntheticAttack(SyntheticAttackRequestEvent event) {
-        Mod source = event.getSource();
-        if (source == this || source instanceof ShieldBreaker
-                || source instanceof AutoMace && ((AutoMace)source).isSyntheticAttackInProgress()) {
+        if (event.getSource() == this) {
             return;
         }
         this.handleAttack(new SyntheticAttackCancellationAdapter(event));

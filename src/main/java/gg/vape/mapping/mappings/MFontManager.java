@@ -1,6 +1,6 @@
 package gg.vape.mapping.mappings;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.mapping.MappedClasses;
 import gg.vape.mapping.Mapping;
 import gg.vape.mapping.MappingField;
@@ -31,7 +31,7 @@ extends Mapping {
             }
         }
         catch (Exception exception) {
-            Vape.debugLog("[FontManagerHook] Error getting FontSet for " + string + ": " + exception.getMessage());
+            Vapor.debugLog("[FontManagerHook] Error getting FontSet for " + string + ": " + exception.getMessage());
         }
         return this.x(object);
     }
@@ -44,7 +44,7 @@ extends Mapping {
         super(MappedClasses.lr);
         if (string != null) {
             if (MappedClasses.lr == null) {
-                Vape.debugLog("[FontManagerHook] FontManagerClass is null - not available on this version");
+                Vapor.debugLog("[FontManagerHook] FontManagerClass is null - not available on this version");
                 return;
             }
             Class<Map> clazz = Map.class;
@@ -93,7 +93,7 @@ extends Mapping {
             }
         }
         catch (Exception exception) {
-            Vape.debugLog("[FontManagerHook] Error getting default FontSet: " + exception.getMessage());
+            Vapor.debugLog("[FontManagerHook] Error getting default FontSet: " + exception.getMessage());
         }
         return this.x(object);
     }

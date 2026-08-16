@@ -1,6 +1,6 @@
 package gg.vape.utils.render;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import java.nio.charset.StandardCharsets;
 import org.lwjgl.opengl.GL20;
 
@@ -20,7 +20,7 @@ public class RenderBatchShaderProgram {
         } else {
             throw new RuntimeException("Unable to set type");
         }
-        byte[] shaderBytes = Vape.readResource(resourcePath);
+        byte[] shaderBytes = Vapor.readResource(resourcePath);
         int shaderId = GL20.glCreateShader((int)shaderType);
         String shaderSource = new String(shaderBytes, StandardCharsets.UTF_8);
         GL20.glShaderSource((int)shaderId, (CharSequence)shaderSource);

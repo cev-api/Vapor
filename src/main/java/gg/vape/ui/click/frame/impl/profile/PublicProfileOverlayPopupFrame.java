@@ -3,8 +3,6 @@ package gg.vape.ui.click.frame.impl.profile;
 import gg.vape.ui.click.component.GuiComponent;
 import gg.vape.ui.click.component.PanelComponent;
 import gg.vape.ui.click.frame.PopupFrame;
-import gg.vape.ui.click.frame.impl.profile.PublicProfileOverlayCloseClickHandler;
-import gg.vape.ui.click.frame.impl.profile.PublicProfileOverlayOutsideClickCloseHandler;
 import java.awt.Color;
 
 public class PublicProfileOverlayPopupFrame
@@ -28,8 +26,6 @@ extends PopupFrame {
         this.overlayContainer.C$src$V$nadrmg();
         this.overlayContainer.setExplicitWidth(this.X$src$Lgg_vape_ui_click_frame_Frame_$1aw5qf9().A());
         this.overlayContainer.setExplicitHeight(this.X$src$Lgg_vape_ui_click_frame_Frame_$1aw5qf9().L() + 2.0);
-        this.overlayContainer.addMouseListener(new PublicProfileOverlayCloseClickHandler(this));
-        this.addGlobalMouseListener(new PublicProfileOverlayOutsideClickCloseHandler(this));
     }
 
     public void T(int n) {

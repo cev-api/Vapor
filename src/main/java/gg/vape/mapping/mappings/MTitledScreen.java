@@ -1,6 +1,6 @@
 package gg.vape.mapping.mappings;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.mapping.MappedClasses;
 import gg.vape.mapping.Mapping;
 import gg.vape.mapping.MappingField;
@@ -103,7 +103,7 @@ extends Mapping {
                 MTitledScreen mTitledScreen = this;
                 this.renderHudMethod = mTitledScreen.registerInstanceMethodForOwner(clazz4, string, bl, clazz, classArray);
             }
-            if (this.renderHudMethod != null && !Wrapper.isNativeAvailable && !this.renderHudMethod.hasResolutionFailed() && Vape.INSTANCE.isMappingsRemapped()) {
+            if (this.renderHudMethod != null && !Wrapper.isNativeAvailable && !this.renderHudMethod.hasResolutionFailed() && Vapor.INSTANCE.isMappingsRemapped()) {
                 if (ForgeVersion.MC_1_16_5.d()) {
                     if (MappedClasses.DC != null) {
                         Class[] classArray = new Class[]{MappedClasses.DQ, Float.TYPE};
@@ -132,7 +132,7 @@ extends Mapping {
             Class clazz7 = MappedClasses.Zj;
             MTitledScreen mTitledScreen = this;
             this.renderHudMethod = mTitledScreen.registerInstanceMethodForOwner(clazz7, string, bl, clazz, classArray);
-            if (!Wrapper.isNativeAvailable && !this.renderHudMethod.hasResolutionFailed() && Vape.INSTANCE.isMappingsRemapped()) {
+            if (!Wrapper.isNativeAvailable && !this.renderHudMethod.hasResolutionFailed() && Vapor.INSTANCE.isMappingsRemapped()) {
                 Class[] classArray3 = new Class[]{Float.TYPE, Boolean.TYPE, Integer.TYPE, Integer.TYPE};
                 Class<Void> clazz8 = Void.TYPE;
                 boolean bl4 = false;

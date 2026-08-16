@@ -1,6 +1,6 @@
 package gg.vape.config;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.config.ClientSettings;
 import gg.vape.unmap.BindChangeListener;
 
@@ -14,6 +14,6 @@ implements BindChangeListener {
 
     @Override
     public void onBindChanged() {
-        Vape.INSTANCE.getFriendManager().toggleCrosshairTarget();
+        
     }
 }

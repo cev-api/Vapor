@@ -2,8 +2,7 @@ package gg.vape.input;
 
 import gg.vape.input.InputEventDispatcher;
 import gg.vape.input.KeyboardInputState;
-import gg.vape.wrapper.impl.ForgeVersion;
-import org.lwjgl.input.Keyboard;
+import gg.vape.runtime.NativeBridge;
 
 public class KeyboardInput {
     private static KeyboardInputState cachedState;
@@ -17,10 +16,7 @@ public class KeyboardInput {
             int mouseButton = keyCode + 100;
             return "M" + mouseButton;
         }
-        if (ForgeVersion.MC_1_16_5.d()) {
-            return String.valueOf((char)keyCode);
-        }
-        return Keyboard.getKeyName((int)keyCode);
+        return NativeBridge.gkn(keyCode);
     }
 
 
@@ -31,4 +27,3 @@ public class KeyboardInput {
         return cachedState;
     }
 }
-

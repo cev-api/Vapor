@@ -1,6 +1,6 @@
 package gg.vape.mapping;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.mapping.MappingField;
 import gg.vape.mapping.MappingMemberSnapshot;
 import gg.vape.mapping.MappingMethod;
@@ -27,7 +27,7 @@ public class MappingProfileSnapshotRegistry {
     }
 
     public static void X(MappingMethod mappingMethod) {
-        if (!Vape.INSTANCE.isMappingsRemapped() && !Vape.INSTANCE.isForgeRemapInactive()) {
+        if (!Vapor.INSTANCE.isMappingsRemapped() && !Vapor.INSTANCE.isForgeRemapInactive()) {
             return;
         }
         MappingMemberSnapshot mappingMemberSnapshot = new MappingMemberSnapshot(mappingMethod.getMappingOwner(), mappingMethod.getOwnerClass(), mappingMethod.getOriginalName(), mappingMethod.getDeclaredReturnType(), mappingMethod.getDeclaredParameterTypes(), mappingMethod.getRuntimeName(), mappingMethod.getResolvedReturnType(), mappingMethod.getResolvedParameterTypes(), mappingMethod.isMappedMember());
@@ -72,7 +72,7 @@ public class MappingProfileSnapshotRegistry {
     }
 
     public static void n(MappingField mappingField) {
-        if (!Vape.INSTANCE.isMappingsRemapped() && !Vape.INSTANCE.isForgeRemapInactive()) {
+        if (!Vapor.INSTANCE.isMappingsRemapped() && !Vapor.INSTANCE.isForgeRemapInactive()) {
             return;
         }
         MappingMemberSnapshot mappingMemberSnapshot = new MappingMemberSnapshot(mappingField.getMappingOwner(), mappingField.getOwnerClass(), mappingField.getOriginalName(), mappingField.getDeclaredFieldType(), null, mappingField.getRuntimeName(), mappingField.getResolvedFieldType(), null, mappingField.isMappedMember());

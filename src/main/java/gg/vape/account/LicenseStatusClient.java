@@ -2,7 +2,7 @@ package gg.vape.account;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.account.LicenseStatus;
 import gg.vape.account.LicenseStatusResponse;
 import java.io.BufferedReader;
@@ -35,7 +35,7 @@ public class LicenseStatusClient {
             }
         }
         catch (Exception error) {
-            Vape.logThrowable(error);
+            Vapor.logThrowable(error);
             try {
                 if (this.connection.getResponseCode() == 403) {
                     return null;
@@ -43,7 +43,7 @@ public class LicenseStatusClient {
                 System.out.println("Unhandled error code: " + this.connection.getResponseCode());
             }
             catch (IOException responseError) {
-                Vape.logThrowable(responseError);
+                Vapor.logThrowable(responseError);
             }
         }
         return null;

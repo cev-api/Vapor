@@ -1,6 +1,6 @@
 package gg.vape.wrapper.impl;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.wrapper.Wrapper;
 
 public class GlStateManagerTexGenState
@@ -8,7 +8,7 @@ extends Wrapper {
     public static final int F;
 
     public static boolean p() {
-        return Vape.INSTANCE.getMappings().hs != null;
+        return Vapor.INSTANCE.getMappings().hs != null;
     }
 
     static {
@@ -18,8 +18,8 @@ extends Wrapper {
 
 
     public static void I(int n, int n2) {
-        if (Vape.INSTANCE.getMappings().hs != null) {
-            Vape.INSTANCE.getMappings().hs.K(n, n2);
+        if (Vapor.INSTANCE.getMappings().hs != null) {
+            Vapor.INSTANCE.getMappings().hs.K(n, n2);
         }
     }
 
@@ -28,8 +28,8 @@ extends Wrapper {
     }
 
     public static int J(int n) {
-        if (Vape.INSTANCE.getMappings().hs != null) {
-            return Vape.INSTANCE.getMappings().hs.F(n);
+        if (Vapor.INSTANCE.getMappings().hs != null) {
+            return Vapor.INSTANCE.getMappings().hs.F(n);
         }
         return 0;
     }

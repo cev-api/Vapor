@@ -1,6 +1,6 @@
 package gg.vape.utils.render;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.utils.render.GuiRenderPrimitives;
 import gg.vape.wrapper.impl.ForgeVersion;
 import gg.vape.wrapper.impl.GlStateManagerTexGenState;
@@ -115,7 +115,7 @@ public class GlTextureUnitState {
         }
         samplerSupportEnabled = GlStateManagerTexGenState.p();
         if (samplerSupportEnabled) {
-            Vape.debugLog(SAMPLER_SUPPORT_MESSAGE);
+            Vapor.debugLog(SAMPLER_SUPPORT_MESSAGE);
         }
     }
 

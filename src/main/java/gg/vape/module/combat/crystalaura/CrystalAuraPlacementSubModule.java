@@ -1,6 +1,6 @@
 package gg.vape.module.combat.crystalaura;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.config.ClientSettings;
 import gg.vape.event.EventHandler;
 import gg.vape.event.impl.EventPacketReceive;
@@ -9,8 +9,6 @@ import gg.vape.event.impl.EventPostTick;
 import gg.vape.event.impl.EventPreTick;
 import gg.vape.event.impl.EventRender3D;
 import gg.vape.event.impl.EventWorldChange;
-import gg.vape.friend.FriendEntry;
-import gg.vape.manager.client.FriendManager;
 import gg.vape.mapping.MappedClasses;
 import gg.vape.module.Mod;
 import gg.vape.module.ModuleDisplayInfo;
@@ -113,7 +111,6 @@ extends SubModule<CrystalAura> {
     private long lastTargetTime;
     private final BooleanValue showTarget;
     private final ModeOption noneMode;
-    private final FriendManager friendManager;
     public final ModeOption healthMode;
     private final RandomValue activationDelay;
     private static final Color ATTACK_COLOR;
@@ -575,10 +572,6 @@ extends SubModule<CrystalAura> {
             return false;
         }
         if (RotationUtil.a(player, target) > ((Double)this.maxAngle.getValue()).intValue() / 2) {
-            return false;
-        }
-        FriendEntry friendEntry = this.friendManager.findTargetedFriend(target.getName());
-        if (friendEntry != null && !friendEntry.isTargeted()) {
             return false;
         }
         if (target.equals(player.S$src$Lgg_vape_wrapper_impl_Entity_$dgzs12())) {
@@ -1234,7 +1227,6 @@ extends SubModule<CrystalAura> {
         this.rotationManager = RotationManager.INSTANCE;
         this.rotationClaim = SharedModuleControlClaims.rotation;
         this.mouseOverClaim = SharedModuleControlClaims.mouseOverUpdate;
-        this.friendManager = Vape.INSTANCE.getFriendManager();
         this.delayTimer = new TimerUtil();
         this.crystalAura = (CrystalAura)parent;
         this.showTarget.addDependentValues(this.targetColor, this.attackColor);

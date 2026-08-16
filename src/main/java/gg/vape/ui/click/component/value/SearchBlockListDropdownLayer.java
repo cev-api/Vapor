@@ -1,6 +1,6 @@
 package gg.vape.ui.click.component.value;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.ui.click.component.value.FloatingValueDropdownLayer;
 import gg.vape.ui.click.component.value.SearchBlockEditorComponent;
 import gg.vape.ui.click.component.value.SearchBlockListAddInputComponent;
@@ -23,7 +23,7 @@ extends FloatingValueDropdownLayer<SearchBlockListComponent> {
         this.removeMarkedChildren();
         SearchBlockListAddInputComponent searchBlockListAddInputComponent = new SearchBlockListAddInputComponent("Block name / ID");
         this.h(searchBlockListAddInputComponent, new Object[0]);
-        for (SearchBlock searchBlock : Vape.INSTANCE.getSearch().getSearchBlocks()) {
+        for (SearchBlock searchBlock : Vapor.INSTANCE.getSearch().getSearchBlocks()) {
             SearchBlockEditorComponent searchBlockEditorComponent = new SearchBlockEditorComponent(searchBlock);
             searchBlockEditorComponent.setRemoveClickListener(new SearchBlockRemoveHandler(this, searchBlock));
             this.h(searchBlockEditorComponent, new Object[0]);

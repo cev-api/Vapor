@@ -1,6 +1,6 @@
 package gg.vape.input;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.input.BindCaptureTask;
 import gg.vape.input.BindCaptureThreadConstructorMarker;
 import gg.vape.input.InputEventDispatcher;
@@ -24,7 +24,7 @@ extends Thread {
 
     @Override
     public void run() {
-        ClientSettings clientSettings = Vape.INSTANCE.getModManager().getMod(ClientSettings.class);
+        ClientSettings clientSettings = Vapor.INSTANCE.getModManager().getMod(ClientSettings.class);
         KeyboardInputState keyboardState = InputEventDispatcher.getInstance().getKeyboardState();
         long lastKeyboardChangeTime = keyboardState.getLastChangeTime();
         long lastMouseChangeTime = MouseInput.getLastChangeTimeBridge();

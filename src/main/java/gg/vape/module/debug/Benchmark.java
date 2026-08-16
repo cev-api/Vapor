@@ -1,6 +1,6 @@
 package gg.vape.module.debug;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.event.EventHandler;
 import gg.vape.event.impl.EventPostRenderTick;
 import gg.vape.module.Category;
@@ -23,21 +23,21 @@ extends Mod {
     private int fpsSum;
 
     private void logResults() {
-        Vape.debugLog("----------------------------");
-        Vape.debugLog("Amount of Tests: " + this.testAmount.getValue());
-        Vape.debugLog("Time Taken for each Tests: " + this.benchmarkTime.getValue() + "s");
+        Vapor.debugLog("----------------------------");
+        Vapor.debugLog("Amount of Tests: " + this.testAmount.getValue());
+        Vapor.debugLog("Time Taken for each Tests: " + this.benchmarkTime.getValue() + "s");
         int totalAverageFps = 0;
         long totalCaptures = 0L;
-        Vape.debugLog("Avg:");
+        Vapor.debugLog("Avg:");
         for (int sampleIndex = 0; sampleIndex < this.samples.size(); ++sampleIndex) {
             BenchmarkSample sample = this.samples.get(sampleIndex);
-            Vape.debugLog(sampleIndex + 1 + ": fps - " + sample.getAverageFps() + " captures - " + sample.getCaptureCount());
-            Vape.debugLog("Highest FPS: " + sample.getHighestFps() + " Lowest FPS: " + sample.getLowestFps());
+            Vapor.debugLog(sampleIndex + 1 + ": fps - " + sample.getAverageFps() + " captures - " + sample.getCaptureCount());
+            Vapor.debugLog("Highest FPS: " + sample.getHighestFps() + " Lowest FPS: " + sample.getLowestFps());
             totalAverageFps = (int)((double)totalAverageFps + sample.getAverageFps());
             totalCaptures += sample.getCaptureCount();
         }
-        Vape.debugLog("Avg for all tests: fps - " + totalAverageFps / this.samples.size() + " captures - " + totalCaptures / this.samples.size());
-        Vape.debugLog("----------------------------");
+        Vapor.debugLog("Avg for all tests: fps - " + totalAverageFps / this.samples.size() + " captures - " + totalCaptures / this.samples.size());
+        Vapor.debugLog("----------------------------");
     }
 
     @EventHandler
@@ -46,7 +46,7 @@ extends Mod {
             if (System.currentTimeMillis() - this.lastTimestamp <= 5000L) {
                 return;
             }
-            Vape.debugLog("Benchmark Started");
+            Vapor.debugLog("Benchmark Started");
             this.running = true;
             this.lastTimestamp = System.currentTimeMillis();
             this.captureCount = 0;
@@ -61,7 +61,7 @@ extends Mod {
         long elapsedMillis = System.currentTimeMillis() - this.lastTimestamp;
         if ((double)elapsedMillis >= this.testDurationMillis()) {
             this.samples.add(new BenchmarkSample(this.captureCount, this.fpsSum, this.highestFps, this.lowestFps));
-            Vape.debugLog("Test " + this.samples.size() + " completed");
+            Vapor.debugLog("Test " + this.samples.size() + " completed");
             this.fpsSum = 0;
             this.captureCount = 0;
             this.lowestFps = Integer.MAX_VALUE;
@@ -99,7 +99,7 @@ extends Mod {
     @Override
     public void onEnable() {
         super.onEnable();
-        Vape.debugLog("Starting Benchmark test in 5 seconds");
+        Vapor.debugLog("Starting Benchmark test in 5 seconds");
         this.lastTimestamp = System.currentTimeMillis();
     }
 }

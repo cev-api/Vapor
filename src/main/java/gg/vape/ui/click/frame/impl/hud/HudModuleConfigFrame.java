@@ -1,7 +1,7 @@
 package gg.vape.ui.click.frame.impl.hud;
 
 import func.skidline.RectData;
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.module.none.ClientSettings;
 import gg.vape.module.render.hud.HudModule;
 import gg.vape.ui.click.GuiMouseEvent;
@@ -26,7 +26,7 @@ extends Frame {
         if (this.selectedModule == null) {
             return null;
         }
-        return (HudModule)Vape.INSTANCE.getModManager().getMod(this.selectedModule.getClass());
+        return (HudModule)Vapor.INSTANCE.getModManager().getMod(this.selectedModule.getClass());
     }
 
     @Override

@@ -1,6 +1,6 @@
 package gg.vape.mapping.mappings;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.mapping.MappedClasses;
 import gg.vape.mapping.Mapping;
 import gg.vape.mapping.MappingField;
@@ -25,7 +25,7 @@ extends Mapping {
     private MAbstractClientPlayerBridge(GuiComponent[] guiComponentArray) {
         super(MappedClasses.zt);
         if (guiComponentArray != null) {
-            if (ForgeVersion.MC_1_21_10.d() && Vape.INSTANCE.isFabricMinecraftPresent()) {
+            if (ForgeVersion.MC_1_21_10.d() && Vapor.INSTANCE.isFabricMinecraftPresent()) {
                 this.locationSkinMethod = this.registerInstanceMethodForOwner(
                         MappedClasses.lB, "getSkin", true, MappedClasses.uZ, new Class[]{});
             } else {

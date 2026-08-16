@@ -1,6 +1,6 @@
 package gg.vape.mapping;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.event.impl.EventScoreboardScores;
 import gg.vape.mapping.EventInjectionSpec;
 import gg.vape.mapping.JavassistMappingTask;
@@ -12,7 +12,7 @@ extends JavassistMappingTask {
 
     @Override
     public void transform() {
-        EventInjectionSpec eventInjectionSpec = new EventInjectionSpec(Vape.INSTANCE.getMappings().scoreboard.listPlayerScoresMethod, EventScoreboardScores.class);
+        EventInjectionSpec eventInjectionSpec = new EventInjectionSpec(Vapor.INSTANCE.getMappings().scoreboard.listPlayerScoresMethod, EventScoreboardScores.class);
         eventInjectionSpec.setReturnExpression(SCORES_RETURN_EXPRESSION);
         this.registerEventInjection(eventInjectionSpec);
     }

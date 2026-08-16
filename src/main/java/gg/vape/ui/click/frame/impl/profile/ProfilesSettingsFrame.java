@@ -1,6 +1,6 @@
 package gg.vape.ui.click.frame.impl.profile;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.config.Profile;
 import gg.vape.module.none.ClientSettings;
 import gg.vape.ui.click.GuiMouseEvent;
@@ -39,7 +39,7 @@ extends SettingsSubpageFrame {
             this.activePopup = null;
         }
         if (this.createPanel.getPendingProfile() != null) {
-            Vape.INSTANCE.getProfilesManager().setActiveProfile(this.createPanel.getPendingProfile());
+            Vapor.INSTANCE.getProfilesManager().setActiveProfile(this.createPanel.getPendingProfile());
             this.createPanel.setPendingProfile(null);
         }
     }
@@ -112,7 +112,7 @@ extends SettingsSubpageFrame {
     @Override
     public void c() {
         int hiddenProfileCount = 0;
-        for (Profile profile : Vape.INSTANCE.getProfilesManager().getProfiles()) {
+        for (Profile profile : Vapor.INSTANCE.getProfilesManager().getProfiles()) {
             if (!profile.isVisible()) {
                 ++hiddenProfileCount;
             }
@@ -168,8 +168,12 @@ extends SettingsSubpageFrame {
 
     public static void refreshProfileList() {
         ProfilesSettingsFrame frame = ClientSettings.getFrame(ProfilesSettingsFrame.class);
+        // Profile JSON can load before Fabric creates the deferred frame tree.
+        if (frame == null || Vapor.INSTANCE == null || Vapor.INSTANCE.getProfilesManager() == null) {
+            return;
+        }
         frame.profileList.removeMarkedChildren();
-        for (Profile profile : Vape.INSTANCE.getProfilesManager().getProfiles()) {
+        for (Profile profile : Vapor.INSTANCE.getProfilesManager().getProfiles()) {
             frame.addProfile(profile);
         }
         frame.contentLayout.l$src$V$1mibm4x();
@@ -199,7 +203,7 @@ extends SettingsSubpageFrame {
         for (GuiComponent guiComponent : ProfilesSettingsFrameState.F(false)) {
             BooleanToggleComponent booleanToggleComponent;
             this.n(guiComponent);
-            if (!(guiComponent instanceof BooleanToggleComponent) || !(booleanToggleComponent = (BooleanToggleComponent)guiComponent).getBoundValue().equals(Vape.INSTANCE.getPublicProfileSettings().autoLoadModuleStates)) continue;
+            if (!(guiComponent instanceof BooleanToggleComponent) || !(booleanToggleComponent = (BooleanToggleComponent)guiComponent).getBoundValue().equals(Vapor.INSTANCE.getPublicProfileSettings().autoLoadModuleStates)) continue;
             this.autoEnableModulesToggle = booleanToggleComponent;
         }
         this.contentLayout = new FlowLayoutComponent(this.A());

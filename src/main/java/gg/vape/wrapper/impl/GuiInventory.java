@@ -1,6 +1,6 @@
 package gg.vape.wrapper.impl;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.utils.render.BufferedGuiRenderPrimitives;
 import gg.vape.utils.render.GuiRenderPrimitives;
 import gg.vape.utils.render.RenderBatchBuilder;
@@ -16,10 +16,10 @@ import java.util.function.Supplier;
 public class GuiInventory
 extends Wrapper {
     private static Void renderQueuedEntity(RenderMatrix4f renderMatrix, int scale, float mouseX, float mouseY, EntityLivingBase entity) {
-        Vape.INSTANCE.getMappings().guiInventory.drawEntityOnScreen(
+        Vapor.INSTANCE.getMappings().guiInventory.drawEntityOnScreen(
                 (int)renderMatrix.elements[0],
                 (int)renderMatrix.elements[5],
-                (int)((double)scale * Vape.INSTANCE.getClientSettings().getGuiScaleFactor()),
+                (int)((double)scale * Vapor.INSTANCE.getClientSettings().getGuiScaleFactor()),
                 mouseX,
                 mouseY,
                 entity.getObject());
@@ -28,7 +28,7 @@ extends Wrapper {
 
     public static void drawEntityOnScreen(int screenX, int screenY, int scale, float mouseX, float mouseY, EntityLivingBase entity) {
         if (ForgeVersion.MC_1_20_6.d()) {
-            Vape.notifyNativeStackTrace();
+            Vapor.notifyNativeStackTrace();
         }
         if (GuiRenderPrimitives.d()) {
             RenderMatrix4f renderMatrix = new RenderMatrix4f(new RenderVector4f(screenX, screenY, 0.0f, 1.0f))
@@ -40,7 +40,7 @@ extends Wrapper {
             RenderBatchManager.getInstance().queueGuiBatch(renderBatch);
             return;
         }
-        Vape.INSTANCE.getMappings().guiInventory.drawEntityOnScreen(
+        Vapor.INSTANCE.getMappings().guiInventory.drawEntityOnScreen(
                 screenX, screenY, scale, mouseX, mouseY, entity.getObject());
     }
 

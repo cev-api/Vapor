@@ -1,6 +1,6 @@
 package gg.vape.mapping;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.event.impl.EventPostMove;
 import gg.vape.event.impl.EventPreMove;
 import gg.vape.mapping.EventInjectionSpec;
@@ -13,7 +13,7 @@ public class EntityMoveEventMappingTask
 extends JavassistMappingTask {
     private void k() {
         if (ForgeVersion.MC_1_16_5.d()) {
-            MappingMethod mappingMethod = Vape.INSTANCE.getMappings().Rr.jG;
+            MappingMethod mappingMethod = Vapor.INSTANCE.getMappings().Rr.jG;
             String string = "$2";
             String string2 = "$2 = ( " + MappedClasses.qP.getName() + ") $event.getVector();";
             EventInjectionSpec eventInjectionSpec = new EventInjectionSpec(mappingMethod, EventPreMove.class);
@@ -28,7 +28,7 @@ extends JavassistMappingTask {
             this.registerEventInjection(eventInjectionSpec2);
             return;
         }
-        MappingMethod mappingMethod = Vape.INSTANCE.getMappings().Rr.j0;
+        MappingMethod mappingMethod = Vapor.INSTANCE.getMappings().Rr.j0;
         String string = ForgeVersion.MC_1_12_2.d() ? "$2, $3, $4" : "$1, $2, $3";
         String string3 = ForgeVersion.MC_1_12_2.d() ? "$2 = $event.getX();\n $3 = $event.getY();\n $4 = $event.getZ();" : "$1 = $event.getX();\n $2 = $event.getY();\n $3 = $event.getZ();";
         EventInjectionSpec eventInjectionSpec = new EventInjectionSpec(mappingMethod, EventPreMove.class);

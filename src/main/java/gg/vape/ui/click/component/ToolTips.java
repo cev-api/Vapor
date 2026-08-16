@@ -1,6 +1,6 @@
 package gg.vape.ui.click.component;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.ui.click.component.GuiComponent;
 import gg.vape.ui.click.component.SimpleTextLabelComponent;
 import gg.vape.ui.click.component.TooltipTextSegment;
@@ -39,7 +39,7 @@ extends SimpleTextLabelComponent {
             contentHeight = this.headerSegment.getHeight() + 3.0;
             contentWidth = this.headerSegment.getWidth();
         }
-        String formattedText = Vape.INSTANCE.getFontSelector().W().s(this.text);
+        String formattedText = Vapor.INSTANCE.getFontSelector().W().s(this.text);
         String[] lines = formattedText.split("\n");
         for (String line : lines) {
             double lineWidth = fontRenderer.N(line);
@@ -49,11 +49,11 @@ extends SimpleTextLabelComponent {
             contentHeight += fontRenderer.d(line) + 1.0;
         }
         double tooltipX = this.G$src$D$1b2f02a() + 8.0;
-        if (tooltipX + contentWidth + 8.0 > (double)Minecraft.J() / Vape.INSTANCE.getClientSettings().getGuiScaleFactor() / 2.0) {
+        if (tooltipX + contentWidth + 8.0 > (double)Minecraft.J() / Vapor.INSTANCE.getClientSettings().getGuiScaleFactor() / 2.0) {
             tooltipX = tooltipX - contentWidth - 6.0 - 12.0;
         }
         double tooltipY = this.n();
-        if (tooltipY + contentHeight + 2.5 + 2.0 > (double)Minecraft.h() / Vape.INSTANCE.getClientSettings().getGuiScaleFactor() / 2.0) {
+        if (tooltipY + contentHeight + 2.5 + 2.0 > (double)Minecraft.h() / Vapor.INSTANCE.getClientSettings().getGuiScaleFactor() / 2.0) {
             tooltipY = tooltipY - contentHeight - 2.5;
         }
         GuiRenderPrimitives.I(tooltipX, tooltipY, contentWidth + 6.0, contentHeight + 2.5, ToolTips.J.r, true, 2.0f, 1.0f, 6.0f, ToolTips.J.i);

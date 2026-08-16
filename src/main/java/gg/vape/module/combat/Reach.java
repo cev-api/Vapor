@@ -1,6 +1,6 @@
 package gg.vape.module.combat;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.event.EventHandler;
 import gg.vape.event.impl.EventPostAttack;
 import gg.vape.event.impl.EventPostRenderTick;
@@ -82,8 +82,8 @@ extends Mod {
     @Override
     public void onEnable() {
         super.onEnable();
-        if (Vape.INSTANCE.isOnlineConnected()) {
-            Vape.INSTANCE.getNotificationManager().show("Reach is unsafe", "Reach is generally unsafe and detected by most servers, it is advised to avoid using it", NotificationType.ALERT, 15000L);
+        if (Vapor.INSTANCE.isOnlineConnected()) {
+            Vapor.INSTANCE.getNotificationManager().show("Reach is unsafe", "Reach is generally unsafe and detected by most servers, it is advised to avoid using it", NotificationType.ALERT, 15000L);
         }
     }
 

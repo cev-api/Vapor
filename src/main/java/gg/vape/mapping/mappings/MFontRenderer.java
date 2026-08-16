@@ -1,6 +1,6 @@
 package gg.vape.mapping.mappings;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.mapping.MappedClasses;
 import gg.vape.mapping.Mapping;
 import gg.vape.mapping.MappingMethod;
@@ -193,7 +193,7 @@ extends Mapping {
                 String string14 = "resetStyles";
                 MFontRenderer mFontRenderer14 = this;
                 this.i = this.Y(string14, bl14, clazz16, classArray14);
-                if (Vape.INSTANCE.isVanillaMinecraftPresent()) {
+                if (Vapor.INSTANCE.isVanillaMinecraftPresent()) {
                     Class[] classArray15 = new Class[]{String.class, Integer.TYPE, Integer.TYPE, Integer.TYPE};
                     Class<Integer> clazz17 = Integer.TYPE;
                     boolean bl15 = true;

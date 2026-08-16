@@ -1,6 +1,6 @@
 package gg.vape.mapping.mappings;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.mapping.MappedClasses;
 import gg.vape.mapping.Mapping;
 import gg.vape.mapping.MappingMethod;
@@ -99,7 +99,7 @@ extends Mapping {
             MBlockPos mBlockPos2 = this;
             this.T = this.Y(string2, bl2, clazz2, classArray2);
         }
-        if (Vape.INSTANCE.isVanillaMinecraftPresent()) {
+        if (Vapor.INSTANCE.isVanillaMinecraftPresent()) {
             Class[] classArray3 = new Class[]{};
             Class clazz3 = MappedClasses.lf;
             boolean bl3 = true;

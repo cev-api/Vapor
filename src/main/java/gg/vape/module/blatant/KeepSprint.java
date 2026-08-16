@@ -1,6 +1,6 @@
 package gg.vape.module.blatant;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.event.EventHandler;
 import gg.vape.event.impl.EventPostAttack;
 import gg.vape.event.impl.EventPreAttack;
@@ -72,7 +72,7 @@ extends Mod {
     public void onPreAttack(EventPreAttack event) {
         EntityPlayerSP player = Minecraft.thePlayer();
         if (this.scaffold == null) {
-            this.scaffold = Vape.INSTANCE.getModManager().getMod(Scaffold.class);
+            this.scaffold = Vapor.INSTANCE.getModManager().getMod(Scaffold.class);
         }
         if (this.scaffold.isActivelyScaffolding()) {
             return;
@@ -91,7 +91,7 @@ extends Mod {
     public void onPostAttack(EventPostAttack event) {
         EntityPlayerSP player = Minecraft.thePlayer();
         if (this.scaffold == null) {
-            this.scaffold = Vape.INSTANCE.getModManager().getMod(Scaffold.class);
+            this.scaffold = Vapor.INSTANCE.getModManager().getMod(Scaffold.class);
         }
         if (this.scaffold.isActivelyScaffolding()) {
             return;

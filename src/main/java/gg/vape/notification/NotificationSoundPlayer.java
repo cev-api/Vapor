@@ -1,6 +1,6 @@
 package gg.vape.notification;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.notification.SoundClip;
 import java.util.concurrent.atomic.AtomicReference;
 
@@ -29,7 +29,7 @@ public class NotificationSoundPlayer {
     }
 
     public boolean isMuted() {
-        return Vape.INSTANCE.getPublicProfileSettings().muted.getEffectiveValue();
+        return Vapor.INSTANCE.getPublicProfileSettings().muted.getEffectiveValue();
     }
 
     public static int[] getControlFlowMarker() {
@@ -42,7 +42,7 @@ public class NotificationSoundPlayer {
 
 
     public float getVolumePercent() {
-        return ((Double)Vape.INSTANCE.getPublicProfileSettings().volume.getValue()).floatValue();
+        return ((Double)Vapor.INSTANCE.getPublicProfileSettings().volume.getValue()).floatValue();
     }
 
     public void queue(SoundClip sound) {
@@ -50,17 +50,17 @@ public class NotificationSoundPlayer {
     }
 
     public void startSoundThread() {
-        new Thread(this::runSoundLoop, "Vape notification sound player").start();
+        new Thread(this::runSoundLoop, "Vapor notification sound player").start();
     }
 
     private void runSoundLoop() {
-        while (!Vape.INSTANCE.enabled) {
+        while (!Vapor.INSTANCE.enabled) {
             try {
                 Thread.sleep(100L);
                 this.playPendingSound();
             }
             catch (Exception exception) {
-                Vape.logThrowable(exception);
+                Vapor.logThrowable(exception);
             }
         }
     }

@@ -7,22 +7,12 @@ import gg.vape.wrapper.impl.EntityPlayerSP;
 import gg.vape.wrapper.impl.ForgeVersion;
 import gg.vape.wrapper.impl.KeyBinding;
 import gg.vape.wrapper.impl.Minecraft;
-import gg.vape.runtime.NativeBridge;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 public class KeyBindingHelper {
     public static void updateKeyBinding(KeyBinding keyBinding, boolean pressed, boolean triggerTick) {
-        if (NativeBridge.isBadlion189Runtime()
-                && BadlionKeyBindingEventQueue.isClickerWorkerThread()) {
-            int stateKeyCode = keyBinding.getKeyCode();
-            int tickKeyCode = triggerTick ? keyBinding.getKeyCode() : 0;
-            if (BadlionKeyBindingEventQueue.enqueueIfClickerWorker(
-                    stateKeyCode, pressed, triggerTick, tickKeyCode)) {
-                return;
-            }
-        }
         KeyBinding.setKeyBindState(keyBinding, pressed);
         if (triggerTick) {
             KeyBinding.onTick(keyBinding);
@@ -75,3 +65,4 @@ public class KeyBindingHelper {
         Minecraft.s().L(Minecraft.p().e$src$J$14hgru1(), keyBinding.getKeyCode(), pressed);
     }
 }
+

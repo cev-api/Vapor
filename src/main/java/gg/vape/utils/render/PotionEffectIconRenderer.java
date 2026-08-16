@@ -1,6 +1,6 @@
 package gg.vape.utils.render;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.utils.render.GuiRenderPrimitives;
 import gg.vape.utils.render.PotionEffectIcon;
 import gg.vape.utils.render.PotionEffectIconKey;
@@ -20,7 +20,7 @@ public class PotionEffectIconRenderer {
             cache.get(cacheKey).renderQueued(x, y, width, height, opacity, worldSpace);
         }
         catch (Exception exception) {
-            Vape.logThrowable(exception);
+            Vapor.logThrowable(exception);
         }
     }
 

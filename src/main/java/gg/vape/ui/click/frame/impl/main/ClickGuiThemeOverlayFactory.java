@@ -28,7 +28,7 @@ public final class ClickGuiThemeOverlayFactory {
     }
 
     public static ClickGuiOverlaySpec m(ClickGuiMainFrame clickGuiMainFrame) {
-        return ClickGuiOverlaySpec.builder().title("Friends Settings").sidecarIcon("newsettings").initializeContent(arg_0 -> ClickGuiThemeOverlayFactory.lambda$createConfig$0(clickGuiMainFrame, arg_0)).transitionMode(ClickGuiOverlayTransitionMode.REPLACE).build();
+        return ClickGuiOverlaySpec.builder().title("Theme Settings").sidecarIcon("newsettings").initializeContent(arg_0 -> ClickGuiThemeOverlayFactory.lambda$createConfig$0(clickGuiMainFrame, arg_0)).transitionMode(ClickGuiOverlayTransitionMode.REPLACE).build();
     }
 
     private static void lambda$null$2(GuiComponent[] guiComponentArray, PanelComponent panelComponent) {

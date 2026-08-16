@@ -1,6 +1,6 @@
 package gg.vape.ui.click;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.input.InputEventDispatcher;
 import gg.vape.module.none.ClientSettings;
 import gg.vape.utils.render.RenderBatchManager;
@@ -20,7 +20,7 @@ public class GuiScreenNativeCallbackBridge {
 
     public static void mouseClicked(Object screen, int mouseX, int mouseY, int button) {
         ClientSettings.UI_EXECUTOR.execute(() -> {
-            ClientSettings clientSettings = Vape.INSTANCE.getModManager().getMod(ClientSettings.class);
+            ClientSettings clientSettings = Vapor.INSTANCE.getModManager().getMod(ClientSettings.class);
             if (clientSettings != null && !clientSettings.inputEnabled) {
                 clientSettings.handleMouseButton(button, mouseX, mouseY);
             }
@@ -28,19 +28,19 @@ public class GuiScreenNativeCallbackBridge {
     }
 
     public static void drawScreen(Object screen, int mouseX, int mouseY, float partialTicks) {
-        ClientSettings clientSettings = Vape.INSTANCE.getModManager().getMod(ClientSettings.class);
+        ClientSettings clientSettings = Vapor.INSTANCE.getModManager().getMod(ClientSettings.class);
         if (!clientSettings.inputEnabled) {
             clientSettings.renderGui();
             if (ForgeVersion.MC_26_2.d() && !clickGuiRenderLogged) {
                 clickGuiRenderLogged = true;
                 try {
                     RenderBatchManager batchManager = RenderBatchManager.getInstance();
-                    Vape.debugLog("ClickGUI 26.2: render callback queued "
+                    Vapor.debugLog("ClickGUI 26.2: render callback queued "
                             + batchManager.guiBatches.size() + " batch group(s), framebuffer="
                             + batchManager.getTargetFramebufferId());
                 }
                 catch (Exception exception) {
-                    Vape.logThrowable(exception);
+                    Vapor.logThrowable(exception);
                 }
             }
         }

@@ -1,7 +1,7 @@
 package gg.vape.tutorial;
 
 import func.skidline.RectData;
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.module.none.ClientSettings;
 import gg.vape.tutorial.QueuedTutorialMessage;
 import gg.vape.tutorial.TutorialAction;
@@ -105,9 +105,9 @@ extends TutorialAction {
 
     @Override
     public void cleanup() {
-        Vape.debugLog("completed stage");
+        Vapor.debugLog("completed stage");
         for (GuiComponent guiComponent : this.highlightedComponents) {
-            Vape.debugLog("removed " + guiComponent + " " + this.mouseListeners.get(guiComponent));
+            Vapor.debugLog("removed " + guiComponent + " " + this.mouseListeners.get(guiComponent));
             guiComponent.removeMouseListener(this.mouseListeners.get(guiComponent));
         }
         this.highlightedComponents.clear();
@@ -127,7 +127,7 @@ extends TutorialAction {
     }
 
     public void registerMouseListener(GuiComponent guiComponent, GuiMouseListener guiMouseListener) {
-        Vape.debugLog("adding listener " + guiComponent + " " + guiMouseListener);
+        Vapor.debugLog("adding listener " + guiComponent + " " + guiMouseListener);
         guiComponent.addMouseListener(guiMouseListener);
         this.mouseListeners.put(guiComponent, guiMouseListener);
     }

@@ -1,6 +1,6 @@
 package gg.vape.module.render.entity;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.combat.AttackStrengthTracker;
 import gg.vape.config.ClientSettings;
 import gg.vape.mapping.MappedClasses;
@@ -81,7 +81,7 @@ public class RenderEntityContext {
     public boolean isAttackable() {
         if (!this.attackableCache.isCached()) {
             if (this.entityPlayer != null) {
-                this.attackableCache.setValue(Vape.INSTANCE.getClientSettings().isTeammate(this.viewer, this.entity));
+                this.attackableCache.setValue(Vapor.INSTANCE.getClientSettings().isTeammate(this.viewer, this.entity));
             } else {
                 this.attackableCache.setValue(false);
             }
@@ -151,7 +151,7 @@ public class RenderEntityContext {
 
     public String getNameTag() {
         if (this.cachedNameTag == null && this.entityPlayer != null) {
-            this.cachedNameTag = Vape.INSTANCE.getModManager().getMod(NameTags.class).Q(this.viewer, this, this.entityPlayer);
+            this.cachedNameTag = Vapor.INSTANCE.getModManager().getMod(NameTags.class).Q(this.viewer, this, this.entityPlayer);
         }
         return this.cachedNameTag;
     }
@@ -182,12 +182,12 @@ public class RenderEntityContext {
     public MutableColor getRenderColor(boolean outline) {
         if (outline) {
             if (this.outlineColor == null) {
-                this.outlineColor = Vape.INSTANCE.getClientSettings().resolveTeamColor(this, true, true);
+                this.outlineColor = Vapor.INSTANCE.getClientSettings().resolveTeamColor(this, true, true);
             }
             return this.outlineColor;
         }
         if (this.fillColor == null) {
-            this.fillColor = Vape.INSTANCE.getClientSettings().resolveTeamColor(this, false);
+            this.fillColor = Vapor.INSTANCE.getClientSettings().resolveTeamColor(this, false);
         }
         return this.fillColor;
     }
@@ -216,7 +216,7 @@ public class RenderEntityContext {
     public boolean isFriend() {
         if (!this.friendCache.isCached()) {
             if (this.entityPlayer != null) {
-                this.friendCache.setValue(Vape.INSTANCE.getFriendManager().isFriend(this.getName()));
+                this.friendCache.setValue(Vapor.isFriend(this.getName()));
             } else {
                 this.friendCache.setValue(false);
             }
@@ -252,7 +252,7 @@ public class RenderEntityContext {
     public boolean isEnemy() {
         if (!this.enemyCache.isCached()) {
             if (this.entityPlayer != null) {
-                this.enemyCache.setValue(Vape.INSTANCE.getEnemyManager().isEnemy(this.getName()));
+                this.enemyCache.setValue(false);
             } else {
                 this.enemyCache.setValue(false);
             }
@@ -304,7 +304,7 @@ public class RenderEntityContext {
 
     public boolean isBot() {
         if (!this.botCache.isCached()) {
-            this.botCache.setValue(Vape.INSTANCE.getClientSettings().isBot(this.entity));
+            this.botCache.setValue(Vapor.INSTANCE.getClientSettings().isBot(this.entity));
         }
         return (Boolean)this.botCache.getCachedValue();
     }

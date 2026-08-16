@@ -20,11 +20,7 @@ extends EventRenderTickBase {
 
     @Override
     public boolean fire() {
-        GuiScreenNativeCallbackBridge.drawScreen(null, 0, 0, 0.0f);
-        if (GuiRenderPrimitives.d()) {
-            RenderThreadTaskQueue.runPendingTasks();
-            RenderBatchManager.getInstance().flushGuiBatches(this.getTicks());
-        }
+
         boolean fired = super.fire();
         GuiRenderPrimitives.l(RENDER_PHASE_NAME);
         return fired;

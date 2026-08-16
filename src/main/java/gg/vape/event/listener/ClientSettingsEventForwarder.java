@@ -1,11 +1,10 @@
 package gg.vape.event.listener;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.event.EventHandler;
 import gg.vape.event.EventListener;
 import gg.vape.event.impl.EventPreRenderTick;
 import gg.vape.event.impl.EventPreTick;
-import gg.vape.friend.ui.OnlinePlayerPreviewComponent;
 import gg.vape.module.none.ClientSettings;
 import gg.vape.utils.render.RenderUtils;
 
@@ -20,14 +19,13 @@ implements EventListener {
         if (clientSettings == null) {
             return;
         }
-        OnlinePlayerPreviewComponent.instance.onPreRenderTick(eventPreRenderTick);
         RenderUtils.C();
         clientSettings.updateGuiScale();
     }
 
     private ClientSettings getClientSettings() {
         if (this.clientSettings == null) {
-            this.clientSettings = Vape.INSTANCE.getModManager().getMod(ClientSettings.class);
+            this.clientSettings = Vapor.INSTANCE.getModManager().getMod(ClientSettings.class);
         }
         return this.clientSettings;
     }

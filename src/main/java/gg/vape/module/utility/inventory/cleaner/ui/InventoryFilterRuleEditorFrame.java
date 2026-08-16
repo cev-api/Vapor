@@ -1,6 +1,6 @@
 package gg.vape.module.utility.inventory.cleaner.ui;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.module.none.ClientSettings;
 import gg.vape.module.utility.inventory.cleaner.EmptyInventoryFilterCondition;
 import gg.vape.module.utility.inventory.cleaner.InventoryFilterConditionGroup;
@@ -259,11 +259,11 @@ extends Frame {
     }
 
     private void deletePresetConfirmed(InventoryFilterPreset inventoryFilterPreset, InventoryFilterRule inventoryFilterRule) {
-        Vape.INSTANCE.getInventoryFilterPresetRegistry().clearReferencesTo((SharedInventoryFilterPreset)inventoryFilterPreset);
+        Vapor.INSTANCE.getInventoryFilterPresetRegistry().clearReferencesTo((SharedInventoryFilterPreset)inventoryFilterPreset);
         if (inventoryFilterRule instanceof SlotInventoryFilterRule) {
-            Vape.INSTANCE.getInventoryFilterPresetRegistry().getSlotRulePresets().remove((SharedInventoryFilterPreset)inventoryFilterPreset);
+            Vapor.INSTANCE.getInventoryFilterPresetRegistry().getSlotRulePresets().remove((SharedInventoryFilterPreset)inventoryFilterPreset);
         } else {
-            Vape.INSTANCE.getInventoryFilterPresetRegistry().getItemRulePresets().remove((SharedInventoryFilterPreset)inventoryFilterPreset);
+            Vapor.INSTANCE.getInventoryFilterPresetRegistry().getItemRulePresets().remove((SharedInventoryFilterPreset)inventoryFilterPreset);
         }
         this.closePopup();
     }
@@ -294,9 +294,9 @@ extends Frame {
         rule.setPreset(newSharedPreset);
         SharedInventoryFilterPreset previousSharedPreset = currentPreset instanceof SharedInventoryFilterPreset ? (SharedInventoryFilterPreset)currentPreset : null;
         if (slotRule) {
-            Vape.INSTANCE.getInventoryFilterPresetRegistry().getSlotRulePresets().replace(previousSharedPreset, newSharedPreset);
+            Vapor.INSTANCE.getInventoryFilterPresetRegistry().getSlotRulePresets().replace(previousSharedPreset, newSharedPreset);
         } else {
-            Vape.INSTANCE.getInventoryFilterPresetRegistry().getItemRulePresets().replace(previousSharedPreset, newSharedPreset);
+            Vapor.INSTANCE.getInventoryFilterPresetRegistry().getItemRulePresets().replace(previousSharedPreset, newSharedPreset);
         }
         this.closePopup();
     }

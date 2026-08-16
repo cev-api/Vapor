@@ -1,6 +1,6 @@
 package gg.vape.mapping.runtime;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.mapping.MappedClasses;
 import gg.vape.mapping.runtime.MemberNameRemapTable;
 import java.util.List;
@@ -769,8 +769,8 @@ extends MemberNameRemapTable {
     protected void _T() {
         this.t(MappedClasses.uQ, "func_238421_b_", "m_92883_");
         this.t(MappedClasses.uQ, "func_243247_a", "m_92841_");
-        this.t(MappedClasses.uQ, "func_243246_a", Vape.INSTANCE.isVanillaMinecraftPresent() ? "drawShadow" : "m_92763_");
-        this.t(MappedClasses.uQ, "func_243248_b", Vape.INSTANCE.isVanillaMinecraftPresent() ? "draw" : "m_92889_");
+        this.t(MappedClasses.uQ, "func_243246_a", Vapor.INSTANCE.isVanillaMinecraftPresent() ? "drawShadow" : "m_92763_");
+        this.t(MappedClasses.uQ, "func_243248_b", Vapor.INSTANCE.isVanillaMinecraftPresent() ? "draw" : "m_92889_");
         this.registerMethodMapping(MappedClasses.uQ, "drawInBatch", "drawInBatch", true, Void.TYPE, String.class, Float.TYPE, Float.TYPE, Integer.TYPE, Boolean.TYPE, MappedClasses.ZA, MappedClasses.ZK, MappedClasses.Y8, Integer.TYPE, Integer.TYPE);
         this.registerMethodMapping(MappedClasses.m, "drawString", "drawString", true, Void.TYPE, MappedClasses.uQ, String.class, Integer.TYPE, Integer.TYPE, Integer.TYPE, Boolean.TYPE);
     }

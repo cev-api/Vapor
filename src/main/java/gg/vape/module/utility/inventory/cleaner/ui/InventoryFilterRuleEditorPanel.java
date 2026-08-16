@@ -1,6 +1,6 @@
 package gg.vape.module.utility.inventory.cleaner.ui;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.module.utility.inventory.cleaner.EmptyInventoryFilterCondition;
 import gg.vape.module.utility.inventory.cleaner.InventoryCleanerProfile;
 import gg.vape.module.utility.inventory.cleaner.InventoryFilterAction;
@@ -166,7 +166,7 @@ extends PanelComponent {
         if (inventoryFilterPreset != null) {
             InteractiveComponent interactiveComponent;
             boolean sharedPreset = inventoryFilterPreset instanceof SharedInventoryFilterPreset;
-            ArrayList<InventoryFilterPreset> availablePresets = new ArrayList<InventoryFilterPreset>(this.rule instanceof SlotInventoryFilterRule ? Vape.INSTANCE.getInventoryFilterPresetRegistry().getSlotRulePresets().getAll() : Vape.INSTANCE.getInventoryFilterPresetRegistry().getItemRulePresets().getAll());
+            ArrayList<InventoryFilterPreset> availablePresets = new ArrayList<InventoryFilterPreset>(this.rule instanceof SlotInventoryFilterRule ? Vapor.INSTANCE.getInventoryFilterPresetRegistry().getSlotRulePresets().getAll() : Vapor.INSTANCE.getInventoryFilterPresetRegistry().getItemRulePresets().getAll());
             availablePresets.remove(inventoryFilterPreset);
             availablePresets.add(0, inventoryFilterPreset);
             ArrayList<GuiComponent> presetOptions = new ArrayList<GuiComponent>();
@@ -283,7 +283,7 @@ extends PanelComponent {
             this.contentPanel.h(this.actionButton, new Object[0]);
             return;
         }
-        ArrayList<InventoryFilterPreset> availablePresets = new ArrayList<InventoryFilterPreset>(this.rule instanceof SlotInventoryFilterRule ? Vape.INSTANCE.getInventoryFilterPresetRegistry().getSlotRulePresets().getAll() : Vape.INSTANCE.getInventoryFilterPresetRegistry().getItemRulePresets().getAll());
+        ArrayList<InventoryFilterPreset> availablePresets = new ArrayList<InventoryFilterPreset>(this.rule instanceof SlotInventoryFilterRule ? Vapor.INSTANCE.getInventoryFilterPresetRegistry().getSlotRulePresets().getAll() : Vapor.INSTANCE.getInventoryFilterPresetRegistry().getItemRulePresets().getAll());
         ArrayList<GuiComponent> presetOptions = new ArrayList<GuiComponent>();
         InteractiveComponent interactiveComponent = new ProfileCreateActionButtonComponent("New Rule", false, true, 0.7, InventoryFilterRuleEditorPanel.J.A, "newadd", 0.75, InventoryFilterRuleEditorPanel.J.B, null);
         ((ProfileCreateActionButtonComponent)interactiveComponent).setHoverBackgroundVisible(false);

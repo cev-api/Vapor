@@ -1,6 +1,6 @@
 package gg.vape.module.blatant;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.event.EventHandler;
 import gg.vape.event.impl.EventPacketReceive;
 import gg.vape.event.impl.EventPreMotion;
@@ -65,7 +65,7 @@ extends Mod {
         double strafeInput = localPlayer.movementInput().T();
         float yaw = localPlayer.J();
         if (!(!localPlayer.l$src$Z$1io4duf() || this.limitItems.getEffectiveValue().booleanValue() && !this.whitelist.matches(localPlayer.getHeldItemHand()) || Math.abs(strafeInput) != (double)0.2f && Math.abs(forwardInput) != (double)0.2f)) {
-            if (Vape.INSTANCE.getModManager().getState(Sprint.class)) {
+            if (Vapor.INSTANCE.getModManager().getState(Sprint.class)) {
                 localPlayer.R(true);
             }
             if (Math.abs(strafeInput) == (double)0.2f) {

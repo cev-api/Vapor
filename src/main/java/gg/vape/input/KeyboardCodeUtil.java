@@ -2,7 +2,6 @@ package gg.vape.input;
 
 import gg.vape.runtime.NativeBridge;
 import gg.vape.wrapper.impl.ForgeVersion;
-import org.lwjgl.input.Keyboard;
 
 public class KeyboardCodeUtil {
     static int[] legacyToVirtualKeyMap;
@@ -178,6 +177,15 @@ public class KeyboardCodeUtil {
     }
 
     public static String getVirtualKeyName(int virtualKey) {
+        // Native lookup returns invalid names for Fabric extended modifier codes.
+        switch (virtualKey) {
+            case 160: return "LSHIFT";
+            case 161: return "RSHIFT";
+            case 162: return "LCTRL";
+            case 163: return "RCTRL";
+            case 164: return "LALT";
+            case 165: return "RALT";
+        }
         if (virtualKey == 192) {
             return GRAVE_KEY_NAME;
         }
@@ -214,9 +222,5 @@ public class KeyboardCodeUtil {
 
 
     public static void disableLegacyRepeatEvents() {
-        if (ForgeVersion.MC_1_16_5.v() && Keyboard.areRepeatEventsEnabled()) {
-            Keyboard.enableRepeatEvents((boolean)false);
-        }
     }
 }
-

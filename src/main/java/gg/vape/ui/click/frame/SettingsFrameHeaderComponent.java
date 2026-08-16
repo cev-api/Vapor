@@ -1,6 +1,5 @@
 package gg.vape.ui.click.frame;
 
-import gg.vape.friend.ui.OnlineCombatStatsSettingsFrame;
 import gg.vape.ui.click.GuiMouseEvent;
 import gg.vape.ui.click.component.IconButtonComponent;
 import gg.vape.ui.click.frame.CollapsibleFrame;
@@ -77,7 +76,7 @@ extends FrameHeaderComponent {
 
     @Override
     public void I() {
-        if (this.w$src$Lgg_vape_ui_click_frame_Frame_$y4htd0() instanceof CollapsibleFrame && !((CollapsibleFrame)((Object)this.w$src$Lgg_vape_ui_click_frame_Frame_$y4htd0())).q() && !(this.w$src$Lgg_vape_ui_click_frame_Frame_$y4htd0() instanceof OnlineCombatStatsSettingsFrame)) {
+        if (this.w$src$Lgg_vape_ui_click_frame_Frame_$y4htd0() instanceof CollapsibleFrame && !((CollapsibleFrame)((Object)this.w$src$Lgg_vape_ui_click_frame_Frame_$y4htd0())).q()) {
             ((CollapsibleFrame)((Object)this.w$src$Lgg_vape_ui_click_frame_Frame_$y4htd0())).w();
         }
     }

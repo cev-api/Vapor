@@ -1,6 +1,6 @@
 package gg.vape.mapping;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.event.impl.EventRender3D;
 import gg.vape.event.impl.EventRenderTracers3D;
 import gg.vape.mapping.InsertedEventCallback;
@@ -48,7 +48,7 @@ implements InsertedEventCallback {
                     gameSettings.O(bl4);
                 }
                 catch (Exception exception) {
-                    Vape.logThrowable(exception);
+                    Vapor.logThrowable(exception);
                 }
             } else {
                 SharedModuleControlClaims.renderPass.blockRender();

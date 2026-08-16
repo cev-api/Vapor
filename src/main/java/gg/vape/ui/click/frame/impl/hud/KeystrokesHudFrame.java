@@ -1,6 +1,6 @@
 package gg.vape.ui.click.frame.impl.hud;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.event.impl.EventKeyPress;
 import gg.vape.event.impl.EventMouseButton;
 import gg.vape.input.KeyboardCodeUtil;
@@ -66,7 +66,7 @@ extends HudModuleConfigFrameBase {
     private void drawKey(KeystrokesKeyComponent key, double x, double y,
             double width, double height, String iconName) {
         KeyBinding keyBinding = key.keyBinding;
-        SmoothFontRenderer smoothFontRenderer = Vape.INSTANCE.getFontManager().W(0.9, false);
+        SmoothFontRenderer smoothFontRenderer = Vapor.INSTANCE.getFontManager().W(0.9, false);
         GuiRenderPrimitives.I(x, y - 0.5, width, height + 0.5,
                 this.applyDefaultEditorAlpha(key.getBackgroundColorAnimation().getInterpolatedColor()),
                 !key.isReleased(), 1.0f, 1.0f, 3.0f, KeystrokesHudFrame.J.u);

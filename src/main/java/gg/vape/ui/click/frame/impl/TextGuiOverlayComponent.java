@@ -1,7 +1,7 @@
 package gg.vape.ui.click.frame.impl;
 
 import func.skidline.RectData;
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.module.Mod;
 import gg.vape.module.none.ClientSettings;
 import gg.vape.module.none.TextGuiSettings;
@@ -38,7 +38,7 @@ extends GuiComponent {
     private TextGuiSettingsFrame v;
     private List<Mod> R;
     public SmoothFontRenderer b;
-    private TextGuiSettings i = Vape.INSTANCE.getModManager().getMod(TextGuiSettings.class);
+    private TextGuiSettings i = Vapor.INSTANCE.getModManager().getMod(TextGuiSettings.class);
     private double G = 110.0;
     private HashSet<Mod> I;
     private TimerUtil Q;
@@ -167,11 +167,11 @@ extends GuiComponent {
     }
 
     private SmoothFontRenderer w(int n) {
-        FontFamily fontFamily = Vape.INSTANCE.getFontSelector().W().b();
+        FontFamily fontFamily = Vapor.INSTANCE.getFontSelector().W().b();
         if (fontFamily != null && fontFamily != FontFamily.PROXIMA) {
-            return Vape.INSTANCE.getFontManager().n(fontFamily, n, false);
+            return Vapor.INSTANCE.getFontManager().n(fontFamily, n, false);
         }
-        return Vape.INSTANCE.getFontManager().a(n);
+        return Vapor.INSTANCE.getFontManager().a(n);
     }
 
     @Override
@@ -182,7 +182,7 @@ extends GuiComponent {
 
     private int R() {
         int n = 0;
-        for (Mod mod : Vape.INSTANCE.getModManager().collectMods()) {
+        for (Mod mod : Vapor.INSTANCE.getModManager().collectMods()) {
             if (!mod.isEnabled() || mod.getGuiColor() == 0 || !mod.q$src$Z$12h8h4c() || this.i.hideModules.getEffectiveValue().booleanValue() && this.i.hiddenModules.matches(mod.getName(), false)) continue;
             ++n;
         }
@@ -227,7 +227,7 @@ extends GuiComponent {
         boolean bl2;
         MousePosition mousePosition = RenderUtils.h();
         float f2 = ((Double)this.i.scale.getValue()).floatValue();
-        double d = Vape.INSTANCE.getClientSettings().getGuiScaleFactor();
+        double d = Vapor.INSTANCE.getClientSettings().getGuiScaleFactor();
         f2 = (float)((double)f2 * d);
         SmoothFontRenderer smoothFontRenderer = this.w((int)(16.0f * f2));
         int n2 = !this.q$src$Z$emgut() ? 14 : 16;
@@ -235,15 +235,15 @@ extends GuiComponent {
         float f3 = this.v.isManagedByClickGui() ? (float)this.n() : (bl ? (float)(this.n() - this.v.j$src$Lgg_vape_ui_click_frame_FrameHeaderComponent_$175vsfc().L()) : (float)(this.n() + 4.0));
         float f4 = f3;
         double d2 = this.v.A();
-        boolean bl3 = bl2 = this.G$src$D$1b2f02a() + d2 / 2.0 >= (double)(Minecraft.J() / 4) / Vape.INSTANCE.getClientSettings().getGuiScaleFactor();
+        boolean bl3 = bl2 = this.G$src$D$1b2f02a() + d2 / 2.0 >= (double)(Minecraft.J() / 4) / Vapor.INSTANCE.getClientSettings().getGuiScaleFactor();
         if (bl2) {
             float f5;
             Object object2;
             int n3;
-            boolean bl4 = Vape.INSTANCE.getClientSettings().guiColor.isRainbowEnabled();
+            boolean bl4 = Vapor.INSTANCE.getClientSettings().guiColor.isRainbowEnabled();
             double d3 = 10.0;
             CopyOnWriteArrayList<Mod> copyOnWriteArrayList = new CopyOnWriteArrayList<Mod>();
-            for (Mod object5 : Vape.INSTANCE.getModManager().collectMods()) {
+            for (Mod object5 : Vapor.INSTANCE.getModManager().collectMods()) {
                 if (!object5.isEnabled() || object5.getGuiColor() == 0 || !object5.q$src$Z$12h8h4c() || this.i.hideModules.getEffectiveValue().booleanValue() && this.i.hiddenModules.matches(object5.getName(), false)) continue;
                 copyOnWriteArrayList.add(object5);
             }
@@ -292,7 +292,7 @@ extends GuiComponent {
             }
             if (this.i.addCustomText.getEffectiveValue().booleanValue() && ((String)this.i.customText.getValue()).length() > 0) {
                 String string = ((String)this.i.customText.getValue()).replace("&", "\u00a7");
-                SmoothFontRenderer smoothFontRenderer3 = Vape.INSTANCE.getFontManager().n(FontFamily.PROXIMA, (int)(22.0f * f2), true);
+                SmoothFontRenderer smoothFontRenderer3 = Vapor.INSTANCE.getFontManager().n(FontFamily.PROXIMA, (int)(22.0f * f2), true);
                 double d5 = smoothFontRenderer3.Y(string, this.q$src$Z$emgut());
                 d3 = Math.max(d3, d5);
             }
@@ -305,19 +305,19 @@ extends GuiComponent {
                 float f8 = 12.0f * f2;
                 object2 = this.v.applyDefaultEditorAlpha(J.z());
                 boolean bl6 = this.i.shadow.getEffectiveValue() != false && ((Color)object2).getAlpha() == 255;
-                ImageRenderer.drawImage((Color)object2, f6, f3, "vapelogo", f8, f8, bl6);
+                ImageRenderer.drawImage((Color)object2, f6, f3, "vaporlogo", f8, f8, bl6);
                 ImageRenderer.drawImage(this.v.applyDefaultEditorAlpha(Color.WHITE), f7, f3, "v4", f8, f8, bl6);
                 f3 += 15.0f * f2;
             }
             if (this.i.addCustomText.getEffectiveValue().booleanValue() && ((String)this.i.customText.getValue()).length() > 0) {
                 String string = ((String)this.i.customText.getValue()).replace("&", "\u00a7");
-                SmoothFontRenderer smoothFontRenderer4 = Vape.INSTANCE.getFontManager().n(FontFamily.PROXIMA, (int)(22.0f * f2), true);
+                SmoothFontRenderer smoothFontRenderer4 = Vapor.INSTANCE.getFontManager().n(FontFamily.PROXIMA, (int)(22.0f * f2), true);
                 double d7 = smoothFontRenderer4.Y(string, this.q$src$Z$emgut());
                 f5 = (float)(this.G$src$D$1b2f02a() + d2 - 4.0 - d7);
                 if (this.i.shadow.getEffectiveValue().booleanValue()) {
-                    smoothFontRenderer4.V(string, f5, f3, this.v.applyDefaultEditorAlpha(this.i.customTextColorEnabled.getEffectiveValue() != false && !Vape.INSTANCE.getClientSettings().guiColor.isRainbowEnabled() ? this.i.customTextColor.getMutableColor() : J.z()), this.q$src$Z$emgut());
+                    smoothFontRenderer4.V(string, f5, f3, this.v.applyDefaultEditorAlpha(this.i.customTextColorEnabled.getEffectiveValue() != false && !Vapor.INSTANCE.getClientSettings().guiColor.isRainbowEnabled() ? this.i.customTextColor.getMutableColor() : J.z()), this.q$src$Z$emgut());
                 } else {
-                    smoothFontRenderer4.E(string, f5, f3, this.v.applyDefaultEditorAlpha(this.i.customTextColorEnabled.getEffectiveValue() != false && !Vape.INSTANCE.getClientSettings().guiColor.isRainbowEnabled() ? this.i.customTextColor.getMutableColor() : J.z()), this.q$src$Z$emgut());
+                    smoothFontRenderer4.E(string, f5, f3, this.v.applyDefaultEditorAlpha(this.i.customTextColorEnabled.getEffectiveValue() != false && !Vapor.INSTANCE.getClientSettings().guiColor.isRainbowEnabled() ? this.i.customTextColor.getMutableColor() : J.z()), this.q$src$Z$emgut());
                 }
                 f3 = (float)((double)f3 + (smoothFontRenderer4.R(string, this.q$src$Z$emgut()) + (double)(4.0f * f2)));
             }
@@ -710,10 +710,10 @@ extends GuiComponent {
             OpenGlBackendHolder.backend.setColor(1.0f, 1.0f, 1.0f, 1.0f);
             return;
         }
-        boolean bl20 = Vape.INSTANCE.getClientSettings().guiColor.isRainbowEnabled();
+        boolean bl20 = Vapor.INSTANCE.getClientSettings().guiColor.isRainbowEnabled();
         double d56 = 10.0;
         CopyOnWriteArrayList<Mod> copyOnWriteArrayList = new CopyOnWriteArrayList<Mod>();
-        for (Mod mod : Vape.INSTANCE.getModManager().collectMods()) {
+        for (Mod mod : Vapor.INSTANCE.getModManager().collectMods()) {
             if (!mod.isEnabled() || mod.getGuiColor() == 0 || !mod.q$src$Z$12h8h4c() || this.i.hideModules.getEffectiveValue().booleanValue() && this.i.hiddenModules.matches(mod.getName(), false)) continue;
             copyOnWriteArrayList.add(mod);
         }
@@ -762,7 +762,7 @@ extends GuiComponent {
         }
         if (this.i.addCustomText.getEffectiveValue().booleanValue() && ((String)this.i.customText.getValue()).length() > 0) {
             String string = ((String)this.i.customText.getValue()).replace("&", "\u00a7");
-            SmoothFontRenderer smoothFontRenderer5 = Vape.INSTANCE.getFontManager().n(FontFamily.PROXIMA, (int)(22.0f * f2), true);
+            SmoothFontRenderer smoothFontRenderer5 = Vapor.INSTANCE.getFontManager().n(FontFamily.PROXIMA, (int)(22.0f * f2), true);
             double d58 = smoothFontRenderer5.Y(string, this.q$src$Z$emgut());
             d56 = Math.max(d56, d58);
         }
@@ -775,19 +775,19 @@ extends GuiComponent {
             float f32 = 12.0f * f2;
             object = this.v.applyDefaultEditorAlpha(J.z());
             boolean bl22 = this.i.shadow.getEffectiveValue() != false && ((Color)object).getAlpha() == 255;
-            ImageRenderer.drawImage((Color)object, f30, f3, "vapelogo", f32, f32, bl22);
+            ImageRenderer.drawImage((Color)object, f30, f3, "vaporlogo", f32, f32, bl22);
             ImageRenderer.drawImage(this.v.applyDefaultEditorAlpha(Color.WHITE), f31, f3, "v4", f32, f32, bl22);
             f3 += 15.0f * f2;
         }
         if (this.i.addCustomText.getEffectiveValue().booleanValue() && ((String)this.i.customText.getValue()).length() > 0) {
             String string = ((String)this.i.customText.getValue()).replace("&", "\u00a7");
-            SmoothFontRenderer smoothFontRenderer6 = Vape.INSTANCE.getFontManager().n(FontFamily.PROXIMA, (int)(22.0f * f2), true);
+            SmoothFontRenderer smoothFontRenderer6 = Vapor.INSTANCE.getFontManager().n(FontFamily.PROXIMA, (int)(22.0f * f2), true);
             double d60 = smoothFontRenderer6.Y(string, this.q$src$Z$emgut());
             f = (float)(this.G$src$D$1b2f02a() + 2.0);
             if (this.i.shadow.getEffectiveValue().booleanValue()) {
-                smoothFontRenderer6.V(string, f, f3, this.v.applyDefaultEditorAlpha(this.i.customTextColorEnabled.getEffectiveValue() != false && !Vape.INSTANCE.getClientSettings().guiColor.isRainbowEnabled() ? this.i.customTextColor.getMutableColor() : J.z()), this.q$src$Z$emgut());
+                smoothFontRenderer6.V(string, f, f3, this.v.applyDefaultEditorAlpha(this.i.customTextColorEnabled.getEffectiveValue() != false && !Vapor.INSTANCE.getClientSettings().guiColor.isRainbowEnabled() ? this.i.customTextColor.getMutableColor() : J.z()), this.q$src$Z$emgut());
             } else {
-                smoothFontRenderer6.E(string, f, f3, this.v.applyDefaultEditorAlpha(this.i.customTextColorEnabled.getEffectiveValue() != false && !Vape.INSTANCE.getClientSettings().guiColor.isRainbowEnabled() ? this.i.customTextColor.getMutableColor() : J.z()), this.q$src$Z$emgut());
+                smoothFontRenderer6.E(string, f, f3, this.v.applyDefaultEditorAlpha(this.i.customTextColorEnabled.getEffectiveValue() != false && !Vapor.INSTANCE.getClientSettings().guiColor.isRainbowEnabled() ? this.i.customTextColor.getMutableColor() : J.z()), this.q$src$Z$emgut());
             }
             f3 = (float)((double)f3 + (smoothFontRenderer6.R(string, this.q$src$Z$emgut()) + (double)(4.0f * f2)));
         }
@@ -1216,7 +1216,7 @@ extends GuiComponent {
 
     private double o(int n) {
         float f = ((Double)this.i.scale.getValue()).floatValue();
-        double d = Vape.INSTANCE.getClientSettings().getGuiScaleFactor();
+        double d = Vapor.INSTANCE.getClientSettings().getGuiScaleFactor();
         f = (float)((double)f * d);
         SmoothFontRenderer smoothFontRenderer = this.w((int)(16.0f * f));
         double d2 = smoothFontRenderer.R("A", this.q$src$Z$emgut());
@@ -1228,7 +1228,7 @@ extends GuiComponent {
         }
         if (this.i.addCustomText.getEffectiveValue().booleanValue() && ((String)this.i.customText.getValue()).length() > 0) {
             String string = ((String)this.i.customText.getValue()).replace("&", "\u00a7");
-            SmoothFontRenderer smoothFontRenderer2 = Vape.INSTANCE.getFontManager().n(FontFamily.PROXIMA, (int)(22.0f * f), true);
+            SmoothFontRenderer smoothFontRenderer2 = Vapor.INSTANCE.getFontManager().n(FontFamily.PROXIMA, (int)(22.0f * f), true);
             d3 += smoothFontRenderer2.R(string, this.q$src$Z$emgut()) + (double)(4.0f * f);
         }
         if (n > 0) {

@@ -1,6 +1,6 @@
 package gg.vape.ui.click.component;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.ui.click.component.SimpleTextLabelComponent;
 import gg.vape.ui.font.SmoothFontRenderer;
 import java.awt.Color;
@@ -48,7 +48,7 @@ extends SimpleTextLabelComponent {
     }
 
     private int renderParagraph(String text, double yOffset) {
-        SmoothFontRenderer fontRenderer = Vape.INSTANCE.getFontManager().W(this.fontScale, false);
+        SmoothFontRenderer fontRenderer = Vapor.INSTANCE.getFontManager().W(this.fontScale, false);
         if (text.contains(" ")) {
             String[] words = text.split(" ");
             double currentLineWidth = 0.0;

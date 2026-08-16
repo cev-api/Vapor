@@ -1,6 +1,6 @@
 package gg.vape.module.macro;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.event.EventHandler;
 import gg.vape.event.EventListener;
 import gg.vape.event.impl.EventKeyPress;
@@ -45,7 +45,7 @@ implements EventListener {
     public void onMouseButton(EventMouseButton event) {
         if (event.getButtonState()) {
             int binding = -100 + event.getButton();
-            List<Macro> macros = Vape.INSTANCE.getMacrosManager().getMacros(binding);
+            List<Macro> macros = Vapor.INSTANCE.getMacrosManager().getMacros(binding);
             for (Macro macro : macros) {
                 if (macro.activateIfMatched(binding) && this.startMacro(macro)) {
                     break;
@@ -66,7 +66,7 @@ implements EventListener {
             return;
         }
         int binding = event.getKey();
-        List<Macro> macros = Vape.INSTANCE.getMacrosManager().getMacros(binding);
+        List<Macro> macros = Vapor.INSTANCE.getMacrosManager().getMacros(binding);
         for (Macro macro : macros) {
             if (macro.activateIfMatched(binding) && this.startMacro(macro)) {
                 break;

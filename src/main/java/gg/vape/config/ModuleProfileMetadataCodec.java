@@ -4,7 +4,7 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonPrimitive;
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.manager.ModManager;
 import gg.vape.module.Mod;
 import gg.vape.module.combat.AimAssist;
@@ -25,7 +25,7 @@ public class ModuleProfileMetadataCodec {
         this.selectedModules.add(module);
         module.setFavorite(true);
         VisibleModuleListFrame.e();
-        Vape.INSTANCE.saveAndStop();
+        Vapor.INSTANCE.saveAndStop();
     }
 
     public int getVisibleModuleCount() {
@@ -49,7 +49,7 @@ public class ModuleProfileMetadataCodec {
         this.selectedModules.remove(module);
         module.setFavorite(false);
         VisibleModuleListFrame.e();
-        Vape.INSTANCE.saveAndStop();
+        Vapor.INSTANCE.saveAndStop();
     }
 
     public void loadJson(JsonObject object) {
@@ -57,7 +57,7 @@ public class ModuleProfileMetadataCodec {
             this.selectedModules.clear();
             JsonArray modulesJson = object.get("modules").getAsJsonArray();
             for (JsonElement moduleElement : modulesJson) {
-                Mod module = Vape.INSTANCE.getModManager().getMod(moduleElement.getAsString());
+                Mod module = Vapor.INSTANCE.getModManager().getMod(moduleElement.getAsString());
                 if (module == null) continue;
                 this.addModuleWithoutSaving(module);
             }
@@ -74,7 +74,7 @@ public class ModuleProfileMetadataCodec {
     }
 
     public ModuleProfileMetadataCodec() {
-        ModManager modManager = Vape.INSTANCE.getModManager();
+        ModManager modManager = Vapor.INSTANCE.getModManager();
         this.addModuleWithoutSaving(modManager.getMod(LeftClicker.class));
         this.addModuleWithoutSaving(modManager.getMod(AimAssist.class));
         this.addModuleWithoutSaving(modManager.getMod(Reach.class));

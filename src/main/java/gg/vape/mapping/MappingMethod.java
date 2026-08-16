@@ -1,6 +1,6 @@
 package gg.vape.mapping;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.asm.helper.DescUtils;
 import gg.vape.mapping.MappedClasses;
 import gg.vape.mapping.Mapping;
@@ -50,7 +50,7 @@ public class MappingMethod {
     }
 
     public void initializeAccessor(Class<?> owner) {
-        if ((Vape.INSTANCE.isMappingsRemapped() || Vape.INSTANCE.isForgeRemapInactive()) && !this.resolutionFailed) {
+        if ((Vapor.INSTANCE.isMappingsRemapped() || Vapor.INSTANCE.isForgeRemapInactive()) && !this.resolutionFailed) {
             if (this.runtimeName.equals("<init>") || this.runtimeName.equals("<clinit>")) {
                 this.resolveConstructor(owner);
                 return;
@@ -97,7 +97,7 @@ public class MappingMethod {
     }
 
     public String getResolvedName() {
-        if (Vape.INSTANCE.isForgeRemapInactive()) {
+        if (Vapor.INSTANCE.isForgeRemapInactive()) {
             return this.runtimeName;
         }
         return NativeMappedMemberInvoker.getMethodName(this.methodId);
@@ -140,18 +140,18 @@ public class MappingMethod {
     public MappingMethod register() {
         this.resolutionFailed = false;
         try {
-            if (Vape.INSTANCE.isForgeRemapInactive()) {
+            if (Vapor.INSTANCE.isForgeRemapInactive()) {
                 this.resolveReflectionMember();
             } else if (this.mappedMember) {
                 String string2 = this.runtimeName;
-                if (!Vape.INSTANCE.isVanillaMinecraftPresent()) {
+                if (!Vapor.INSTANCE.isVanillaMinecraftPresent()) {
                     string2 = string2 + ":" + this.descriptor;
                 }
                 NativeMappedMemberInvoker.registerMethodWithMetadata(this.methodId, this.ownerClass, this.ownerInternalName, this.runtimeName, this.descriptor, this.mappedDescriptor, this.staticMethod);
             } else {
                 NativeMappedMemberInvoker.registerMethod(this.methodId, this.ownerClass, this.runtimeName, this.descriptor, this.staticMethod);
             }
-            if (!this.skipAccessorGeneration && !Vape.INSTANCE.isForgeRemapInactive()) {
+            if (!this.skipAccessorGeneration && !Vapor.INSTANCE.isForgeRemapInactive()) {
                 this.initializeAccessor(this.ownerClass);
             }
         }
@@ -209,7 +209,7 @@ public class MappingMethod {
                 return this.reflectedConstructor.newInstance(objectArray);
             }
             catch (Throwable throwable) {
-                Vape.logThrowable(throwable);
+                Vapor.logThrowable(throwable);
             }
         }
         try {
@@ -258,7 +258,7 @@ public class MappingMethod {
             return this.reflectedMethod.invoke(instance, arguments);
         }
         catch (Throwable throwable) {
-            Vape.logThrowable(throwable);
+            Vapor.logThrowable(throwable);
             return null;
         }
     }
@@ -306,7 +306,7 @@ public class MappingMethod {
             this.reflectedConstructor.setAccessible(true);
         }
         catch (Throwable throwable) {
-            Vape.logThrowable(throwable);
+            Vapor.logThrowable(throwable);
         }
     }
 

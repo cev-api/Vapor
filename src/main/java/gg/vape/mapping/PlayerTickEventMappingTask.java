@@ -1,6 +1,6 @@
 package gg.vape.mapping;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.event.impl.EventPostPlayerTick;
 import gg.vape.event.impl.EventPrePlayerTick;
 import gg.vape.mapping.EventInjectionSpec;
@@ -14,11 +14,11 @@ public class PlayerTickEventMappingTask
 extends JavassistMappingTask {
     @Override
     public void transform() {
-        MappingMethod mappingMethod = Vape.INSTANCE.getMappings().Rr.V;
+        MappingMethod mappingMethod = Vapor.INSTANCE.getMappings().Rr.V;
         this.c(mappingMethod, EventPrePlayerTick.class, "$0");
         this.k(mappingMethod, EventPostPlayerTick.class, "$0");
         if (ForgeVersion.MC_1_21_10.v()) {
-            MappingMethod mappingMethod2 = Vape.INSTANCE.getMappings().Rr.jO;
+            MappingMethod mappingMethod2 = Vapor.INSTANCE.getMappings().Rr.jO;
             EventInjectionSpec eventInjectionSpec = new EventInjectionSpec(mappingMethod2, PlayerNameFormatCallback.class);
             eventInjectionSpec.setConstructorArguments("$0");
             eventInjectionSpec.setReturnExpression("($r) $event.getRawDisplayName()");

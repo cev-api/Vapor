@@ -1,6 +1,6 @@
 package gg.vape.event.impl;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.config.ClientSettings;
 import gg.vape.event.Event;
 import gg.vape.event.EventListeners;
@@ -17,18 +17,18 @@ extends Event {
 
     @Override
     public boolean fire() {
-        if (ClientSettings.pendingSanityReset && Vape.INSTANCE.getClientSettings().sanityCheck.getEffectiveValue().booleanValue()) {
+        if (ClientSettings.pendingSanityReset && Vapor.INSTANCE.getClientSettings().sanityCheck.getEffectiveValue().booleanValue()) {
             ClientSettings.pendingSanityReset = false;
             boolean modulesDisabled = false;
             if (this.guiScreen.isInstance(MappedClasses.u5) || this.guiScreen.isInstance(MappedClasses.D6) || this.guiScreen.isInstance(MappedClasses.F_)) {
-                for (Mod mod : Vape.INSTANCE.getModManager().collectMods()) {
+                for (Mod mod : Vapor.INSTANCE.getModManager().collectMods()) {
                     if (mod instanceof HudModule || mod.getCategory() == Category.NONE || !mod.isEnabled()) continue;
                     mod.setEnabled(false);
                     modulesDisabled = true;
                 }
             }
             if (modulesDisabled) {
-                Vape.INSTANCE.getNotificationManager().showInfo("Sanity Check", "All modules have been disabled!", 5000L);
+                Vapor.INSTANCE.getNotificationManager().showInfo("Sanity Check", "All modules have been disabled!", 5000L);
             }
         }
         return super.fire();

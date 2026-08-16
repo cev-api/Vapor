@@ -1,17 +1,9 @@
 package gg.vape.ui.click.frame.impl;
 
-import com.google.gson.JsonObject;
-import gg.vape.Vape;
-import gg.vape.api.ApiResponse;
-import gg.vape.api.ApiServices;
+import gg.vape.Vapor;
 import gg.vape.config.PublicProfileSettings;
-import gg.vape.manager.client.OnlineConnectionManager;
-import gg.vape.manager.client.OnlineConnectionState;
 import gg.vape.mapping.ItemMappingEntry;
 import gg.vape.module.none.ClientSettings;
-import gg.vape.protocol.ZeusConnectionManager;
-import gg.vape.protocol.packet.GroupCreateResponsePacket;
-import gg.vape.protocol.packet.GroupCreateStatus;
 import gg.vape.ui.click.component.ColorDividerComponent;
 import gg.vape.ui.click.component.DropdownSelectComponent;
 import gg.vape.ui.click.component.GuiComponent;
@@ -51,14 +43,8 @@ public final class ClientSettingsComponentFactory {
         for (int i = 0; i < 45; ++i) {
             ItemStack itemStack = Minecraft.thePlayer().V$src$Lgg_vape_wrapper_impl_InventoryPlayer_$erqak6().c(i);
             if (itemStack.isNull()) continue;
-            Vape.debugLog("Display Name: " + itemStack.x() + " ID: " + Item.f(itemStack.getItem()) + " Slot: " + i);
+            Vapor.debugLog("Display Name: " + itemStack.x() + " ID: " + Item.f(itemStack.getItem()) + " Slot: " + i);
         }
-    }
-
-    private static void lambda$createMainChildren$9() {
-        Vape.debugLog("Saving settings...");
-        JsonObject jsonObject = Vape.INSTANCE.getSyncThread().buildSettingsPayload(true);
-        ApiServices.getInstance().getUserDataApi().saveUserData(jsonObject).thenAccept(ClientSettingsComponentFactory::lambda$null$7).exceptionally(ClientSettingsComponentFactory::lambda$null$8);
     }
 
     private static GuiComponent[] W(ClientSettings clientSettings, boolean bl) {
@@ -70,11 +56,11 @@ public final class ClientSettingsComponentFactory {
             arrayList.add(new BooleanToggleComponent(clientSettings.showLegitMode));
         }
         arrayList.add(new NumberSliderComponent(clientSettings.rainbowSpeed));
-        arrayList.add(new DropdownSelectComponent(Vape.INSTANCE.getPublicProfileSettings().guiStyle));
+        arrayList.add(new DropdownSelectComponent(Vapor.INSTANCE.getPublicProfileSettings().guiStyle));
         if (bl) {
             arrayList.add(new BooleanToggleComponent(clientSettings.showEnabledCount));
         }
-        arrayList.add(new DropdownSelectComponent(Vape.INSTANCE.getClientSettings().guiScale));
+        arrayList.add(new DropdownSelectComponent(Vapor.INSTANCE.getClientSettings().guiScale));
         if (!bl) {
             arrayList.add(new DropdownSelectComponent(ClientSettings.INSTANCE.searchBarStyle));
         }
@@ -82,12 +68,12 @@ public final class ClientSettingsComponentFactory {
     }
 
     private static Void lambda$null$8(Throwable throwable) {
-        Vape.logThrowable(throwable);
+        Vapor.logThrowable(throwable);
         return null;
     }
 
     private static Void lambda$null$5(Throwable throwable) {
-        Vape.logThrowable(throwable);
+        Vapor.logThrowable(throwable);
         return null;
     }
 
@@ -101,13 +87,13 @@ public final class ClientSettingsComponentFactory {
     }
 
     private static void lambda$createSubmenuComponents$13() {
-        Vape.INSTANCE.getProfilesManager().resetAllSettings();
+        Vapor.INSTANCE.getProfilesManager().resetAllSettings();
     }
 
     private static void lambda$createSubmenuComponents$16() {
         int n = 0;
-        Vape.debugLog("Potion Data Dump Version: " + ForgeVersion.c());
-        Vape.debugLog("__________________________________________________________");
+        Vapor.debugLog("Potion Data Dump Version: " + ForgeVersion.c());
+        Vapor.debugLog("__________________________________________________________");
         while (true) {
             Wrapper wrapper;
             if (ForgeVersion.MC_1_16_5.d()) {
@@ -117,7 +103,7 @@ public final class ClientSettingsComponentFactory {
                     ++n;
                     continue;
                 }
-                Vape.debugLog(n + " -> Display Name: " + ((StatusEffect)wrapper).d());
+                Vapor.debugLog(n + " -> Display Name: " + ((StatusEffect)wrapper).d());
             } else {
                 wrapper = Potion.getPotionById(n);
                 if (wrapper.isNull()) {
@@ -125,15 +111,15 @@ public final class ClientSettingsComponentFactory {
                     ++n;
                     continue;
                 }
-                Vape.debugLog(n + " -> Translation Key: " + ((Potion)wrapper).y$src$Ljava_lang_String_$yl6pfj() + " Display Name: " + I18n.format(((Potion)wrapper).y$src$Ljava_lang_String_$yl6pfj(), new Object[0]));
+                Vapor.debugLog(n + " -> Translation Key: " + ((Potion)wrapper).y$src$Ljava_lang_String_$yl6pfj() + " Display Name: " + I18n.format(((Potion)wrapper).y$src$Ljava_lang_String_$yl6pfj(), new Object[0]));
             }
             ++n;
         }
-        Vape.debugLog("__________________________________________________________");
+        Vapor.debugLog("__________________________________________________________");
     }
 
     private static void lambda$createSubmenuComponents$17() {
-        Vape.INSTANCE.getFontManager().U();
+        Vapor.INSTANCE.getFontManager().U();
     }
 
     private static void lambda$createMainChildren$1() {
@@ -143,40 +129,17 @@ public final class ClientSettingsComponentFactory {
         catch (Exception exception) {
             // empty catch block
         }
-        Vape.INSTANCE.getNotificationManager().showInfo("Cleared", "Cleared ItemStack Cache", 3000L);
-    }
-
-    private static void lambda$createMainChildren$12() {
-        if (OnlineConnectionManager.INSTANCE.getConnectionState() != OnlineConnectionState.ONLINE) {
-            Vape.INSTANCE.getNotificationManager().showInfo("Vape Online", "You must be logged in to perform this action!", 3000L);
-            return;
-        }
-        ZeusConnectionManager.T().u().w(ClientSettingsComponentFactory::lambda$null$10, ClientSettingsComponentFactory::lambda$null$11);
-    }
-
-    private static void lambda$createMainChildren$6() {
-        ApiServices.getInstance().getUserDataApi().getUserData().thenAccept(ClientSettingsComponentFactory::lambda$null$4).exceptionally(ClientSettingsComponentFactory::lambda$null$5);
-    }
-
-    private static void lambda$null$11() {
-    }
-
-    private static void lambda$null$10(GroupCreateResponsePacket groupCreateResponsePacket) {
-        if (groupCreateResponsePacket.getStatus() == GroupCreateStatus.SUCCESS) {
-            Vape.INSTANCE.getNotificationManager().showInfo("Vape Online", "Party created", 3000L);
-        } else {
-            Vape.INSTANCE.getNotificationManager().showInfo("Vape Online", "Party creation error: " + (Object)((Object)groupCreateResponsePacket.getStatus()), 3000L);
-        }
+        Vapor.INSTANCE.getNotificationManager().showInfo("Cleared", "Cleared ItemStack Cache", 3000L);
     }
 
     private static void lambda$createMainChildren$3() {
-        Vape.debugLog("Reloading settings...");
-        Vape.INSTANCE.getSyncThread().loadConfig();
+        Vapor.debugLog("Reloading settings...");
+        Vapor.INSTANCE.getSyncThread().loadConfig();
     }
 
     private static void lambda$createMainChildren$2() {
-        ItemMappingEntry itemMappingEntry = Vape.INSTANCE.getItemStackResolver().resolve(Minecraft.thePlayer().B$src$Lgg_vape_wrapper_impl_ItemStack_$impdvt());
-        Vape.INSTANCE.getNotificationManager().showInfo("Universal Item", "You're holding: " + (itemMappingEntry != null ? itemMappingEntry.getResourceKey() : null), 3000L);
+        ItemMappingEntry itemMappingEntry = Vapor.INSTANCE.getItemStackResolver().resolve(Minecraft.thePlayer().B$src$Lgg_vape_wrapper_impl_ItemStack_$impdvt());
+        Vapor.INSTANCE.getNotificationManager().showInfo("Universal Item", "You're holding: " + (itemMappingEntry != null ? itemMappingEntry.getResourceKey() : null), 3000L);
     }
 
     private static void lambda$createSubmenuComponents$15() {
@@ -193,40 +156,32 @@ public final class ClientSettingsComponentFactory {
         ClientSettings.clearPositionedFrames();
     }
 
-    private static void lambda$null$4(ApiResponse apiResponse) {
-        Vape.debugLog("response = " + apiResponse);
-    }
-
 
     private ClientSettingsComponentFactory() {
     }
 
     public static Map<ThemeComponentGroupKey, GuiComponent[]> d(ThemeColors themeColors, gg.vape.config.ClientSettings clientSettings, ClientSettings clientSettings2, boolean bl) {
-        PublicProfileSettings publicProfileSettings = Vape.INSTANCE.getPublicProfileSettings();
+        PublicProfileSettings publicProfileSettings = Vapor.INSTANCE.getPublicProfileSettings();
         LinkedHashMap<ThemeComponentGroupKey, GuiComponent[]> linkedHashMap = new LinkedHashMap<ThemeComponentGroupKey, GuiComponent[]>();
-        linkedHashMap.put(new ThemeComponentGroupKey("General", null), new GuiComponent[]{new BooleanToggleComponent(clientSettings2.multiKeybinding), new BooleanToggleComponent(publicProfileSettings.autoSave), new BooleanToggleComponent(OnlineConnectionManager.INSTANCE.getGlobalSettingsController().getCacheData()), new PublicProfileModeDropdownComponent(publicProfileSettings.language), new ClientSettingsActionButtonRowComponent("Reset current profile", ClientSettingsComponentFactory::lambda$createSubmenuComponents$13).w("This will set your current profile to the default settings of Vape")});
+        linkedHashMap.put(new ThemeComponentGroupKey("General", null), new GuiComponent[]{new BooleanToggleComponent(clientSettings2.multiKeybinding), new BooleanToggleComponent(publicProfileSettings.autoSave), new PublicProfileModeDropdownComponent(publicProfileSettings.language), new ClientSettingsActionButtonRowComponent("Reset current profile", ClientSettingsComponentFactory::lambda$createSubmenuComponents$13).w("This will set your current profile to the default settings of Vapor")});
         linkedHashMap.put(new ThemeComponentGroupKey("Modules", null), new GuiComponent[]{new ColorDividerComponent(themeColors.l), new BooleanToggleComponent(clientSettings.lobbyCheck), new BooleanToggleComponent(clientSettings.sanityCheck), new BooleanToggleComponent(clientSettings.showNbtTags), new BooleanToggleComponent(clientSettings.healthPrediction), new ClientSettingsEntityCheckDependentToggleComponent(clientSettings.estimateFoodHealing, clientSettings), new ClientSettingsThemeBooleanToggle(clientSettings.estimateFallDamage, clientSettings)});
         linkedHashMap.put(new ThemeComponentGroupKey("Silent Aim", null), new GuiComponent[]{new DropdownSelectComponent(clientSettings.movementCorrection), new BooleanToggleComponent(clientSettings.thirdPersonAimView), new BooleanToggleComponent(clientSettings.aimIndicator), new BooleanToggleComponent(clientSettings.useReach), new BooleanToggleComponent(clientSettings.useHitboxes)});
         linkedHashMap.put(new ThemeComponentGroupKey("GUI", "newgui"), ClientSettingsComponentFactory.W(clientSettings2, bl));
         linkedHashMap.put(new ThemeComponentGroupKey("Sound", null), new GuiComponent[]{new NumberSliderComponent(publicProfileSettings.volume), new BooleanToggleComponent(publicProfileSettings.muted)});
-        linkedHashMap.put(new ThemeComponentGroupKey("Notifications", null), new GuiComponent[]{new BooleanToggleComponent(publicProfileSettings.notifications), new ClientSettingsPrimaryBooleanToggle(publicProfileSettings.toggleAlerts, publicProfileSettings), new ClientSettingsTertiaryBooleanToggle(publicProfileSettings.profileSwitchNotifications, publicProfileSettings), new ClientSettingsSecondaryBooleanToggle(publicProfileSettings.friendNotifications, publicProfileSettings)});
+        linkedHashMap.put(new ThemeComponentGroupKey("Notifications", null), new GuiComponent[]{new BooleanToggleComponent(publicProfileSettings.notifications), new ClientSettingsPrimaryBooleanToggle(publicProfileSettings.toggleAlerts, publicProfileSettings), new ClientSettingsTertiaryBooleanToggle(publicProfileSettings.profileSwitchNotifications, publicProfileSettings)});
         return linkedHashMap;
     }
 
     private static void lambda$createMainChildren$0() {
-        Vape.INSTANCE.getNotificationManager().showInfo("Test header", "test body", 500000L);
-    }
-
-    private static void lambda$null$7(ApiResponse apiResponse) {
-        Vape.debugLog("response = " + apiResponse);
+        Vapor.INSTANCE.getNotificationManager().showInfo("Test header", "test body", 500000L);
     }
 
     private static void x() {
-        Vape.debugLog("=== Cache Sizes ===");
-        Vape.debugLog("CutoffLabelManager: " + SuffixTextTruncationIndexCache.INSTANCE.getCacheSize());
-        Vape.debugLog("SmoothCutoffLabelManager: " + TextTruncationIndexCache.INSTANCE.getCacheSize());
-        Vape.debugLog("--- FontRenderers ---");
-        FontManager fontManager = Vape.INSTANCE.getFontManager();
+        Vapor.debugLog("=== Cache Sizes ===");
+        Vapor.debugLog("CutoffLabelManager: " + SuffixTextTruncationIndexCache.INSTANCE.getCacheSize());
+        Vapor.debugLog("SmoothCutoffLabelManager: " + TextTruncationIndexCache.INSTANCE.getCacheSize());
+        Vapor.debugLog("--- FontRenderers ---");
+        FontManager fontManager = Vapor.INSTANCE.getFontManager();
         Map<String, Map<Integer, SmoothFontRenderer>> map = fontManager.n();
         for (Map.Entry<String, Map<Integer, SmoothFontRenderer>> entry : map.entrySet()) {
             String string = entry.getKey();
@@ -234,9 +189,9 @@ public final class ClientSettingsComponentFactory {
             for (Map.Entry<Integer, SmoothFontRenderer> entry2 : map2.entrySet()) {
                 int n = entry2.getKey();
                 SmoothFontRenderer smoothFontRenderer = entry2.getValue();
-                Vape.debugLog(string + "[" + n + "] cachedWidths=" + smoothFontRenderer.b() + " cachedStripped=" + smoothFontRenderer.R());
+                Vapor.debugLog(string + "[" + n + "] cachedWidths=" + smoothFontRenderer.b() + " cachedStripped=" + smoothFontRenderer.R());
             }
         }
-        Vape.debugLog("===================");
+        Vapor.debugLog("===================");
     }
 }

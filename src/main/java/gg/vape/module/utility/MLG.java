@@ -1,6 +1,6 @@
 package gg.vape.module.utility;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.event.EventHandler;
 import gg.vape.event.impl.EventPreTick;
 import gg.vape.inventory.InventoryClick;
@@ -13,7 +13,6 @@ import gg.vape.module.blatant.blockin.BlockPlacementGraph;
 import gg.vape.module.blatant.blockin.BlockPlacementUtility;
 import gg.vape.module.blatant.blockin.HotbarSlotResolution;
 import gg.vape.module.blatant.blockin.HotbarSlotResolutionWithValue;
-import gg.vape.module.control.FallRescuePriorityManager;
 import gg.vape.module.control.SharedModuleControlClaims;
 import gg.vape.module.utility.inventory.ItemStackActionPredicate;
 import gg.vape.module.utility.mlg.MLGPlacementController;
@@ -95,7 +94,7 @@ extends Mod {
         if (this.accumulatedFall < 2.0 || localPlayer.q() == 0.0 || capabilities.isCreativeMode() || capabilities.N() || capabilities.isFlying() || localPlayer.Q$src$Z$fh9faz() || localPlayer.M$src$Z$ff28xj() || localPlayer.k$src$Z$15enw27() || ForgeVersion.MC_1_16_5.d() && localPlayer.X$src$Z$1id4hz7() || localPlayer.b$src$Z$fqlxe4() || localPlayer.S$src$Z$151gttj() || localPlayer.h$src$Z$ftwoya() || localPlayer.d() || localPlayer.D$src$Z$fa43la()) {
             return false;
         }
-        if (Vape.INSTANCE.getModManager().getMod(Fly.class).isEnabled()) {
+        if (Vapor.INSTANCE.getModManager().getMod(Fly.class).isEnabled()) {
             return false;
         }
         float predictedDropDistance = 0.0f;
@@ -260,13 +259,6 @@ extends Mod {
             this.accumulatedFall = 0.0;
         }
         this.lastHealth = health;
-        if (FallRescuePriorityManager.INSTANCE.shouldStandDown(this, localPlayer)) {
-            if (this.state != MLGState.IDLE) {
-                this.closeInventory();
-                this.resetState();
-            }
-            return;
-        }
         if (this.state == MLGState.IDLE && !this.shouldActivate()) {
             return;
         }

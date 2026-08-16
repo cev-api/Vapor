@@ -1,7 +1,7 @@
 package gg.vape.module.none;
 
 import com.google.gson.JsonObject;
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.module.none.ClientSettings;
 import gg.vape.module.none.TextGuiSettings;
 import gg.vape.ui.click.component.DropdownSelectComponent;
@@ -28,7 +28,7 @@ extends HudSettingsFrameBase {
     private final BooleanToggleComponent smoothFontToggle;
     private final DropdownSelectComponent<ModeSelection> sortModeDropdown;
     private final DropdownSelectComponent<ModeSelection> colorModeDropdown;
-    private final TextGuiSettings settings = Vape.INSTANCE.getModManager().getMod(TextGuiSettings.class);
+    private final TextGuiSettings settings = Vapor.INSTANCE.getModManager().getMod(TextGuiSettings.class);
     private final BooleanToggleComponent shadowToggle;
     private double targetX;
     private double savedHeight;
@@ -163,14 +163,14 @@ extends HudSettingsFrameBase {
             return;
         }
         double centerX = this.G$src$D$1b2f02a() + this.A() / 2.0;
-        this.rightAnchored = centerX >= (threshold = (double)Minecraft.J() / 4.0 / Vape.INSTANCE.getClientSettings().getGuiScaleFactor());
+        this.rightAnchored = centerX >= (threshold = (double)Minecraft.J() / 4.0 / Vapor.INSTANCE.getClientSettings().getGuiScaleFactor());
         this.targetX = this.rightAnchored ? this.G$src$D$1b2f02a() + this.A() : Double.NaN;
     }
 
     private boolean isPastMidpoint() {
         double threshold;
         double centerX = this.G$src$D$1b2f02a() + this.A() / 2.0;
-        return centerX >= (threshold = (double)Minecraft.J() / 4.0 / Vape.INSTANCE.getClientSettings().getGuiScaleFactor());
+        return centerX >= (threshold = (double)Minecraft.J() / 4.0 / Vapor.INSTANCE.getClientSettings().getGuiScaleFactor());
     }
 
     @Override

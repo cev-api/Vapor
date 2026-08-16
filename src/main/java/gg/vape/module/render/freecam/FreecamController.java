@@ -1,12 +1,12 @@
 package gg.vape.module.render.freecam;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.event.EventListener;
 import gg.vape.module.Mod;
 
 public abstract class FreecamController<T extends Mod>
 implements EventListener {
-    protected static final Vape VAPE = Vape.INSTANCE;
+    protected static final Vapor VAPE = Vapor.INSTANCE;
     protected final T module;
 
     public FreecamController(T module) {

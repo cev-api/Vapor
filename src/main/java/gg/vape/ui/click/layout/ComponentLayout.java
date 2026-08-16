@@ -2,7 +2,7 @@ package gg.vape.ui.click.layout;
 
 import com.google.common.collect.ImmutableList;
 import func.skidline.RectData;
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.ui.click.component.GuiComponent;
 import gg.vape.ui.click.layout.LayoutAnchor;
 import gg.vape.ui.click.layout.LayoutConstraints;
@@ -361,7 +361,7 @@ implements LayoutManager {
                 this.J(layoutConstraints, string2.trim());
             }
             catch (LayoutParseException layoutParseException) {
-                Vape.logThrowable(layoutParseException);
+                Vapor.logThrowable(layoutParseException);
             }
         }
         return layoutConstraints;

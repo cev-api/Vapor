@@ -1,6 +1,6 @@
 package gg.vape.mapping;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.event.impl.EventBlockLayerOverride;
 import gg.vape.event.impl.EventBlockRenderLayerGate;
 import gg.vape.event.impl.EventBlockShouldRender;
@@ -17,17 +17,17 @@ extends JavassistMappingTask {
 
     @Override
     public void transform() {
-        MappingMethod mappingMethod = Vape.INSTANCE.getMappings().qg.J;
+        MappingMethod mappingMethod = Vapor.INSTANCE.getMappings().qg.J;
         EventInjectionSpec eventInjectionSpec = new EventInjectionSpec(mappingMethod, EventBlockShouldRender.class);
         eventInjectionSpec.setConstructorArguments("$0");
         eventInjectionSpec.setReturnExpression("true");
         this.registerEventInjection(eventInjectionSpec);
-        MappingMethod mappingMethod2 = Vape.INSTANCE.getMappings().qg.S;
+        MappingMethod mappingMethod2 = Vapor.INSTANCE.getMappings().qg.S;
         EventInjectionSpec eventInjectionSpec2 = new EventInjectionSpec(mappingMethod2, EventBlockLayerOverride.class);
         eventInjectionSpec2.setConstructorArguments("$0");
         eventInjectionSpec2.setReturnExpression("($r) $event.getBlockLayer()");
         this.registerEventInjection(eventInjectionSpec2);
-        MappingMethod mappingMethod3 = Vape.INSTANCE.getMappings().qg.M;
+        MappingMethod mappingMethod3 = Vapor.INSTANCE.getMappings().qg.M;
         EventInjectionSpec eventInjectionSpec3 = new EventInjectionSpec(mappingMethod3, EventBlockRenderLayerGate.class);
         eventInjectionSpec3.setInsertBefore(true);
         eventInjectionSpec3.setReturnExpression("($r) 1");

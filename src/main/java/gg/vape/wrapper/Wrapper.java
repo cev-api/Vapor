@@ -1,6 +1,6 @@
 package gg.vape.wrapper;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.ui.click.component.GuiComponent;
 import java.util.HashMap;
 import java.util.Map;
@@ -12,7 +12,7 @@ public class Wrapper {
     private static GuiComponent[] obfuscationState;
     public static boolean isNativeAvailable;
     protected Object I;
-    public static Vape vapeInstance;
+    public static Vapor vapeInstance;
 
     public String toString() {
         if (this.I == null) {
@@ -50,7 +50,7 @@ public class Wrapper {
     static {
         Wrapper.setObfuscationState(null);
         nullInstanceText = "Null instance";
-        vapeInstance = Vape.INSTANCE;
+        vapeInstance = Vapor.INSTANCE;
         isNativeAvailable = vapeInstance.isForgeAbsent();
         nativeDisabled = false;
         wrapperIdCache = new HashMap<String, Integer>();

@@ -1,7 +1,7 @@
 package gg.vape.value;
 
 import com.google.gson.JsonObject;
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.config.ClientSettings;
 import gg.vape.mapping.MappedClasses;
 import gg.vape.module.Mod;
@@ -221,7 +221,7 @@ extends Value<Boolean[], EntityTargetFilterValue> {
         if (this.ignoreBehindWallsValue.getEffectiveValue().booleanValue() && !entityPlayerSP.canEntityBeSeen(entity)) {
             return false;
         }
-        if (Vape.INSTANCE.getFriendManager().isFriend(entityLivingBase)) {
+        if (Vapor.isFriend(entityLivingBase)) {
             return false;
         }
         boolean isPlayer = entity.isInstance(MappedClasses.lG);
@@ -232,16 +232,16 @@ extends Value<Boolean[], EntityTargetFilterValue> {
             if (!this.playersValue.getEffectiveValue().booleanValue()) {
                 return false;
             }
-            if (Vape.INSTANCE.getEnemyManager().isEnemy(entity.getName())) {
+            if (false) {
                 return true;
             }
             if (this.ignoreNakedValue.getEffectiveValue().booleanValue() && RotationUtil.b$src$Z$reqs95(entityLivingBase)) {
                 return false;
             }
-            if (Vape.INSTANCE.getClientSettings().isTeammate(entityPlayerSP, entityLivingBase)) {
+            if (Vapor.INSTANCE.getClientSettings().isTeammate(entityPlayerSP, entityLivingBase)) {
                 return false;
             }
-            return !Vape.INSTANCE.getClientSettings().isBot(entityLivingBase);
+            return !Vapor.INSTANCE.getClientSettings().isBot(entityLivingBase);
         }
         if (isMobEntity && !this.mobsValue.getEffectiveValue().booleanValue()) {
             return false;

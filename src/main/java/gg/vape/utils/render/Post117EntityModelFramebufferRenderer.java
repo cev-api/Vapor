@@ -1,6 +1,6 @@
 package gg.vape.utils.render;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.mapping.MappedClasses;
 import gg.vape.utils.render.BufferedGuiRenderPrimitives;
 import gg.vape.utils.render.EntityModelRenderBackend;
@@ -123,8 +123,8 @@ implements EntityModelRenderBackend {
             }
         }
         catch (Exception exception) {
-            Vape.debugLog(CAPTURE_ERROR_PREFIX + exception.getMessage());
-            Vape.logThrowable(exception);
+            Vapor.debugLog(CAPTURE_ERROR_PREFIX + exception.getMessage());
+            Vapor.logThrowable(exception);
         }
     }
 

@@ -1,6 +1,6 @@
 package gg.vape.mapping;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.event.impl.EventPacketReceive;
 import gg.vape.event.impl.EventPacketSend;
 import gg.vape.mapping.EventInjectionSpec;
@@ -22,8 +22,8 @@ extends JavassistMappingTask {
 
     private void k() {
         EventInjectionSpec eventInjectionSpec;
-        MappingMethod mappingMethod = Vape.INSTANCE.getMappings().Do.a;
-        MappingMethod mappingMethod2 = Vape.INSTANCE.getMappings().Do.O;
+        MappingMethod mappingMethod = Vapor.INSTANCE.getMappings().Do.a;
+        MappingMethod mappingMethod2 = Vapor.INSTANCE.getMappings().Do.O;
         if (mappingMethod != null && !mappingMethod.hasResolutionFailed()) {
             eventInjectionSpec = new EventInjectionSpec(mappingMethod, EventPacketReceive.class);
             eventInjectionSpec.setConstructorArguments("$0, $2");

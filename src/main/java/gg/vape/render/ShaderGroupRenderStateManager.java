@@ -1,6 +1,6 @@
 package gg.vape.render;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.runtime.NativeBridge;
 import gg.vape.wrapper.impl.EntityRenderer;
 import gg.vape.wrapper.impl.ForgeVersion;
@@ -21,7 +21,7 @@ public class ShaderGroupRenderStateManager {
         if (this.active) {
             return;
         }
-        if (ForgeVersion.MC_1_16_5.d() && ForgeVersion.MC_1_16_5_ACTUAL.B() && Vape.INSTANCE.isForgeAbsent() && !Vape.INSTANCE.isVanillaMinecraftPresent()) {
+        if (ForgeVersion.MC_1_16_5.d() && ForgeVersion.MC_1_16_5_ACTUAL.B() && Vapor.INSTANCE.isForgeAbsent() && !Vapor.INSTANCE.isVanillaMinecraftPresent()) {
             return;
         }
         GameSettings gameSettings = Minecraft.gameSettings();
@@ -29,7 +29,7 @@ public class ShaderGroupRenderStateManager {
             return;
         }
         boolean shadersEnabled = gameSettings.M();
-        if (shadersEnabled && NativeBridge.isForgeAbsent() && !Vape.INSTANCE.isVanillaMinecraftPresent()) {
+        if (shadersEnabled && NativeBridge.isForgeAbsent() && !Vapor.INSTANCE.isVanillaMinecraftPresent()) {
             return;
         }
         EntityRenderer entityRenderer = Minecraft.m$src$Lgg_vape_wrapper_impl_EntityRenderer_$13begmf();

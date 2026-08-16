@@ -1,6 +1,6 @@
 package gg.vape.mapping;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.event.impl.EventBlockFluidRender;
 import gg.vape.event.impl.EventBlockRenderBounds;
 import gg.vape.event.impl.EventLegacyXRayRenderFaceXNeg;
@@ -22,37 +22,37 @@ extends JavassistMappingTask {
 
     @Override
     public void transform() {
-        MappingMethod mappingMethod = Vape.INSTANCE.getMappings().renderBlocks.renderBlockByRenderTypeMethod;
+        MappingMethod mappingMethod = Vapor.INSTANCE.getMappings().renderBlocks.renderBlockByRenderTypeMethod;
         EventInjectionSpec eventInjectionSpec = new EventInjectionSpec(mappingMethod, EventBlockRenderBounds.class);
         eventInjectionSpec.setConstructorArguments("$0, $1");
         eventInjectionSpec.setReturnExpression("false");
         this.registerEventInjection(eventInjectionSpec);
-        mappingMethod = Vape.INSTANCE.getMappings().renderBlocks.renderStandardBlockMethod;
+        mappingMethod = Vapor.INSTANCE.getMappings().renderBlocks.renderStandardBlockMethod;
         eventInjectionSpec = new EventInjectionSpec(mappingMethod, EventBlockFluidRender.class);
         eventInjectionSpec.setConstructorArguments("$0, $1, $2, $3, $4");
         eventInjectionSpec.setReturnExpression("$event.isResult()");
         this.registerEventInjection(eventInjectionSpec);
-        mappingMethod = Vape.INSTANCE.getMappings().renderBlocks.renderFaceXNegMethod;
+        mappingMethod = Vapor.INSTANCE.getMappings().renderBlocks.renderFaceXNegMethod;
         eventInjectionSpec = new EventInjectionSpec(mappingMethod, EventLegacyXRayRenderFaceYNeg.class);
         eventInjectionSpec.setConstructorArguments("$1");
         this.registerEventInjection(eventInjectionSpec);
-        mappingMethod = Vape.INSTANCE.getMappings().renderBlocks.renderFaceXPosMethod;
+        mappingMethod = Vapor.INSTANCE.getMappings().renderBlocks.renderFaceXPosMethod;
         eventInjectionSpec = new EventInjectionSpec(mappingMethod, EventLegacyXRayRenderFaceYPos.class);
         eventInjectionSpec.setConstructorArguments("$1");
         this.registerEventInjection(eventInjectionSpec);
-        mappingMethod = Vape.INSTANCE.getMappings().renderBlocks.renderFaceYNegMethod;
+        mappingMethod = Vapor.INSTANCE.getMappings().renderBlocks.renderFaceYNegMethod;
         eventInjectionSpec = new EventInjectionSpec(mappingMethod, EventLegacyXRayRenderFaceZNeg.class);
         eventInjectionSpec.setConstructorArguments("$1");
         this.registerEventInjection(eventInjectionSpec);
-        mappingMethod = Vape.INSTANCE.getMappings().renderBlocks.renderFaceYPosMethod;
+        mappingMethod = Vapor.INSTANCE.getMappings().renderBlocks.renderFaceYPosMethod;
         eventInjectionSpec = new EventInjectionSpec(mappingMethod, EventLegacyXRayRenderFaceZPos.class);
         eventInjectionSpec.setConstructorArguments("$1");
         this.registerEventInjection(eventInjectionSpec);
-        mappingMethod = Vape.INSTANCE.getMappings().renderBlocks.renderFaceZNegMethod;
+        mappingMethod = Vapor.INSTANCE.getMappings().renderBlocks.renderFaceZNegMethod;
         eventInjectionSpec = new EventInjectionSpec(mappingMethod, EventLegacyXRayRenderFaceXNeg.class);
         eventInjectionSpec.setConstructorArguments("$1");
         this.registerEventInjection(eventInjectionSpec);
-        mappingMethod = Vape.INSTANCE.getMappings().renderBlocks.renderFaceZPosMethod;
+        mappingMethod = Vapor.INSTANCE.getMappings().renderBlocks.renderFaceZPosMethod;
         eventInjectionSpec = new EventInjectionSpec(mappingMethod, EventLegacyXRayRenderFaceXPos.class);
         eventInjectionSpec.setConstructorArguments("$1");
         this.registerEventInjection(eventInjectionSpec);

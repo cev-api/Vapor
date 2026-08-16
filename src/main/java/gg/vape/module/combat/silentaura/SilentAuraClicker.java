@@ -1,12 +1,12 @@
 package gg.vape.module.combat.silentaura;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.click.ClickButton;
 import gg.vape.click.ClickEngine;
 import gg.vape.module.Category;
-import gg.vape.module.combat.BlockHit;
 import gg.vape.module.combat.ClickerMod;
 import gg.vape.module.combat.SilentAura;
+import gg.vape.module.render.Animations;
 import gg.vape.value.BooleanValue;
 import gg.vape.wrapper.impl.EntityPlayerSP;
 
@@ -25,8 +25,8 @@ extends ClickerMod {
 
     @Override
     public boolean shouldSimulateBlockHit(ClickEngine clickEngine, EntityPlayerSP player) {
-        BlockHit blockHit = Vape.INSTANCE.getModManager().getMod(BlockHit.class);
-        return blockHit != null && blockHit.shouldBlock();
+        Animations animations = Vapor.INSTANCE.getModManager().getMod(Animations.class);
+        return animations != null && animations.shouldBlock();
     }
 
     @Override

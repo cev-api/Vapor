@@ -1,6 +1,6 @@
 package gg.vape.event.impl;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.event.Event;
 import gg.vape.event.EventListeners;
 import gg.vape.wrapper.impl.ForgeVersion;
@@ -32,7 +32,7 @@ extends Event {
             String resourceName = ForgeVersion.c() == ForgeVersion.MC_1_8_9.i()
                     ? resourceLocationName.getCompleteReport()
                     : resourceLocationName.getFriendlyReport(ResourceLocationKey.L());
-            Vape.logError(resourceName);
+            Vapor.logError(resourceName);
         }
         catch (Throwable throwable) {
             // empty catch block

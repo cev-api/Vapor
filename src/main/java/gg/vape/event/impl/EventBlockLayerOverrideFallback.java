@@ -1,6 +1,6 @@
 package gg.vape.event.impl;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.event.Event;
 import gg.vape.event.EventListeners;
 
@@ -16,7 +16,7 @@ extends Event {
 
     @Override
     public boolean fire() {
-        if (!Vape.INSTANCE.isEnabled()) {
+        if (!Vapor.INSTANCE.isEnabled()) {
             this.setCancelled(true);
         }
         return super.fire();

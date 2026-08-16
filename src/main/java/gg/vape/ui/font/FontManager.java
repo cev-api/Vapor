@@ -1,6 +1,6 @@
 package gg.vape.ui.font;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.ui.font.BufferedSmoothFontRenderer;
 import gg.vape.ui.font.FontFamily;
 import gg.vape.ui.font.FontFamilySwitchMap;
@@ -65,7 +65,7 @@ public class FontManager {
     }
 
     public SmoothFontRenderer D(int n, boolean bl) {
-        FontFamily fontFamily = Vape.INSTANCE.getFontSelector().W().b();
+        FontFamily fontFamily = Vapor.INSTANCE.getFontSelector().W().b();
         if (fontFamily != null) {
             return this.n(fontFamily, n, bl);
         }
@@ -78,7 +78,7 @@ public class FontManager {
 
     public SmoothFontRenderer W(double d, boolean bl) {
         int n = (int)(16.0 * d);
-        double d2 = Vape.INSTANCE.getClientSettings().getGuiScaleFactor();
+        double d2 = Vapor.INSTANCE.getClientSettings().getGuiScaleFactor();
         n = (int)((double)n * d2);
         return this.D(n, true);
     }
@@ -130,26 +130,26 @@ public class FontManager {
 
     public SmoothFontRenderer p(double d) {
         int n = (int)(16.0 * d);
-        double d2 = Vape.INSTANCE.getClientSettings().getGuiScaleFactor();
+        double d2 = Vapor.INSTANCE.getClientSettings().getGuiScaleFactor();
         n = (int)((double)n * d2);
         return this.x(n);
     }
 
     public void e() {
         String string = "proxima.ttf";
-        this.w = Vape.readResource(string);
+        this.w = Vapor.readResource(string);
         String string2 = "proximabd.ttf";
-        this.J = Vape.readResource(string2);
+        this.J = Vapor.readResource(string2);
         String string3 = "noto.ttf";
-        this.V = Vape.readResource(string3);
+        this.V = Vapor.readResource(string3);
         String string4 = "poppins_rg.ttf";
-        this.I = Vape.readResource(string4);
+        this.I = Vapor.readResource(string4);
         this.X = true;
     }
 
     public SmoothFontRenderer b(FontFamily fontFamily, float f, boolean bl) {
         int n = (int)(16.0f * f);
-        double d = Vape.INSTANCE.getClientSettings().getGuiScaleFactor();
+        double d = Vapor.INSTANCE.getClientSettings().getGuiScaleFactor();
         n = (int)((double)n * d);
         return this.n(fontFamily, n, bl);
     }
@@ -183,7 +183,7 @@ public class FontManager {
 
     public SmoothFontRenderer K(double d, boolean bl) {
         int n = (int)(16.0 * d);
-        double d2 = Vape.INSTANCE.getClientSettings().getGuiScaleFactor();
+        double d2 = Vapor.INSTANCE.getClientSettings().getGuiScaleFactor();
         SmoothFontRenderer smoothFontRenderer = (SmoothFontRenderer)this.P.get(n = (int)((double)n * d2));
         if (smoothFontRenderer != null) {
             return smoothFontRenderer;
@@ -195,7 +195,7 @@ public class FontManager {
 
     public SmoothFontRenderer E(double d, boolean bl) {
         int n = (int)(16.0 * d);
-        double d2 = Vape.INSTANCE.getClientSettings().getGuiScaleFactor();
+        double d2 = Vapor.INSTANCE.getClientSettings().getGuiScaleFactor();
         n = (int)((double)n * d2);
         return this.D(n, false);
     }

@@ -1,7 +1,7 @@
 package gg.vape.ui.unmap;
 
 import com.google.gson.JsonObject;
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.utils.Base64Util;
 import gg.vape.utils.BlockUtil;
 import gg.vape.utils.MutableColor;
@@ -72,7 +72,7 @@ public class SearchBlock {
 
     private void X() {
         String string = this.P;
-        Predicate<Character> predicate = Vape.INSTANCE.getItemHelper().findCharacterRule(string);
+        Predicate<Character> predicate = Vapor.INSTANCE.getItemHelper().findCharacterRule(string);
         if (predicate != null) {
             this.R = predicate;
             return;

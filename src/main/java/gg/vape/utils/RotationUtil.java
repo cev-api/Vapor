@@ -1,6 +1,6 @@
 package gg.vape.utils;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.combat.AttackStrengthTracker;
 import gg.vape.config.ClientSettings;
 import gg.vape.mapping.MappedClasses;
@@ -117,7 +117,7 @@ public class RotationUtil {
     public static EntityOtherPlayerMP m(Entity entity, double d, double d2, boolean bl) {
         for (Object e : Minecraft.theWorld().X()) {
             EntityOtherPlayerMP entityOtherPlayerMP;
-            if (!MappedClasses.lG.isInstance(e) || (entityOtherPlayerMP = new EntityOtherPlayerMP(e)).equals(entity) || bl && Vape.INSTANCE.getFriendManager().isFriend(entityOtherPlayerMP) || (double)entityOtherPlayerMP.getDistanceToEntity(entity) >= d || !((double)RotationUtil.a(entity, entityOtherPlayerMP) < d2)) continue;
+            if (!MappedClasses.lG.isInstance(e) || (entityOtherPlayerMP = new EntityOtherPlayerMP(e)).equals(entity) || bl && Vapor.isFriend(entityOtherPlayerMP) || (double)entityOtherPlayerMP.getDistanceToEntity(entity) >= d || !((double)RotationUtil.a(entity, entityOtherPlayerMP) < d2)) continue;
             return entityOtherPlayerMP;
         }
         return null;
@@ -476,7 +476,7 @@ public class RotationUtil {
     public static EntityLivingBase L(Entity entity, double d, double d2, boolean bl) {
         for (Object e : Minecraft.theWorld().z()) {
             EntityLivingBase entityLivingBase;
-            if (!MappedClasses.zm.isInstance(e) || (entityLivingBase = new EntityLivingBase(e)).equals(entity) || entityLivingBase.M$src$Z$ff28xj() || entityLivingBase.w$src$F$15l9epb() <= 0.0f || bl && Vape.INSTANCE.getFriendManager().isFriend(entityLivingBase) || (double)entityLivingBase.getDistanceToEntity(entity) >= d || !((double)RotationUtil.a(entity, entityLivingBase) < d2)) continue;
+            if (!MappedClasses.zm.isInstance(e) || (entityLivingBase = new EntityLivingBase(e)).equals(entity) || entityLivingBase.M$src$Z$ff28xj() || entityLivingBase.w$src$F$15l9epb() <= 0.0f || bl && Vapor.isFriend(entityLivingBase) || (double)entityLivingBase.getDistanceToEntity(entity) >= d || !((double)RotationUtil.a(entity, entityLivingBase) < d2)) continue;
             return entityLivingBase;
         }
         return null;
@@ -602,7 +602,7 @@ public class RotationUtil {
     }
 
     public static boolean o(Entity entity, EntityLivingBase entityLivingBase, double d, double d2, boolean bl) {
-        if (bl && Vape.INSTANCE.getFriendManager().isFriend(entityLivingBase)) {
+        if (bl && Vapor.isFriend(entityLivingBase)) {
             return false;
         }
         if ((double)entity.getDistanceToEntity(entityLivingBase) >= d) {
@@ -614,7 +614,7 @@ public class RotationUtil {
     public static boolean o(Entity entity, double d, double d2, boolean bl) {
         for (Object e : Minecraft.theWorld().X()) {
             EntityOtherPlayerMP entityOtherPlayerMP;
-            if (!MappedClasses.lG.isInstance(e) || (entityOtherPlayerMP = new EntityOtherPlayerMP(e)).equals(entity) || entityOtherPlayerMP.M$src$Z$ff28xj() || entityOtherPlayerMP.w$src$F$15l9epb() <= 0.0f || bl && Vape.INSTANCE.getFriendManager().isFriend(entityOtherPlayerMP) || (double)entityOtherPlayerMP.getDistanceToEntity(entity) >= d || !((double)RotationUtil.a(entity, entityOtherPlayerMP) < d2)) continue;
+            if (!MappedClasses.lG.isInstance(e) || (entityOtherPlayerMP = new EntityOtherPlayerMP(e)).equals(entity) || entityOtherPlayerMP.M$src$Z$ff28xj() || entityOtherPlayerMP.w$src$F$15l9epb() <= 0.0f || bl && Vapor.isFriend(entityOtherPlayerMP) || (double)entityOtherPlayerMP.getDistanceToEntity(entity) >= d || !((double)RotationUtil.a(entity, entityOtherPlayerMP) < d2)) continue;
             return true;
         }
         return false;
@@ -755,7 +755,7 @@ public class RotationUtil {
         for (Object e : Minecraft.theWorld().X()) {
             if (!MappedClasses.lG.isInstance(e)) continue;
             EntityOtherPlayerMP entityOtherPlayerMP = new EntityOtherPlayerMP(e);
-            if (bl && Vape.INSTANCE.getFriendManager().isFriend(entityOtherPlayerMP) || !(entityOtherPlayerMP.getDistanceToEntity(entity) <= (float)n)) continue;
+            if (bl && Vapor.isFriend(entityOtherPlayerMP) || !(entityOtherPlayerMP.getDistanceToEntity(entity) <= (float)n)) continue;
             ++n2;
         }
         return n2;
@@ -851,7 +851,7 @@ public class RotationUtil {
         EntityPlayerSP entityPlayerSP = Minecraft.thePlayer();
         for (Object e : Minecraft.theWorld().z()) {
             EntityLivingBase entityLivingBase;
-            if (!MappedClasses.zm.isInstance(e) || !(entityLivingBase = new EntityLivingBase(e)).isInstance(MappedClasses.lG) || entityLivingBase.M$src$Z$ff28xj() || entityLivingBase.w$src$F$15l9epb() <= 0.0f || (double)entityLivingBase.getDistanceToEntity(entityPlayerSP) >= d || !Vape.INSTANCE.getClientSettings().isValidTarget(entityLivingBase, false) || !((double)RotationUtil.N(entityLivingBase) < d2)) continue;
+            if (!MappedClasses.zm.isInstance(e) || !(entityLivingBase = new EntityLivingBase(e)).isInstance(MappedClasses.lG) || entityLivingBase.M$src$Z$ff28xj() || entityLivingBase.w$src$F$15l9epb() <= 0.0f || (double)entityLivingBase.getDistanceToEntity(entityPlayerSP) >= d || !Vapor.INSTANCE.getClientSettings().isValidTarget(entityLivingBase, false) || !((double)RotationUtil.N(entityLivingBase) < d2)) continue;
             return entityLivingBase;
         }
         return null;

@@ -43,6 +43,7 @@ public class GlobalSettingsController {
             }
         }
         catch (Exception exception) {
+            this.settings = new GlobalSettingsPayload();
             this.settings.initializeDefaults();
             this.loadFailed = true;
         }

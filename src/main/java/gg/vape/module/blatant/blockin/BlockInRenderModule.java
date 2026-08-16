@@ -1,6 +1,6 @@
 package gg.vape.module.blatant.blockin;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.event.EventHandler;
 import gg.vape.event.EventPriority;
 import gg.vape.event.impl.EventPostEntityUpdate;
@@ -37,7 +37,7 @@ extends Mod {
 
     @Override
     public void onEnable() {
-        Vape.debugLog("\nSimulation test module enabled, ready to simulate player movement.\n");
+        Vapor.debugLog("\nSimulation test module enabled, ready to simulate player movement.\n");
     }
 
     @EventHandler(priority=EventPriority.HIGHEST)
@@ -88,10 +88,10 @@ extends Mod {
         BlockPlacementGraph simulatedPostUpdateSnapshot = new BlockPlacementGraph(this.planner);
         this.planner.updateRotation();
         if (!this.actualPreUpdateSnapshot.matchesSimulationState(this.expectedPreUpdateSnapshot)) {
-            Vape.debugLog("PRE UPDATE SNAPSHOT IS OFF");
+            Vapor.debugLog("PRE UPDATE SNAPSHOT IS OFF");
         }
         if (!actualPostUpdateSnapshot.matchesSimulationState(simulatedPostUpdateSnapshot)) {
-            Vape.debugLog("POST UPDATE SNAPSHOT IS OFF");
+            Vapor.debugLog("POST UPDATE SNAPSHOT IS OFF");
         }
     }
 
@@ -129,7 +129,7 @@ extends Mod {
         if (this.planner != null) {
             this.planner = null;
             this.simulatedPlayer = null;
-            Vape.debugLog("\n\nSimulation test module disabled, simulator reset.\n");
+            Vapor.debugLog("\n\nSimulation test module disabled, simulator reset.\n");
         }
     }
 

@@ -1,6 +1,6 @@
 package gg.vape.module.utility.inventory.cleaner;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.mapping.ItemMappingEntry;
 import gg.vape.wrapper.impl.Item;
 import gg.vape.wrapper.impl.ItemStack;
@@ -21,7 +21,7 @@ public class InventoryItemMatchContext {
         if (itemStack == null || itemStack.isNull()) {
             return null;
         }
-        ItemMappingEntry itemMappingEntry = Vape.INSTANCE.getItemStackResolver().resolve(itemStack);
+        ItemMappingEntry itemMappingEntry = Vapor.INSTANCE.getItemStackResolver().resolve(itemStack);
         return new InventoryItemMatchContext(itemMappingEntry, itemStack);
     }
 

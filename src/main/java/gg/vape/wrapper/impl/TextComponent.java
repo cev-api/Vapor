@@ -1,6 +1,6 @@
 package gg.vape.wrapper.impl;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.mapping.mappings.MTextComponent;
 
 public class TextComponent
@@ -22,6 +22,6 @@ extends ITextComponent {
     }
 
     public TextComponent(ScorePlayerTeam team, String playerName) {
-        super(new TextComponent(Vape.INSTANCE.getMappingsMapperCompat().scorePlayerTeam.formatPlayerNameComponent(team.getObject(), ScorePlayerTeamTextComponent.B(playerName).getObject())).getObject());
+        super(new TextComponent(Vapor.INSTANCE.getMappingsMapperCompat().scorePlayerTeam.formatPlayerNameComponent(team.getObject(), ScorePlayerTeamTextComponent.B(playerName).getObject())).getObject());
     }
 }

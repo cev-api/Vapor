@@ -8,6 +8,7 @@ public class PlacementTarget {
     private BlockData cachedBlockData;
     public int depth;
     public Vec3 hitPoint;
+    /** Marks ladder placements produced by the legacy clutch planner. */
     public boolean ladderPlacement;
     public final BlockData supportBlock;
     public final EnumFacing facing;
@@ -38,4 +39,3 @@ public class PlacementTarget {
         return this.supportBlock;
     }
 }
-

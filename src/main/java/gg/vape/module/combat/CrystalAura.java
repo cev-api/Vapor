@@ -1,6 +1,6 @@
 package gg.vape.module.combat;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.mapping.ItemMappingEntry;
 import gg.vape.mapping.MappedClasses;
 import gg.vape.module.Category;
@@ -66,7 +66,7 @@ extends Mod {
 
     public boolean shouldPause() {
         if (freecam == null) {
-            freecam = Vape.INSTANCE.getModManager().getMod(Freecam.class);
+            freecam = Vapor.INSTANCE.getModManager().getMod(Freecam.class);
         }
         return freecam != null && freecam.isEnabled() || this.rotationClaim.isBlockedFor(this) && !this.rotationClaim.acquire(this, true);
     }
@@ -102,7 +102,7 @@ extends Mod {
         if (itemStack.isNull()) {
             return false;
         }
-        ItemMappingEntry itemMappingEntry = Vape.INSTANCE.getItemStackResolver().resolve(itemStack);
+        ItemMappingEntry itemMappingEntry = Vapor.INSTANCE.getItemStackResolver().resolve(itemStack);
         if (itemMappingEntry != null) {
             return "minecraft:end_crystal".equals(itemMappingEntry.getResourceKey()) || "end_crystal".equals(itemMappingEntry.getModernId());
         }
@@ -254,7 +254,10 @@ extends Mod {
 
     @Override
     public void onEnable() {
-        ClientSettings.getFrame(ActiveModuleStackFrame.class).addModule(this);
+        ActiveModuleStackFrame activeModuleFrame = ClientSettings.getFrame(ActiveModuleStackFrame.class);
+        if (activeModuleFrame != null) {
+            activeModuleFrame.addModule(this);
+        }
     }
 
     public static float reduceDamageByBlastProtection(float damage, float protectionLevel) {
@@ -264,7 +267,10 @@ extends Mod {
 
     @Override
     public void onDisable() {
-        ClientSettings.getFrame(ActiveModuleStackFrame.class).removeModule(this);
+        ActiveModuleStackFrame activeModuleFrame = ClientSettings.getFrame(ActiveModuleStackFrame.class);
+        if (activeModuleFrame != null) {
+            activeModuleFrame.removeModule(this);
+        }
         this.rotationClaim.release(this);
     }
 
@@ -293,7 +299,7 @@ extends Mod {
         if (itemStack.isNull() || !itemStack.getItem().isInstance(MappedClasses.Vw)) {
             return false;
         }
-        ItemMappingEntry itemMappingEntry = Vape.INSTANCE.getItemStackResolver().resolve(itemStack);
+        ItemMappingEntry itemMappingEntry = Vapor.INSTANCE.getItemStackResolver().resolve(itemStack);
         if (itemMappingEntry != null) {
             return "minecraft:obsidian".equals(itemMappingEntry.getResourceKey()) || "obsidian".equals(itemMappingEntry.getModernId());
         }

@@ -1,6 +1,6 @@
 package gg.vape.ui.click.component;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.ui.click.component.gui.InteractiveComponent;
 import gg.vape.ui.font.SmoothFontRenderer;
 import gg.vape.unmap.ColorUtil;
@@ -113,7 +113,7 @@ extends InteractiveComponent {
             badgeX = textEndX + (double)(5.0f * 2.0f);
             badgeY = textY + 0.5;
             GuiRenderPrimitives.d(badgeX, badgeY, 20.0, 7.0, J.z());
-            badgeFontRenderer = Vape.INSTANCE.getFontManager().W(0.8, false);
+            badgeFontRenderer = Vapor.INSTANCE.getFontManager().W(0.8, false);
             badgeFontRenderer.d("New!", badgeX + 3.0, badgeY + 0.5, ColorUtil.getContrastingGray(J.z(), 35, 255));
         }
         if (this.showBetaBadge) {
@@ -124,7 +124,7 @@ extends InteractiveComponent {
                 badgeX += 24.0;
             }
             badgeY = textY + 0.5;
-            badgeFontRenderer = Vape.INSTANCE.getFontManager().W(0.8, false);
+            badgeFontRenderer = Vapor.INSTANCE.getFontManager().W(0.8, false);
             double badgeWidth = badgeFontRenderer.N("Beta") + 6.0;
             GuiRenderPrimitives.d(badgeX, badgeY, badgeWidth, 7.0, J.z());
             badgeFontRenderer.d("Beta", badgeX + 3.0, badgeY + 0.5, ColorUtil.getContrastingGray(J.z(), 35, 255));

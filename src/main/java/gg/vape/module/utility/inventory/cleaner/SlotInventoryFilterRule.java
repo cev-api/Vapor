@@ -1,7 +1,7 @@
 package gg.vape.module.utility.inventory.cleaner;
 
 import com.google.gson.JsonObject;
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.module.utility.inventory.cleaner.AbstractInventoryFilterRule;
 import gg.vape.module.utility.inventory.cleaner.InventoryFilterPreset;
 import java.util.UUID;
@@ -31,7 +31,7 @@ extends AbstractInventoryFilterRule {
     public InventoryFilterPreset resolvePreset() {
         UUID sharedPresetId = this.getSharedPresetId();
         if (sharedPresetId != null) {
-            return Vape.INSTANCE.getInventoryFilterPresetRegistry().getSlotRulePresets().getById(sharedPresetId);
+            return Vapor.INSTANCE.getInventoryFilterPresetRegistry().getSlotRulePresets().getById(sharedPresetId);
         }
         return this.getInlinePreset();
     }

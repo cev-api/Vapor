@@ -1,6 +1,6 @@
 package gg.vape.ui.click.component.value;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.ui.click.component.DropdownSelectComponent;
 import gg.vape.ui.font.FontOption;
 import gg.vape.value.ModeValue;
@@ -13,6 +13,6 @@ extends DropdownSelectComponent<FontOption> {
 
     @Override
     public void onSelectionChanged() {
-        Vape.INSTANCE.getFontSelector().N(this.getSelectedValue());
+        Vapor.INSTANCE.getFontSelector().N(this.getSelectedValue());
     }
 }

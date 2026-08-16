@@ -1,7 +1,7 @@
 package gg.vape.value;
 
 import com.google.gson.JsonObject;
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.config.ConfigJsonUtils;
 import gg.vape.config.PublicProfileSettings;
 import gg.vape.module.Mod;
@@ -200,9 +200,9 @@ implements INamed {
                 return;
             }
             if (owner instanceof PublicProfileSettings) {
-                Vape.INSTANCE.getSettingsManager().registerValue(this);
+                Vapor.INSTANCE.getSettingsManager().registerValue(this);
             } else if (!(owner instanceof Mod)) {
-                Vape.INSTANCE.getValueManager().registerValue(this);
+                Vapor.INSTANCE.getValueManager().registerValue(this);
             }
         }
     }
@@ -303,7 +303,7 @@ implements INamed {
 
     public void notifyChanged() {
         if (!this.suppressPersistence) {
-            Vape.INSTANCE.saveAndStop();
+            Vapor.INSTANCE.saveAndStop();
         }
         for (ValueChangeListener<T> valueChangeListener : this.changeListeners) {
             valueChangeListener.onValueChanged((T)this);

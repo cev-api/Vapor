@@ -1,7 +1,7 @@
 package gg.vape.ui.click.frame.impl.hud;
 
 import func.skidline.RectData;
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.input.KeyboardInput;
 import gg.vape.module.MinecraftVersionConstraint;
 import gg.vape.module.Mod;
@@ -157,7 +157,7 @@ extends HudModuleFrameBase {
 
     public HudModuleConfigFrameBase(Class<T> clazz) {
         super(clazz.getName());
-        this.module = (T)Vape.INSTANCE.getModManager().getMod(clazz);
+        this.module = (T)Vapor.INSTANCE.getModManager().getMod(clazz);
         this.setDisabledOverlayColor(HudModuleConfigFrameBase.J.i);
         this.K(30.0);
         this.S(10.0);

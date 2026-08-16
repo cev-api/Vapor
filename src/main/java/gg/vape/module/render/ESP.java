@@ -1,6 +1,6 @@
 package gg.vape.module.render;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.mapping.MappedClasses;
 import gg.vape.module.Category;
 import gg.vape.module.Mod;
@@ -10,7 +10,6 @@ import gg.vape.module.render.esp.ESP2D;
 import gg.vape.module.render.esp.ESP3D;
 import gg.vape.module.render.esp.ESPOutline;
 import gg.vape.module.render.esp.ESPSkeleton;
-import gg.vape.render.OffscreenRenderContext;
 import gg.vape.unmap.ModeOption;
 import gg.vape.utils.MutableColor;
 import gg.vape.value.BooleanValue;
@@ -57,7 +56,7 @@ extends Mod {
         this.playerColor = ColorValue.create(this, "Player Color", new Color(-14368924));
         this.showInvisibles = BooleanValue.create(this, "Invisibles", false, "Show invisibles.");
         this.enemyOnly = BooleanValue.create(this, "Enemy Only", false, "Only render enemies.");
-        this.priorityOnly = BooleanValue.create(this, "Priority Only", false, "Only shows the ESP box on friends/enemies.");
+        this.priorityOnly = BooleanValue.create(this, "Priority Only", false, "Only shows the ESP box on priority targets.");
         this.enemyListOnly = BooleanValue.create(this, "Enemies List Only", false);
         this.hideBots = BooleanValue.create(this, "Hide Bots", false);
         this.showExpandedHitbox = BooleanValue.create(this, "Hitbox", false, "Shows the current entity hitbox size.\n(HitBoxes expansion visible)\n(3D Only)");
@@ -79,9 +78,6 @@ extends Mod {
 
 
     public MutableColor resolveEntityColor(EntityPlayerSP viewer, Object entityHandle) {
-        if (OffscreenRenderContext.isRenderingOffscreen()) {
-            return null;
-        }
         if (entityHandle == null) {
             return null;
         }
@@ -104,7 +100,7 @@ extends Mod {
             return null;
         }
         if (entityLivingBase.isInstance(MappedClasses.lG)) {
-            MutableColor mutableColor = Vape.INSTANCE.getClientSettings().resolveEntityColor(renderEntityContext);
+            MutableColor mutableColor = Vapor.INSTANCE.getClientSettings().resolveEntityColor(renderEntityContext);
             if (mutableColor == null) {
                 mutableColor = this.playerColor.getMutableColor();
             }

@@ -12,11 +12,9 @@ import gg.vape.mapping.MappedClasses;
 import gg.vape.module.Category;
 import gg.vape.module.Mod;
 import gg.vape.rotation.RotationManager;
-import gg.vape.unmap.ItemLimitData;
 import gg.vape.utils.ItemStackScoreUtil;
 import gg.vape.utils.RotationUtil;
 import gg.vape.value.BooleanValue;
-import gg.vape.value.LimitValue;
 import gg.vape.value.NumberValue;
 import gg.vape.wrapper.impl.Entity;
 import gg.vape.wrapper.impl.EntityOtherPlayerMP;
@@ -27,46 +25,29 @@ import gg.vape.wrapper.impl.Minecraft;
 import gg.vape.wrapper.impl.RayTraceResult;
 
 public class ShieldBreaker extends Mod {
-    private static final long MODULE_ID = 7954407336301342843L;
+    private static final long MODULE_ID = -7666507152973844354L;
 
     private final NumberValue swapDelay;
+    private final BooleanValue autoSwitchBack;
     private final NumberValue swapBackDelay;
-    private final BooleanValue doubleClick;
-    private final BooleanValue limitToItems;
-    private final LimitValue allowedItems;
-
-    private boolean active;
-    private boolean waitingToAttack;
-    private boolean releasePending;
+    private SwapState state = SwapState.IDLE;
     private int originalSlot = -1;
-    private int axeSlot = -1;
-    private int swapTicks;
-    private int restoreTicks;
+    private int ticksRemaining;
+    private boolean attackReleasePending;
 
     public ShieldBreaker() {
         super("ShieldBreaker", (int)MODULE_ID, Category.COMBAT,
                 "Swaps to an axe when attacking a player with a raised shield");
-        this.swapDelay = NumberValue.create(this, "Swap delay", "#", "ticks", 0.0, 0.0, 10.0, 1.0,
-                "Delay between swapping to an axe and attacking");
-        this.swapBackDelay = NumberValue.create(this, "Swap back delay", "#", "ticks", 1.0, 2.0, 10.0, 1.0,
-                "Delay between attacking and swapping back to the original slot");
-        this.doubleClick = BooleanValue.create(this, "Double click", false,
-                "Attacks again immediately after breaking the shield to knock the target back");
-        this.limitToItems = BooleanValue.create(this, "Limit to items", false,
-                "ShieldBreaker functions only while holding selected items");
-        this.allowedItems = LimitValue.create(this, "shieldbreaker-alloweditems", "Allowed Items",
-                LimitValue.ALLOW_LIST_COLOR, new ItemLimitData("swords"));
+        this.swapDelay = NumberValue.create(
+                this, "Swap delay", "#", "tick", 0.0, 5.0, 20.0, 1.0);
+        this.autoSwitchBack = BooleanValue.create(this, "Auto swap back", true, "Sweeping back to the original slot");
+        this.swapBackDelay = NumberValue.create(
+                this, "Swap back delay", "#", "tick", 0.0, 5.0, 20.0, 1.0,
+                "Delay between attacking and sweeping back to the original slot");
         this.swapDelay.setMaximumFractionDigits(0);
         this.swapBackDelay.setMaximumFractionDigits(0);
-        this.limitToItems.addDependentValues(this.allowedItems);
-        this.addValue(this.swapDelay, this.swapBackDelay, this.doubleClick, this.limitToItems, this.allowedItems);
-    }
-
-    @EventHandler(priority = EventPriority.HIGH, skipCanceled = true)
-    public void onKeyPress(EventKeyPress event) {
-        if (event.isKeybinding(Minecraft.gameSettings().F()) && event.isDown()) {
-            this.handleAttack(event);
-        }
+        this.autoSwitchBack.addDependentValues(this.swapBackDelay);
+        this.addValue(this.swapDelay, this.autoSwitchBack, this.swapBackDelay);
     }
 
     @EventHandler(priority = EventPriority.HIGH, skipCanceled = true)
@@ -77,9 +58,15 @@ public class ShieldBreaker extends Mod {
     }
 
     @EventHandler(priority = EventPriority.HIGH, skipCanceled = true)
+    public void onKeyPress(EventKeyPress event) {
+        if (event.isKeybinding(Minecraft.gameSettings().F()) && event.isDown()) {
+            this.handleAttack(event);
+        }
+    }
+
+    @EventHandler(priority = EventPriority.HIGH, skipCanceled = true)
     public void onSyntheticAttack(SyntheticAttackRequestEvent event) {
-        Mod source = event.getSource();
-        if (source != this && !(source instanceof HitSwap) && !(source instanceof AutoMace)) {
+        if (event.getSource() != this) {
             this.handleAttack(event);
         }
     }
@@ -87,88 +74,75 @@ public class ShieldBreaker extends Mod {
     @EventHandler(priority = EventPriority.HIGH)
     public void onTick(EventPreTick event) {
         EntityPlayerSP player = event.getThePlayer();
-        if (this.releasePending) {
+        if (player.isNull() || Minecraft.currentScreen().isNotNull()) {
+            this.resetState(player, true);
+            return;
+        }
+
+        if (this.attackReleasePending) {
             AttackKeyController.releaseAttackKey();
-            this.releasePending = false;
+            this.attackReleasePending = false;
         }
-        if (player.isNull()) {
-            this.reset(null, false);
+
+        if (this.state == SwapState.IDLE) {
             return;
         }
-        if (!this.active) {
+
+        if (this.state == SwapState.WAITING_TO_SWAP_BACK
+                && !this.autoSwitchBack.getEffectiveValue()) {
+            this.resetState(player, false);
             return;
         }
-        if (!this.isStateValid(player)) {
-            this.restoreSlot(player);
-            this.reset(player, false);
-            return;
-        }
-        if (this.waitingToAttack) {
-            if (this.swapTicks++ >= this.swapDelay.getValue().intValue()) {
-                this.attack();
-                this.waitingToAttack = false;
-                this.restoreTicks = 0;
+
+        if (this.ticksRemaining > 0) {
+            --this.ticksRemaining;
+            if (this.ticksRemaining > 0) {
+                return;
             }
-            return;
         }
-        if (this.restoreTicks++ >= this.swapBackDelay.getValue().intValue()) {
-            this.restoreSlot(player);
-            this.reset(player, false);
+
+        if (this.state == SwapState.WAITING_TO_ATTACK) {
+            this.attackWithAxe(player);
+        } else if (this.state == SwapState.WAITING_TO_SWAP_BACK) {
+            this.resetState(player, true);
         }
+    }
+
+    @Override
+    public void onDisable() {
+        this.resetState(Minecraft.thePlayer(), true);
     }
 
     private void handleAttack(Event event) {
-        if (this.active || Minecraft.currentScreen().isNotNull()) {
+        if (this.state != SwapState.IDLE || Minecraft.currentScreen().isNotNull()) {
             return;
         }
+
         EntityPlayerSP player = Minecraft.thePlayer();
-        if (player.isNull() || !this.canUseHeldItem(player) || !this.isAttackingRaisedShield()) {
+        if (player.isNull() || !this.isAttackingRaisedShield()) {
             return;
         }
+
         InventoryPlayer inventory = player.V$src$Lgg_vape_wrapper_impl_InventoryPlayer_$erqak6();
         int selectedSlot = inventory.v();
         if (this.isAxe(inventory.c(selectedSlot))) {
-            if (this.doubleClick.getEffectiveValue().booleanValue()) {
-                this.releasePending = AttackKeyController.requestSyntheticAttack(this);
-            }
             return;
         }
-        int foundAxeSlot = this.findAxeSlot(inventory);
-        if (foundAxeSlot < 0) {
+
+        int axeSlot = this.findAxeSlot(inventory);
+        if (axeSlot == -1) {
             return;
         }
-        event.setCancelled(true);
+
         this.originalSlot = selectedSlot;
-        this.axeSlot = foundAxeSlot;
-        inventory.g(foundAxeSlot);
-        this.active = true;
-        this.waitingToAttack = true;
-        this.swapTicks = 0;
-        this.restoreTicks = 0;
-        if (this.swapDelay.getValue().intValue() == 0) {
-            this.attack();
-            this.waitingToAttack = false;
+        inventory.g(axeSlot);
+        this.state = SwapState.WAITING_TO_ATTACK;
+        this.ticksRemaining = this.getTickValue(this.swapDelay);
+        event.setCancelled(true);
+
+        if (this.ticksRemaining == 0) {
+            this.attackWithAxe(player);
         }
-    }
-
-    private void attack() {
-        AttackKeyController.releaseAttackKey();
-        this.releasePending = AttackKeyController.requestSyntheticAttack(this);
-        if (this.doubleClick.getEffectiveValue().booleanValue() && this.releasePending) {
-            AttackKeyController.releaseAttackKey();
-            this.releasePending = AttackKeyController.requestSyntheticAttack(this);
-        }
-    }
-
-    private boolean isStateValid(EntityPlayerSP player) {
-        return Minecraft.currentScreen().isNull()
-                && player.V$src$Lgg_vape_wrapper_impl_InventoryPlayer_$erqak6().v() == this.axeSlot
-                && (!this.waitingToAttack || this.isAttackingRaisedShield());
-    }
-
-    private boolean canUseHeldItem(EntityPlayerSP player) {
-        return !this.limitToItems.getEffectiveValue().booleanValue()
-                || this.allowedItems.isValid(player.getHeldItemHand(), false);
     }
 
     private boolean isAttackingRaisedShield() {
@@ -176,14 +150,36 @@ public class ShieldBreaker extends Mod {
         if (rayTrace == null || !rayTrace.isEntityHit()) {
             return false;
         }
+
         Entity target = rayTrace.getEntity();
-        return target != null && target.isNotNull() && target.isInstance(MappedClasses.lG)
-                && RotationUtil.n(new EntityOtherPlayerMP(target.getObject()));
+        if (target == null || target.isNull() || !target.isInstance(MappedClasses.lG)) {
+            return false;
+        }
+
+        return RotationUtil.n(new EntityOtherPlayerMP(target.getObject()));
     }
 
-    public boolean hasAxeInHotbar() {
-        EntityPlayerSP player = Minecraft.thePlayer();
-        return player.isNotNull() && this.findAxeSlot(player.V$src$Lgg_vape_wrapper_impl_InventoryPlayer_$erqak6()) >= 0;
+    private void attackWithAxe(EntityPlayerSP player) {
+        InventoryPlayer inventory = player.V$src$Lgg_vape_wrapper_impl_InventoryPlayer_$erqak6();
+        if (!this.isAxe(inventory.c(inventory.v()))) {
+            int axeSlot = this.findAxeSlot(inventory);
+            if (axeSlot == -1) {
+                this.resetState(player, true);
+                return;
+            }
+            inventory.g(axeSlot);
+        }
+
+        AttackKeyController.releaseAttackKey();
+        this.attackReleasePending = AttackKeyController.requestSyntheticAttack(this);
+        if (this.autoSwitchBack.getEffectiveValue()) {
+            this.state = SwapState.WAITING_TO_SWAP_BACK;
+            this.ticksRemaining = this.getTickValue(this.swapBackDelay);
+        } else {
+            this.originalSlot = -1;
+            this.ticksRemaining = 0;
+            this.state = SwapState.IDLE;
+        }
     }
 
     private int findAxeSlot(InventoryPlayer inventory) {
@@ -200,30 +196,26 @@ public class ShieldBreaker extends Mod {
                 && ItemStackScoreUtil.T(stack.getItem());
     }
 
-    private void restoreSlot(EntityPlayerSP player) {
-        if (player != null && player.isNotNull() && this.originalSlot >= 0) {
-            player.V$src$Lgg_vape_wrapper_impl_InventoryPlayer_$erqak6().g(this.originalSlot);
-        }
+    private int getTickValue(NumberValue value) {
+        return Math.max(0, value.getValue().intValue());
     }
 
-    private void reset(EntityPlayerSP player, boolean restore) {
-        if (restore) {
-            this.restoreSlot(player);
-        }
-        if (this.releasePending) {
+    private void resetState(EntityPlayerSP player, boolean restoreSlot) {
+        if (this.attackReleasePending) {
             AttackKeyController.releaseAttackKey();
         }
-        this.active = false;
-        this.waitingToAttack = false;
-        this.releasePending = false;
+        if (restoreSlot && this.originalSlot != -1 && player != null && player.isNotNull()) {
+            player.V$src$Lgg_vape_wrapper_impl_InventoryPlayer_$erqak6().g(this.originalSlot);
+        }
+        this.attackReleasePending = false;
         this.originalSlot = -1;
-        this.axeSlot = -1;
-        this.swapTicks = 0;
-        this.restoreTicks = 0;
+        this.ticksRemaining = 0;
+        this.state = SwapState.IDLE;
     }
 
-    @Override
-    public void onDisable() {
-        this.reset(Minecraft.thePlayer(), true);
+    private enum SwapState {
+        IDLE,
+        WAITING_TO_ATTACK,
+        WAITING_TO_SWAP_BACK
     }
 }

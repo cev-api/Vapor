@@ -1,6 +1,6 @@
 package gg.vape.event.impl;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.event.Event;
 import gg.vape.event.EventListeners;
 import gg.vape.module.world.XRay;
@@ -39,7 +39,7 @@ extends Event {
 
     @Override
     public boolean fire() {
-        XRay xRay = Vape.INSTANCE.getModManager().getXRayModule();
+        XRay xRay = Vapor.INSTANCE.getModManager().getXRayModule();
         if (xRay != null && xRay.isEnabled()) {
             int blue;
             int green;

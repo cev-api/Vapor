@@ -5,18 +5,12 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import func.skidline.RectData;
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.config.PublicProfileSettings;
 import gg.vape.event.EventHandler;
 import gg.vape.event.impl.EventKeyPress;
 import gg.vape.event.impl.EventMouseButton;
 import gg.vape.event.impl.EventPreRenderTick;
-import gg.vape.friend.ui.EnemySettingsFrame;
-import gg.vape.friend.ui.OnlineActivitySettingsFrame;
-import gg.vape.friend.ui.OnlineCombatStatsSettingsFrame;
-import gg.vape.friend.ui.OnlineFriendsFrame;
-import gg.vape.friend.ui.OnlinePlayerPreviewSettingsFrame;
-import gg.vape.friend.ui.OnlineRadarSettingsFrame;
 import gg.vape.input.KeyboardInput;
 import gg.vape.input.MouseInput;
 import gg.vape.mapping.MappedClasses;
@@ -49,7 +43,6 @@ import gg.vape.ui.click.frame.impl.FrameMacros;
 import gg.vape.ui.click.frame.impl.ModuleCategoryFrame;
 import gg.vape.ui.click.frame.impl.ModuleCategoryFrameHeader;
 import gg.vape.ui.click.frame.impl.ModuleSearchFrame;
-import gg.vape.ui.click.frame.impl.SessionSpoofFrame;
 import gg.vape.ui.click.frame.impl.VisibleModuleListFrame;
 import gg.vape.ui.click.frame.impl.hud.ActiveModuleStackFrame;
 import gg.vape.ui.click.frame.impl.hud.AnchoredHudModuleConfigFrame;
@@ -65,7 +58,6 @@ import gg.vape.ui.click.frame.impl.hud.HudModuleFrameBase;
 import gg.vape.ui.click.frame.impl.hud.HudModuleOverviewFrame;
 import gg.vape.ui.click.frame.impl.hud.HudModuleSelectorFrame;
 import gg.vape.ui.click.frame.impl.hud.HudSettingsFrameBase;
-import gg.vape.ui.click.frame.impl.hud.InventoryOverlaySettingsFrame;
 import gg.vape.ui.click.frame.impl.hud.KeystrokesHudFrame;
 import gg.vape.ui.click.frame.impl.hud.PotionEffectsHudFrame;
 import gg.vape.ui.click.frame.impl.hud.ReachDisplayHudFrame;
@@ -74,7 +66,6 @@ import gg.vape.ui.click.frame.impl.main.ClickGuiFrameManager;
 import gg.vape.ui.click.frame.impl.main.ClickGuiLayer;
 import gg.vape.ui.click.frame.impl.profile.ProfileSnapshotFrame;
 import gg.vape.ui.click.frame.impl.profile.ProfilesSettingsFrame;
-import gg.vape.ui.click.frame.impl.profile.PublicProfilesFrame;
 import gg.vape.ui.click.frame.impl.quickactions.QuickActionsFrame;
 import gg.vape.ui.click.frame.impl.target.TargetInfoSettingsFrame;
 import gg.vape.ui.font.FontManager;
@@ -139,12 +130,13 @@ extends Mod {
     public final ModeOption integratedSearchBarMode;
     private static final List<FrameStackManager> allStacks;
     private static HashSet<Frame> positionedFrames;
-    public static FrameStackManager sessionSpoofStack;
     public static boolean framesInitialized;
     public static final ThreadBoundExecutor UI_EXECUTOR;
     public static FrameStackManager inventoryCleanerStack;
     public final ModeOption noSearchBarMode;
     private static ImmutableList<Frame> frameSnapshot;
+    // Config is read before Fabric creates the frame tree; retain it until the tree exists.
+    private static JsonArray pendingFrameStates;
     public final ModeValue searchBarStyle;
     public static FrameStackManager mainStack;
     public final BooleanValue smoothFont;
@@ -232,6 +224,7 @@ extends Mod {
         if (frame != null) {
             frame.t(!frame.V$src$Z$1xhop3l(), animate);
             frame.U();
+            Vapor.INSTANCE.saveAndStop();
         }
     }
 
@@ -287,7 +280,7 @@ extends Mod {
             this.inputEnabled = false;
         } else {
             Minecraft.gameSettings().P(this.savedChatKeyState);
-            Vape.debugLog((String)"Gui Closed 2");
+            Vapor.debugLog((String)"Gui Closed 2");
             this.inputEnabled = true;
         }
     }
@@ -298,7 +291,7 @@ extends Mod {
 
     public void renderFramesAndNotifications() {
         this.updateFrames();
-        NotificationManager notificationManager = Vape.INSTANCE.getNotificationManager();
+        NotificationManager notificationManager = Vapor.INSTANCE.getNotificationManager();
         notificationManager.renderNotifications();
     }
 
@@ -421,10 +414,10 @@ extends Mod {
     }
 
     public void updateGuiScale() {
-        Vape.INSTANCE.getClientSettings().guiColor.applyConfiguredColorTransform();
-        double currentGuiScale = Vape.INSTANCE.getClientSettings().getGuiScaleFactor();
+        Vapor.INSTANCE.getClientSettings().guiColor.applyConfiguredColorTransform();
+        double currentGuiScale = Vapor.INSTANCE.getClientSettings().getGuiScaleFactor();
         if (this.lastGuiScale != currentGuiScale && this.lastGuiScale != -1.0) {
-            FontManager fontManager = Vape.INSTANCE.getFontManager();
+            FontManager fontManager = Vapor.INSTANCE.getFontManager();
             for (Map<Integer, SmoothFontRenderer> map : fontManager.n().values()) {
                 for (SmoothFontRenderer smoothFontRenderer : map.values()) {
                     smoothFontRenderer.f();
@@ -451,14 +444,21 @@ extends Mod {
     }
 
     public void syncRainbowHue() {
-        MutableColor mutableColor = Vape.INSTANCE.getClientSettings().guiColor.getMutableColor();
+        MutableColor mutableColor = Vapor.INSTANCE.getClientSettings().guiColor.getMutableColor();
         float[] fArray = new float[3];
         Color.RGBtoHSB(mutableColor.getRed(), mutableColor.getGreen(), mutableColor.getBlue(), fArray);
         this.rainbowHue = fArray[0];
     }
 
     public void loadFrameStates(JsonArray jsonArray) {
-        if (jsonArray.size() == 0) {
+        if (jsonArray == null || jsonArray.size() == 0) {
+            return;
+        }
+        // Config/profile loading precedes Fabric's lazy frame initialization.
+        // Keep the complete serialized state, including visibility, and apply
+        // it once every overlay frame has been registered.
+        if (!framesInitialized) {
+            pendingFrameStates = jsonArray.deepCopy();
             return;
         }
         jsonArray = jsonArray.get(0).getAsJsonArray();
@@ -499,11 +499,11 @@ extends Mod {
         OpenGlBackendHolder.backend.setAlphaFunction(516, 0.0f);
         if (INSTANCE.isInputEnabled()) {
             OpenGlBackendHolder.backend.pushMatrix();
-            double guiScale = Vape.INSTANCE.getClientSettings().getGuiScaleFactor();
+            double guiScale = Vapor.INSTANCE.getClientSettings().getGuiScaleFactor();
             OpenGlBackendHolder.backend.scale(guiScale, guiScale, guiScale);
             if (INSTANCE.isInputEnabled()) {
                 this.renderFrames();
-                NotificationManager notificationManager = Vape.INSTANCE.getNotificationManager();
+                NotificationManager notificationManager = Vapor.INSTANCE.getNotificationManager();
                 notificationManager.renderNotifications();
             }
             OpenGlBackendHolder.backend.popMatrix();
@@ -520,6 +520,7 @@ extends Mod {
         }
         if (frame != null) {
             frame.U();
+            Vapor.INSTANCE.saveAndStop();
         }
     }
 
@@ -528,6 +529,17 @@ extends Mod {
 
     private static void registerFrame(Frame frame, FrameStackManager ... stacks) {
         allFrames.add(frame);
+        // Modules can be restored before Fabric creates the deferred HUD tree.
+        // Reconcile enabled modules when the active-module frame appears.
+        if (frame instanceof ActiveModuleStackFrame && Vapor.INSTANCE != null
+                && Vapor.INSTANCE.getModManager() != null) {
+            ActiveModuleStackFrame activeModuleFrame = (ActiveModuleStackFrame) frame;
+            for (Mod module : Vapor.INSTANCE.getModManager().getAllModules()) {
+                if (module.isEnabled()) {
+                    activeModuleFrame.addModule(module);
+                }
+            }
+        }
         for (FrameStackManager stack : stacks) {
             stack.q(frame);
             if (allStacks.contains(stack)) continue;
@@ -632,14 +644,14 @@ extends Mod {
     }
 
     public Color getAccentColor() {
-        if (Vape.INSTANCE.getClientSettings().guiColor.isRainbowEnabled()) {
+        if (Vapor.INSTANCE.getClientSettings().guiColor.isRainbowEnabled()) {
             this.rainbowHue = (float)((double)this.rainbowHue - 0.03);
             if (this.rainbowHue <= 0.0f) {
                 this.rainbowHue = 1.0f - -this.rainbowHue;
             }
             return ColorUtil.createReadableHsbColor((float)this.rainbowHue, (float)0.9f, (float)1.0f);
         }
-        return Vape.INSTANCE.getClientSettings().guiColor.getMutableColor();
+        return Vapor.INSTANCE.getClientSettings().guiColor.getMutableColor();
     }
 
     public static void initializeFrames() {
@@ -647,7 +659,7 @@ extends Mod {
             frameStackManager.Y().clear();
         }
         allFrames.clear();
-        Vape.INSTANCE.initializeRender();
+        Vapor.INSTANCE.initializeRender();
         ClientSettings.registerHudFrames();
         ClientSettings.registerFrame((Frame)new ActiveModuleStackFrame(), hudEditorStack, mainStack);
         moduleSearchFrame = new ModuleSearchFrame();
@@ -658,7 +670,7 @@ extends Mod {
         ClientSettings.registerFrame((Frame)new ClientSettingsSectionFrame(), mainStack);
         legitModuleCategoryFrame = new ModuleCategoryFrame(Category.COMBAT);
         ClientSettings.registerFrame((Frame)legitModuleCategoryFrame, mainStack);
-        Vape vape = Vape.INSTANCE;
+        Vapor vape = Vapor.INSTANCE;
         if (vape.isFeatureDisabled()) {
             ClientSettings.registerFrame((Frame)new ModuleCategoryFrame(Category.OTHER), mainStack);
         }
@@ -669,26 +681,17 @@ extends Mod {
         ClientSettings.registerFrame((Frame)new VisibleModuleListFrame(), mainStack);
         ClientSettings.registerFrame((Frame)new ProfilesSettingsFrame(), mainStack);
         ClientSettings.registerFrame((Frame)new FrameMacros(), mainStack);
-        ClientSettings.registerFrame((Frame)new OnlineFriendsFrame(), mainStack);
         ClientSettings.registerFrame((Frame)new QuickActionsFrame(), mainStack);
-        ClientSettings.registerFrame((Frame)new OnlinePlayerPreviewSettingsFrame(), mainStack);
         ClientSettings.registerFrame((Frame)new TextGuiSettingsFrame(), mainStack);
-        ClientSettings.registerFrame((Frame)new OnlineCombatStatsSettingsFrame(), mainStack);
-        ClientSettings.registerFrame((Frame)new OnlineRadarSettingsFrame(), mainStack);
-        ClientSettings.registerFrame((Frame)new InventoryOverlaySettingsFrame(), mainStack);
         ClientSettings.registerFrame((Frame)new TargetInfoSettingsFrame(), mainStack);
-        ClientSettings.registerFrame((Frame)new OnlineActivitySettingsFrame(), mainStack);
-        ClientSettings.registerFrame((Frame)new EnemySettingsFrame(), mainStack);
         ClientSettings.registerFrame((Frame)new HotbarSlotRuleItemPickerFrame(), hotbarRuleEditorStack);
         ClientSettings.registerFrame((Frame)ClientSettings.getFrame(HotbarSlotRuleItemPickerFrame.class).getItemListFrame(), hotbarRuleEditorStack);
-        ClientSettings.registerFrame((Frame)new PublicProfilesFrame(), publicProfilesStack);
         ClientSettings.registerFrame((Frame)new HudModuleSelectorFrame(), hudEditorStack);
         ClientSettings.registerFrame((Frame)ClientSettings.getFrame(HudModuleSelectorFrame.class).getModuleListPanel(), hudEditorStack);
         ClientSettings.registerFrame((Frame)new HudModuleOverviewFrame(), hudEditorStack);
         ClientSettings.registerFrame((Frame)ClientSettings.getFrame(HudModuleOverviewFrame.class).getModuleList(), hudEditorStack);
         ClientSettings.registerFrame((Frame)new HudEditorReturnToMainLayerFrame(), hudEditorStack);
         ClientSettings.registerFrame((Frame)new HudModuleConfigFrame(), hudEditorStack);
-        ClientSettings.registerFrame((Frame)new SessionSpoofFrame(), sessionSpoofStack);
         ClientSettings.registerFrame((Frame)new ProfileSnapshotFrame(), profileSnapshotStack);
         ClientSettings.registerFrame((Frame)new InventoryCleanerPopupFrame(), inventoryCleanerStack);
         ClientSettings.registerFrame((Frame)new InventoryFilterRuleEditorFrame(), inventoryCleanerStack);
@@ -696,6 +699,16 @@ extends Mod {
         ClientSettings.refreshModuleCategoryHeaders();
         VisibleModuleListFrame.e();
         framesInitialized = true;
+        // Profile data may have loaded before this deferred frame was registered.
+        ProfilesSettingsFrame.refreshProfileList();
+        if (pendingFrameStates != null) {
+            JsonArray savedFrameStates = pendingFrameStates;
+            pendingFrameStates = null;
+            INSTANCE.loadFrameStates(savedFrameStates);
+        }
+        // A deferred startup save was intentionally skipped while frames were
+        // absent. Persist the restored, complete state now.
+        Vapor.INSTANCE.saveAndStop();
     }
 
     @EventHandler
@@ -740,7 +753,7 @@ extends Mod {
             return (T)popupFrame;
         }
         catch (Exception exception) {
-            Vape.logThrowable((Throwable)exception);
+            Vapor.logThrowable((Throwable)exception);
             return null;
         }
     }
@@ -775,7 +788,7 @@ extends Mod {
             }
             lastScreenRect = screenBounds;
             OpenGlBackendHolder.backend.pushMatrix();
-            double guiScale = Vape.INSTANCE.getClientSettings().getGuiScaleFactor();
+            double guiScale = Vapor.INSTANCE.getClientSettings().getGuiScaleFactor();
             OpenGlBackendHolder.backend.scale(guiScale, guiScale, guiScale);
             try {
                 UI_EXECUTOR.runPending();
@@ -789,7 +802,7 @@ extends Mod {
             GuiRenderPrimitives.D();
         }
         catch (Exception exception) {
-            Vape.logThrowable((Throwable)exception);
+            Vapor.logThrowable((Throwable)exception);
         }
         OpenGlBackendHolder.backend.setColor(1.0f, 1.0f, 1.0f, 1.0f);
     }
@@ -863,7 +876,7 @@ extends Mod {
     }
 
     private void updateStandaloneState() {
-        PublicProfileSettings publicProfileSettings = Vape.INSTANCE.getPublicProfileSettings();
+        PublicProfileSettings publicProfileSettings = Vapor.INSTANCE.getPublicProfileSettings();
         if (publicProfileSettings.guiStyle.isPersistenceSuppressed()) {
             return;
         }
@@ -924,16 +937,15 @@ extends Mod {
         this.integratedSearchBarMode = new ModeOption("Integrated", 0.8);
         this.noSearchBarMode = new ModeOption("None", 0.8);
         this.searchBarStyle = ModeValue.create((Object)((Object)this), (String)"Search bar style", (String)"Switch between search bar styles", (ModeSelection)this.floatingSearchBarMode, (ModeSelection[])new ModeSelection[]{this.integratedSearchBarMode, this.noSearchBarMode, this.floatingSearchBarMode});
-        PublicProfileSettings publicProfileSettings = Vape.INSTANCE.getPublicProfileSettings();
+        PublicProfileSettings publicProfileSettings = Vapor.INSTANCE.getPublicProfileSettings();
         publicProfileSettings.notifications.addDependentValues(new Value[]{publicProfileSettings.toggleAlerts});
         publicProfileSettings.notifications.addDependentValues(new Value[]{publicProfileSettings.profileSwitchNotifications});
-        publicProfileSettings.notifications.addDependentValues(new Value[]{publicProfileSettings.friendNotifications});
         this.searchBarStyle.addChangeListener(ClientSettings::onSearchBarStyleChanged);
         this.addValue(new Value[]{this.blurBackground, this.multiKeybinding, this.guiBindIndicator, this.showTooltips, this.rainbowSpeed, this.searchBarStyle});
     }
 
     public void disableBlurShader() {
-        if (((ClientSettings)Vape.INSTANCE.getModManager().getMod(ClientSettings.class)).blurBackground.getEffectiveValue().booleanValue()) {
+        if (((ClientSettings)Vapor.INSTANCE.getModManager().getMod(ClientSettings.class)).blurBackground.getEffectiveValue().booleanValue()) {
             ShaderGroupRenderStateManager.getInstance().disable();
         }
     }
@@ -979,21 +991,11 @@ extends Mod {
     public void onTick() {
         if (!this.initialized) {
             this.initialized = true;
-            Vape.INSTANCE.getPublicProfileSettings().guiStyle.addChangeListener(this::onStandaloneModeChanged);
+            Vapor.INSTANCE.getPublicProfileSettings().guiStyle.addChangeListener(this::onStandaloneModeChanged);
             this.updateStandaloneState();
         }
         try {
-            if (Minecraft.currentScreen().getObject() != null) {
-                if (Minecraft.currentScreen().isInstance(MappedClasses.u5) && this.getBind().areBoundInputsDown() && this.inputEnabled) {
-                    this.toggle();
-                    this.switchFrameStack(sessionSpoofStack);
-                } else if (this.inputEnabled || !this.getBind().areBoundInputsDown()) {
-                    // empty if block
-                }
-                if (this.activeStack.equals(sessionSpoofStack) && !Minecraft.currentScreen().isInstance(MappedClasses.u5)) {
-                    this.switchFrameStack(mainStack);
-                }
-            } else if (!this.inputEnabled) {
+            if (Minecraft.currentScreen().getObject() == null && !this.inputEnabled && !gg.vape.runtime.NativeBridge.isFabricLoaderPresent()) {
                 if (ForgeVersion.MC_1_16_5.d()) {
                     if (Minecraft.s().Z()) {
                         this.toggle();
@@ -1021,13 +1023,13 @@ extends Mod {
                     frame.T$src$V$1wse0de();
                 }
                 catch (Exception exception) {
-                    Vape.debugLog((String)("" + frame.getName()));
-                    Vape.logThrowable((Throwable)exception);
+                    Vapor.debugLog((String)("" + frame.getName()));
+                    Vapor.logThrowable((Throwable)exception);
                 }
             }
         }
         catch (Exception exception) {
-            Vape.logThrowable((Throwable)exception);
+            Vapor.logThrowable((Throwable)exception);
         }
     }
 
@@ -1041,9 +1043,8 @@ extends Mod {
                 if (this.activeStack instanceof ClickGuiFrameManager && (clickGuiFrameManager = (ClickGuiFrameManager)this.activeStack).getOverlaySelector() != null && clickGuiFrameManager.getOverlaySelector().V$src$Z$1xhop3l()) {
                     clickGuiFrameManager.showLayer(ClickGuiLayer.MAIN);
                 }
-                if (!this.getActiveStack().equals(sessionSpoofStack)) {
-                    Minecraft.F$src$V$aoypvc();
-                }
+                Minecraft.F$src$V$aoypvc();
+
             }
             eventKeyPress.setCancelled(true);
         }
@@ -1061,7 +1062,6 @@ extends Mod {
         publicProfilesStack = new FrameStackManager();
         clickGuiFrameManager = new ClickGuiFrameManager();
         hotbarRuleEditorStack = new FrameStackManager();
-        sessionSpoofStack = new FrameStackManager();
         profileSnapshotStack = new FrameStackManager();
         inventoryCleanerStack = new FrameStackManager();
         UI_EXECUTOR = new ThreadBoundExecutor();

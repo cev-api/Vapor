@@ -1,6 +1,6 @@
 package gg.vape.module.blatant;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.config.ClientSettings;
 import gg.vape.event.EventHandler;
 import gg.vape.event.impl.EventEntityJoinWorld;
@@ -283,7 +283,7 @@ extends Mod {
                 }
             }
             catch (Exception exception) {
-                Vape.logThrowable(exception);
+                Vapor.logThrowable(exception);
             }
         }
         EntityPlayerSP localPlayer = Minecraft.thePlayer();
@@ -311,7 +311,7 @@ extends Mod {
                 if (motionSquared > 2.0 && motionSquared < 400.0 && this.trackedEntities.contains(entityPlayer.getObject()) && (!localPlayer.J$src$Z$fdev5g() || localPlayer.C$src$Lgg_vape_wrapper_impl_ModelPlayer_$19uhx86().H()) && !entityPlayer.f$src$Z$fst3rk()) {
                     int botScore = this.botScoreByEntityId.getOrDefault(entityPlayer.S(), 0);
                     if (botScore > -50000 && !entityPlayer.J$src$Z$fdev5g() && entityPlayer.Q().getFormattedText().contains("\u00a7c" + entityPlayer.getName() + "\u00a7r") && (double)localPlayer.getDistanceToEntity(entityPlayer) < 7.5) {
-                        Vape.INSTANCE.getNotificationManager().show("\u00a7cInvalid Player Spawn", entityPlayer.Q().getFormattedText() + " \u00a7fmay be a fake player!", NotificationType.WARNING, 5000L);
+                        Vapor.INSTANCE.getNotificationManager().show("\u00a7cInvalid Player Spawn", entityPlayer.Q().getFormattedText() + " \u00a7fmay be a fake player!", NotificationType.WARNING, 5000L);
                         this.botScoreByEntityId.put(entityPlayer.S(), -999999);
                     }
                     this.botScoreByEntityId.put(entityPlayer.S(), Math.max(botScore - 50, -50));
@@ -411,7 +411,7 @@ extends Mod {
         if (excludeInvisible && RotationUtil.k(entityLivingBase)) {
             return false;
         }
-        if (Vape.INSTANCE.getFriendManager().isFriend(entityLivingBase)) {
+        if (Vapor.isFriend(entityLivingBase)) {
             return false;
         }
         if (this.isTeammate(entityPlayerSP, entity)) {

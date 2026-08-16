@@ -1,6 +1,6 @@
 package gg.vape.module.blatant;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.config.ClientSettings;
 import gg.vape.event.EventHandler;
 import gg.vape.event.impl.EventPrePlayerTick;
@@ -34,7 +34,7 @@ extends Mod {
     }
 
     private void initAimAssist() {
-        this.aimAssist = Vape.INSTANCE.getModManager().getMod(AimAssist.class);
+        this.aimAssist = Vapor.INSTANCE.getModManager().getMod(AimAssist.class);
     }
 
     private void applyStrafe() {

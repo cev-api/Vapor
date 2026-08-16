@@ -1,6 +1,6 @@
 package gg.vape.mapping.mappings;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.mapping.MappedClasses;
 import gg.vape.mapping.Mapping;
 import gg.vape.mapping.MappingField;
@@ -78,7 +78,7 @@ extends Mapping {
             this.z = this.Y(string4, bl4, clazz4, classArray4);
         }
         if (ForgeVersion.MC_1_20_6.d()) {
-            if (ForgeVersion.MC_1_21_10.d() && Vape.INSTANCE.isFabricMinecraftPresent()) {
+            if (ForgeVersion.MC_1_21_10.d() && Vapor.INSTANCE.isFabricMinecraftPresent()) {
                 Class[] classArray5 = new Class[]{MappedClasses.Fz};
                 Class<Object> clazz5 = Object.class;
                 boolean bl5 = true;
@@ -164,7 +164,7 @@ extends Mapping {
                 this.T = this.Y(string16, bl16, clazz18, classArray16);
             }
         } else {
-            if (Vape.INSTANCE.isVanillaMinecraftPresent()) {
+            if (Vapor.INSTANCE.isVanillaMinecraftPresent()) {
                 Class[] classArray17 = new Class[]{MappedClasses.Zk};
                 Class<Float> clazz19 = Float.TYPE;
                 boolean bl17 = true;

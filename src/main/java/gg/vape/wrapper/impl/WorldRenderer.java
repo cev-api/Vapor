@@ -1,6 +1,6 @@
 package gg.vape.wrapper.impl;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.mapping.mappings.MWorldRenderer;
 import gg.vape.wrapper.Wrapper;
 
@@ -20,7 +20,7 @@ extends Wrapper {
 
     public IntBuffer O() {
         if (ForgeVersion.MC_1_21_0.d()) {
-            Vape.notifyNativeStackTrace();
+            Vapor.notifyNativeStackTrace();
             return null;
         }
         if (ForgeVersion.MC_1_16_5.d()) {
@@ -32,7 +32,7 @@ extends Wrapper {
 
     public int o(int n) {
         if (ForgeVersion.MC_1_16_5.d()) {
-            Vape.notifyNativeStackTrace();
+            Vapor.notifyNativeStackTrace();
             return -1;
         }
         return MWorldRenderer.G(WorldRenderer.vapeInstance.getMappings().qZ, this.I, n);

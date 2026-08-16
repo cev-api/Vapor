@@ -1,6 +1,6 @@
 package gg.vape.ui.font.stb;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.ui.font.SmoothFontGlyph;
 import gg.vape.ui.font.stb.StbGlyphCacheEntry;
 import gg.vape.wrapper.impl.FontManager;
@@ -39,14 +39,14 @@ public class StbGlyphCache {
 
     public void U(FontSet fontSet) {
         if (fontSet.isNull()) {
-            Vape.debugLog("[MCFontSetup] Failed to initialize - FontSet is null");
+            Vapor.debugLog("[MCFontSetup] Failed to initialize - FontSet is null");
             return;
         }
         this.V = fontSet;
         this.U = true;
         this.I.clear();
         this.h.clear();
-        Vape.debugLog("[MCFontSetup] Initialized with FontSet");
+        Vapor.debugLog("[MCFontSetup] Initialized with FontSet");
     }
 
     public float D(String string) {
@@ -94,7 +94,7 @@ public class StbGlyphCache {
             GL11.glBindTexture((int)3553, (int)n2);
         }
         catch (Exception exception) {
-            Vape.debugLog("[MCFontSetup] Error detecting texture format for ID " + n + ": " + exception.getMessage());
+            Vapor.debugLog("[MCFontSetup] Error detecting texture format for ID " + n + ": " + exception.getMessage());
         }
         this.h.put(n, bl2);
         return bl2;
@@ -115,7 +115,7 @@ public class StbGlyphCache {
             }
             int n2 = glyphInfo.q();
             if (n2 <= 0) {
-                Vape.debugLog("[MCFontSetup] Invalid texture ID for codepoint " + n);
+                Vapor.debugLog("[MCFontSetup] Invalid texture ID for codepoint " + n);
                 return null;
             }
             boolean bl = this.l(n2);
@@ -132,7 +132,7 @@ public class StbGlyphCache {
             return new StbGlyphCacheEntry(smoothFontGlyph, n2, f9, bl);
         }
         catch (Exception exception) {
-            Vape.debugLog("[MCFontSetup] Error extracting glyph for codepoint " + n + ": " + exception.getMessage());
+            Vapor.debugLog("[MCFontSetup] Error extracting glyph for codepoint " + n + ": " + exception.getMessage());
             return null;
         }
     }
@@ -143,25 +143,25 @@ public class StbGlyphCache {
 
     public boolean l() {
         if (!ForgeVersion.MC_1_21_10.d()) {
-            Vape.debugLog("[MCFontSetup] Minecraft font bridge requires 1.21.10+");
+            Vapor.debugLog("[MCFontSetup] Minecraft font bridge requires 1.21.10+");
             return false;
         }
         try {
             FontManager fontManager = Minecraft.q();
             if (fontManager == null) {
-                Vape.debugLog("[MCFontSetup] FontManager is null");
+                Vapor.debugLog("[MCFontSetup] FontManager is null");
                 return false;
             }
             FontSet fontSet = fontManager.h();
             if (fontSet == null || fontSet.getObject() == null) {
-                Vape.debugLog("[MCFontSetup] Default FontSet is null");
+                Vapor.debugLog("[MCFontSetup] Default FontSet is null");
                 return false;
             }
             this.U(fontSet);
             return true;
         }
         catch (Exception exception) {
-            Vape.debugLog("[MCFontSetup] Error initializing from Minecraft: " + exception.getMessage());
+            Vapor.debugLog("[MCFontSetup] Error initializing from Minecraft: " + exception.getMessage());
             exception.printStackTrace();
             return false;
         }

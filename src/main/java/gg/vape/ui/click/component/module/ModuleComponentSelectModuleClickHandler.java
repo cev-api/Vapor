@@ -1,6 +1,6 @@
 package gg.vape.ui.click.component.module;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.module.Mod;
 import gg.vape.ui.click.component.GuiClickListener;
 import gg.vape.ui.click.component.module.ModuleComponent;
@@ -20,7 +20,7 @@ implements GuiClickListener {
 
     @Override
     public void onPrimaryClick() {
-        Vape.INSTANCE.getModuleProfileMetadataCodec().removeModule(this.module);
+        Vapor.INSTANCE.getModuleProfileMetadataCodec().removeModule(this.module);
         this.categoryFrame.l$src$Z$193vdc5();
     }
 }

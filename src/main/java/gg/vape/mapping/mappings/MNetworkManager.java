@@ -1,6 +1,6 @@
 package gg.vape.mapping.mappings;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.asm.helper.DescUtils;
 import gg.vape.mapping.MappedClasses;
 import gg.vape.mapping.Mapping;
@@ -99,7 +99,7 @@ extends Mapping {
             String string6 = "sendPacket";
             MNetworkManager mNetworkManager6 = this;
             this.O = this.Y(string6, bl6, clazz6, classArray);
-        } else if (Vape.INSTANCE.isVanillaMinecraftPresent()) {
+        } else if (Vapor.INSTANCE.isVanillaMinecraftPresent()) {
             Class[] classArray = new Class[]{MappedClasses.Fm};
             Class<Void> clazz7 = Void.TYPE;
             boolean bl7 = true;
@@ -133,7 +133,7 @@ extends Mapping {
             String string11 = "channelRead0";
             MNetworkManager mNetworkManager11 = this;
             this.a = this.Y(string11, bl11, clazz11, classArray3);
-        } else if (Vape.INSTANCE.isVanillaMinecraftPresent() || Vape.INSTANCE.isFabricMinecraftPresent()) {
+        } else if (Vapor.INSTANCE.isVanillaMinecraftPresent() || Vapor.INSTANCE.isFabricMinecraftPresent()) {
             Class[] classArray4 = new Class[]{MappedClasses.FH, MappedClasses.Fm};
             Class<Void> clazz12 = Void.TYPE;
             boolean bl12 = true;

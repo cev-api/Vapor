@@ -1,6 +1,6 @@
 package gg.vape.event.impl;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.event.Event;
 import gg.vape.event.EventListeners;
 import gg.vape.module.world.XRay;
@@ -46,14 +46,14 @@ extends Event {
 
     @Override
     public boolean fire() {
-        XRay xRay = Vape.INSTANCE.getModManager().getXRayModule();
+        XRay xRay = Vapor.INSTANCE.getModManager().getXRayModule();
         if (xRay == null || !xRay.isEnabled()) {
             return false;
         }
         xRay.onBlockModelRender(this);
         try {
             long positionSeed = ForgeVersion.MC_1_12_2.d() ? MathUtil.S(new BlockPos(this.blockPosHandle)) : 0L;
-            this.result = Vape.INSTANCE.getMappings().hE.renderModelAmbientOcclusion(this.rendererHandle, this.blockAccessHandle, this.modelHandle, new BlockState(this.blockStateHandle).getBlock().getObject(), this.blockStateHandle, this.blockPosHandle, this.bufferHandle, this.checkSides, positionSeed);
+            this.result = Vapor.INSTANCE.getMappings().hE.renderModelAmbientOcclusion(this.rendererHandle, this.blockAccessHandle, this.modelHandle, new BlockState(this.blockStateHandle).getBlock().getObject(), this.blockStateHandle, this.blockPosHandle, this.bufferHandle, this.checkSides, positionSeed);
         }
         catch (Exception exception) {
             // empty catch block

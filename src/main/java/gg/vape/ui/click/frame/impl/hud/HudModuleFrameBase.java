@@ -2,7 +2,7 @@ package gg.vape.ui.click.frame.impl.hud;
 
 import com.google.gson.JsonObject;
 import func.skidline.RectData;
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.config.ConfigJsonUtils;
 import gg.vape.module.none.ClientSettings;
 import gg.vape.ui.click.GuiMouseEvent;
@@ -74,11 +74,11 @@ extends Frame {
     }
 
     public double getMaximumY() {
-        return Math.floor((double)Minecraft.h() / Vape.INSTANCE.getClientSettings().getGuiScaleFactor() / 2.0 - this.L() - 2.5);
+        return Math.floor((double)Minecraft.h() / Vapor.INSTANCE.getClientSettings().getGuiScaleFactor() / 2.0 - this.L() - 2.5);
     }
 
     public double getMaximumX() {
-        return Math.floor((double)Minecraft.J() / Vape.INSTANCE.getClientSettings().getGuiScaleFactor() / 2.0 - this.A() - 2.5);
+        return Math.floor((double)Minecraft.J() / Vapor.INSTANCE.getClientSettings().getGuiScaleFactor() / 2.0 - this.A() - 2.5);
     }
 
     protected void handleEditorMousePress(GuiMouseEvent guiMouseEvent) {
@@ -198,6 +198,7 @@ extends Frame {
     protected void closeHudFrame() {
         this.setHudEditorSelected(false);
         this.setVisible(false);
+        Vapor.INSTANCE.saveAndStop();
     }
 
     @Override

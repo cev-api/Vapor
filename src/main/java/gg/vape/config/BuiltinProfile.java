@@ -1,6 +1,6 @@
 package gg.vape.config;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.config.ModuleProfileMetadataCodec;
 import gg.vape.config.Profile;
 import gg.vape.manager.ModManager;
@@ -14,7 +14,7 @@ extends Profile {
     private static GuiComponent[] sharedGuiComponents;
 
     private static void clearSelectedModules() {
-        ModuleProfileMetadataCodec metadataCodec = Vape.INSTANCE.getModuleProfileMetadataCodec();
+        ModuleProfileMetadataCodec metadataCodec = Vapor.INSTANCE.getModuleProfileMetadataCodec();
         for (Mod module : new ArrayList<Mod>(metadataCodec.getSelectedModules())) {
             metadataCodec.removeModule(module);
         }
@@ -32,12 +32,12 @@ extends Profile {
     }
 
     protected final void selectModule(Class<? extends Mod> moduleClass) {
-        ModManager modManager = Vape.INSTANCE.getModManager();
+        ModManager modManager = Vapor.INSTANCE.getModManager();
         Mod module = modManager.getMod(moduleClass);
         if (module == null) {
             return;
         }
-        Vape.INSTANCE.getModuleProfileMetadataCodec().addModule(module);
+        Vapor.INSTANCE.getModuleProfileMetadataCodec().addModule(module);
     }
 
     protected abstract void configureModules();

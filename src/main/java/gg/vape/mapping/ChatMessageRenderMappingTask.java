@@ -1,6 +1,6 @@
 package gg.vape.mapping;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.event.impl.EventChatMessageRender;
 import gg.vape.mapping.EventInjectionSpec;
 import gg.vape.mapping.JavassistMappingTask;
@@ -19,7 +19,7 @@ extends JavassistMappingTask {
     }
 
     private void registerChatMessageRenderEvent() {
-        MappingMethod mappingMethod = Vape.INSTANCE.getMappings().chatMessageRenderTarget.addMessageMethod;
+        MappingMethod mappingMethod = Vapor.INSTANCE.getMappings().chatMessageRenderTarget.addMessageMethod;
         if (mappingMethod != null && !mappingMethod.hasResolutionFailed()) {
             EventInjectionSpec eventInjectionSpec = new EventInjectionSpec(mappingMethod, EventChatMessageRender.class);
             eventInjectionSpec.setConstructorArguments("$0, $1, $2, $3");

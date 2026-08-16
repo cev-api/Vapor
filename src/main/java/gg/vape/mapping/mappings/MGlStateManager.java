@@ -1,6 +1,6 @@
 package gg.vape.mapping.mappings;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.asm.helper.DescUtils;
 import gg.vape.mapping.MappedClasses;
 import gg.vape.mapping.Mapping;
@@ -451,7 +451,7 @@ extends Mapping {
             MGlStateManager mGlStateManager54 = this;
             this.j = this.registerStaticMethod(string54, bl54, clazz54, classArray45);
         } else {
-            if (Vape.INSTANCE.isVanillaMinecraftPresent()) {
+            if (Vapor.INSTANCE.isVanillaMinecraftPresent()) {
                 Class[] classArray = new Class[]{Float.TYPE, Float.TYPE, Float.TYPE, Float.TYPE};
                 Class<Void> clazz = Void.TYPE;
                 boolean bl = true;

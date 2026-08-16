@@ -1,6 +1,6 @@
 package gg.vape.module.blatant.blockin;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.module.combat.Sprint;
 import gg.vape.rotation.AdaptiveRotationController;
 import gg.vape.rotation.MouseRotationController;
@@ -163,7 +163,7 @@ public class BlockPlacementGraph {
         this.sneakKeyDown = blockPathPlanner.isSneakKeyDown();
         this.jumpKeyDown = blockPathPlanner.isJumpKeyDown();
         if (sprintMod == null) {
-            sprintMod = Vape.INSTANCE.getModManager().getMod(Sprint.class);
+            sprintMod = Vapor.INSTANCE.getModManager().getMod(Sprint.class);
         }
         this.sprintKeyDown = blockPathPlanner.isSprintKeyDown() || sprintMod.isEnabled();
     }
@@ -321,7 +321,7 @@ public class BlockPlacementGraph {
         this.sneakKeyDown = gameSettings.d$src$Lgg_vape_wrapper_impl_KeyBinding_$adn2z0().isKeyDown();
         this.jumpKeyDown = gameSettings.O().isKeyDown();
         if (sprintMod == null) {
-            sprintMod = Vape.INSTANCE.getModManager().getMod(Sprint.class);
+            sprintMod = Vapor.INSTANCE.getModManager().getMod(Sprint.class);
         }
         this.sprintKeyDown = gameSettings.r().isKeyDown() || sprintMod.isEnabled();
     }

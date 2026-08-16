@@ -1,6 +1,6 @@
 package gg.vape.mapping.mappings;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.asm.helper.DescUtils;
 import gg.vape.mapping.MappedClasses;
 import gg.vape.mapping.Mapping;
@@ -637,7 +637,7 @@ extends Mapping {
                 MEntityRenderer mEntityRenderer31 = this;
                 this.J = this.Y(string32, bl28, clazz36, classArray13);
             } else {
-                if (Vape.INSTANCE.isVanillaMinecraftPresent()) {
+                if (Vapor.INSTANCE.isVanillaMinecraftPresent()) {
                     Class[] classArray14 = new Class[]{Float.TYPE, Long.TYPE};
                     Class<Void> clazz37 = Void.TYPE;
                     boolean bl29 = true;

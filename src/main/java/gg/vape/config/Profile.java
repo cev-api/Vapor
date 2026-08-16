@@ -3,7 +3,7 @@ package gg.vape.config;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.api.ApiHttpClient;
 import gg.vape.module.Mod;
 import gg.vape.unmap.Bendable;
@@ -43,7 +43,6 @@ implements Comparable<Profile> {
     private String name;
     private boolean dirty;
     @Nullable
-    private PublicProfile publicProfile;
     private String originalUuid;
     @Deprecated
     private boolean publicProfileFlag;
@@ -71,11 +70,11 @@ implements Comparable<Profile> {
 
     public JsonObject serializeCurrentData(boolean forPublication) {
         JsonObject serializedData = new JsonObject();
-        serializedData.add("modules", (JsonElement)Vape.INSTANCE.getModManager().toJson(forPublication));
-        serializedData.add("favorites", (JsonElement)Vape.INSTANCE.getModuleProfileMetadataCodec().toJson());
-        serializedData.add("values", (JsonElement)Vape.INSTANCE.getValueManager().toJson());
-        serializedData.add("macros", (JsonElement)Vape.INSTANCE.getMacrosManager().toJson());
-        serializedData.add("search", (JsonElement)Vape.INSTANCE.getSearch().toJson());
+        serializedData.add("modules", (JsonElement)Vapor.INSTANCE.getModManager().toJson(forPublication));
+        serializedData.add("favorites", (JsonElement)Vapor.INSTANCE.getModuleProfileMetadataCodec().toJson());
+        serializedData.add("values", (JsonElement)Vapor.INSTANCE.getValueManager().toJson());
+        serializedData.add("macros", (JsonElement)Vapor.INSTANCE.getMacrosManager().toJson());
+        serializedData.add("search", (JsonElement)Vapor.INSTANCE.getSearch().toJson());
         serializedData.add("frames", (JsonElement)gg.vape.module.none.ClientSettings.INSTANCE.serializeFrameStates());
         return serializedData;
     }
@@ -140,7 +139,7 @@ implements Comparable<Profile> {
     }
 
     public List<Mod> getEnabledModules() {
-        return Vape.INSTANCE.getModManager().getProfileModules(this.enabledModuleStates);
+        return Vapor.INSTANCE.getModManager().getProfileModules(this.enabledModuleStates);
     }
 
     public void setUseCount(int useCount) {
@@ -154,7 +153,7 @@ implements Comparable<Profile> {
 
     @Override
     public boolean isActive() {
-        return Vape.INSTANCE.getProfilesManager().getActiveProfile().equals(this);
+        return Vapor.INSTANCE.getProfilesManager().getActiveProfile().equals(this);
     }
 
     private void updateTimestamp() {
@@ -171,15 +170,11 @@ implements Comparable<Profile> {
     }
 
     public void applyEnabledModuleStates() {
-        Vape.INSTANCE.getModManager().applyProfileModuleStates(this);
+        Vapor.INSTANCE.getModManager().applyProfileModuleStates(this);
     }
 
     public long getUpdatedAt() {
         return this.updatedAt;
-    }
-
-    public void setPublicProfile(PublicProfile publicProfile) {
-        this.publicProfile = publicProfile;
     }
 
     public boolean isDirty() {
@@ -192,36 +187,36 @@ implements Comparable<Profile> {
 
     public void loadData(boolean applyModuleStates) {
         JsonArray array;
-        if (applyModuleStates && Vape.INSTANCE.getPublicProfileSettings().autoLoadModuleStates.getEffectiveValue().booleanValue()) {
-            Vape.INSTANCE.getModManager().disableNonHudModules();
+        if (applyModuleStates && Vapor.INSTANCE.getPublicProfileSettings().autoLoadModuleStates.getEffectiveValue().booleanValue()) {
+            Vapor.INSTANCE.getModManager().disableNonHudModules();
         }
         if (this.data.get("values") != null && !this.data.get("values").isJsonNull()) {
-            Vape.INSTANCE.getValueManager().loadJson(this.data.get("values").getAsJsonArray());
+            Vapor.INSTANCE.getValueManager().loadJson(this.data.get("values").getAsJsonArray());
         }
         if (this.data.get("modules") != null && !this.data.get("modules").isJsonNull()) {
-            Vape.INSTANCE.getModManager().loadJson(this.data.get("modules").getAsJsonArray());
+            Vapor.INSTANCE.getModManager().loadJson(this.data.get("modules").getAsJsonArray());
         }
         if (this.data.get("favorites") != null && !this.data.get("favorites").isJsonNull()) {
-            Vape.INSTANCE.getModuleProfileMetadataCodec().loadJson(this.data.get("favorites").getAsJsonObject());
+            Vapor.INSTANCE.getModuleProfileMetadataCodec().loadJson(this.data.get("favorites").getAsJsonObject());
         }
         if (this.data.get("macros") != null && !this.data.get("macros").isJsonNull()) {
-            Vape.INSTANCE.getMacrosManager().loadJson(this.data.get("macros").getAsJsonArray());
+            Vapor.INSTANCE.getMacrosManager().loadJson(this.data.get("macros").getAsJsonArray());
         }
         if (this.data.get("search") != null && !this.data.get("search").isJsonNull()) {
             array = this.data.get("search").getAsJsonArray();
-            Vape.INSTANCE.getSearch().loadJson(array);
+            Vapor.INSTANCE.getSearch().loadJson(array);
         }
-        if (applyModuleStates && Vape.INSTANCE.getPublicProfileSettings().autoLoadModuleStates.getEffectiveValue().booleanValue()) {
+        if (applyModuleStates && Vapor.INSTANCE.getPublicProfileSettings().autoLoadModuleStates.getEffectiveValue().booleanValue()) {
             this.applyEnabledModuleStates();
         }
-        for (Mod mod : Vape.INSTANCE.getModManager().collectMods()) {
+        for (Mod mod : Vapor.INSTANCE.getModManager().collectMods()) {
             if (!mod.isEnabled()) continue;
             mod.syncSubModuleStates(true, true);
         }
-        Vape.INSTANCE.getModManager().disableHiddenModules();
+        Vapor.INSTANCE.getModManager().disableHiddenModules();
         gg.vape.module.none.ClientSettings.refreshModuleCategoryHeaders();
         gg.vape.module.none.ClientSettings.closeListDropdowns();
-        if (this.data.get("frames") != null && !this.data.get("frames").isJsonNull() && Vape.INSTANCE.getPublicProfileSettings().framePositionsPerProfile.getEffectiveValue().booleanValue()) {
+        if (this.data.get("frames") != null && !this.data.get("frames").isJsonNull() && Vapor.INSTANCE.getPublicProfileSettings().framePositionsPerProfile.getEffectiveValue().booleanValue()) {
             array = this.data.get("frames").getAsJsonArray();
             JsonArray frameGroups = new JsonArray();
             frameGroups.add((JsonElement)array);
@@ -259,7 +254,7 @@ implements Comparable<Profile> {
 
     @Override
     public void onBindActivated() {
-        Vape.INSTANCE.getProfilesManager().switchProfile(this);
+        Vapor.INSTANCE.getProfilesManager().switchProfile(this);
     }
 
     public int compareSortOrder(@NotNull Profile profile) {
@@ -298,7 +293,7 @@ implements Comparable<Profile> {
     }
 
     public int getCurrentSortIndex() {
-        return Vape.INSTANCE.getProfilesManager().getProfiles().indexOf(this);
+        return Vapor.INSTANCE.getProfilesManager().getProfiles().indexOf(this);
     }
 
     public JsonObject getEnabledModuleStates() {
@@ -306,7 +301,7 @@ implements Comparable<Profile> {
     }
 
     public void applyLegitEnabledModuleStates() {
-        Vape.INSTANCE.getModManager().applyHudModuleStates(this.legitEnabledModuleStates);
+        Vapor.INSTANCE.getModManager().applyHudModuleStates(this.legitEnabledModuleStates);
     }
 
     private void parseData(JsonObject data) {
@@ -342,20 +337,15 @@ implements Comparable<Profile> {
     }
 
     private void captureLegitEnabledModuleStates() {
-        this.legitEnabledModuleStates = Vape.INSTANCE.getModManager().getEnabledHudModuleStates();
+        this.legitEnabledModuleStates = Vapor.INSTANCE.getModManager().getEnabledHudModuleStates();
     }
 
     public UUID getLocalId() {
         return this.localId;
     }
 
-    @Nullable
-    public PublicProfile getPublicProfile() {
-        return this.publicProfile;
-    }
-
     public void captureEnabledModuleStates() {
-        this.enabledModuleStates = Vape.INSTANCE.getModManager().getEnabledNonHudModuleStates();
+        this.enabledModuleStates = Vapor.INSTANCE.getModManager().getEnabledNonHudModuleStates();
     }
 
     public Profile(String name, String clientVersion) {

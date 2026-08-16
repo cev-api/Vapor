@@ -1,6 +1,6 @@
 package gg.vape.unmap;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.unmap.ColorContrastUtil;
 import gg.vape.utils.MathUtil;
 import java.awt.Color;
@@ -73,7 +73,7 @@ public class ColorUtil {
     }
 
     public static Color getAccentTextColor() {
-        return ColorUtil.getContrastingGray(Vape.INSTANCE.getClientSettings().guiColor.getMutableColor(), 45, 240);
+        return ColorUtil.getContrastingGray(Vapor.INSTANCE.getClientSettings().guiColor.getMutableColor(), 45, 240);
     }
 
     public static Color createReadableHsbColor(float hue, float saturation, float brightness, int minimumContrast) {
@@ -109,7 +109,7 @@ public class ColorUtil {
     }
 
     public static Color selectContrastingGray(Color color, int darkGray, int lightGray, boolean ignoreRainbowMode) {
-        double brightnessThreshold = !ignoreRainbowMode && Vape.INSTANCE.getClientSettings().guiColor.isRainbowEnabled() ? 0.0 : 130.0;
+        double brightnessThreshold = !ignoreRainbowMode && Vapor.INSTANCE.getClientSettings().guiColor.isRainbowEnabled() ? 0.0 : 130.0;
         int perceivedBrightness = ColorUtil.calculatePerceivedBrightness(color);
         if ((double)perceivedBrightness > brightnessThreshold) {
             return new Color(darkGray, darkGray, darkGray);

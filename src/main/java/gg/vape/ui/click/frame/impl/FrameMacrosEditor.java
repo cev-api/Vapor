@@ -1,6 +1,6 @@
 package gg.vape.ui.click.frame.impl;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.module.Macro;
 import gg.vape.ui.click.GuiMouseEvent;
 import gg.vape.ui.click.component.AnimatedIconButtonComponent;
@@ -164,7 +164,7 @@ extends InteractiveComponent {
         this.qz = new BooleanToggleComponent(macro.getDoubleClick());
         this.qz.addMouseListener(new FrameMacrosEditorRefreshFrameMouseListener(this, frameMacros));
         this.K.addClickListener(() -> {
-            Vape.INSTANCE.getMacrosManager().removeMacro(macro);
+            Vapor.INSTANCE.getMacrosManager().removeMacro(macro);
             frameMacros.X(null);
         });
         this.q5.addClickListener(() -> {
@@ -209,7 +209,7 @@ extends InteractiveComponent {
 
     private void lambda$setInitialMode$5() {
         this.q1 = Macro.create(this.q1.getName()).loadJson(this.q1.toJson());
-        Vape.INSTANCE.getMacrosManager().addMacro(this.q1);
+        Vapor.INSTANCE.getMacrosManager().addMacro(this.q1);
         this.setVisible(false);
         this.qQ.X(null);
     }

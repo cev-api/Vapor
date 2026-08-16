@@ -1,6 +1,6 @@
 package gg.vape.notification;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import java.io.ByteArrayInputStream;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
@@ -19,7 +19,7 @@ public class SoundClip {
     private static byte[] loadAudioData(String resourceName) {
         if (resourceName.contains(".")) {
             String resourcePath = "sounds/" + resourceName;
-            byte[] data = Vape.readResource(resourcePath);
+            byte[] data = Vapor.readResource(resourcePath);
             if (data != null) {
                 return data;
             }
@@ -27,7 +27,7 @@ public class SoundClip {
         }
         for (String extension : SUPPORTED_EXTENSIONS) {
             String resourcePath = "sounds/" + resourceName + extension;
-            byte[] data = Vape.readResource(resourcePath);
+            byte[] data = Vapor.readResource(resourcePath);
             if (data == null) continue;
             return data;
         }
@@ -47,7 +47,7 @@ public class SoundClip {
                 this.clip.open(audioStream);
             }
             catch (Exception error) {
-                Vape.logThrowable(error);
+                Vapor.logThrowable(error);
             }
         }
         if (this.clip == null) {

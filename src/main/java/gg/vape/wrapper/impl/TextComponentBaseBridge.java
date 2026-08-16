@@ -1,6 +1,6 @@
 package gg.vape.wrapper.impl;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.unmap.TextComponentBase;
 import gg.vape.wrapper.Wrapper;
 
@@ -15,7 +15,7 @@ extends ITextComponent {
 
     public TextComponentBaseBridge setStyle(TextComponentBase style) {
         if (ForgeVersion.MC_1_20_6.v()) {
-            Vape.notifyNativeStackTrace();
+            Vapor.notifyNativeStackTrace();
             throw new UnsupportedOperationException("Unsupported");
         }
         return new TextComponentBaseBridge(TextComponentBaseBridge.vapeInstance.getMappings().mutableComponent.setStyle(this.getObject(), style.getObject()));
@@ -27,7 +27,7 @@ extends ITextComponent {
 
     public static TextComponentBaseBridge create(StringTextComponentBase contents, List<ITextComponent> siblings, TextComponentBase style) {
         if (ForgeVersion.MC_1_20_6.v()) {
-            Vape.notifyNativeStackTrace();
+            Vapor.notifyNativeStackTrace();
             throw new UnsupportedOperationException("Unsupported");
         }
         return new TextComponentBaseBridge(TextComponentBaseBridge.vapeInstance.getMappings().mutableComponent.create(contents.getObject(), siblings.stream().map(Wrapper::getObject).collect(Collectors.toList()), style.getObject()));

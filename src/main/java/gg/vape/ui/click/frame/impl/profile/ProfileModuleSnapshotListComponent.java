@@ -1,6 +1,6 @@
 package gg.vape.ui.click.frame.impl.profile;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.config.Profile;
 import gg.vape.config.ProfileModuleSnapshot;
 import gg.vape.config.ProfileSnapshot;
@@ -88,7 +88,7 @@ extends FlowLayoutComponent {
 
     @Override
     public void u() {
-        if (!this.profile.equals(Vape.INSTANCE.getProfilesManager().getActiveProfile())) {
+        if (!this.profile.equals(Vapor.INSTANCE.getProfilesManager().getActiveProfile())) {
             return;
         }
         long profileRevision = this.profile.getUpdatedAt();

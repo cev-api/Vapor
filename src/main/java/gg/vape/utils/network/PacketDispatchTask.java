@@ -1,6 +1,6 @@
 package gg.vape.utils.network;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.mapping.MappedClasses;
 import gg.vape.utils.network.PacketDispatchMarkerRegistry;
 import gg.vape.wrapper.impl.NetworkManager;
@@ -31,7 +31,7 @@ public class PacketDispatchTask {
                 }
                 catch (Exception exception) {
                     if (!this.A()) break block6;
-                    Vape.logThrowable(exception);
+                    Vapor.logThrowable(exception);
                 }
             }
         }

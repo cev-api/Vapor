@@ -1,6 +1,6 @@
 package gg.vape.ui.click.component.value;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.manager.SearchManager;
 import gg.vape.module.none.ClientSettings;
 import gg.vape.ui.click.component.PanelComponent;
@@ -28,7 +28,7 @@ public class SearchBlockListComponent
 extends AbstractListValueComponent {
     private ValueComponentMode mode;
     private String title;
-    SearchManager searchManager = Vape.INSTANCE.getSearch();
+    SearchManager searchManager = Vapor.INSTANCE.getSearch();
     private SearchBlockListDropdownLayer dropdownLayer;
 
     @Override

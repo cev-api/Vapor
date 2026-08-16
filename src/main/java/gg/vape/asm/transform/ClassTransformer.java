@@ -1,6 +1,6 @@
 package gg.vape.asm.transform;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.asm.ITramsformNode;
 import gg.vape.asm.helper.EventBuilder;
 import gg.vape.asm.helper.MethodInfo;
@@ -59,7 +59,7 @@ implements MappingTask {
             output.close();
         }
         catch (Exception exception) {
-            Vape.logThrowable(exception);
+            Vapor.logThrowable(exception);
         }
     }
 
@@ -73,7 +73,7 @@ implements MappingTask {
     }
 
     public ClassTransformer(Class targetClass) {
-        if (!Vape.INSTANCE.isForgeAbsent()) {
+        if (!Vapor.INSTANCE.isForgeAbsent()) {
             LaunchClassLoader launchClassLoader = LaunchClassLoader.getLaunchClassLoader();
             if (launchClassLoader.supportsLegacyClassCache()) {
                 launchClassLoader.cachedClasses().put(targetClass.getName(), targetClass);

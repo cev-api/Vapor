@@ -1,6 +1,6 @@
 package gg.vape.mapping;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.asm.ITramsformNode;
 import gg.vape.asm.helper.DescUtils;
 import gg.vape.asm.helper.TypedIndexedLocal;
@@ -16,7 +16,7 @@ extends ClassTransformer {
 
     @Override
     public void transform() {
-        MappingMethod mappingMethod = Vape.INSTANCE.getMappings().RY.J;
+        MappingMethod mappingMethod = Vapor.INSTANCE.getMappings().RY.J;
         if (ForgeVersion.MC_1_21_4.d()) {
             this.injectEventAtEntry(mappingMethod, EventPreRenderTick.class, new TypedIndexedLocal(1, DescUtils.getDescriptor(MappedClasses.uy)).setDescriptorClass(Object.class));
             this.injectEventAtExit(mappingMethod, EventPostRenderTick.class, new ITramsformNode[0]);

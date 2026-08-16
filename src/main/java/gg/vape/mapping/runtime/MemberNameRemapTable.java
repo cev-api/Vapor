@@ -1,6 +1,6 @@
 package gg.vape.mapping.runtime;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.mapping.runtime.MemberLookupSignature;
 import gg.vape.wrapper.impl.ForgeVersion;
 import java.lang.reflect.Method;
@@ -38,7 +38,7 @@ public class MemberNameRemapTable {
     }
 
     public boolean isVanillaMinecraftAbsent() {
-        return !Vape.INSTANCE.isVanillaMinecraftPresent();
+        return !Vapor.INSTANCE.isVanillaMinecraftPresent();
     }
 
     private static Exception identityException(Exception exception) {
@@ -87,7 +87,7 @@ public class MemberNameRemapTable {
                     method.invoke(this, new Object[0]);
                 }
                 catch (Exception exception) {
-                    Vape.logThrowable(exception);
+                    Vapor.logThrowable(exception);
                 }
             }
         }

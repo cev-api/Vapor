@@ -1,7 +1,7 @@
 package gg.vape.ui.click.component.value;
 
 import func.skidline.RectData;
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.input.MouseInput;
 import gg.vape.ui.click.GuiMouseEvent;
 import gg.vape.ui.click.MouseButton;
@@ -243,7 +243,7 @@ extends SliderComponentBase {
         }
         resolvedBackgroundColor = this.getDisabledOverlayColor().equals(Color.WHITE) ? this.fallbackColorComponent.getDisabledOverlayColor() : this.getDisabledOverlayColor();
         double handleSize = this.handleHoverAnimation.getInterpolatedValue();
-        GuiRenderPrimitives.Y((float)(this.handleBounds.o() + this.handleBounds.e() / 2.0 - handleSize / 2.0), (float)(this.handleBounds.W() + this.handleBounds.R() / 2.0 - handleSize / 2.0), (float)handleSize, (float)(0.8 / Vape.INSTANCE.getClientSettings().getGuiScaleFactor()), ColorChannelSliderComponent.J.A, 0.0, null);
+        GuiRenderPrimitives.Y((float)(this.handleBounds.o() + this.handleBounds.e() / 2.0 - handleSize / 2.0), (float)(this.handleBounds.W() + this.handleBounds.R() / 2.0 - handleSize / 2.0), (float)handleSize, (float)(0.8 / Vapor.INSTANCE.getClientSettings().getGuiScaleFactor()), ColorChannelSliderComponent.J.A, 0.0, null);
     }
 
     public ColorChannelSliderComponent(ColorChannelType channelType, ColorValue colorValue) {

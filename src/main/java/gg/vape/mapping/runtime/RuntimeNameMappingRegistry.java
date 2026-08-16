@@ -1,6 +1,6 @@
 package gg.vape.mapping.runtime;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.runtime.NativeBridge;
 import gg.vape.wrapper.impl.ForgeVersion;
 import java.util.LinkedHashMap;
@@ -104,7 +104,7 @@ public class RuntimeNameMappingRegistry {
             }
             case 35: 
             case 36: {
-                if (Vape.INSTANCE.isForgeAbsent()) {
+                if (Vapor.INSTANCE.isForgeAbsent()) {
                     classNameRemapTable = new ClassNameRemapTableV35V36Direct();
                     break;
                 }
@@ -155,7 +155,7 @@ public class RuntimeNameMappingRegistry {
                 classNameRemapTable = null;
             }
         }
-        if (ForgeVersion.MC_1_16_5_ACTUAL.Y() && !Vape.INSTANCE.isForgeAbsent()) {
+        if (ForgeVersion.MC_1_16_5_ACTUAL.Y() && !Vapor.INSTANCE.isForgeAbsent()) {
             ClassNameRemapTable.propagateMappingsToRuntimeRegistry = true;
             new ClassNameRemapTableV35V36Direct();
         }

@@ -1,6 +1,6 @@
 package gg.vape.module.blatant;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.event.EventHandler;
 import gg.vape.event.impl.EventPacketReceive;
 import gg.vape.event.impl.EventPreMotion;
@@ -67,7 +67,7 @@ extends Mod {
     public void onMotionUpdate(EventPreMotion eventPreMotion) {
         EntityPlayerSP localPlayer = Minecraft.a_xH_J();
         World world = localPlayer.gg_vape_wrapper_impl_World_Z();
-        ModManager modManager = Vape.INSTANCE.getModManager();
+        ModManager modManager = Vapor.INSTANCE.getModManager();
         if (localPlayer.isNull() || world.isNull() || localPlayer.boolean_M() || localPlayer.boolean_d() || localPlayer.a_xf_0_C().isCreativeMode() || localPlayer.a_xf_0_C().isFlying() || modManager.getState(Freecam.class) || modManager.getState(Fly.class) || this.ignoreWhileSpeedEnabled.getEffectiveValueCompat().booleanValue() && modManager.getState(Speed.class)) {
             return;
         }

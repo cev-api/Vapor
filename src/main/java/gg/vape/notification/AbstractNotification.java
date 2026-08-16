@@ -1,6 +1,6 @@
 package gg.vape.notification;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import java.awt.Color;
 
 public abstract class AbstractNotification implements INotification {
@@ -71,7 +71,7 @@ public abstract class AbstractNotification implements INotification {
 
     @Override
     public double getWidth() {
-        double titleWidth = Vape.INSTANCE.getFontManager().Y().N(this.title) + 2.0;
+        double titleWidth = Vapor.INSTANCE.getFontManager().Y().N(this.title) + 2.0;
         return Math.max(titleWidth, this.content.getWidth());
     }
 

@@ -1,6 +1,6 @@
 package gg.vape.ui.click.frame.impl.profile;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.config.Profile;
 import gg.vape.ui.click.component.TextInputComponentBase;
 
@@ -15,14 +15,14 @@ extends TextInputComponentBase {
             return;
         }
         String profileName = this.getText();
-        Profile existingProfile = Vape.INSTANCE.getProfilesManager().getProfileByName(profileName);
+        Profile existingProfile = Vapor.INSTANCE.getProfilesManager().getProfileByName(profileName);
         if (existingProfile != null) {
             return;
         }
         this.profile.setName(profileName);
         this.profile.setDirty(true);
-        Vape.INSTANCE.getProfilesManager().addProfile(this.profile, true);
-        Vape.INSTANCE.getProfilesManager().setActiveProfile(this.profile);
+        Vapor.INSTANCE.getProfilesManager().addProfile(this.profile, true);
+        Vapor.INSTANCE.getProfilesManager().setActiveProfile(this.profile);
         this.setText("");
     }
 

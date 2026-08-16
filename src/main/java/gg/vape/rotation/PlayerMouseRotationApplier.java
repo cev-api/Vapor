@@ -1,6 +1,6 @@
 package gg.vape.rotation;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.module.render.hud.FreeLookHudModule;
 import gg.vape.rotation.RotationManager;
 import gg.vape.wrapper.impl.EntityPlayer;
@@ -27,7 +27,7 @@ public class PlayerMouseRotationApplier {
     }
 
     private static void syncFreeLookRotation() {
-        FreeLookHudModule freeLook = Vape.INSTANCE.getModManager().getMod(FreeLookHudModule.class);
+        FreeLookHudModule freeLook = Vapor.INSTANCE.getModManager().getMod(FreeLookHudModule.class);
         EntityPlayerSP player = Minecraft.thePlayer();
         freeLook.capturePlayerRotation(player.J(), player.V());
     }

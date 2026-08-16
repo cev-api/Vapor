@@ -1,6 +1,6 @@
 package gg.vape.module.blatant;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.event.EventHandler;
 import gg.vape.event.impl.EventPreMotion;
 import gg.vape.event.impl.EventPreMove;
@@ -106,7 +106,7 @@ extends Mod {
 
     @Override
     public void onEnable() {
-        Vape.INSTANCE.getClientSettings().onModuleChanged(this);
+        Vapor.INSTANCE.getClientSettings().onModuleChanged(this);
         this.moveSpeed = 0.27999999999999997;
         this.wasOnGround = false;
         this.lastHorizontalDistance = 0.0;

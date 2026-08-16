@@ -1,6 +1,6 @@
 package gg.vape.module.combat.aimassist;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 
 public class AimAssistWorkerThread
 extends Thread {
@@ -8,7 +8,7 @@ extends Thread {
 
     @Override
     public void run() {
-        while (!Vape.INSTANCE.isEnabled()) {
+        while (!Vapor.INSTANCE.isEnabled()) {
             try {
                 Thread.sleep(1L);
                 if (!this.targetingSubModule.isEnabled() || !this.targetingSubModule.isSelectedSubModule()) continue;

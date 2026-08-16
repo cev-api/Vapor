@@ -1,6 +1,6 @@
 package gg.vape.event.listener;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.event.EventBus;
 import gg.vape.event.EventDispatchTrace;
 import gg.vape.event.EventHandler;
@@ -30,7 +30,7 @@ implements EventListener {
     @EventHandler
     public void onRender2D(EventRender2D eventRender2D) {
         for (int index = 0; index < this.displayLines.size(); ++index) {
-            SmoothFontRenderer fontRenderer = Vape.INSTANCE.getFontManager().D(12, false);
+            SmoothFontRenderer fontRenderer = Vapor.INSTANCE.getFontManager().D(12, false);
             double width = fontRenderer.N(this.displayLines.get(index));
             GuiRenderPrimitives.C(10.0, 8 + index * 8, width, 8.0, Color.BLACK);
             fontRenderer.g(this.displayLines.get(index), 10.0, 8 + index * 8, -1);

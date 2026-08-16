@@ -1,6 +1,6 @@
 package gg.vape.ui.click.frame.impl;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.config.PublicProfileSettings;
 import gg.vape.module.none.ClientSettings;
 import gg.vape.ui.click.component.ColorDividerComponent;
@@ -91,8 +91,8 @@ extends Frame {
         super.z(bl);
         this.Y(238.0);
         GuiRenderPrimitives.C(this.G$src$D$1b2f02a(), this.n() + this.j$src$Lgg_vape_ui_click_frame_FrameHeaderComponent_$175vsfc().L() + 2.0, this.A(), this.L() - (this.j$src$Lgg_vape_ui_click_frame_FrameHeaderComponent_$175vsfc().L() + 8.0), ClientSettingsFrame.J.i);
-        SmoothFontRenderer smoothFontRenderer = Vape.INSTANCE.getFontManager().E(0.7, false);
-        String string = "Vape 4.21";
+        SmoothFontRenderer smoothFontRenderer = Vapor.INSTANCE.getFontManager().E(0.7, false);
+        String string = "Vapor 4.21";
         double d = smoothFontRenderer.N(string);
         smoothFontRenderer.d(string, this.G$src$D$1b2f02a() + this.A() - d - 4.0, this.n() + this.L() - 4.5, ClientSettingsFrame.J.h);
     }
@@ -195,7 +195,7 @@ extends Frame {
             }
         }
         catch (Exception exception) {
-            Vape.logThrowable(exception);
+            Vapor.logThrowable(exception);
         }
         double d = 32.0;
         double d2 = 32.0;
@@ -222,8 +222,8 @@ extends Frame {
     }
 
     public ClientSettingsFrame() {
-        this.r1 = Vape.INSTANCE.getClientSettings();
-        this.rh = Vape.INSTANCE.getPublicProfileSettings();
+        this.r1 = Vapor.INSTANCE.getClientSettings();
+        this.rh = Vapor.INSTANCE.getPublicProfileSettings();
         this.r2 = new HashMap();
         this.setDisabledOverlayColor(ClientSettingsFrame.J.r);
         this.l$src$Lgg_vape_ui_click_layout_ComponentLayout_$di1tij().M(false);

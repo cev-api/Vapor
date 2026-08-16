@@ -1,6 +1,6 @@
 package gg.vape.movement;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.event.EventHandler;
 import gg.vape.event.EventListener;
 import gg.vape.event.EventPriority;
@@ -67,7 +67,7 @@ implements EventListener {
                 this.activeTask.applyMovementInput(eventPreTick);
             }
             catch (NullPointerException nullPointerException) {
-                Vape.logThrowable(nullPointerException);
+                Vapor.logThrowable(nullPointerException);
             }
         }
     }

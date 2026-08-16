@@ -1,6 +1,6 @@
 package gg.vape.mapping.mappings;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.mapping.MappedClasses;
 import gg.vape.mapping.Mapping;
 import gg.vape.mapping.MappingField;
@@ -33,7 +33,7 @@ extends Mapping {
     private MPlayerModel(int[] nArray) {
         super(MappedClasses.ud);
         if (nArray != null) {
-            if (Vape.INSTANCE.isVanillaMinecraftPresent()) {
+            if (Vapor.INSTANCE.isVanillaMinecraftPresent()) {
                 Class clazz = MappedClasses.Yd;
                 boolean bl = Wrapper.isNativeAvailable;
                 String string = "bipedBodyWear";

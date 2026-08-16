@@ -1,7 +1,7 @@
 package gg.vape.ui.click.frame.impl.hud;
 
 import func.skidline.RectData;
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.module.none.ClientSettings;
 import gg.vape.ui.click.GuiMouseEvent;
 import gg.vape.ui.click.component.AnimatedIconButtonComponent;
@@ -135,7 +135,7 @@ implements CollapsibleFrame {
     }
 
     protected boolean isPublicProfilePreview() {
-        return this.isManagedByClickGui() && Vape.INSTANCE.getPublicProfileSettings().centralGuiStyle.isSelected();
+        return this.isManagedByClickGui() && Vapor.INSTANCE.getPublicProfileSettings().centralGuiStyle.isSelected();
     }
 
     @Override
@@ -234,6 +234,7 @@ implements CollapsibleFrame {
         this.restoreSettingComponents();
         this.setHudEditorSelected(false);
         this.setVisible(false);
+        Vapor.INSTANCE.saveAndStop();
     }
 
     @Override

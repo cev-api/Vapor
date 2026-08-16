@@ -1,7 +1,7 @@
 package gg.vape.module.render;
 
 import com.google.common.collect.Lists;
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.config.ClientSettings;
 import gg.vape.event.EventHandler;
 import gg.vape.event.impl.EventPreRenderEntity;
@@ -76,7 +76,7 @@ extends Mod {
 
     @EventHandler
     public void onRenderPlayerPost(EventRenderPlayerPost event) {
-        if (Vape.INSTANCE.getClientSettings().isBot(event.getEntityPlayer()) && this.hideBots.getEffectiveValue().booleanValue()) {
+        if (Vapor.INSTANCE.getClientSettings().isBot(event.getEntityPlayer()) && this.hideBots.getEffectiveValue().booleanValue()) {
             return;
         }
         if (this.colored.getEffectiveValue().booleanValue()) {
@@ -109,13 +109,13 @@ extends Mod {
 
     @EventHandler
     public void onRenderPlayerPre(EventRenderPlayerPre event) {
-        if (this.hideBots.getEffectiveValue().booleanValue() && Vape.INSTANCE.getClientSettings().isBot(event.getEntityPlayer())) {
+        if (this.hideBots.getEffectiveValue().booleanValue() && Vapor.INSTANCE.getClientSettings().isBot(event.getEntityPlayer())) {
             return;
         }
         if (ClientSettings.isReservedEntity(event.getEntityPlayer())) {
             return;
         }
-        ESP esp = Vape.INSTANCE.getModManager().getMod(ESP.class);
+        ESP esp = Vapor.INSTANCE.getModManager().getMod(ESP.class);
         if (this.renderingChamsPass || this.renderPass == PASS_LEGACY || esp.isEnabled() && esp.isOutlineModeActive()) {
             return;
         }

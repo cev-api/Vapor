@@ -1,6 +1,6 @@
 package gg.vape.module.combat;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.event.EventHandler;
 import gg.vape.event.impl.EventEntityJoinWorld;
 import gg.vape.event.impl.EventPreTick;
@@ -87,8 +87,8 @@ extends Mod {
     private boolean isValidArrowOwner(EntityPlayerSP player, Entity owner) {
         if (owner != null && owner.isNotNull() && owner.isInstance(MappedClasses.Yl)) {
             EntityPlayer ownerPlayer = new EntityPlayer(owner);
-            return !Vape.INSTANCE.getClientSettings().isTeammate(player, ownerPlayer)
-                    && !Vape.INSTANCE.getFriendManager().isFriend(ownerPlayer);
+            return !Vapor.INSTANCE.getClientSettings().isTeammate(player, ownerPlayer)
+                    && !Vapor.isFriend(ownerPlayer);
         }
         return true;
     }
@@ -336,7 +336,7 @@ extends Mod {
         if (Minecraft.currentScreen().isNull()) {
             return false;
         }
-        InvWalk invWalk = Vape.INSTANCE.getModManager().getMod(InvWalk.class);
+        InvWalk invWalk = Vapor.INSTANCE.getModManager().getMod(InvWalk.class);
         return invWalk == null || !invWalk.isEnabled() || !invWalk.shouldHandleCurrentScreen();
     }
 

@@ -421,7 +421,10 @@ extends Mod {
     @Override
     public void onDisable() {
         this.rotationClaim.release(this);
-        ClientSettings.getFrame(ActiveModuleStackFrame.class).removeModule(this);
+        ActiveModuleStackFrame activeModuleFrame = ClientSettings.getFrame(ActiveModuleStackFrame.class);
+        if (activeModuleFrame != null) {
+            activeModuleFrame.removeModule(this);
+        }
     }
 
     public boolean canActivate() {
@@ -441,7 +444,13 @@ extends Mod {
         if (this.isBlacklisted(itemStack) || !this.isWhitelisted(itemStack)) {
             return false;
         }
-        return item.isInstance(MappedClasses.Vw);
+        if (item.isInstance(MappedClasses.Vw)) {
+            return true;
+        }
+        // Minecraft 26.x exposes blocks as BlockItem; keep a safe fallback
+        // when the legacy runtime class remap is unavailable.
+        String itemClassName = item.getObject() == null ? "" : item.getObject().getClass().getName();
+        return itemClassName.endsWith("BlockItem") || itemClassName.endsWith("ItemBlock");
     }
 
     public void selectHotbarSlot(int slot) {
@@ -450,7 +459,10 @@ extends Mod {
 
     @Override
     public void onEnable() {
-        ClientSettings.getFrame(ActiveModuleStackFrame.class).addModule(this);
+        ActiveModuleStackFrame activeModuleFrame = ClientSettings.getFrame(ActiveModuleStackFrame.class);
+        if (activeModuleFrame != null) {
+            activeModuleFrame.addModule(this);
+        }
     }
 
     public double getPitchThreshold() {
@@ -458,7 +470,17 @@ extends Mod {
     }
 
     public boolean isActivelyScaffolding() {
-        return false;
+        if (!this.isEnabled()) {
+            return false;
+        }
+        ModeSelection selectedMode = (ModeSelection)this.mode.getValue();
+        if (selectedMode.equals(this.godBridgeMode.getSelectionValue())) {
+            return this.godBridgeMode.isEnabled();
+        }
+        if (selectedMode.equals(this.tellyBridgeMode.getSelectionValue())) {
+            return this.tellyBridgeMode.isEnabled();
+        }
+        return this.legitMode.isEnabled();
     }
 
     private EnumFacing facingForDirection(int direction) {

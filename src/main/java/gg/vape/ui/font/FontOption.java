@@ -1,6 +1,6 @@
 package gg.vape.ui.font;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.ui.font.BaseFontOption;
 import gg.vape.ui.font.FontFamily;
 import gg.vape.ui.font.SmoothFontRenderer;
@@ -20,7 +20,7 @@ extends ModeSelection {
     private HashMap<String, String> N = new HashMap();
 
     public SmoothFontRenderer k(float f, boolean bl) {
-        return Vape.INSTANCE.getFontManager().b(this.b(), f, bl);
+        return Vapor.INSTANCE.getFontManager().b(this.b(), f, bl);
     }
 
     public void g(BaseFontOption baseFontOption) {
@@ -66,14 +66,14 @@ extends ModeSelection {
 
     private void p$src$V$169egi9() {
         String string = this.j.toLowerCase() + ".properties.txt";
-        byte[] byArray = Vape.readResource(string);
+        byte[] byArray = Vapor.readResource(string);
         try {
             ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(byArray);
             this.g.load(new InputStreamReader((InputStream)byteArrayInputStream, StandardCharsets.UTF_8));
             this.C = this.g.getProperty("language.native");
         }
         catch (Exception exception) {
-            Vape.logThrowable(exception);
+            Vapor.logThrowable(exception);
         }
     }
 

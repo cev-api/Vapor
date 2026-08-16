@@ -1,6 +1,6 @@
 package gg.vape.rotation;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.config.ClientSettings;
 import gg.vape.event.EventHandler;
 import gg.vape.event.EventListener;
@@ -276,7 +276,7 @@ implements EventListener {
     @EventHandler
     public void onRender2D(EventRender2D event) {
         EntityPlayerSP player = event.getThePlayer();
-        if (!Vape.INSTANCE.getClientSettings().aimIndicator.getEffectiveValue().booleanValue()
+        if (!Vapor.INSTANCE.getClientSettings().aimIndicator.getEffectiveValue().booleanValue()
                 || player.isNull() || Minecraft.currentScreen().isNotNull()) {
             return;
         }
@@ -398,8 +398,8 @@ implements EventListener {
     }
 
     private void refreshReachRayTraces() {
-        double reachDistance = Vape.INSTANCE.getModManager().getMod(Reach.class).getReachDistance();
-        double hitBoxExpansion = Vape.INSTANCE.getModManager().getMod(HitBoxes.class).getExpansionAmount();
+        double reachDistance = Vapor.INSTANCE.getModManager().getMod(Reach.class).getReachDistance();
+        double hitBoxExpansion = Vapor.INSTANCE.getModManager().getMod(HitBoxes.class).getExpansionAmount();
         boolean extendedReach = reachDistance > 3.0;
         if (!this.hasAdaptiveController() && FreeLookHudModule.isActive()) {
             this.managedYaw = FreeLookHudModule.getSavedPitch();
@@ -431,7 +431,7 @@ implements EventListener {
 
     @EventHandler(priority=EventPriority.LOWEST)
     public void onPreRenderWorldPass(EventPreRenderWorldPass eventPreRenderWorldPass) {
-        if (!Vape.INSTANCE.getClientSettings().thirdPersonAimView.getEffectiveValue().booleanValue()) {
+        if (!Vapor.INSTANCE.getClientSettings().thirdPersonAimView.getEffectiveValue().booleanValue()) {
             return;
         }
         this.applyRenderRotation(eventPreRenderWorldPass.getPlayer());
@@ -466,7 +466,7 @@ implements EventListener {
                     this.activeController.onPostRenderTick(eventPostRenderTick);
                 }
                 catch (NullPointerException nullPointerException) {
-                    Vape.logThrowable(nullPointerException);
+                    Vapor.logThrowable(nullPointerException);
                 }
             }
             this.controllerHooksPending = false;
@@ -475,7 +475,7 @@ implements EventListener {
 
     @EventHandler(priority=EventPriority.LOWEST)
     public void onPostRenderWorldPass(EventPostRenderWorldPass eventPostRenderWorldPass) {
-        if (!Vape.INSTANCE.getClientSettings().thirdPersonAimView.getEffectiveValue().booleanValue()) {
+        if (!Vapor.INSTANCE.getClientSettings().thirdPersonAimView.getEffectiveValue().booleanValue()) {
             return;
         }
         this.restoreRenderRotation(eventPostRenderWorldPass.getPlayer());
@@ -569,12 +569,12 @@ implements EventListener {
             player.z(this.managedYaw);
             player.C(this.managedPitch);
             double reachDistance = 3.0;
-            if (Vape.INSTANCE.getClientSettings().useReach.getEffectiveValue().booleanValue()) {
-                reachDistance = Vape.INSTANCE.getModManager().getMod(Reach.class).getReachDistance();
+            if (Vapor.INSTANCE.getClientSettings().useReach.getEffectiveValue().booleanValue()) {
+                reachDistance = Vapor.INSTANCE.getModManager().getMod(Reach.class).getReachDistance();
             }
             double hitBoxExpansion = 0.0;
-            if (Vape.INSTANCE.getClientSettings().useHitboxes.getEffectiveValue().booleanValue()) {
-                hitBoxExpansion = Vape.INSTANCE.getModManager().getMod(HitBoxes.class).getExpansionAmount();
+            if (Vapor.INSTANCE.getClientSettings().useHitboxes.getEffectiveValue().booleanValue()) {
+                hitBoxExpansion = Vapor.INSTANCE.getModManager().getMod(HitBoxes.class).getExpansionAmount();
             }
             MouseOverRayTraceUpdater.s((float)reachDistance, (float)hitBoxExpansion);
             this.cachedMouseOverRayTrace = Minecraft.p$src$Lgg_vape_wrapper_impl_RayTraceResult_$5rw6n0();
@@ -637,7 +637,7 @@ implements EventListener {
             this.movementKeysRemapped = false;
             return;
         }
-        ModeSelection movementMode = (ModeSelection)Vape.INSTANCE.getClientSettings().movementCorrection.getValue();
+        ModeSelection movementMode = (ModeSelection)Vapor.INSTANCE.getClientSettings().movementCorrection.getValue();
         if (movementMode.equals(ClientSettings.NO_MOVEMENT_CORRECTION) || !this.isMovementCorrectionMode(movementMode)) {
             return;
         }
@@ -730,7 +730,7 @@ implements EventListener {
 
     @EventHandler(priority=EventPriority.LOWEST)
     public void onRenderPlayerPre(EventRenderPlayerPre eventRenderPlayerPre) {
-        if (!Vape.INSTANCE.getClientSettings().thirdPersonAimView.getEffectiveValue().booleanValue()) {
+        if (!Vapor.INSTANCE.getClientSettings().thirdPersonAimView.getEffectiveValue().booleanValue()) {
             return;
         }
         EntityPlayer player = eventRenderPlayerPre.getEntityPlayer();
@@ -808,7 +808,7 @@ implements EventListener {
         if (Minecraft.currentScreen().isNull()) {
             return false;
         }
-        InvWalk invWalk = Vape.INSTANCE.getModManager().getMod(InvWalk.class);
+        InvWalk invWalk = Vapor.INSTANCE.getModManager().getMod(InvWalk.class);
         return invWalk == null || !invWalk.isEnabled() || !invWalk.shouldHandleCurrentScreen();
     }
 
@@ -914,7 +914,7 @@ implements EventListener {
 
     @EventHandler(priority=EventPriority.LOWEST)
     public void onRenderPlayerPost(EventRenderPlayerPost eventRenderPlayerPost) {
-        if (!Vape.INSTANCE.getClientSettings().thirdPersonAimView.getEffectiveValue().booleanValue()) {
+        if (!Vapor.INSTANCE.getClientSettings().thirdPersonAimView.getEffectiveValue().booleanValue()) {
             return;
         }
         EntityPlayer player = eventRenderPlayerPost.getEntityPlayer();

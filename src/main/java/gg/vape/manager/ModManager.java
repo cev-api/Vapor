@@ -3,7 +3,7 @@ package gg.vape.manager;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.config.Profile;
 import gg.vape.event.EventHandler;
 import gg.vape.event.EventListener;
@@ -13,12 +13,12 @@ import gg.vape.module.MinecraftVersionConstraint;
 import gg.vape.module.Mod;
 import gg.vape.module.SubModule;
 import gg.vape.module.blatant.AutoAnchor;
+import gg.vape.module.blatant.AutoLadder;
 import gg.vape.module.blatant.AntiBot;
 import gg.vape.module.blatant.AutoHeal;
-import gg.vape.module.blatant.AutoLadder;
 import gg.vape.module.blatant.Backtrack;
 import gg.vape.module.blatant.Blink;
-import gg.vape.module.blatant.Clutch;
+import gg.vape.module.blatant.BlockIn;
 import gg.vape.module.blatant.Fly;
 import gg.vape.module.blatant.HitBoxes;
 import gg.vape.module.blatant.InvWalk;
@@ -42,6 +42,7 @@ import gg.vape.module.render.Search;
 import gg.vape.module.none.TextGuiSettings;
 import gg.vape.module.world.XRay;
 import gg.vape.module.world.AntiAFK;
+import gg.vape.module.render.Animations;
 import gg.vape.module.render.AntiDebuff;
 import gg.vape.module.render.Arrows;
 import gg.vape.module.render.Chams;
@@ -87,7 +88,7 @@ import gg.vape.module.utility.MLG;
 import gg.vape.module.utility.AutoPearl;
 import gg.vape.module.utility.AutoTool;
 import gg.vape.module.utility.AutoTotem;
-import gg.vape.module.utility.BlockIn;
+import gg.vape.module.utility.Clutch;
 import gg.vape.module.utility.InventoryManager;
 import gg.vape.module.utility.AutoHotbar;
 import gg.vape.module.utility.AutoFish;
@@ -196,14 +197,14 @@ implements EventListener {
         coreModules[48] = new Sprint();
         coreModules[49] = new Health();
         coreModules[50] = new HitSelect();
-        coreModules[51] = new BlockHit();
+        coreModules[51] = new Animations();
         SilentAura silentAura = new SilentAura();
         coreModules[52] = silentAura;
         coreModules[53] = new SilentAuraClicker(silentAura);
         coreModules[54] = new HitFlick();
-        coreModules[55] = new BlockIn();
+        coreModules[55] = new Clutch();
         coreModules[56] = new InventoryManager();
-        coreModules[57] = new NoItemRelease();
+        coreModules[57] = new BlockHit();
         coreModules[58] = new Timer();
         coreModules[59] = new InventoryFill();
         coreModules[60] = new BedPlates();
@@ -220,11 +221,11 @@ implements EventListener {
         ModRegistrationBuilder.create().setModule(new Freecam()).addVersionConstraint(ForgeVersion.MC_1_16_5.b()).addVersionConstraint(ForgeVersion.MC_1_21_11.n()).registerWith(this);
         this.registerModules(Stream.of(new InvWalk()), ModManager::addMinecraft189Constraint);
         this.registerModules(Stream.of(new Backtrack()), ModManager::addBacktrackVersionConstraints);
-        this.registerModules(Stream.of(new AutoFish(), new BedBreaker(), new AutoLadder(), new Clutch(), new FakeLag()), ModManager::addMinecraft1710Constraint);
+        this.registerModules(Stream.of(new AutoFish(), new BedBreaker(), new BlockIn(), new AutoLadder(), new gg.vape.module.blatant.Clutch(), new FakeLag()), ModManager::addMinecraft1710Constraint);
         this.registerModules(Stream.of(new BedPlates()), ModManager::addBedPlatesVersionConstraints);
         this.registerModules(Stream.of(new AntiBot()));
         this.registerModules(Stream.of(new Triggerbot(), new HitSwap(), new AutoMace(), new AutoAnchor(), new WindCharge(), new CrystalAura(), new AutoTotem(), new ShieldBreaker(), new PearlCatch()), ModManager::addMinecraft1214Constraint);
-        this.registerModules(Stream.of(new NoFall(), new NoSlowdown(), new Speed(), new NoItemRelease(), new Timer()), ModManager::addModernMinecraftConstraint);
+        this.registerModules(Stream.of(new NoFall(), new NoSlowdown(), new Speed(), new BlockHit(), new NoItemRelease(), new Timer()), ModManager::addModernMinecraftConstraint);
         this.registerTextGuiSettings();
         this.registerHudModules();
         if (preservedLegacyComponents == null) {
@@ -268,7 +269,7 @@ implements EventListener {
                         ++enabledCount;
                     }
                     catch (Exception exception) {
-                        Vape.logThrowable(exception);
+                        Vapor.logThrowable(exception);
                     }
                     continue;
                 }
@@ -276,14 +277,14 @@ implements EventListener {
                 mod.toggle();
             }
             catch (Exception exception) {
-                Vape.logThrowable(exception);
+                Vapor.logThrowable(exception);
             }
         }
         this.suppressStateNotifications = false;
-        if (Vape.INSTANCE.getPublicProfileSettings().profileSwitchNotifications.getEffectiveValue().booleanValue()) {
+        if (Vapor.INSTANCE.getPublicProfileSettings().profileSwitchNotifications.getEffectiveValue().booleanValue()) {
             this.profileSwitchNotification.withTitle("Profile swap to " + gg.vape.config.ClientSettings.FORMAT_CODE + "6" + profile.getName())
                     .withMessage(enabledCount + " modules enabled").reset();
-            Vape.INSTANCE.getNotificationManager().show(this.profileSwitchNotification);
+            Vapor.INSTANCE.getNotificationManager().show(this.profileSwitchNotification);
         }
     }
 
@@ -358,7 +359,7 @@ implements EventListener {
             mod.onFinishModuleInitialization();
         }
         if (ForgeVersion.MC_1_8_9.L()) {
-            if (Vape.INSTANCE.isOnlineConnected()) {
+            if (Vapor.INSTANCE.isOnlineConnected()) {
                 this.getMod(NoClickDelayHudModule.class).setEnabled(true);
                 this.getMod(MouseDelayFix.class).setEnabled(true);
             }
@@ -409,7 +410,9 @@ implements EventListener {
         for (Mod mod2 : this.getMods()) {
             mod2.U(mod);
         }
-        if (ClientSettings.INSTANCE.isInputEnabled() && mod.q$src$Z$12h8h4c() && Vape.INSTANCE.getPublicProfileSettings().toggleAlerts.getEffectiveValue().booleanValue() && !this.suppressStateNotifications) {
+        // Module state is part of the active local profile.
+        Vapor.INSTANCE.saveAndStop();
+        if (ClientSettings.INSTANCE.isInputEnabled() && mod.q$src$Z$12h8h4c() && Vapor.INSTANCE.getPublicProfileSettings().toggleAlerts.getEffectiveValue().booleanValue() && !this.suppressStateNotifications) {
             mod.showToggleNotification();
         }
     }
@@ -566,8 +569,8 @@ implements EventListener {
                     mod.loadJson(serializedModule);
                 }
                 catch (Exception exception) {
-                    Vape.debugLog(mod.getName());
-                    Vape.logThrowable(exception);
+                    Vapor.debugLog(mod.getName());
+                    Vapor.logThrowable(exception);
                 }
             }
         }
@@ -581,7 +584,7 @@ implements EventListener {
             mod.toggle();
         }
         if (disabledCount > 0) {
-            Vape.INSTANCE.getNotificationManager().show("Hidden Disabled", disabledCount + " module(s) have been disabled!", NotificationType.WARNING, 2500L);
+            Vapor.INSTANCE.getNotificationManager().show("Hidden Disabled", disabledCount + " module(s) have been disabled!", NotificationType.WARNING, 2500L);
         }
     }
 

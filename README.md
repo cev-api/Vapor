@@ -1,114 +1,154 @@
-[简体中文](README.md) | [English](README_EN.md)
+# Vapor 4.21 MC26.2
 
-# Vape 4.21 Product Recovery
+## Release summary
 
-Vape 4.21 Java 层与 Windows x64 原生桥接层的研究性恢复工程。
+This release converts the previous Vape 4.21 recovery workspace into a standalone Fabric client mod for Minecraft 26.2.
 
-### 它不是 Vape 官方源码、原始发布包或厂商签名产物，也不保证具备与原产品完全一致的行为。
+The project builds a standard Fabric mod JAR. It does not build a native DLL, injector executable, embedded Java payload, or native CMake project.
 
-> 本项目用于软件恢复、兼容性分析和自有环境测试。仅应在你拥有并获准测试的隔离实例中
-> 使用，并自行确认当地法律、软件许可和服务器规则。
+## Project Scope 
 
-## Minecraft 兼容性
+This project was created as a proof of concept to determine whether the recovered Vape 4.21 Java client could be converted into a standalone Fabric mod for Minecraft 26.2 without relying on native injection.
 
-| Minecraft | Vanilla | Forge | Fabric |
-| --- | :---: | :---: | :---: |
-| 1.7.10 | ✓ | ✓ | - |
-| 1.8.9 | ✓ | ✓ | - |
-| 1.12.2 | ✓ | ✓ | - |
-| 1.16.5 | | | |
-| 1.21.11 | ✓ | ✓ | ✓ |
-| 26.2 | ✓ | ✓ | ✓ |
+That objective has been completed. The client builds as a standard Fabric mod, loads successfully, and the core integration required to run the recovered client has been implemented.
 
-也支持 Lunar Client 与 Badlion Client 1.8.9 实例注入。
+Individual hacks and modules have received basic functional testing, but the recovered feature set has not been exhaustively tested, validated for complete behavioral accuracy, or compared feature-for-feature against upstream Vape 4.21. Reproducing every upstream behavior was not the purpose of this project.
 
-Minecraft 1.16.5 的支持不佳，部分映射、渲染和模块功能可能无法正常工作。
+The primary goal was to remove the native DLL/injector architecture and produce a conventional, non-injectable Fabric implementation. With that accomplished, development of this repository is considered complete.
 
-**对于26.2版本，请在进入服务器或单人世界后注入**。
+No further updates, compatibility work, module fixes, or upstream parity work are planned. Any broken, incomplete, or inaccurate functionality is left for users who choose to use, modify, or fork the project.
 
-所有目标实例均须使用 64 位 JVM。
+## Added
 
-## 环境要求
+### Fabric integration
 
-仅编译和校验 Java 层需要：
+- Added Fabric mod metadata in [`fabric.mod.json`](src/main/resources/fabric.mod.json).
+- Added `VaporFabricClient` as the Fabric client entrypoint.
+- Added Fabric mixin configuration in [`vapor421.mixins.json`](src/main/resources/vapor421.mixins.json).
+- Added Minecraft 26.2 integration for:
+  - Client startup and tick lifecycle
+  - Keyboard and mouse input
+  - Right Shift ClickGUI activation
+  - Player movement, motion, and attack events
+  - Packet send and receive events
+  - World-change notifications
+  - World and GUI rendering
+  - OpenGL capability management
 
-- JDK 17，用作 Gradle toolchain；输出默认通过 `--release 8` 编译
-- 项目自带的 Gradle Wrapper；构建脚本固定要求 Gradle 8.8
-- 可访问 Maven Central 和 Gradle Plugin Portal 的网络连接
+### Rendering and UI
 
-构建 native bundle 还需要：
+- Added Fabric render hooks for the recovered OpenGL-based UI.
+- Added deferred initialization until the first playable world tick.
+- Added handling for Minecraft 26.2's deferred GUI renderer.
+- Vapor HUD elements now render after native HUD mods such as Jade, with inherited clipping state cleared before drawing.
+- Added OpenGL capability restoration for render callbacks.
+- Added Fabric key binding registration for the Right Shift GUI shortcut.
+- Added local frame-state persistence for overlay visibility and layout.
 
-- Windows x64
-- Visual Studio 2022 C++ x64 工具链及 Windows SDK
-- CMake 3.21 或更高版本
-- 一套包含 JNI/JVMTI 头文件的 JDK；面向 1.7.10、1.8.9 和 1.12.2 测试时建议使用 JDK 8
+### Event bridge
 
-## 快速开始
+- Reconnected the recovered event system to Fabric lifecycle callbacks.
+- Added pre/post tick and render dispatch.
+- Added player tick, motion, travel, attack, packet, and world-change event dispatch.
+- Added cancellation support for outgoing and incoming client packets.
+- Restricted packet interception to active client play connections, excluding status/login traffic.
 
-在 PowerShell 中进入仓库根目录：
+## Changed
 
-```powershell
-.\gradlew.bat clean build verifyInjectionPayload
-```
+### Build system
 
-该命令会完成以下工作：
+The build was migrated to Fabric Loom.
 
-1. 编译恢复源码并处理全部资源。
-2. 检查源码数量以及残留的致命 CFR 反编译标记。
-3. 生成包含运行时依赖的 injection JAR。
-4. 确认载荷包含必要包，且所有 class 均可由 Java 8 加载。
+- Fabric Loom manages Minecraft dependencies and mappings.
+- Project name: `vapor421-fabric`.
+- Maven group: `gg.vapor`.
+- Version: `4.21.0`.
+- Minecraft target: 26.2.
+- Fabric Loader requirement: 0.19.3 or newer.
+- Fabric API requirement: `0.156.0+26.2` or newer.
+- Java 25 is required.
+- `jar` produces the standard Fabric JAR; `build` also produces the sources JAR in `build/libs/`.
 
-主要 Java 产物位于 `build/libs/`。如需生成 IntelliJ IDEA 工程配置，可运行：
-
-```powershell
-.\gradlew.bat idea
-```
-
-## 构建原生测试包
-
-```powershell
-.\gradlew.bat prepareInjectionBundle -PtargetRelease=8 `
-  -PnativeJavaHome="C:\Program Files\Java\jdk1.8.0_301"
-```
-
-完整测试包输出到 `build/injection/`：
+Expected artifacts:
 
 ```text
-Vape421Native.dll
-Vape421Injector.exe
-README.md
+build/libs/vapor421-fabric-4.21.0.jar
+build/libs/vapor421-fabric-4.21.0-sources.jar
 ```
 
-DLL 将 Java injection JAR 作为 `RCDATA` 嵌入，不要求另行放置 payload。原生桥接层只实现
-从样本九项 `RegisterNatives` 表恢复出的接口；未在样本中注册的额外 Java native 声明
-不会被臆造实现。更多细节见 [`native/README.md`](native/README.md)。
+### Runtime identity
 
-## 隔离环境运行
+- User-facing product metadata, logging, and documentation use the Vapor identity.
+- The recovered Java package namespace remains `gg.vape` for source compatibility.
 
-启动使用 64 位 JVM 的受支持 Minecraft 实例（包括 1.21.11/26.2 Fabric）或 Lunar Client 实例后，在
-`build/injection/` 中执行：
+### Initialization and persistence
+
+- Initialization is scheduled after Minecraft enters a playable world.
+- Item and hotbar-dependent setup is delayed until Minecraft registries and data reload are complete.
+- The legacy frame tree is not constructed before the client is ready.
+- Saved frame state is deferred until all Fabric UI frames exist, so overlay visibility and positions are restored correctly.
+- Startup no longer overwrites saved frame state with an empty layout.
+
+## Removed
+
+### Native injection build inputs and obsolete UI
+
+The release tree no longer contains:
+
+- Native source directory or CMake project
+- Native DLL/injector build tasks
+- `ForgePayloadClassLoader`
+- `NativeEventBridge`
+- `NativePresenceUpdater`
+- Reconstruction metadata referencing a sample DLL
+- The Rearview/off-screen camera renderer and UI
+- The Session Spoof/offline-account login screen and its disconnect trigger
+
+The release JAR contains no `.dll`, `.so`, or `.dylib` files.
+
+### Unsupported release targets
+
+This release supports Fabric on Minecraft 26.2 only. It does not support Forge, legacy Minecraft versions, launcher injection, or direct DLL-based process injection.
+
+## Compatibility
+
+Supported target:
+
+- Minecraft 26.2
+- Fabric Loader 0.19.3+
+- Fabric API 0.156.0+26.2+
+- Java 25
+- Client-side OpenGL rendering
+
+Known limitations:
+
+- Vulkan rendering is not supported.
+- This release is Fabric-only.
+- Native DLL/injector workflows are not included.
+- Online and recovery services are not a supported part of the Fabric release.
+
+## Legacy compatibility note
+
+The recovered Java codebase still contains compatibility-oriented classes such as `NativeBridge` and `ClassTransformer`, plus historical mappings for older environments. They are Java source compatibility remnants; they do not add native binaries or an injector workflow to the published Fabric artifact.
+
+## Build
+
+Windows:
 
 ```powershell
-.\Vape421Injector.exe <pid> .\Vape421Native.dll
+.\gradlew.bat build
 ```
 
-注入器仅执行 `LoadLibraryW`。DLL 加载后会等待 JVM 与 Minecraft `Client thread`，通过其
-上下文 ClassLoader 加载内嵌 JAR；Fabric 实例会通过 Fabric Launcher API 将载荷加入 Knot
-ClassLoader。随后 DLL 注册九个 native 方法，并调用
-`gg.vape.runtime.NativeBridge.start()`。执行结果写入 DLL 同目录的
-`vape421-native.log`。
+Linux or macOS:
 
-## 常用校验任务
+```sh
+./gradlew build
+```
 
-| 命令 | 用途 |
-| --- | --- |
-| `.\gradlew.bat check` | 编译、源码覆盖与恢复质量检查 |
-| `.\gradlew.bat injectionJar` | 构建自包含 Java 注入载荷 |
-| `.\gradlew.bat verifyInjectionPayload` | 检查依赖完整性与 Java 8 字节码版本 |
-| `.\gradlew.bat buildNative` | 构建 x64 DLL 和注入器 |
-| `.\gradlew.bat prepareInjectionBundle` | 汇总可供隔离测试的 native bundle |
+## License
 
-## 许可证
+This repository is provided under [CC0 1.0 Universal](LICENSE). Third-party libraries, trademarks, fonts, textures, and other existing materials remain subject to their respective rights.
 
-本仓库以 [CC0 1.0 Universal](LICENSE) 方式提供。在适用范围内，CC0 仅覆盖仓库贡献者
-有权作出处分的内容；第三方库、商标、字体、纹理以及其他既有材料仍受其各自权利约束。
+## Legal
+
+This is a Fabric conversion of a recovered client implementation, not the original official Vape source

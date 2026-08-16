@@ -1,6 +1,6 @@
 package gg.vape.sync;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 public class SyncStoreRequestWorker
@@ -13,7 +13,7 @@ implements Runnable {
 
     @Override
     public void run() {
-        while (!Vape.INSTANCE.isEnabled()) {
+        while (!Vapor.INSTANCE.isEnabled()) {
             try {
                 Thread.sleep(100L);
             }
@@ -27,7 +27,7 @@ implements Runnable {
             catch (InterruptedException interruptedException) {
                 interruptedException.printStackTrace();
             }
-            Vape.INSTANCE.getSyncThread().saveSettings();
+            Vapor.INSTANCE.getSyncThread().saveSettings();
             this.saveRequested.set(false);
         }
     }

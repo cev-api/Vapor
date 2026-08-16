@@ -1,7 +1,7 @@
 package gg.vape.notification;
 
 import func.skidline.RectData;
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.ui.theme.ThemeColors;
 import gg.vape.utils.render.BlurRegionRenderer;
 import gg.vape.utils.render.GuiRenderPrimitives;
@@ -22,7 +22,7 @@ extends AbstractNotification {
 
     private double getRenderX() {
         return this.getCurrentX() + 3.0
-                + (double)Minecraft.J() / Vape.INSTANCE.getClientSettings().getGuiScaleFactor() / 2.0;
+                + (double)Minecraft.J() / Vapor.INSTANCE.getClientSettings().getGuiScaleFactor() / 2.0;
     }
 
     public long getExpiresAt() {
@@ -51,7 +51,7 @@ extends AbstractNotification {
 
     private double getRenderY() {
         return this.getCurrentY()
-                + (double)Minecraft.h() / Vape.INSTANCE.getClientSettings().getGuiScaleFactor() / 2.0;
+                + (double)Minecraft.h() / Vapor.INSTANCE.getClientSettings().getGuiScaleFactor() / 2.0;
     }
 
     public double getRemainingProgress() {
@@ -86,7 +86,7 @@ extends AbstractNotification {
             this.started = true;
             this.setDuration(this.durationMillis);
         }
-        float inverseScale = (float)(1.0 / Vape.INSTANCE.getClientSettings().getGuiScaleFactor());
+        float inverseScale = (float)(1.0 / Vapor.INSTANCE.getClientSettings().getGuiScaleFactor());
         boolean blendingEnabled = GL11.glIsEnabled((int)3042);
         float scale = 1.0f / inverseScale;
         if (GuiRenderPrimitives.d()) {
@@ -114,7 +114,7 @@ extends AbstractNotification {
             ImageRenderer.drawResWithShadow(iconColor, (float)renderX - 2.0f, (float)renderY,
                     LARGE_ALERT_ICON, 0.65f, false);
         }
-        Vape.INSTANCE.getFontManager().W(0.9, true).d(this.getTitle(), renderX + 23.0,
+        Vapor.INSTANCE.getFontManager().W(0.9, true).d(this.getTitle(), renderX + 23.0,
                 renderY + 8.0, this.getType().equals((Object)NotificationType.ALERT)
                         ? new Color(this.getType().getColor()) : ThemeColors.J.A);
         this.getContent().render(renderX + 23.0, renderY + 21.0);

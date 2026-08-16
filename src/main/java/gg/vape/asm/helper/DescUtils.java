@@ -1,6 +1,6 @@
 package gg.vape.asm.helper;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.mapping.MappedClasses;
 import gg.vape.mapping.MappingMethod;
 import gg.vape.runtime.NativeBridge;
@@ -61,11 +61,11 @@ public class DescUtils {
     }
 
     public static void traceStack() {
-        Vape.debugLog("");
+        Vapor.debugLog("");
         for (StackTraceElement stackTraceElement : Thread.currentThread().getStackTrace()) {
-            Vape.debugLog(stackTraceElement.toString());
+            Vapor.debugLog(stackTraceElement.toString());
         }
-        Vape.debugLog("");
+        Vapor.debugLog("");
     }
 
     public static boolean isCurrentThreadInMappedFrame(MappingMethod mappingMethod, int stackIndex) {

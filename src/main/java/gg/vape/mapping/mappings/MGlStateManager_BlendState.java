@@ -1,6 +1,6 @@
 package gg.vape.mapping.mappings;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.mapping.MappedClasses;
 import gg.vape.mapping.Mapping;
 import gg.vape.mapping.MappingField;
@@ -23,7 +23,7 @@ extends Mapping {
     private MGlStateManager_BlendState(int initializationState) {
         super(MappedClasses.Yk);
         if (initializationState != 0) {
-            if (Vape.INSTANCE.isVanillaMinecraftPresent()) {
+            if (Vapor.INSTANCE.isVanillaMinecraftPresent()) {
                 this.blendEnabledStateField = this.J("blend", true, MappedClasses.U);
             } else if (ForgeVersion.MC_1_20_6.d()) {
                 this.blendEnabledStateField = this.fieldBuilder("mode", MappedClasses.U).buildField();
@@ -32,7 +32,7 @@ extends Mapping {
             }
             return;
         }
-        if (Vape.INSTANCE.isVanillaMinecraftPresent()) {
+        if (Vapor.INSTANCE.isVanillaMinecraftPresent()) {
             this.blendEnabledStateField = this.fieldBuilder("mode", MappedClasses.U).buildField();
         }
         this.blendEnabledStateField = this.J("field_179213_a", Wrapper.isNativeAvailable, MappedClasses.U);

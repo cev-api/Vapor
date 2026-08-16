@@ -1,6 +1,6 @@
 package gg.vape.mapping;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.event.impl.EventEntityRenderState;
 import gg.vape.mapping.EventPreRenderEntityCallback;
 import gg.vape.mapping.JavassistMappingTask;
@@ -14,9 +14,9 @@ extends JavassistMappingTask {
     @Override
     public void transform() {
         if (!ForgeVersion.MC_1_7_10.L()) {
-            MappingMethod mappingMethod = Vape.INSTANCE.getMappings().qe.p;
+            MappingMethod mappingMethod = Vapor.INSTANCE.getMappings().qe.p;
             if (ForgeVersion.MC_1_21_10.d()) {
-                MappingMethod mappingMethod2 = Vape.INSTANCE.getMappings().qe.z;
+                MappingMethod mappingMethod2 = Vapor.INSTANCE.getMappings().qe.z;
                 this.k(mappingMethod2, EventEntityRenderState.class, "$1, $2");
                 return;
             }

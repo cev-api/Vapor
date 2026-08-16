@@ -1,6 +1,6 @@
 package gg.vape.mapping;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.asm.helper.DescUtils;
 import gg.vape.mapping.MappedClasses;
 import gg.vape.mapping.Mapping;
@@ -40,7 +40,7 @@ public class MappingField {
                 return;
             }
             catch (Exception exception) {
-                Vape.logThrowable(exception);
+                Vapor.logThrowable(exception);
             }
         }
         MappingField.unchecked(() -> NativeMappedMemberInvoker.setBooleanField(this.fieldId, object, bl));
@@ -52,7 +52,7 @@ public class MappingField {
                 return this.reflectedField.getFloat(object);
             }
             catch (Exception exception) {
-                Vape.logThrowable(exception);
+                Vapor.logThrowable(exception);
             }
         }
         return MappingField.unchecked(() -> NativeMappedMemberInvoker.getFloatField(this.fieldId, object));
@@ -64,7 +64,7 @@ public class MappingField {
                 return (char[])this.reflectedField.get(object);
             }
             catch (Exception exception) {
-                Vape.logThrowable(exception);
+                Vapor.logThrowable(exception);
             }
         }
         return NativeMappedMemberInvoker.getCharArrayField(this.fieldId, object);
@@ -76,7 +76,7 @@ public class MappingField {
                 return (double[])this.reflectedField.get(object);
             }
             catch (Exception exception) {
-                Vape.logThrowable(exception);
+                Vapor.logThrowable(exception);
             }
         }
         return MappingField.unchecked(() -> NativeMappedMemberInvoker.getDoubleArrayField(this.fieldId, object));
@@ -89,7 +89,7 @@ public class MappingField {
                 return;
             }
             catch (Exception exception) {
-                Vape.logThrowable(exception);
+                Vapor.logThrowable(exception);
             }
         }
         MappingField.unchecked(() -> NativeMappedMemberInvoker.setFloatArrayField(this.fieldId, object, fArray));
@@ -135,7 +135,7 @@ public class MappingField {
                 return;
             }
             catch (Exception exception) {
-                Vape.logThrowable(exception);
+                Vapor.logThrowable(exception);
             }
         }
         MappingField.unchecked(() -> NativeMappedMemberInvoker.setIntField(this.fieldId, object, n));
@@ -155,7 +155,7 @@ public class MappingField {
                 return (byte[])this.reflectedField.get(object);
             }
             catch (Exception exception) {
-                Vape.logThrowable(exception);
+                Vapor.logThrowable(exception);
             }
         }
         return NativeMappedMemberInvoker.getByteArrayField(this.fieldId, object);
@@ -168,14 +168,14 @@ public class MappingField {
                 return;
             }
             catch (Exception exception) {
-                Vape.logThrowable(exception);
+                Vapor.logThrowable(exception);
             }
         }
         MappingField.unchecked(() -> NativeMappedMemberInvoker.setCharField(this.fieldId, object, c));
     }
 
     public MappingField resolveReflectedField() {
-        if ((Vape.INSTANCE.isMappingsRemapped() || Vape.INSTANCE.isForgeRemapInactive()) && !this.resolutionFailed) {
+        if ((Vapor.INSTANCE.isMappingsRemapped() || Vapor.INSTANCE.isForgeRemapInactive()) && !this.resolutionFailed) {
             this.reflectedField = this.findReflectedField();
         }
         return this;
@@ -187,7 +187,7 @@ public class MappingField {
                 return this.reflectedField.getBoolean(object);
             }
             catch (Exception exception) {
-                Vape.logThrowable(exception);
+                Vapor.logThrowable(exception);
             }
         }
         return MappingField.unchecked(() -> NativeMappedMemberInvoker.getBooleanField(this.fieldId, object));
@@ -200,7 +200,7 @@ public class MappingField {
                 return;
             }
             catch (Exception exception) {
-                Vape.logThrowable(exception);
+                Vapor.logThrowable(exception);
             }
         }
         MappingField.unchecked(() -> NativeMappedMemberInvoker.setLongField(this.fieldId, object, l));
@@ -221,7 +221,7 @@ public class MappingField {
             }
         }
         catch (Exception exception) {
-            Vape.logThrowable(exception);
+            Vapor.logThrowable(exception);
         }
         return null;
     }
@@ -237,7 +237,7 @@ public class MappingField {
                 return;
             }
             catch (Exception exception) {
-                Vape.logThrowable(exception);
+                Vapor.logThrowable(exception);
             }
         }
         MappingField.unchecked(() -> NativeMappedMemberInvoker.setShortField(this.fieldId, object, s));
@@ -250,7 +250,7 @@ public class MappingField {
                 return;
             }
             catch (Exception exception) {
-                Vape.logThrowable(exception);
+                Vapor.logThrowable(exception);
             }
         }
         NativeMappedMemberInvoker.setDoubleField(this.fieldId, object, d);
@@ -262,7 +262,7 @@ public class MappingField {
                 return this.reflectedField.get(object);
             }
             catch (Exception exception) {
-                Vape.logThrowable(exception);
+                Vapor.logThrowable(exception);
             }
         }
         return NativeMappedMemberInvoker.getObjectField(this.fieldId, object);
@@ -279,7 +279,7 @@ public class MappingField {
                 return;
             }
             catch (Exception exception) {
-                Vape.logThrowable(exception);
+                Vapor.logThrowable(exception);
             }
         }
         MappingField.unchecked(() -> NativeMappedMemberInvoker.setFloatField(this.fieldId, object, f));
@@ -291,7 +291,7 @@ public class MappingField {
                 return this.reflectedField.getShort(object);
             }
             catch (Exception exception) {
-                Vape.logThrowable(exception);
+                Vapor.logThrowable(exception);
             }
         }
         return MappingField.unchecked(() -> NativeMappedMemberInvoker.getShortField(this.fieldId, object));
@@ -304,7 +304,7 @@ public class MappingField {
                 return;
             }
             catch (Exception exception) {
-                Vape.logThrowable(exception);
+                Vapor.logThrowable(exception);
             }
         }
         MappingField.unchecked(() -> NativeMappedMemberInvoker.setDoubleArrayField(this.fieldId, object, dArray));
@@ -316,7 +316,7 @@ public class MappingField {
 
     public MappingField register() {
         try {
-            if (Vape.INSTANCE.isForgeRemapInactive()) {
+            if (Vapor.INSTANCE.isForgeRemapInactive()) {
                 this.resolveReflectedField();
                 if (this.reflectedField == null) {
                     throw new NoSuchFieldException(this.ownerClass.getName() + "#" + this.runtimeName);
@@ -389,7 +389,7 @@ public class MappingField {
     }
 
     public String getResolvedName() {
-        if (Vape.INSTANCE.isForgeRemapInactive()) {
+        if (Vapor.INSTANCE.isForgeRemapInactive()) {
             return this.runtimeName;
         }
         return NativeMappedMemberInvoker.getFieldName(this.fieldId);
@@ -402,7 +402,7 @@ public class MappingField {
                 return;
             }
             catch (Exception exception) {
-                Vape.logThrowable(exception);
+                Vapor.logThrowable(exception);
             }
         }
         MappingField.unchecked(() -> NativeMappedMemberInvoker.setIntArrayField(this.fieldId, object, nArray));
@@ -415,7 +415,7 @@ public class MappingField {
                 return;
             }
             catch (Exception exception) {
-                Vape.logThrowable(exception);
+                Vapor.logThrowable(exception);
             }
         }
         MappingField.unchecked(() -> NativeMappedMemberInvoker.setShortArrayField(this.fieldId, object, sArray));
@@ -427,7 +427,7 @@ public class MappingField {
                 return this.reflectedField.getChar(object);
             }
             catch (Exception exception) {
-                Vape.logThrowable(exception);
+                Vapor.logThrowable(exception);
             }
         }
         return MappingField.unchecked(() -> NativeMappedMemberInvoker.getCharField(this.fieldId, object));
@@ -443,7 +443,7 @@ public class MappingField {
                 return this.reflectedField.getInt(object);
             }
             catch (Exception exception) {
-                Vape.logThrowable(exception);
+                Vapor.logThrowable(exception);
             }
         }
         return NativeMappedMemberInvoker.getIntField(this.fieldId, object);
@@ -455,7 +455,7 @@ public class MappingField {
                 return (short[])this.reflectedField.get(object);
             }
             catch (Exception exception) {
-                Vape.logThrowable(exception);
+                Vapor.logThrowable(exception);
             }
         }
         return MappingField.unchecked(() -> NativeMappedMemberInvoker.getShortArrayField(this.fieldId, object));
@@ -467,7 +467,7 @@ public class MappingField {
                 return (float[])this.reflectedField.get(object);
             }
             catch (Exception exception) {
-                Vape.logThrowable(exception);
+                Vapor.logThrowable(exception);
             }
         }
         return MappingField.unchecked(() -> NativeMappedMemberInvoker.getFloatArrayField(this.fieldId, object));
@@ -480,7 +480,7 @@ public class MappingField {
                 return;
             }
             catch (Exception exception) {
-                Vape.logThrowable(exception);
+                Vapor.logThrowable(exception);
             }
         }
         MappingField.unchecked(() -> NativeMappedMemberInvoker.setObjectArrayField(this.fieldId, object, objectArray));
@@ -501,7 +501,7 @@ public class MappingField {
                 return;
             }
             catch (Exception exception) {
-                Vape.logThrowable(exception);
+                Vapor.logThrowable(exception);
             }
         }
         MappingField.unchecked(() -> NativeMappedMemberInvoker.setBooleanArrayField(this.fieldId, object, blArray));
@@ -513,7 +513,7 @@ public class MappingField {
                 return (int[])this.reflectedField.get(object);
             }
             catch (Exception exception) {
-                Vape.logThrowable(exception);
+                Vapor.logThrowable(exception);
             }
         }
         return MappingField.unchecked(() -> NativeMappedMemberInvoker.getIntArrayField(this.fieldId, object));
@@ -525,7 +525,7 @@ public class MappingField {
                 return this.reflectedField.getDouble(object);
             }
             catch (Exception exception) {
-                Vape.logThrowable(exception);
+                Vapor.logThrowable(exception);
             }
         }
         return MappingField.unchecked(() -> NativeMappedMemberInvoker.getDoubleField(this.fieldId, object));
@@ -537,7 +537,7 @@ public class MappingField {
                 return this.reflectedField.getLong(object);
             }
             catch (Exception exception) {
-                Vape.logThrowable(exception);
+                Vapor.logThrowable(exception);
             }
         }
         return MappingField.unchecked(() -> NativeMappedMemberInvoker.getLongField(this.fieldId, object));
@@ -549,7 +549,7 @@ public class MappingField {
                 return (boolean[])this.reflectedField.get(object);
             }
             catch (Exception exception) {
-                Vape.logThrowable(exception);
+                Vapor.logThrowable(exception);
             }
         }
         return MappingField.unchecked(() -> NativeMappedMemberInvoker.getBooleanArrayField(this.fieldId, object));
@@ -561,7 +561,7 @@ public class MappingField {
                 return (long[])this.reflectedField.get(object);
             }
             catch (Exception exception) {
-                Vape.logThrowable(exception);
+                Vapor.logThrowable(exception);
             }
         }
         return MappingField.unchecked(() -> NativeMappedMemberInvoker.getLongArrayField(this.fieldId, object));
@@ -590,7 +590,7 @@ public class MappingField {
                 return;
             }
             catch (Exception exception) {
-                Vape.logThrowable(exception);
+                Vapor.logThrowable(exception);
             }
         }
         MappingField.unchecked(() -> NativeMappedMemberInvoker.setObjectField(this.fieldId, object, object2));
@@ -608,7 +608,7 @@ public class MappingField {
                 return;
             }
             catch (Exception exception) {
-                Vape.logThrowable(exception);
+                Vapor.logThrowable(exception);
             }
         }
         MappingField.unchecked(() -> NativeMappedMemberInvoker.setCharArrayField(this.fieldId, object, cArray));
@@ -620,7 +620,7 @@ public class MappingField {
                 return (Object[])this.reflectedField.get(object);
             }
             catch (Exception exception) {
-                Vape.logThrowable(exception);
+                Vapor.logThrowable(exception);
             }
         }
         return NativeMappedMemberInvoker.getObjectArrayField(this.fieldId, object);
@@ -637,7 +637,7 @@ public class MappingField {
                 return;
             }
             catch (Exception exception) {
-                Vape.logThrowable(exception);
+                Vapor.logThrowable(exception);
             }
         }
         MappingField.unchecked(() -> NativeMappedMemberInvoker.setLongArrayField(this.fieldId, object, lArray));

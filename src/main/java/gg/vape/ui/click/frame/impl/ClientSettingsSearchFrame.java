@@ -1,8 +1,7 @@
 package gg.vape.ui.click.frame.impl;
 
 import com.google.gson.JsonObject;
-import gg.vape.Vape;
-import gg.vape.friend.ui.OnlineFriendsFrame;
+import gg.vape.Vapor;
 import gg.vape.mapping.MappedClasses;
 import gg.vape.module.Category;
 import gg.vape.module.Mod;
@@ -69,7 +68,7 @@ extends ModuleCategoryFrame {
         }
 
         String normalizedQuery = StringUtils.y(query);
-        for (Mod mod : Vape.INSTANCE.getModManager().collectMods()) {
+        for (Mod mod : Vapor.INSTANCE.getModManager().collectMods()) {
             if (mod.getCategory().equals(Category.NONE)) {
                 continue;
             }
@@ -219,15 +218,13 @@ extends ModuleCategoryFrame {
         this.addDefaultMenuComponent(new ModuleCategoryNavigationButtonComponent("Utility", Category.UTILITY.getIconKey()));
         this.addDefaultMenuComponent(new ModuleCategoryNavigationButtonComponent("World", Category.WORLD.getIconKey()));
         this.addDefaultMenuComponent(new ModuleCategoryNavigationButtonComponent("Inventory", Category.INVENTORY.getIconKey()).Q(-1));
-        if (Vape.INSTANCE.isFeatureDisabled()) {
+        if (Vapor.INSTANCE.isFeatureDisabled()) {
             this.addDefaultMenuComponent(new ModuleCategoryNavigationButtonComponent("Other", "other").Q(1));
         }
         this.addDefaultMenuComponent(new SpacerComponent(1.0, 2.0));
         this.addDefaultMenuComponent(new SimpleTextLabelComponent("  MISC", 0.625));
         this.addDefaultMenuComponent(new SpacerComponent(1.0, 2.0));
         this.addDefaultMenuComponent(new ColorDividerComponent(ClientSettingsSearchFrame.J.m));
-        this.addDefaultMenuComponent(new FrameNavigationButtonComponent("Friends", null, OnlineFriendsFrame.class)
-                .addClickListener(new ClientSettingsSearchFrameClassOpenClickHandler(this, OnlineFriendsFrame.class)));
         this.addDefaultMenuComponent(new ProfilesFrameNavigationButtonComponent()
                 .addClickListener(new ClientSettingsSearchFrameClassOpenClickHandler(this, ProfilesSettingsFrame.class)));
         this.addDefaultMenuComponent(new FrameNavigationButtonComponent("Macros", null, FrameMacros.class)

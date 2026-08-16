@@ -42,7 +42,8 @@ extends BooleanToggleComponent {
 
     @Override
     protected void synchronizeValueState() {
-        if (this.targetFrameClass != null && ((GuiComponent)ClientSettings.getFrame(this.targetFrameClass)).V$src$Z$1xhop3l() != this.isOn() && !this.isAnimating()) {
+        GuiComponent targetFrame = this.targetFrameClass == null ? null : (GuiComponent)ClientSettings.getFrame(this.targetFrameClass);
+        if (targetFrame != null && targetFrame.V$src$Z$1xhop3l() != this.isOn() && !this.isAnimating()) {
             this.toggle();
         }
         super.synchronizeValueState();

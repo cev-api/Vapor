@@ -1,6 +1,6 @@
 package gg.vape.ui.click.frame.impl.hud;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.ui.click.GuiMouseEvent;
 import gg.vape.ui.click.component.GuiComponent;
 import gg.vape.ui.click.frame.impl.hud.KeystrokesHudFrame;
@@ -85,7 +85,7 @@ extends GuiComponent {
     public void renderStandaloneCounter() {
         double centerX = this.G$src$D$1b2f02a();
         double centerY = this.n();
-        SmoothFontRenderer smoothFontRenderer = Vape.INSTANCE.getFontManager().Y(0.65);
+        SmoothFontRenderer smoothFontRenderer = Vapor.INSTANCE.getFontManager().Y(0.65);
         String leftCps = String.valueOf(this.countActiveClicks(this.leftClicks));
         if (this.singleButtonMode) {
             smoothFontRenderer.v(leftCps, centerX - smoothFontRenderer.N(leftCps) / 2.0,
@@ -110,7 +110,7 @@ extends GuiComponent {
     private void renderHudCounter() {
         double x = this.G$src$D$1b2f02a();
         double y = this.n();
-        SmoothFontRenderer smoothFontRenderer = Vape.INSTANCE.getFontManager().K(1.0, false);
+        SmoothFontRenderer smoothFontRenderer = Vapor.INSTANCE.getFontManager().K(1.0, false);
         String leftCps = String.valueOf(this.countActiveClicks(this.leftClicks));
         String rightCps = String.valueOf(this.countActiveClicks(this.rightClicks));
         if (this.singleButtonMode) {

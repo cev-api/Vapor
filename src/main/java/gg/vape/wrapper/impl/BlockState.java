@@ -40,18 +40,21 @@ extends Wrapper {
     }
 
     public float getPlayerRelativeDestroyProgress(EntityPlayer player, World world, BlockPos blockPos) {
-        if (ForgeVersion.MC_1_16_5.d()) {
-            return BlockState.vapeInstance.getMappings().CJ.getDestroyProgress(
-                    this.I, player.getObject(), world.getObject(), blockPos.getObject());
+        Block block = this.getBlock();
+        float hardness = block.c();
+        if (hardness <= 0.0f) {
+            return 1.0f;
         }
-        if (ForgeVersion.MC_1_12_2.d()) {
-            return BlockState.vapeInstance.getMappings().DE.getPlayerRelativeBlockHardness(
-                    this.I, player.getObject(), world.getObject(), blockPos.getObject());
+        ItemStack heldItem = player.getHeldItemHand();
+        if (heldItem == null || heldItem.isNull()) {
+            return 0.0f;
         }
-        return BlockState.vapeInstance.getMappings().qg.getPlayerRelativeBlockHardness(
-                this.getBlock().getObject(), player.getObject(), world.getObject(), blockPos.getObject());
+        float destroySpeed = heldItem.V(blockPos.getX(), blockPos.getY(), blockPos.getZ());
+        if (destroySpeed <= 0.0f) {
+            destroySpeed = 1.0f;
+        }
+        return destroySpeed / hardness / 30.0f;
     }
-
     public BlockState(Object object) {
         super(object);
     }

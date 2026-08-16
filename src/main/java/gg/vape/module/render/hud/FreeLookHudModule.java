@@ -1,6 +1,6 @@
 package gg.vape.module.render.hud;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.event.EventHandler;
 import gg.vape.event.EventPriority;
 import gg.vape.event.impl.EventPostEntityRendererMouseUpdate;
@@ -85,7 +85,7 @@ extends HudModule {
         if (!this.enabled) {
             return;
         }
-        if (RotationManager.INSTANCE.hasAdaptiveController() && Vape.INSTANCE.getClientSettings().thirdPersonAimView.getEffectiveValue().booleanValue()) {
+        if (RotationManager.INSTANCE.hasAdaptiveController() && Vapor.INSTANCE.getClientSettings().thirdPersonAimView.getEffectiveValue().booleanValue()) {
             return;
         }
         this.applyCameraRotation();
@@ -198,7 +198,7 @@ extends HudModule {
         if (!this.enabled) {
             return;
         }
-        if (RotationManager.INSTANCE.hasAdaptiveController() && Vape.INSTANCE.getClientSettings().thirdPersonAimView.getEffectiveValue().booleanValue()) {
+        if (RotationManager.INSTANCE.hasAdaptiveController() && Vapor.INSTANCE.getClientSettings().thirdPersonAimView.getEffectiveValue().booleanValue()) {
             return;
         }
         this.restorePlayerView();

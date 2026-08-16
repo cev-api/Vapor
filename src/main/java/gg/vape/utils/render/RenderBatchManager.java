@@ -1,6 +1,6 @@
 package gg.vape.utils.render;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.module.blatant.invwalk.InvWalkKeyLayout;
 import gg.vape.rotation.LocalPlayerRotationUtil;
 import gg.vape.utils.render.BufferedGuiRenderPrimitives;
@@ -516,9 +516,9 @@ public class RenderBatchManager {
             return;
         }
         this.framebufferFailureLogged = true;
-        Vape.debugLog("RenderBatchManager 26.2: " + reason);
+        Vapor.debugLog("RenderBatchManager 26.2: " + reason);
         if (error != null) {
-            Vape.logThrowable(error);
+            Vapor.logThrowable(error);
         }
     }
 

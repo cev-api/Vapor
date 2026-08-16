@@ -1,11 +1,38 @@
-.gradle/
-build/
-out/
-*.log
-src/manual/
-tmp-*/
+# Gradle build state and outputs
+/.gradle/
+/build/
+/out/
+/bin/
+
+# IDE metadata
+/.idea/
 *.iml
 *.ipr
 *.iws
+.classpath
+.project
+/.settings/
+/.vscode/
+
+# Local game and launcher runtime data
+/run/
+/logs/
+/crash-reports/
+/config/
+/saves/
+/screenshots/
+/resourcepacks/
+/shaderpacks/
+
+# Temporary and diagnostic artifacts
+*.log
+hs_err_pid*
+replay_pid*
 javap-*.txt
-.idea/workspace.xml
+/tmp-*/
+/src/manual/
+
+# Operating-system files
+.DS_Store
+Thumbs.db
+Desktop.ini

@@ -1,6 +1,6 @@
 package gg.vape.ui.click.frame.impl.hud;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.module.render.hud.CoordinatesHudModule;
 import gg.vape.ui.click.frame.impl.hud.HudModuleConfigFrameBase;
 import gg.vape.ui.font.SmoothFontRenderer;
@@ -31,8 +31,8 @@ extends HudModuleConfigFrameBase {
     }
 
     private void renderVerticalLayout() {
-        SmoothFontRenderer labelFont = Vape.INSTANCE.getFontManager().K(0.7, true);
-        SmoothFontRenderer valueFont = Vape.INSTANCE.getFontManager().K(1.1, true);
+        SmoothFontRenderer labelFont = Vapor.INSTANCE.getFontManager().K(0.7, true);
+        SmoothFontRenderer valueFont = Vapor.INSTANCE.getFontManager().K(1.1, true);
         double rowHeight = this.L() / 4.0;
         double leftPadding = 8.0;
         Color dividerColor = ColorUtil.withAlpha(Color.WHITE, 51);
@@ -98,8 +98,8 @@ extends HudModuleConfigFrameBase {
     }
 
     private void renderHorizontalLayout() {
-        SmoothFontRenderer labelFont = Vape.INSTANCE.getFontManager().K(0.75, true);
-        SmoothFontRenderer valueFont = Vape.INSTANCE.getFontManager().K(1.2, true);
+        SmoothFontRenderer labelFont = Vapor.INSTANCE.getFontManager().K(0.75, true);
+        SmoothFontRenderer valueFont = Vapor.INSTANCE.getFontManager().K(1.2, true);
         double halfHeight = this.L() / 2.0;
         Color dividerColor = ColorUtil.withAlpha(Color.WHITE, 51);
         EntityPlayerSP player = Minecraft.thePlayer();

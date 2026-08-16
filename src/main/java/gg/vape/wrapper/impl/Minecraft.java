@@ -1,6 +1,6 @@
 package gg.vape.wrapper.impl;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.account.MinecraftSessionWrapper;
 import gg.vape.mapping.mappings.MMinecraft;
 import gg.vape.wrapper.Wrapper;
@@ -21,7 +21,7 @@ extends Wrapper {
     }
 
     public static NetworkManager x$src$Lgg_vape_wrapper_impl_NetworkManager_$1sglv7v() {
-        return new NetworkManager(MMinecraft.w(Vape.INSTANCE.getMappings().U, Minecraft.i()));
+        return new NetworkManager(MMinecraft.w(Vapor.INSTANCE.getMappings().U, Minecraft.i()));
     }
 
     public static boolean V() {
@@ -199,7 +199,7 @@ extends Wrapper {
     }
 
     public static EntityPlayerSP thePlayer() {
-        return new EntityPlayerSP(Vape.INSTANCE.getMappings().U.T(Minecraft.i()));
+        return new EntityPlayerSP(Vapor.INSTANCE.getMappings().U.T(Minecraft.i()));
     }
 
     public static int l() {
@@ -231,7 +231,7 @@ extends Wrapper {
     }
 
     public Minecraft() {
-        super(Vape.INSTANCE.getMappings().U.J());
+        super(Vapor.INSTANCE.getMappings().U.J());
     }
 
     public static void w(MinecraftSessionWrapper minecraftSessionWrapper) {

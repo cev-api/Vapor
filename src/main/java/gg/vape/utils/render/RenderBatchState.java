@@ -1,6 +1,6 @@
 package gg.vape.utils.render;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.module.blatant.invwalk.InvWalkKeyLayout;
 import gg.vape.utils.render.RenderBatchManager;
 import gg.vape.utils.render.RenderBatchShaderProgram;
@@ -42,7 +42,7 @@ public class RenderBatchState {
         GL15.glDeleteBuffers((int)this.cubeIndexBufferId);
         GL30.glDeleteVertexArrays((int)this.vertexArrayId);
         this.initialized = false;
-        Vape.debugLog("InstancedBlockRenderer cleaned up");
+        Vapor.debugLog("InstancedBlockRenderer cleaned up");
     }
 
     private void restoreGlBindings() {
@@ -152,7 +152,7 @@ public class RenderBatchState {
         GL33.glVertexAttribDivisor((int)2, (int)1);
         GL30.glBindVertexArray((int)0);
         this.initialized = true;
-        Vape.debugLog("InstancedBlockRenderer initialized (capacity: " + this.instanceCapacity + " blocks)");
+        Vapor.debugLog("InstancedBlockRenderer initialized (capacity: " + this.instanceCapacity + " blocks)");
     }
 
     private void growInstanceCapacity() {

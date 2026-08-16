@@ -1,6 +1,6 @@
 package gg.vape.mapping;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.asm.helper.DescUtils;
 import gg.vape.mapping.runtime.RuntimeNameMappingRegistry;
 import gg.vape.runtime.NativeBridge;
@@ -667,7 +667,7 @@ public class MappedClasses {
         lA = MappedClasses.m("java/lang/System");
         lJ = ForgeVersion.MC_1_7_10.Y() ? "net/minecraftforge/" : "cpw/mods/";
         F0 = lJ.replace("/", ".");
-        if (ForgeVersion.MC_1_7_10.L() && !Vape.INSTANCE.isForgeAbsent()) {
+        if (ForgeVersion.MC_1_7_10.L() && !Vapor.INSTANCE.isForgeAbsent()) {
             S = MappedClasses.m(lJ + "fml/common/eventhandler/Event");
             x = MappedClasses.m("net/minecraftforge/client/event/RenderLivingEvent$Specials$Pre");
         }
@@ -1428,15 +1428,15 @@ public class MappedClasses {
         if (string3 != null) {
             string = string3;
         }
-        bl2 = Vape.INSTANCE.isForgeAbsent();
-        if (!Vape.INSTANCE.isForgeRemapActive()) {
+        bl2 = Vapor.INSTANCE.isForgeAbsent();
+        if (!Vapor.INSTANCE.isForgeRemapActive()) {
             try {
                 Class<?> clazz = Class.forName(string.replace("/", "."), true, MappedClasses.class.getClassLoader());
                 return clazz;
             }
             catch (ClassNotFoundException classNotFoundException) {
                 if (!bl) {
-                    Vape.debugLog("Failed get class " + string);
+                    Vapor.debugLog("Failed get class " + string);
                 }
                 return null;
             }
@@ -1446,7 +1446,7 @@ public class MappedClasses {
             if (string.contains("net/minecraftforge") || string.contains("cpw/mods/")) {
                 return null;
             }
-            if (Vape.mappingsLoaded && Vape.INSTANCE.isVanillaMinecraftPresent() && string.startsWith("net/minecraft") && !string.contains("$")) {
+            if (Vapor.mappingsLoaded && Vapor.INSTANCE.isVanillaMinecraftPresent() && string.startsWith("net/minecraft") && !string.contains("$")) {
                 try {
                     Class.forName(string.replace("/", "."), true, MappedClasses.class.getClassLoader());
                 }

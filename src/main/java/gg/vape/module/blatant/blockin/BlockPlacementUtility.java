@@ -1,6 +1,6 @@
 package gg.vape.module.blatant.blockin;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.mapping.ItemMappingEntry;
 import gg.vape.mapping.MappedClasses;
 import gg.vape.module.Mod;
@@ -84,7 +84,7 @@ public final class BlockPlacementUtility {
 
     @Nullable
     public static ItemMappingEntry getSlotItem(@Nullable Slot slot) {
-        return slot == null || slot.isNull() || slot.getStack() == null || slot.getStack().isNull() ? null : Vape.INSTANCE.getItemStackResolver().resolve(slot.getStack());
+        return slot == null || slot.isNull() || slot.getStack() == null || slot.getStack().isNull() ? null : Vapor.INSTANCE.getItemStackResolver().resolve(slot.getStack());
     }
 
     public static boolean isLookingAtPlacementTarget(@Nullable BlockCoordinate blockCoordinate,
@@ -108,12 +108,12 @@ public final class BlockPlacementUtility {
     }
 
     private static boolean slotContainsItem(ItemMappingEntry itemMappingEntry, Slot slot) {
-        return slot != null && slot.isNotNull() && slot.getStack().isNotNull() && itemMappingEntry.equals(Vape.INSTANCE.getItemStackResolver().resolve(slot.getStack()));
+        return slot != null && slot.isNotNull() && slot.getStack().isNotNull() && itemMappingEntry.equals(Vapor.INSTANCE.getItemStackResolver().resolve(slot.getStack()));
     }
 
     public static ItemMappingEntry getEmptyBucketItem() {
         if (emptyBucketItem == null) {
-            emptyBucketItem = Vape.INSTANCE.getItemStackResolver().findByName("minecraft:bucket");
+            emptyBucketItem = Vapor.INSTANCE.getItemStackResolver().findByName("minecraft:bucket");
         }
         return emptyBucketItem;
     }
@@ -233,7 +233,7 @@ public final class BlockPlacementUtility {
 
     public static ItemMappingEntry getWaterBucketItem() {
         if (waterBucketItem == null) {
-            waterBucketItem = Vape.INSTANCE.getItemStackResolver().findByName("minecraft:water_bucket");
+            waterBucketItem = Vapor.INSTANCE.getItemStackResolver().findByName("minecraft:water_bucket");
         }
         return waterBucketItem;
     }
@@ -269,7 +269,7 @@ public final class BlockPlacementUtility {
 
     static ItemMappingEntry getCobwebItem() {
         if (cobwebItem == null) {
-            cobwebItem = Vape.INSTANCE.getItemStackResolver().findByName("minecraft:cobweb");
+            cobwebItem = Vapor.INSTANCE.getItemStackResolver().findByName("minecraft:cobweb");
         }
         return cobwebItem;
     }

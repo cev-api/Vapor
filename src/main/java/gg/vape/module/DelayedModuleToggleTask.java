@@ -1,6 +1,6 @@
 package gg.vape.module;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 
 public class DelayedModuleToggleTask
 implements Runnable {
@@ -38,6 +38,6 @@ implements Runnable {
             }
             catch (Exception ignored) {
             }
-        } while (!Vape.INSTANCE.isEnabled() && this.repeatUntilDisabled && this.running);
+        } while (!Vapor.INSTANCE.isEnabled() && this.repeatUntilDisabled && this.running);
     }
 }

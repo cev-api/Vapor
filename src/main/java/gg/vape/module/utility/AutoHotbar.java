@@ -1,6 +1,6 @@
 package gg.vape.module.utility;
 
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.event.EventHandler;
 import gg.vape.event.impl.EventPrePlayerTick;
 import gg.vape.input.KeyBindingHelper;
@@ -203,7 +203,7 @@ implements InventoryActionModule {
     @EventHandler
     public void onTick(EventPrePlayerTick event) {
         Container container;
-        if (Vape.INSTANCE.getModManager().isOtherInventoryActionActive(AutoHotbar.class) || Vape.INSTANCE.getClientSettings().isLobbyCheckActive()) {
+        if (Vapor.INSTANCE.getModManager().isOtherInventoryActionActive(AutoHotbar.class) || Vapor.INSTANCE.getClientSettings().isLobbyCheckActive()) {
             this.clickQueue.clear();
             this.clickTimer.reset();
             this.touchedSlots.clear();

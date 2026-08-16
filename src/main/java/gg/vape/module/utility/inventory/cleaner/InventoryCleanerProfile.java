@@ -3,7 +3,7 @@ package gg.vape.module.utility.inventory.cleaner;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import gg.vape.Vape;
+import gg.vape.Vapor;
 import gg.vape.module.utility.InventoryManager;
 import gg.vape.unmap.ModeOption;
 import gg.vape.unmap.ModeSelection;
@@ -71,7 +71,7 @@ public class InventoryCleanerProfile {
 
     public void assignDefaultName() {
         int suffix = 1;
-        for (InventoryCleanerProfile profile : Vape.INSTANCE.getModManager().getMod(InventoryManager.class).getProfileValue().getProfiles()) {
+        for (InventoryCleanerProfile profile : Vapor.INSTANCE.getModManager().getMod(InventoryManager.class).getProfileValue().getProfiles()) {
             if (!profile.getName().equalsIgnoreCase("Inventory #" + suffix)) continue;
             ++suffix;
         }
